@@ -28,6 +28,18 @@ public class Logement {
         this.equipement_id = equipement_id;
     }
 
+    public Logement() {
+        this.nom = nom;
+        this.localisation = localisation;
+        this.num = num;
+        this.prix = prix;
+        this.etat = etat;
+        this.etat = image;
+
+        this.note_moyenne = note_moyenne;
+    }
+
+
     public int getId() {
         return id;
     }
@@ -73,6 +85,7 @@ public class Logement {
     }
 
     public void setImage(String image) {
+
         this.image = image;
     }
 

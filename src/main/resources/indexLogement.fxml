@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="673.0" prefWidth="1012.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.IndexLogement">
+   <children>
+      <Pane layoutX="14.0" layoutY="56.0" prefHeight="618.0" prefWidth="274.0" style="-fx-background-color: #FF7F00;">
+         <children>
+            <Text layoutX="40.0" layoutY="608.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
+            <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="14.0" layoutY="596.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
+               <image>
+                  <Image url="@images/logoutIcon.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="12.0" layoutY="72.0" prefHeight="471.0" prefWidth="253.0" style="-fx-background-color: #ffff;">
+               <children>
+                  <ImageView fitHeight="169.0" fitWidth="253.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../Desktop/PiDev/Projet-Pi-tfarhida/public/images/hotelBG.jpg" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="14.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="localisation" />
+                  <Text layoutX="14.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="99.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                  <Text layoutX="200.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+               </children>
+            </Pane>
+            <TextField layoutX="12.0" layoutY="23.0" prefHeight="30.0" prefWidth="242.0" promptText="chercher........." style="-fx-background-radius: 100;" stylesheets="@../java/edu/esprit/values/style.css" />
+         </children>
+      </Pane>
+      <Pane layoutX="-2.0" prefHeight="50.0" prefWidth="1014.0" style="-fx-background-color: #FF7F00;">
+         <children>
+            <ImageView fitHeight="72.0" fitWidth="98.0" layoutX="-6.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/tfarhida.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="734.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reclamation" />
+            <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="715.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/wirte.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <HBox alignment="CENTER" layoutX="300.0" layoutY="62.0" prefHeight="36.0" prefWidth="652.0" style="-fx-background-radius: 100;" AnchorPane.rightAnchor="60.39999999999998">
+         <children>
+            <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/homeIconpng.png" />
+               </image>
+            </ImageView>
+            <HBox prefHeight="36.0" prefWidth="10.0" />
+            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="110.0" styleClass="box" stylesheets="@../java/edu/esprit/values/style.css">
+               <children>
+                  <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/food-service.png" />
+                     </image>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Restauurant">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox prefHeight="36.0" prefWidth="15.0" />
+            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="110.0" styleClass="box" stylesheets="@../java/edu/esprit/values/style.css">
+               <children>
+                  <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/homeIconpng.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Transport" />
+               </children>
+            </HBox>
+            <HBox prefHeight="36.0" prefWidth="15.0" />
+            <HBox fx:id="vboxdash" alignment="CENTER" onMouseClicked="#showLogement" prefHeight="30.0" prefWidth="110.0" styleClass="box" stylesheets="@../java/edu/esprit/values/style.css">
+               <children>
+                  <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" style="-fx-image: #000;">
+                     <image>
+                        <Image url="@images/bed.png" />
+                     </image>
+                     <effect>
+                        <Blend />
+                     </effect>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="logement">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox prefHeight="36.0" prefWidth="15.0" />
+            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="box" stylesheets="@../java/edu/esprit/values/style.css">
+               <children>
+                  <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" style="-fx-image: #000;">
+                     <image>
+                        <Image url="@images/bed.png" />
+                     </image>
+                     <effect>
+                        <Blend />
+                     </effect>
+                  </ImageView>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Activite">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Text>
+               </children>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets left="5.0" />
+         </opaqueInsets>
+      </HBox>
+      <HBox layoutX="312.0" layoutY="106.0" prefHeight="569.0" prefWidth="700.0">
+         <children>
+            <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="678.0">
+               <content>
+                  <GridPane prefHeight="10.0" prefWidth="8.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

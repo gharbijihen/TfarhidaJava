@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="646.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherLogement">
+   <children>
+      <Pane layoutX="14.0" layoutY="28.0" prefHeight="620.0" prefWidth="200.0" style="-fx-background-color: #FFFF;">
+         <children>
+            <Text layoutX="40.0" layoutY="573.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
+            <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="14.0" layoutY="561.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
+               <image>
+                  <Image url="@images/logoutIcon.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="140.0" fitWidth="173.0" layoutX="14.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/tfarhida.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane layoutX="-2.0" prefHeight="46.0" prefWidth="950.0" style="-fx-background-color: #F7F7F4;">
+         <children>
+            <Pane layoutX="217.0" layoutY="8.0" prefHeight="38.0" prefWidth="674.0" style="-fx-background-color: #ffff;">
+               <children>
+                  <TextField layoutX="7.0" layoutY="7.0" prefHeight="25.0" prefWidth="368.0" promptText="chercher........." />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+      <Text layoutX="60.0" layoutY="229.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home" />
+      <Text layoutX="53.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="logement" />
+      <Text layoutX="58.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Activite" />
+      <Text layoutX="51.0" layoutY="389.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transport" />
+      <Text layoutX="53.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Restauurant" />
+      <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="33.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/homeIconpng.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" layoutX="32.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #000;">
+         <image>
+            <Image url="@images/bed.png" />
+         </image>
+         <effect>
+            <Blend />
+         </effect>
+      </ImageView>
+      <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="32.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/homeIconpng.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="32.0" layoutY="333.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/food-service.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="32.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/homeIconpng.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="51.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reclamation" />
+      <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="32.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/wirte.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="228.0" layoutY="89.0" prefHeight="433.0" prefWidth="719.0" style="-fx-background-color: #ffff;">
+         <children>
+            <GridPane layoutX="21.0" layoutY="24.0" prefHeight="162.0" prefWidth="694.0" style="-fx-alignment: #0000;">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
