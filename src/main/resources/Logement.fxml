@@ -45,6 +45,6 @@
             <Button fx:id="selectImage" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#selectImageAction" prefHeight="35.0" prefWidth="137.0" stylesheets="@../java/edu/esprit/values/style.css" text="ajouter image" />
          </children>
       </VBox>
-      <Button fx:id="ButtonAjouterLog" layoutX="136.0" layoutY="550.0" mnemonicParsing="false" onAction="#ajouterLogementAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: 2EB67D;" text="Ajouter " />
+      <Button fx:id="ButtonAjouterLog" layoutX="136.0" layoutY="550.0" mnemonicParsing="false" onAction="#ajouterLogementAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: #2EB67D;" text="Ajouter " />
    </children>
 </AnchorPane>

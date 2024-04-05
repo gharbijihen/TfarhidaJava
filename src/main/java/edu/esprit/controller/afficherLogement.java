@@ -21,6 +21,7 @@ import java.util.ResourceBundle;
 public class afficherLogement implements Initializable {
     private List<Logement> logements;
     private MyListener myListener;
+    @FXML
     private GridPane grid;
 
 
@@ -33,8 +34,11 @@ public class afficherLogement implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // eventView.setOnMouseClicked(event -> loadFXML("/gererevenement.fxml"));
     }
-    @FXML
-    void showLogement(MouseEvent event) {
+
+
+
+
+    public void showLogement(MouseEvent mouseEvent) {
         try {
             // Load user.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/indexLogement.fxml"));
@@ -50,6 +54,4 @@ public class afficherLogement implements Initializable {
             e.printStackTrace();
         }
     }
-
-
 }
