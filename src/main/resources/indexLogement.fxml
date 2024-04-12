@@ -100,7 +100,7 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <Button fx:id="butonAvis" mnemonicParsing="false" prefHeight="42.0" prefWidth="94.0" styleClass="avis-button" stylesheets="@../../../../../Downloads/resQfood/resQfood5/src/main/resources/style/styleafficher.css" text="Voir details" textFill="WHITE" />
+                  <Button fx:id="butonAvis" mnemonicParsing="false" prefHeight="2.0" prefWidth="82.0" styleClass="avis-button" stylesheets="@../../../../../Downloads/resQfood/resQfood5/src/main/resources/style/styleafficher.css" text="Voir details" textFill="WHITE" />
                </children>
                <padding>
                   <Insets bottom="30.0" />

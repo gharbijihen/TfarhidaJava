@@ -8,13 +8,30 @@
 }
 .button1{
     -fx-background-color:#F8C07F;
-    -fx-background-radius:8px;
+    -fx-background-radius:100px;
     -fx-text-fill:#fff;
     -fx-font-size:14px;
     -fx-font-family:"Arial";
     -fx-cursor:hand;
 }
+.nav-btn-1{
+    -fx-background-color: transparent;
+    -fx-border-color: #FF7F00;
+    -fx-border-radius:100px;
+    -fx-text-fill: #fff;
+    -fx-font-family: Arial;
+    -fx-cursor: hand;
+    -fx-font-size: 13px;
+    -fx-alignment: CENTER_LEFT;
+}
+.bg-color-1{
+    -fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);
+}
 
 .button:hover{
     -fx-background-color:#F34C31;
+}
+.shadow{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);
+    -fx-background-color:#ffff;
 }

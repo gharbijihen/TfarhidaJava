@@ -10,16 +10,22 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.io.IOException;
 
 public class MainFX extends Application {
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage)  {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/indexLogement.fxml"));
-        Parent root = loader.load();
+        Parent root = null;
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setTitle("Tfarhida");
         stage.show();
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
 
 
     }
