@@ -10,7 +10,7 @@ import edu.esprit.entites.Activite;
 import edu.esprit.entites.Categorie;
 import edu.esprit.tools.MyConnection;
 
-public class CategorieCrud implements IcrudA<Categorie>{
+public class CategorieCrud implements IcrudC<Categorie>{
 
     @Override
     public void ajouter(Categorie categorie) {

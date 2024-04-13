@@ -1,6 +1,8 @@
 package edu.esprit.entites;
 
 
+import javafx.scene.control.TextField;
+
 public class Activite {
     public int id;
     public String nom;
@@ -18,33 +20,61 @@ public class Activite {
 
 
 
-    public Activite(String nom,int prix,String localisation,int nb_P,String etat,int categorie_id,String image,String description_act){
-        this.nom=nom;
-        this.prix=prix;
-        this.localisation=localisation;
-        this.nb_P=nb_P;
-        this.etat=etat;
-        this.categorie_id=categorie_id;
-        this.image=image;
-        this.description_act=description_act;
 
-    }
-
-    public Activite(int id, String nom, int prix, String localisation, int nb_P, String etat, String image, String description_act, int categorie_id) {
+    public Activite(int id, int categorie_id, String nom, int prix, String localisation, int nb_P, String etat, String description_act, String image) {
         this.id = id;
         this.nom = nom;
         this.prix = prix;
         this.localisation = localisation;
         this.nb_P = nb_P;
         this.etat = etat;
-        this.image = image;
+        this.description_act = description_act;
+        this.categorie_id = categorie_id;
+        this.image=image;
+    }
+    public Activite(int categorie_id, String nom, int prix, String localisation, int nb_P, String etat, String description_act, String image) {
+        this.nom = nom;
+        this.prix = prix;
+        this.localisation = localisation;
+        this.nb_P = nb_P;
+        this.etat = etat;
+        this.description_act = description_act;
+        this.categorie_id = categorie_id;
+        this.image=image;
+    }
+
+    public Activite(int categorie_id, String nom, int prix, String localisation, int nb_P, String etat, String description_act) {
+        this.nom = nom;
+        this.prix = prix;
+        this.localisation = localisation;
+        this.nb_P = nb_P;
+        this.etat = etat;
         this.description_act = description_act;
         this.categorie_id = categorie_id;
     }
+    public Activite(){}
 
-    public Activite() {
-
+    public Activite(String nom, int prix, String localisation, int nbP, String etat, String descriptionAct, int categorieId) {
+        this.nom = nom;
+        this.prix = prix;
+        this.localisation = localisation;
+        this.nb_P = nb_P;
+        this.etat = etat;
+        this.description_act = description_act;
+        this.categorie_id = categorie_id;
+        this.image=image;
     }
+    /*public Activite(String nom, int prix, String localisation, int nbP, String etat, String descriptionAct, int categorieId) {
+        this.nom = nom;
+        this.prix = prix;
+        this.localisation = localisation;
+        this.nb_P = nb_P;
+        this.etat = etat;
+        this.description_act = description_act;
+        this.categorie_id = categorie_id;
+        this.image=image;
+    }*/
+
 
     public int getId() {
         return id;
@@ -97,6 +127,7 @@ public class Activite {
     public String getImage() {
         return image;
     }
+
 
     public void setImage(String image) {
         this.image = image;
