@@ -54,7 +54,7 @@ public class afficherCategorie{
         // Configure les colonnes pour correspondre aux attributs de l'activité
         colType.setCellValueFactory(new PropertyValueFactory<>("type_categorie"));
         colDesc.setCellValueFactory(new PropertyValueFactory<>("description"));
-        tableView.setVisible(false);
+        tableView.setVisible(true);
     }
 
 

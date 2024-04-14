@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="1012.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficheractivite">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="1012.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.back">
 
    <children>
       <Pane layoutY="-5.0" prefHeight="683.0" prefWidth="274.0" style="-fx-background-color: #306090;">
@@ -84,7 +84,7 @@
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button  layoutX="55.0" layoutY="330.0" prefWidth="120" style="-fx-background-radius: 100;" text="Catégorie" >
+            <Button fx:id="categorieButton" layoutX="55.0" layoutY="330.0" prefWidth="120" style="-fx-background-radius: 100;" text="Catégorie" onAction="#goToafficherCat">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0">
                      <image>
@@ -96,7 +96,7 @@
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button fx:id="activiteButton" layoutX="54.0" layoutY="280.0" onAction="#afficherActivite" prefWidth="120" style="-fx-background-radius: 100;" text="Activite">
+            <Button fx:id="activiteButton" layoutX="54.0" layoutY="280.0" prefWidth="120" style="-fx-background-radius: 100;" text="Activite" onAction="#goToafficher">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0">
                      <image>
@@ -123,7 +123,9 @@
             <Text layoutX="87.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
          </children>
       </Pane>
-      <HBox layoutX="289.0" layoutY="173.0" prefHeight="422.0" prefWidth="709.0" />
+      <HBox fx:id="contentHBox" layoutX="289.0" layoutY="173.0" prefHeight="422.0" prefWidth="709.0">
+         <!-- Votre contenu actuel ou vide -->
+      </HBox>
       <Pane layoutX="272.0" prefHeight="73.0" prefWidth="740.0" style="-fx-background-color: #306090;">
          <children>
             <TextField layoutX="4.0" layoutY="19.0" prefHeight="37.0" prefWidth="729.0" promptText="chercher........." />
@@ -134,35 +136,12 @@
             <Image url="@images/logoutIcon.png" />
          </image>
       </ImageView>
-      <ScrollPane fx:id="activityScrollPane" layoutX="276.0" layoutY="261.0" prefHeight="342.0" prefWidth="729.0">
-         <TableView fx:id="tableView" prefHeight="363.0" prefWidth="733.0">
-            <columns>
-               <TableColumn fx:id="colCategorie" prefWidth="161.0" text="Catégorie" />
-               <TableColumn fx:id="colNomm" prefWidth="161.0" text="Nom" />
-               <TableColumn fx:id="colDescription" prefWidth="139.0" text="Description" />
-               <TableColumn fx:id="colLocalisation" prefWidth="150.0" text="Localisation" />
-               <TableColumn fx:id="colEtat" prefWidth="161.0" text="Etat" />
-               <TableColumn fx:id="colNbPersonnes" prefWidth="139.0" text="Nombre personne" />
-               <TableColumn fx:id="colPrix" prefWidth="150.0" text="prix" />
-            </columns>
-         </TableView>
-      </ScrollPane>
+
+
+
+
       <Separator layoutX="29.0" layoutY="169.0" prefHeight="17.0" prefWidth="183.0" />
-      <Button layoutX="672.0" layoutY="626.0" mnemonicParsing="false" onAction="#deleteAction" style="-fx-background-radius: 100;" text="Supprimer">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="558.0" layoutY="626.0" mnemonicParsing="false" onAction="#modifierActiviteAction" prefHeight="29.0" prefWidth="83.0" style="-fx-background-radius: 100;" text="Modifier">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="441.0" layoutY="627.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="27.0" prefWidth="83.0" style="-fx-background-radius: 100;" text="Ajouter">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Button>
+
 
    </children>
 </AnchorPane>

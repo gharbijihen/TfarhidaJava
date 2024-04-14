@@ -58,7 +58,7 @@ public class afficheractivite{
 
 
 
-
+/*
     public void initialize() throws SQLException {
 
        List<Activite> act = ps.afficher();
@@ -74,7 +74,21 @@ public class afficheractivite{
         colDescription.setCellValueFactory(new PropertyValueFactory<>("description_act"));
         tableView.setVisible(false);
     }
-
+*/
+public void initialize() throws SQLException {
+    List<Activite> act = ps.afficher();
+    ObservableList<Activite> observableList = FXCollections.observableList(act);
+    tableView.setItems(observableList);
+    // Configure les colonnes pour correspondre aux attributs de l'activité
+    colNomm.setCellValueFactory(new PropertyValueFactory<>("nom"));
+    colCategorie.setCellValueFactory(new PropertyValueFactory<>("categorie_id"));
+    colPrix.setCellValueFactory(new PropertyValueFactory<>("prix"));
+    colLocalisation.setCellValueFactory(new PropertyValueFactory<>("localisation"));
+    colNbPersonnes.setCellValueFactory(new PropertyValueFactory<>("nb_P"));
+    colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
+    colDescription.setCellValueFactory(new PropertyValueFactory<>("description_act"));
+    tableView.setVisible(true); // Rend la table visible par défaut
+}
 
     @FXML
     private void afficherActivite() {
@@ -156,8 +170,7 @@ public class afficheractivite{
         }
     }
 
-    public void afficherCategoriee(ActionEvent actionEvent) {
-    }
+
 }
 
 
