@@ -2,14 +2,18 @@ package edu.esprit.controller;
 
 import edu.esprit.entites.Activite;
 import edu.esprit.servies.ActiviteCrud;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
@@ -19,6 +23,8 @@ public class afficherActiviteF {
     @FXML
     private ScrollPane scroll;
     private ObservableList<Activite> activitesList;
+    @FXML
+    private Button ajouterButton;
 
     // Méthode pour initialiser activitesList
     public void setActivitesList(ObservableList<Activite> activitesList) {
@@ -42,7 +48,7 @@ public class afficherActiviteF {
 
             // Ajouter chaque paire d'éléments à une ligne dans la HBox
             for (Activite activite : activitesList) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Iteam.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/IteamA.fxml"));
                 Node itemNode = loader.load();
                 IteamController controller = loader.getController();
                 controller.setData(activite, null);
@@ -68,6 +74,23 @@ public class afficherActiviteF {
 
             System.out.println("Chargement des éléments terminé avec succès.");
 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ajouterButton.setVisible(true);
+
+    }
+    @FXML
+    void handleAjouter(ActionEvent event) {
+        try {
+            // Charger la vue ou le formulaire d'ajout
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouterCrudF.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle fenêtre pour afficher le formulaire d'ajout
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

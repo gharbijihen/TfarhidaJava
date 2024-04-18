@@ -52,8 +52,8 @@ public class IteamController {
         this.priceLable.setText(activite.getPrix() + " DT/Personne");
         this.loalisationLabel.setText(activite.getLocalisation());
         this.nbpLabel.setText(activite.getNb_P() + " Participant");
-        img.setFitWidth(300); // Ajuster la largeur de l'image
-        img.setFitHeight(300); // Ajuster la hauteur de l'image
+        img.setFitWidth(350); // Ajuster la largeur de l'image
+        img.setFitHeight(350); // Ajuster la hauteur de l'image
 
 
         String imagePath = activite.getImage();
