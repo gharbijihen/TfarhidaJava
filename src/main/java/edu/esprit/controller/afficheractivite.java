@@ -87,6 +87,26 @@ public void initialize() throws SQLException {
     colNbPersonnes.setCellValueFactory(new PropertyValueFactory<>("nb_P"));
     colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
     colDescription.setCellValueFactory(new PropertyValueFactory<>("description_act"));
+    tableView.setStyle("-fx-background-color: #f2f2f2;");
+
+    // Set styles for each TableColumn
+    colNomm.setStyle("-fx-alignment: CENTER;");
+    colCategorie.setStyle("-fx-alignment: CENTER;");
+    colPrix.setStyle("-fx-alignment: CENTER;");
+    colLocalisation.setStyle("-fx-alignment: CENTER;");
+    colNbPersonnes.setStyle("-fx-alignment: CENTER;");
+    colEtat.setStyle("-fx-alignment: CENTER;");
+    colDescription.setStyle("-fx-alignment: CENTER;");
+
+    // Set preferred widths for the columns
+    colNomm.setPrefWidth(150);
+    colCategorie.setPrefWidth(100);
+    colPrix.setPrefWidth(100);
+    colLocalisation.setPrefWidth(150);
+    colNbPersonnes.setPrefWidth(100);
+    colEtat.setPrefWidth(100);
+    colDescription.setPrefWidth(200);
+
     tableView.setVisible(true); // Rend la table visible par défaut
 }
 

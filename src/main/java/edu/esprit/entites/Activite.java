@@ -8,13 +8,12 @@ public class Activite {
     public String nom;
     public int prix;
     public String localisation;
-
     public int nb_P;
     public String etat;
     public String image;
-
     public String description_act;
     public int categorie_id;
+
 
 
 
@@ -42,6 +41,7 @@ public class Activite {
         this.categorie_id = categorie_id;
         this.image=image;
     }
+
 
     public Activite(int categorie_id, String nom, int prix, String localisation, int nb_P, String etat, String description_act) {
         this.nom = nom;

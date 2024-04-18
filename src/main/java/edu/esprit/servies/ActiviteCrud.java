@@ -1,15 +1,19 @@
 package edu.esprit.servies;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import edu.esprit.tools.MyConnection;
 import edu.esprit.entites.Activite;
+import javafx.util.Pair;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ActiviteCrud implements IcrudA<Activite> {
+
     @Override
     public void ajouter1(Activite activite) {
         String req1 = "INSERT INTO activitee(categorie_id,nom,prix,localisation,nb_P,etat,description_act,image) VALUES (?,?,?,?,?,?,?,?)";
@@ -143,6 +147,52 @@ public class ActiviteCrud implements IcrudA<Activite> {
         }
         return  activites;
     }
+
+
+
+    public List<Integer> getAllCategorieIds() {
+        List<Integer> categorieIds = new ArrayList<>();
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            // Obtenir une connexion à la base de données
+            connection = MyConnection.getInstance().getCnx();
+
+            // Préparer la requête SQL
+            statement = connection.prepareStatement("SELECT id FROM Categorie");
+
+            // Exécuter la requête SQL et obtenir le résultat
+            resultSet = statement.executeQuery();
+
+            // Parcourir le résultat et ajouter chaque ID de catégorie à la liste
+            while (resultSet.next()) {
+                int id = resultSet.getInt("id");
+                categorieIds.add(id);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Gérer les exceptions si nécessaire
+        } finally {
+            // Fermer les ressources
+            try {
+                // Fermer le ResultSet en premier
+                if (resultSet != null) resultSet.close();
+                // Puis le PreparedStatement
+                if (statement != null) statement.close();
+                // Enfin, fermer la connexion
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Retourner la liste des IDs de catégorie
+        return categorieIds;
+    }
+
 }
+
+
 
 

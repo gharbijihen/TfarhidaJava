@@ -27,3 +27,23 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);
     -fx-background-color:#ffff;
 }
+
+/* Style pour les en-têtes de colonnes */
+.table-column .label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-background-color: #2b2b2b;
+}
+
+/* Style pour les cellules de la table */
+.table-row-cell {
+    -fx-font-size: 14px;
+    -fx-padding: 5px;
+    -fx-border-color: #d3d3d3;
+}
+
+/* Style pour les cellules de la table au survol */
+.table-row-cell:hover {
+    -fx-background-color: #f0f0f0;
+}

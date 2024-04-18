@@ -48,7 +48,7 @@
                   <Image url="@images/activeIcon.png" />
                </image>
             </ImageView>
-            <Button layoutX="56.0" layoutY="487.0" prefWidth="120" style="-fx-background-radius: 100;" text="Reclamation">
+            <Button layoutX="56.0" layoutY="487.0" prefWidth="120" style="-fx-background-radius: 100 ;" text="Reclamation">
                <graphic>
                   <ImageView fitHeight="17.0" fitWidth="22.0">
                      <image>
