@@ -34,25 +34,7 @@ public class ActiviteCrud implements IcrudA<Activite> {
             System.out.println(e.getMessage());
         }
     }
-    /*@Override
-    public void ajouter(Activite activite,String imagePath) {
-        String req1 = "INSERT INTO activitee(categorie_id,nom,prix,localisation,nb_P,etat,image,description_act) VALUES (?,?,?,?,?,?,?,?)";
-        try {
-            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req1);
-            pst.setInt(1,activite.getCategorie_id()); //tab3a ? eli fel values
-            pst.setString(2, activite.getNom()); //tab3a ? eli fel values
-            pst.setInt(3, activite.getPrix());
-            pst.setString(4, activite.getLocalisation());
-            pst.setInt(5, activite.getNb_P()); // Set nb_P
-            pst.setString(6, activite.getEtat());
-            pst.setString(7, imagePath);
-            pst.setString(8,activite.getDescription_act());
-            pst.executeUpdate();
-            System.out.println("activite ajoutéé!");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-    }*/
+
     @Override
     public void ajouter(Activite activite,String imagePath) {
         String req1 = "INSERT INTO activitee(categorie_id,nom,prix,localisation,nb_P,etat,image,description_act) VALUES (?,?,?,?,?,?,?,?)";
@@ -190,6 +172,7 @@ public class ActiviteCrud implements IcrudA<Activite> {
         // Retourner la liste des IDs de catégorie
         return categorieIds;
     }
+
 
 }
 

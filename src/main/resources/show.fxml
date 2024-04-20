@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane prefHeight="568.0" prefWidth="817.0" style="-fx-background-color: beige;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.detailController">
+   <children>
+      <ImageView fx:id="img" fitHeight="352.0" fitWidth="517.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+         </image>
+      </ImageView>
+
+      <Label fx:id="descLabel" layoutX="603.0" layoutY="117.0" prefHeight="61.0" prefWidth="110.0" text="Description">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="26.0">
+               <image>
+                  <Image url="@images/modifier-les-informations.png" />
+               </image>
+            </ImageView>
+         </graphic></Label>
+      <Label fx:id="priceLabel" layoutX="606.0" layoutY="245.0" text="price">
+         <graphic>
+            <ImageView fitHeight="43.0" fitWidth="47.0">
+               <image>
+                  <Image url="@images/euro.png" />
+               </image>
+            </ImageView>
+         </graphic></Label>
+      <Label fx:id="nbLabel" layoutX="607.0" layoutY="349.0" text="Nombre personne ">
+         <graphic>
+            <ImageView fitHeight="50.0" fitWidth="47.0">
+               <image>
+                  <Image url="@images/equipe.png" />
+               </image>
+            </ImageView>
+         </graphic></Label>
+      <Label fx:id="locLabel" layoutX="609.0" layoutY="449.0" text="localisation">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="36.0">
+               <image>
+                  <Image url="@images/google-maps.png" />
+               </image>
+            </ImageView>
+         </graphic></Label>
+      <Label fx:id="nomLabel" layoutX="397.0" layoutY="32.0" text="Nom">
+         <graphic>
+            <ImageView fitHeight="35.0" fitWidth="36.0">
+               <image>
+                  <Image url="@images/utilisateur (2).png" />
+               </image>
+            </ImageView>
+         </graphic></Label>
+   </children>
+</Pane>

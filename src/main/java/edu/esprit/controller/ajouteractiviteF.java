@@ -217,7 +217,7 @@ public class ajouteractiviteF {
         assert nombreP != null : "fx:id=\"nb_P\" was not injected: check your FXML file 'activiteAjout.fxml'.";
         assert prixx != null : "fx:id=\"prix\" was not injected: check your FXML file 'activiteAjout.fxml'.";
         assert descriptionActt != null : "fx:id=\"description_act\" was not injected: check your FXML file 'activiteAjout.fxml'.";
-        assert etatt != null : "fx:id=\"etat\" was not injected: check your FXML file 'activiteAjout.fxml'.";
+
         assert localisationn != null : "fx:id=\"localisation\" was not injected: check your FXML file 'activiteAjout.fxml'.";
         assert save != null : "fx:id=\"save\" was not injected: check your FXML file 'activiteAjout.fxml'.";
         ActiviteCrud service = new ActiviteCrud();

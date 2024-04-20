@@ -9,11 +9,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<ScrollPane prefHeight="450.0" prefWidth="789.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficheractivite">
+<ScrollPane prefHeight="769.0" prefWidth="1081.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficheractivite">
     <content>
-        <AnchorPane prefHeight="443.0" prefWidth="783.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);;">
+        <AnchorPane prefHeight="759.0" prefWidth="1085.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);">
             <children>
-                <TableView fx:id="tableView" layoutX="15.0" layoutY="36.0" prefHeight="260.0" prefWidth="766.0" style="-fx-border-color: linear-gradient(to bottom right, #188ba7, #306090);" visible="true">
+                <TableView fx:id="tableView" layoutX="15.0" layoutY="66.0" prefHeight="467.0" prefWidth="1043.0" style="-fx-border-color: linear-gradient(to bottom right, #188ba7, #306090);" visible="true">
                     <columns>
                         <TableColumn fx:id="colCategorie" prefWidth="161.0" text="Catégorie" />
                         <TableColumn fx:id="colNomm" prefWidth="161.0" text="Nom" />
@@ -22,25 +22,26 @@
                         <TableColumn fx:id="colEtat" prefWidth="161.0" text="Etat" />
                         <TableColumn fx:id="colNbPersonnes" prefWidth="139.0" text="Nombre personne" />
                         <TableColumn fx:id="colPrix" prefWidth="150.0" text="prix" />
+                        <TableColumn fx:id="colAction" prefWidth="150.0" text="Action" />
                     </columns>
-               <effect>
-                  <ColorAdjust />
-               </effect>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
+                    <effect>
+                        <ColorAdjust />
+                    </effect>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
                 </TableView>
-                <Button layoutX="230.0" layoutY="327.0" mnemonicParsing="false" onAction="#deleteAction" style="-fx-background-radius: 100; -fx-cursor: hand;" text="Supprimer">
+                <Button layoutX="309.0" layoutY="564.0" mnemonicParsing="false" onAction="#deleteAction" style="-fx-background-radius: 100; -fx-cursor: hand;" text="Supprimer">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
-                <Button layoutX="332.0" layoutY="327.0" mnemonicParsing="false" onAction="#modifierActiviteAction" prefHeight="29.0" prefWidth="83.0" style="-fx-background-radius: 100; -fx-cursor: hand;" text="Modifier">
+                <Button layoutX="425.0" layoutY="564.0" mnemonicParsing="false" onAction="#modifierActiviteAction" prefHeight="29.0" prefWidth="83.0" style="-fx-background-radius: 100; -fx-cursor: hand;" text="Modifier">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
-                <Button layoutX="439.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="27.0" prefWidth="83.0" style="-fx-background-radius: 100; -fx-cursor: hand;" text="Ajouter">
+                <Button layoutX="542.0" layoutY="564.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="29.0" prefWidth="83.0" style="-fx-background-radius: 100; -fx-cursor: hand;" text="Ajouter">
                     <font>
                         <Font size="13.0" />
                     </font>

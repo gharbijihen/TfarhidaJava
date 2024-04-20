@@ -55,6 +55,15 @@ public class afficheractivite{
     @FXML
     private Button activiteButton; // Référence au bouton "Activité"
     private File selectedImageFile;
+    @FXML
+    private Button accepterButton;
+    @FXML
+    private Button refreshButton;
+    @FXML
+    private Button refuserButton;
+    @FXML
+    private TableColumn<Activite, Void> colAction;
+
 
 
 
@@ -88,6 +97,8 @@ public void initialize() throws SQLException {
     colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
     colDescription.setCellValueFactory(new PropertyValueFactory<>("description_act"));
     tableView.setStyle("-fx-background-color: #f2f2f2;");
+    colAction.setCellFactory(cell -> new ActionCell());
+
 
     // Set styles for each TableColumn
     colNomm.setStyle("-fx-alignment: CENTER;");
@@ -97,6 +108,7 @@ public void initialize() throws SQLException {
     colNbPersonnes.setStyle("-fx-alignment: CENTER;");
     colEtat.setStyle("-fx-alignment: CENTER;");
     colDescription.setStyle("-fx-alignment: CENTER;");
+    colAction.setStyle("-fx-alignment: CENTER;");
 
     // Set preferred widths for the columns
     colNomm.setPrefWidth(150);
@@ -106,6 +118,8 @@ public void initialize() throws SQLException {
     colNbPersonnes.setPrefWidth(100);
     colEtat.setPrefWidth(100);
     colDescription.setPrefWidth(200);
+    colAction.setPrefWidth(200);
+
 
     tableView.setVisible(true); // Rend la table visible par défaut
 }
@@ -175,7 +189,7 @@ public void initialize() throws SQLException {
         }
     }
     @FXML
-    void handleAjouter(ActionEvent event) {
+    void handleAjouter(ActionEvent event) throws SQLException {
         try {
             // Charger la vue ou le formulaire d'ajout
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/activiteAjout.fxml"));
@@ -189,6 +203,9 @@ public void initialize() throws SQLException {
             e.printStackTrace();
         }
     }
+
+
+
 
 
 }

@@ -1,6 +1,8 @@
 package edu.esprit.controller;
 import edu.esprit.entites.Activite;
 import edu.esprit.servies.ActiviteCrud;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -26,8 +28,10 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import javafx.stage.Stage;
 
@@ -82,7 +86,10 @@ public class ajouteractivite {
     @FXML
     private TextField imagePath;
 
-
+    @FXML
+    private TableView<Activite> tableView;
+    @FXML
+    private final ActiviteCrud ps = new ActiviteCrud();
 
     @FXML
     private Button browseImage;
@@ -90,6 +97,8 @@ public class ajouteractivite {
     private TextField selectedImagePath;
 
     private String imagePathInDatabase;
+    private ObservableList<Activite> listeActivites = FXCollections.observableArrayList();
+
 
     @FXML
     void ajouteractiviteAction(ActionEvent event) {
@@ -110,6 +119,7 @@ public class ajouteractivite {
            /* service.ajouter(new Activite(nom, prix, localisation, nb_P, etat, description_act,categorie_id), image);*/
             service.ajouter(new Activite(categorie_id, nom, prix, localisation, nb_P, etat, description_act), image);
 
+
             showAlert("Activité ajoutée", "L'activité a été ajoutée avec succès.");
             categoriee.clear();
             nomm.clear();
@@ -120,6 +130,7 @@ public class ajouteractivite {
             descriptionActt.clear();
         }
     }
+
     @FXML
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -183,8 +194,8 @@ public class ajouteractivite {
         } else {
             errorLocalisation.setText("");
         }
-        if (etatt.getText().isEmpty() || !etatt.getText().matches("^[a-zA-Z]+$")) {
-            etatt.setText("etat is required and should not contain numbers ");
+        if (etatt.getText().isEmpty() || !etatt.getText().equals("Acceptee")) {
+            etatt.setText("L'état doit être 'Acceptee'");
             isValid = false;
         } else {
             errorLocalisation.setText("");

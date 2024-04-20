@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,40 +12,39 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="1012.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.back">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="974.0" prefWidth="1464.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.back">
 
    <children>
-      <Pane layoutY="-5.0" prefHeight="683.0" prefWidth="274.0" style="-fx-background-color: #306090;">
+      <Pane layoutX="-3.0" layoutY="-4.0" prefHeight="974.0" prefWidth="375.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);">
          <children>
-            <ImageView fitHeight="96.0" fitWidth="144.0" layoutX="62.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="131.0" fitWidth="186.0" layoutX="80.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/tfarhida.png" />
                </image>
             </ImageView>
             <VBox alignment="CENTER" layoutX="56.0" layoutY="184.0" spacing="10" />
-            <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="22.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="86.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/user.png" />
                </image>
             </ImageView>
-            <Text fill="WHITE" layoutX="56.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin@gmail.com">
+            <Text fill="WHITE" layoutX="123.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin@gmail.com">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="110.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
+            <Text fill="WHITE" layoutX="173.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Text>
-            <Text fill="WHITE" layoutX="74.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom:   " />
-            <ImageView fitHeight="14.0" fitWidth="10.0" layoutX="171.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+            <Text fill="WHITE" layoutX="126.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom:   " />
+            <ImageView fitHeight="14.0" fitWidth="10.0" layoutX="242.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/activeIcon.png" />
                </image>
             </ImageView>
-            <Button layoutX="56.0" layoutY="487.0" prefWidth="120" style="-fx-background-radius: 100 ;" text="Reclamation">
+            <Button layoutX="119.0" layoutY="804.0" prefHeight="59.0" prefWidth="144.0" style="-fx-background-radius: 100 ;" text="Reclamation">
                <graphic>
                   <ImageView fitHeight="17.0" fitWidth="22.0">
                      <image>
@@ -60,7 +56,7 @@
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button layoutX="56.0" layoutY="433.0" prefWidth="120" style="-fx-background-radius: 100;" text="Transport">
+            <Button layoutX="119.0" layoutY="702.0" prefHeight="59.0" prefWidth="144.0" style="-fx-background-radius: 100;" text="Transport">
                <graphic>
                   <ImageView fitHeight="17.0" fitWidth="22.0">
                      <image>
@@ -72,7 +68,7 @@
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button layoutX="55.0" layoutY="380.0" prefWidth="120" style="-fx-background-radius: 100;" text="Logement">
+            <Button layoutX="119.0" layoutY="602.0" prefHeight="59.0" prefWidth="144.0" style="-fx-background-radius: 100;" text="Logement">
                <graphic>
                   <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" preserveRatio="true">
                      <image>
@@ -84,7 +80,7 @@
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button fx:id="categorieButton" layoutX="55.0" layoutY="330.0" prefWidth="120" style="-fx-background-radius: 100;" text="Catégorie" onAction="#goToafficherCat">
+            <Button fx:id="categorieButton" layoutX="117.0" layoutY="503.0" onAction="#goToafficherCat" prefHeight="59.0" prefWidth="144.0" style="-fx-background-radius: 100;" text="Catégorie">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0">
                      <image>
@@ -96,7 +92,7 @@
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button fx:id="activiteButton" layoutX="54.0" layoutY="280.0" prefWidth="120" style="-fx-background-radius: 100;" text="Activite" onAction="#goToafficher">
+            <Button fx:id="activiteButton" layoutX="114.0" layoutY="403.0" onAction="#goToafficher" prefHeight="59.0" prefWidth="144.0" style="-fx-background-radius: 100;" text="Activite">
                <graphic>
                   <ImageView fitHeight="18.0" fitWidth="18.0">
                      <image>
@@ -108,7 +104,7 @@
                   <Font size="13.0" />
                </font>
             </Button>
-            <Button layoutX="56.0" layoutY="230.0" prefWidth="120" style="-fx-background-radius: 100;" text="Restaurant">
+            <Button layoutX="116.0" layoutY="309.0" prefHeight="59.0" prefWidth="144.0" style="-fx-background-radius: 100;" text="Restaurant">
                <graphic>
                   <ImageView fitHeight="17.0" fitWidth="22.0">
                      <image>
@@ -120,27 +116,27 @@
                   <Font size="13.0" />
                </font>
             </Button>
-            <Text layoutX="87.0" layoutY="646.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
+            <Text layoutX="144.0" layoutY="944.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
+            <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="109.0" layoutY="934.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
+               <image>
+                  <Image url="@images/logoutIcon.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <HBox fx:id="contentHBox" layoutX="289.0" layoutY="173.0" prefHeight="422.0" prefWidth="709.0">
+      <HBox fx:id="contentHBox" layoutX="390.0" layoutY="160.0" prefHeight="809.0" prefWidth="1084.0">
          <!-- Votre contenu actuel ou vide -->
       </HBox>
-      <Pane layoutX="272.0" prefHeight="73.0" prefWidth="740.0" style="-fx-background-color: #306090;">
+      <Pane layoutX="371.0" prefHeight="107.0" prefWidth="1094.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);">
          <children>
-            <TextField layoutX="4.0" layoutY="19.0" prefHeight="37.0" prefWidth="729.0" promptText="chercher........." />
+            <TextField layoutX="4.0" layoutY="19.0" prefHeight="59.0" prefWidth="1084.0" promptText="chercher........." />
          </children>
       </Pane>
-      <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="62.0" layoutY="629.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
-         <image>
-            <Image url="@images/logoutIcon.png" />
-         </image>
-      </ImageView>
 
 
 
 
-      <Separator layoutX="29.0" layoutY="169.0" prefHeight="17.0" prefWidth="183.0" />
+      <Separator layoutX="22.0" layoutY="239.0" prefHeight="17.0" prefWidth="334.0" />
 
 
    </children>

@@ -12,6 +12,10 @@ import edu.esprit.tools.MyConnection;
 
 public class CategorieCrud implements IcrudC<Categorie>{
 
+
+
+
+
     @Override
     public void ajouter(Categorie categorie) {
         String req1 = "INSERT INTO categorie(description,type_categorie) VALUES (?,?)";
@@ -28,6 +32,7 @@ public class CategorieCrud implements IcrudC<Categorie>{
     }
 
     @Override
+
     public void modifier(Categorie categorie) throws SQLException {
         final String query="UPDATE categorie SET description = ?, type_categorie = ? WHERE id= ?";
         try( PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);){
@@ -76,4 +81,6 @@ public class CategorieCrud implements IcrudC<Categorie>{
         }
         return categories;
     }
+
+
 }
