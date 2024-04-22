@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -25,6 +26,9 @@ public class afficherActiviteF {
     private ObservableList<Activite> activitesList;
     @FXML
     private Button ajouterButton;
+    @FXML
+    private FlowPane activiteflow;
+
 
     // Méthode pour initialiser activitesList
     public void setActivitesList(ObservableList<Activite> activitesList) {

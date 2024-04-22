@@ -67,8 +67,12 @@ public class detailController {
                     try {
                         // Charger l'image à partir du chemin d'accès spécifié
                         Image image = new Image(file.toURI().toString());
+                        double desiredWidth = 600; // Spécifiez la largeur souhaitée
+                        double desiredHeight = 600;
                         // Définir l'image dans l'élément ImageView
                         img.setImage(image);
+                        img.setFitWidth(desiredWidth);
+                        img.setFitHeight(desiredHeight);
                     } catch (Exception e) {
                         System.err.println("Erreur lors du chargement de l'image : " + e.getMessage());
                         // Gérer l'erreur de chargement de l'image

@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -124,6 +125,13 @@ public void initialize() throws SQLException {
     tableView.setVisible(true); // Rend la table visible par défaut
 
 }
+    public void refreshList() {
+        try {
+            initialize();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void afficherActivite() {
@@ -153,6 +161,8 @@ public void initialize() throws SQLException {
             modifierController.initData(activite, selectedImageFile); // Transmettre également le fichier d'image sélectionné
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
+            stage.setOnHidden(e -> refreshList());
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -199,10 +209,18 @@ public void initialize() throws SQLException {
             // Créer une nouvelle fenêtre pour afficher le formulaire d'ajout
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
-            stage.show();
+            stage.setOnHiding(e -> {
+                // Rafraîchir la liste des activités dans la TableView après la fermeture de la fenêtre d'ajout
+                refreshList();
+            });
+
+            stage.showAndWait();
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
 
