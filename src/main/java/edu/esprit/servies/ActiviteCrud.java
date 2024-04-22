@@ -1,8 +1,9 @@
 package edu.esprit.servies;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+
+import edu.esprit.entites.Categorie;
 import edu.esprit.tools.MyConnection;
 import edu.esprit.entites.Activite;
 import javafx.util.Pair;
@@ -36,39 +37,53 @@ public class ActiviteCrud implements IcrudA<Activite> {
     }
 
     @Override
-    public void ajouter(Activite activite,String imagePath) {
-        String req1 = "INSERT INTO activitee(categorie_id,nom,prix,localisation,nb_P,etat,image,description_act) VALUES (?,?,?,?,?,?,?,?)";
-        try {
-            // Check if the category ID exists in the categorie table
-            if (!categoryExists(activite.getCategorie_id())) {
-                System.out.println("Invalid category ID");
-                return;
-            }
+    public void ajouter(Activite activite, String imagePath) {
+        String req1 = "INSERT INTO activitee(categorie_id, nom, prix, localisation, nb_P, etat, image, description_act) VALUES (?,?,?,?,?,?,?,?)";
+        try (Connection connection = MyConnection.getInstance().getCnx()) {
+            // Vérifier si la connexion est ouverte
+            if (!connection.isClosed()) {
+                // Vérifier si l'ID de catégorie existe dans la table categorie
+                if (!categoryExists(activite.getCategorie_id(), connection)) {
+                    System.out.println("Invalid category ID");
+                    return;
+                }
 
-            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req1);
-            pst.setInt(1, activite.getCategorie_id());
-            pst.setString(2, activite.getNom());
-            pst.setInt(3, activite.getPrix());
-            pst.setString(4, activite.getLocalisation());
-            pst.setInt(5, activite.getNb_P());
-            pst.setString(6, activite.getEtat());
-            pst.setString(7, imagePath);
-            pst.setString(8, activite.getDescription_act());
-            pst.executeUpdate();
-            System.out.println("Activite ajoutée!");
+                try (PreparedStatement pst = connection.prepareStatement(req1)) {
+                    // Paramétrer les valeurs dans la requête PreparedStatement
+                    pst.setInt(1, activite.getCategorie_id());
+                    pst.setString(2, activite.getNom());
+                    pst.setInt(3, activite.getPrix());
+                    pst.setString(4, activite.getLocalisation());
+                    pst.setInt(5, activite.getNb_P());
+                    pst.setString(6, activite.getEtat());
+                    pst.setString(7, imagePath);
+                    pst.setString(8, activite.getDescription_act());
+
+                    // Exécuter la requête
+                    pst.executeUpdate();
+                    System.out.println("Activite ajoutée!");
+                } catch (SQLException e) {
+                    System.out.println("Error executing SQL query: " + e.getMessage());
+                }
+            } else {
+                System.out.println("Connection to database is closed.");
+            }
         } catch (SQLException e) {
-            System.out.println("Error adding activite: " + e.getMessage());
+            System.out.println("Error establishing connection: " + e.getMessage());
         }
     }
 
     // Check if the category ID exists in the categorie table
-    private boolean categoryExists(int categoryId) throws SQLException {
+    private boolean categoryExists(int categoryId, Connection connection) throws SQLException {
         String query = "SELECT id FROM categorie WHERE id = ?";
-        PreparedStatement statement = MyConnection.getInstance().getCnx().prepareStatement(query);
-        statement.setInt(1, categoryId);
-        ResultSet resultSet = statement.executeQuery();
-        return resultSet.next(); // If next() returns true, category ID exists
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setInt(1, categoryId);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                return resultSet.next(); // Si next() retourne true, l'ID de catégorie existe
+            }
+        }
     }
+
 
 
     @Override
@@ -174,7 +189,108 @@ public class ActiviteCrud implements IcrudA<Activite> {
     }
 
 
+
+
+    public static Activite getActiviteParId(int id) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Activite activite = null;
+
+        try {
+            conn = MyConnection.getInstance().getCnx();
+            if (conn == null) {
+                throw new SQLException("La connexion à la base de données est nulle.");
+            }
+
+            String query = "SELECT * FROM activitee WHERE id = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                int categorie_id = rs.getInt("categorie_id");
+                String nom = rs.getString("nom");
+                int prix = rs.getInt("prix");
+                String localisation = rs.getString("localisation");
+                int nb_P = rs.getInt("nb_P");
+                String etat = rs.getString("etat");
+                String image = rs.getString("image");
+                String description_act = rs.getString("description_act");
+
+                activite = new Activite(id, categorie_id, nom, prix, localisation, nb_P, etat, description_act,image);
+            } else {
+                System.out.println("Aucune activité trouvée avec l'ID : " + id);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Vous pouvez gérer l'exception en renvoyant une valeur par défaut ou en lançant une nouvelle exception personnalisée
+        } finally {
+            // Fermer les ressources
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return activite;
+    }
+
+
+
+
+    public int getIdCategorieByType(String typeCategorie) {
+        int categoryId = -1; // Valeur par défaut si aucune catégorie correspondante n'est trouvée
+
+        try (Connection connection = MyConnection.getInstance().getCnx()) {
+            // Préparation de la requête SQL
+            String query = "SELECT id FROM categorie WHERE type_categorie = ?";
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                // Définir le type de catégorie dans la requête
+                statement.setString(1, typeCategorie);
+
+                // Exécution de la requête
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    // Vérifier s'il y a un résultat
+                    if (resultSet.next()) {
+                        // Récupération de l'ID de la catégorie correspondante
+                        categoryId = resultSet.getInt("id");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return categoryId;
+    }
+    public static Map<String, Integer> getAllTypesCategories() {
+        Map<String, Integer> typesCategories = new HashMap<>();
+
+        try (Connection connection = MyConnection.getInstance().getCnx()) {
+            String query = "SELECT type_categorie, id FROM categorie";
+            try (PreparedStatement statement = connection.prepareStatement(query);
+                 ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    String typeCategorie = resultSet.getString("type_categorie");
+                    int categoryId = resultSet.getInt("id");
+                    typesCategories.put(typeCategorie, categoryId);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return typesCategories;
+    }
+
+
 }
+
+
+
 
 
 

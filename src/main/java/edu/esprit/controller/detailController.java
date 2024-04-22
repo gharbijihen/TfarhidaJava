@@ -59,17 +59,27 @@ public class detailController {
             this.nbLabel.setText(activite.getNb_P() + " Participant");
             this.descLabel.setText(activite.getDescription_act());
 
-
-            img.setFitWidth(350); // Ajuster la largeur de l'image
-            img.setFitHeight(350); // Ajuster la hauteur de l'image
-
             String imagePath = activite.getImage();
-            if (imagePath != null) {
-                // Charger l'image à partir du chemin d'accès spécifié
-                Image image = new Image(new File(imagePath).toURI().toString());
-                this.img.setImage(image);
+            if (imagePath != null && !imagePath.isEmpty()) {
+                // Vérifiez si le fichier image existe
+                File file = new File(imagePath);
+                if (file.exists() && !file.isDirectory()) {
+                    try {
+                        // Charger l'image à partir du chemin d'accès spécifié
+                        Image image = new Image(file.toURI().toString());
+                        // Définir l'image dans l'élément ImageView
+                        img.setImage(image);
+                    } catch (Exception e) {
+                        System.err.println("Erreur lors du chargement de l'image : " + e.getMessage());
+                        // Gérer l'erreur de chargement de l'image
+                    }
+                } else {
+                    System.err.println("Le fichier image n'existe pas : " + imagePath);
+                    // Gérer le cas où le fichier image est introuvable
+                }
             } else {
-                // Afficher une image par défaut ou gérer le cas où l'image est absente
+                System.err.println("Chemin d'accès à l'image non spécifié.");
+                // Gérer le cas où le chemin d'accès de l'image n'est pas spécifié
             }
         } else {
             // Gérer le cas où activite est null, par exemple, en effaçant les valeurs des labels et de l'image
@@ -80,7 +90,8 @@ public class detailController {
             this.descLabel.setText("");
             this.img.setImage(null); // Effacer l'image
         }
-
     }
 
+
 }
+

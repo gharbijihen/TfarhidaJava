@@ -6,12 +6,13 @@ import edu.esprit.servies.ActiviteCrud;
 import edu.esprit.servies.CategorieCrud;
 import edu.esprit.tools.MyConnection;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 
 public class MainClass {
     public static void main(String[] args) {
-        MyConnection mc = new MyConnection();
-        MyConnection mc1 = MyConnection.getInstance();
+        //MyConnection mc = new MyConnection();
+        //MyConnection mc1 = MyConnection.getInstance();
 
         Categorie c=new Categorie(5,"allo","allo");
         Categorie c1=new Categorie(6,"noura","nawara");
@@ -27,11 +28,16 @@ public class MainClass {
         cc.supprimer(c);
         System.out.println("c id is "+c.id);
         //Activite p = new Activite(2,"Bikee", 20, "Nabeul", 10, "En cours","1", "5.jpg", 2);
+
         Activite p1 = new Activite(3,4,"Bikee", 20, "Nabeul", 5,"oui", "jolie", "5.jpg");
+
         ActiviteCrud ac = new ActiviteCrud();
         ac.ajouter1(p1);
         System.out.println(ac.afficher());
         System.out.println(cc.afficher());
+
+
+
 
     }
 

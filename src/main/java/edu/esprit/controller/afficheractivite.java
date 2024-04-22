@@ -122,6 +122,7 @@ public void initialize() throws SQLException {
 
 
     tableView.setVisible(true); // Rend la table visible par défaut
+
 }
 
     @FXML

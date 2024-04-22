@@ -11,42 +11,73 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="695.0" prefWidth="1053.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherActiviteF">
+<AnchorPane prefHeight="927.0" prefWidth="1534.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherActiviteF">
     <children>
-        <Pane layoutX="14.0" layoutY="62.0" prefHeight="612.0" prefWidth="274.0" style="-fx-background-color: #FF7F00;">
+        <Pane layoutX="-1.0" layoutY="69.0" prefHeight="858.0" prefWidth="283.0" style="-fx-background-color: #FF7F00;">
             <children>
-                <Text layoutX="40.0" layoutY="600.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
-                <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="14.0" layoutY="587.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
+                <Text layoutX="86.0" layoutY="838.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+                <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="50.0" layoutY="819.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
                     <image>
                         <Image url="@images/logoutIcon.png" />
                     </image>
                 </ImageView>
-                <Pane layoutX="12.0" layoutY="72.0" prefHeight="471.0" prefWidth="253.0" style="-fx-background-color: #ffff;">
-                    <children>
-                        <ImageView fitHeight="169.0" fitWidth="253.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../../../../PiProjecttt/public/images/9.jpg" />
-                            </image>
-                        </ImageView>
-                        <Text layoutX="14.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="localisation" />
-                        <Text layoutX="14.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                        <Text layoutX="99.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                        <Text layoutX="200.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                    </children>
-                </Pane>
-                <TextField layoutX="12.0" layoutY="23.0" prefHeight="30.0" prefWidth="242.0" promptText="chercher........." style="-fx-background-radius: 100;" stylesheets="@../java/edu/esprit/values/style.css" />
+                <TextField layoutX="12.0" layoutY="38.0" prefHeight="49.0" prefWidth="242.0" promptText="chercher........." style="-fx-background-radius: 100;" stylesheets="@../java/edu/esprit/values/style.css" />
+                  <Button layoutX="50.0" layoutY="187.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Restaurant ">
+                      <graphic>
+                          <ImageView fitHeight="26.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@images/food-service.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+                  <Button layoutX="50.0" layoutY="318.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Transport">
+                      <graphic>
+                          <ImageView fitHeight="34.0" fitWidth="32.0">
+                              <image>
+                                  <Image url="@images/1.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+                  <Button layoutX="50.0" layoutY="451.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Logement">
+                      <graphic>
+                          <ImageView fitHeight="26.0" fitWidth="32.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" style="-fx-image: #000;">
+                              <image>
+                                  <Image url="@images/bed.png" />
+                              </image>
+                              <effect>
+                                  <Blend />
+                              </effect>
+                          </ImageView>
+                      </graphic>
+                  </Button>
+                  <Button layoutX="50.0" layoutY="600.0" mnemonicParsing="false" onAction="#afficherActivites" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Activité">
+                      <graphic>
+                          <ImageView fitHeight="23.0" fitWidth="25.0">
+                              <image>
+                                  <Image url="@images/3555663.png" />
+                              </image>
+                          </ImageView>
+                      </graphic>
+                  </Button>
             </children>
         </Pane>
-        <Pane layoutX="-2.0" prefHeight="55.0" prefWidth="1053.0" style="-fx-background-color: #FF7F00;">
+        <Pane prefHeight="73.0" prefWidth="1663.0" style="-fx-background-color: #FF7F00;">
             <children>
-                <ImageView fitHeight="72.0" fitWidth="98.0" layoutX="-6.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="122.0" fitWidth="156.0" layoutX="51.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/tfarhida.png" />
                     </image>
                 </ImageView>
-                <Button layoutX="843.0" layoutY="8.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="107.0" style="-fx-background-radius: 100;" text="Reclamation">
+                <Button layoutX="1456.0" layoutY="12.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Reclamation">
                     <graphic>
                         <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -60,76 +91,31 @@
         <HBox alignment="CENTER" layoutX="300.0" layoutY="62.0" prefHeight="36.0" prefWidth="652.0" style="-fx-background-radius: 100;" AnchorPane.rightAnchor="60.39999999999998">
             <children>
                 <HBox prefHeight="36.0" prefWidth="10.0" />
-                <HBox alignment="CENTER" prefHeight="36.0" prefWidth="110.0" styleClass="box" stylesheets="@../java/edu/esprit/values/style.css">
-                    <children>
-                        <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="111.0" style="-fx-background-radius: 100;" text="Restaurant ">
-                            <graphic>
-                                <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@images/food-service.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                    </children>
-                </HBox>
+                <HBox alignment="CENTER" prefHeight="36.0" prefWidth="110.0" styleClass="box" stylesheets="@../java/edu/esprit/values/style.css" />
                 <HBox prefHeight="36.0" prefWidth="15.0" />
                 <HBox alignment="CENTER" prefHeight="36.0" prefWidth="110.0" styleClass="box" stylesheets="@../java/edu/esprit/values/style.css">
                     <children>
-                        <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="115.0" style="-fx-background-radius: 100;" text="Transport">
-                            <graphic>
-                                <ImageView fitHeight="27.0" fitWidth="21.0">
-                                    <image>
-                                        <Image url="@images/1.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" />
                     </children>
                 </HBox>
                 <HBox fx:id="vboxdash" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="box" stylesheets="@../java/edu/esprit/values/style.css">
                     <children>
                         <HBox prefHeight="36.0" prefWidth="24.0" />
-                        <Button mnemonicParsing="false" prefHeight="34.0" prefWidth="107.0" style="-fx-background-radius: 100;" text="Logement">
-                            <graphic>
-                                <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" style="-fx-image: #000;">
-                                    <image>
-                                        <Image url="@images/bed.png" />
-                                    </image>
-                                    <effect>
-                                        <Blend />
-                                    </effect>
-                                </ImageView>
-                            </graphic>
-                        </Button>
                     </children>
                 </HBox>
                 <HBox prefHeight="36.0" prefWidth="13.0" />
-                <HBox fx:id="vboxdashh" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="box" stylesheets="@../java/edu/esprit/values/style.css">
-                    <children>
-                        <Button mnemonicParsing="false" onAction="#afficherActivites" prefHeight="34.0" prefWidth="112.0" style="-fx-background-radius: 100;" text="Activité" >
-                            <graphic>
-                                <ImageView fitHeight="16.0" fitWidth="16.0">
-                                    <image>
-                                        <Image url="@images/3555663.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                    </children>
-                </HBox>
+                <HBox fx:id="vboxdashh" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="box" stylesheets="@../java/edu/esprit/values/style.css" />
             </children>
             <opaqueInsets>
                 <Insets left="5.0" />
             </opaqueInsets>
         </HBox>
-        <VBox layoutX="312.0" layoutY="106.0" prefHeight="569.0" prefWidth="700.0">
+        <VBox layoutX="312.0" layoutY="106.0" prefHeight="817.0" prefWidth="1044.0">
             <children>
-                <ScrollPane fx:id="scroll" prefHeight="649.0" prefWidth="700.0" />
-            <Pane prefHeight="200.0" prefWidth="200.0">
+                <ScrollPane fx:id="scroll" prefHeight="695.0" prefWidth="1199.0" />
+            <Pane prefHeight="115.0" prefWidth="1044.0">
                <children>
-                   <Button fx:id="ajouterButton" layoutX="266.0" layoutY="21.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="145.0" text="Ajouter" visible="false" onAction="#handleAjouter" style="-fx-background-radius: 100 ;"/>
+                   <Button fx:id="ajouterButton" layoutX="266.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="25.0" prefWidth="145.0" style="-fx-background-radius: 100 ;" text="Ajouter" visible="false" />
                </children>
             </Pane>
             </children>

@@ -4,6 +4,7 @@ import edu.esprit.entites.Activite;
 import edu.esprit.servies.ActiviteCrud;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -162,6 +163,10 @@ public class ModifierActiviteController {
                     // Utilisez votre service ActiviteCrud pour mettre à jour l'activité dans la base de données
                     ActiviteCrud service = new ActiviteCrud();
                     service.modifier(activiteModifiee);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success");
+                    alert.setContentText("workout updated successfully");
+                    alert.showAndWait();
 
                     System.out.println("Activité modifiée avec succès !");
                     // Vous pouvez également afficher une boîte de dialogue ou un message pour informer l'utilisateur

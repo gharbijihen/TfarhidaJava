@@ -3,6 +3,8 @@ import javafx.util.Pair;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
+
 public interface IcrudA <T>{
     void ajouter(T t,String imagePath);
     void ajouter1(T t);

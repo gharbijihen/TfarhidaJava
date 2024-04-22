@@ -2,6 +2,7 @@ package edu.esprit.controller;
 
 import edu.esprit.entites.Activite;
 import edu.esprit.entites.Categorie;
+import edu.esprit.servies.ActiviteCrud;
 import edu.esprit.tests.MyListener;
 import edu.esprit.tools.MyConnection;
 import javafx.event.ActionEvent;
@@ -50,7 +51,10 @@ public class IteamController {
     private Label typeLabel;
     @FXML
     private Label descLabel;
-
+    @FXML
+    private Label idLabel;
+    @FXML
+    private Button voirDetailsButton;
     private Activite activite;
     private Categorie categorie;
     private MyListener myListener;
@@ -72,12 +76,22 @@ public class IteamController {
     public void setData(Activite activite, MyListener myListener) {
         this.activite = activite;
         this.myListener = myListener;
+
         this.nameLabel.setText(activite.getNom());
         this.priceLable.setText(activite.getPrix() + " DT/Personne");
         this.loalisationLabel.setText(activite.getLocalisation());
         this.nbpLabel.setText(activite.getNb_P() + " Participant");
-        img.setFitWidth(350); // Ajuster la largeur de l'image
-        img.setFitHeight(350); // Ajuster la hauteur de l'image
+        this.idLabel.setText(String.valueOf(activite.getId()));
+        String idLabelText = idLabel.getText().trim();
+        try {
+            int idFromLabel = Integer.parseInt(idLabelText);
+            System.out.println("ID récupéré à partir du label : " + idFromLabel);
+        } catch (NumberFormatException e) {
+            System.out.println("Erreur : Impossible de convertir le texte en entier.");
+            e.printStackTrace();
+        }
+        img.setFitWidth(300); // Ajuster la largeur de l'image
+        img.setFitHeight(300); // Ajuster la hauteur de l'image
 
 
         String imagePath = activite.getImage();
@@ -112,48 +126,76 @@ public class IteamController {
             e.printStackTrace();
         }
     }
+  /* public void initialize() {
+        // Supposons que vous avez l'ID de l'activité dans une variable nommée idActivite
+        int idActivite = 46; // Remplacez 123 par l'ID réel de l'activité
+        voirDetailsButton.setUserData(idActivite);
+    }*/
+  @FXML
+
+  public void initialize() {
+      int idActivite = getIdFromLabel(idLabel);
+      voirDetailsButton.setUserData(idActivite);
+
+      // Ajouter un message de journalisation pour vérifier la valeur de idActivite
+      System.out.println("ID de l'activité défini comme userData : " + idActivite);
+  }
+
+    private int getIdFromLabel(Label label) {
+            try {
+                String text = label.getText().trim();
+                if (!text.isEmpty()) {
+                    return Integer.parseInt(text);
+                } else {
+                    System.out.println("Le texte du label est vide.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Erreur lors de la conversion du texte en entier : " + e.getMessage());
+            }
+            return -1; // Valeur par défaut ou une valeur qui indique une erreur
+        }
+
+
+
+
     @FXML
-    void afficherDetails(ActionEvent event) throws IOException {
-        // Récupérer le bouton sur lequel l'événement a été déclenché
-        Button detailButton = (Button) event.getSource();
+    void afficherDetails(ActionEvent event) {
+        // Récupérer l'identifiant de l'activité associée au bouton
+        int id = Integer.parseInt(idLabel.getText().trim()); // Assurez-vous que le label contient bien l'ID de l'activité
 
-        // Récupérer l'activité associée au bouton à partir de la propriété userData
-        Activite activite = (Activite) detailButton.getUserData();
+        // Récupérer l'activité correspondante à partir de votre source de données
+        Activite activite = ActiviteCrud.getActiviteParId(id);
 
-        // Afficher l'ID de l'activité dans une boîte de dialogue contextuelle
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Détails de l'activité");
         if (activite != null) {
-            // Appeler des méthodes sur l'objet activite
-            alert.setHeaderText("ID de l'activité: " + activite.getId());
+            try {
+                // Charger la vue FXML de détails
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/show.fxml"));
+                Parent root = loader.load();
+
+                // Accéder au contrôleur de vue de détails
+                detailController controller = loader.getController();
+
+                // Appeler la méthode setDatadetail du contrôleur de vue de détails pour initialiser les données de l'activité
+                controller.setDatadetail(activite, null);
+
+                // Créer une nouvelle scène
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
-            // Gérer le cas où activite est null
-            System.out.println("L'objet activite est null.");
-        }        alert.setContentText("Autres détails de l'activité...");
-        alert.showAndWait();
-
-        // Charger la vue FXML de détails
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/show.fxml"));
-        Parent root = loader.load();
-
-        // Accéder au contrôleur de vue de détails
-        detailController controller = loader.getController();
-
-        // Appeler la méthode setDatadetail du contrôleur de vue de détails pour initialiser les données de l'activité
-        controller.setDatadetail(activite,null);
-
-        // Créer une nouvelle scène
-        Scene scene = new Scene(root);
-
-        // Accéder à la fenêtre principale (stage)
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
+            // Gérer le cas où l'activité est null
+            System.out.println("Aucune activité trouvée avec l'ID : " + id);
+        }
     }
 
-
-
 }
+
+
+
+
 
 
 

@@ -1,6 +1,8 @@
 package edu.esprit.controller;
 import edu.esprit.entites.Activite;
+import edu.esprit.entites.Categorie;
 import edu.esprit.servies.ActiviteCrud;
+import edu.esprit.tools.MyConnection;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,6 +13,9 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.scene.control.ComboBox;
+
+import java.util.*;
 
 import javafx.scene.image.ImageView;
 import java.io.File;
@@ -26,10 +31,14 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
@@ -85,7 +94,6 @@ public class ajouteractiviteF {
     private TextField imagePath;
 
 
-
     @FXML
     private Button browseImage;
     @FXML
@@ -94,27 +102,34 @@ public class ajouteractiviteF {
     private String imagePathInDatabase;
     @FXML
 
-    private ComboBox<Integer> categorieComboBox;
+    // private ComboBox<Integer> categorieComboBox;
+    private ComboBox<String> categorieComboBox;
+
+
+
+
     private List<Pair<Integer, String>> categories; // Déclarez cette liste en tant que variable de classe
 
 
-    @FXML
-    void ajouteractiviteAction(ActionEvent event) {
+   /* void ajouteractiviteAction(ActionEvent event) {
         if (isInputValid()) {
-            String image=imagePathInDatabase;
-          //  int categorie_id = Integer.parseInt(categoriee.getText());
+            String image = imagePathInDatabase;
+            //  int categorie_id = Integer.parseInt(categoriee.getText());
             // Récupérer le nom de la catégorie sélectionnée
-            int categorie_id = categorieComboBox.getValue();
-            System.out.println("hello"+categorie_id);
-            String nom= nomm.getText();
+            //int categorie_id = categorieComboBox.getValue();
+            // System.out.println("hello"+categorie_id);
+            // int categorie_id = categorieComboBox.getValue();
+
+            // Récupérer l'ID de la catégorie à partir du type sélectionné
+            String nom = nomm.getText();
             int prix = Integer.parseInt(prixx.getText());
             int nb_P = Integer.parseInt(nombreP.getText());
             String localisation = localisationn.getText();
             String description_act = descriptionActt.getText();
             ActiviteCrud service = new ActiviteCrud();
             System.out.println(description_act);
-            /* service.ajouter(new Activite(nom, prix, localisation, nb_P, etat, description_act,categorie_id), image);*/
-            service.ajouter(new Activite(categorie_id, nom, prix, localisation, nb_P,"en cours",description_act), image);
+            //service.ajouter(new Activite(nom, prix, localisation, nb_P, etat, description_act,categorie_id), image);
+            service.ajouter(new Activite(selectedCategoryId, nom, prix, localisation, nb_P, "en cours", description_act), image);
 
             showAlert("Activité ajoutée", "L'activité a été ajoutée avec succès.");
             categorieComboBox.getSelectionModel().clearSelection();
@@ -124,7 +139,55 @@ public class ajouteractiviteF {
             localisationn.clear();
             descriptionActt.clear();
         }
+    }*/
+
+   private int selectedCategoryId=-1;
+    @FXML
+    void ajouteractiviteAction(ActionEvent event) throws SQLException {
+        if (isInputValid()) {
+            String image = imagePathInDatabase;
+
+            // Assurez-vous que selectedCategoryId est correctement initialisé avec l'ID de la catégorie sélectionnée
+            if (selectedCategoryId == -1) {
+                System.out.println("Erreur : Aucune catégorie sélectionnée.");
+                return;
+            }
+
+            String nom = nomm.getText();
+            int prix = Integer.parseInt(prixx.getText());
+            int nb_P = Integer.parseInt(nombreP.getText());
+            String localisation = localisationn.getText();
+            String description_act = descriptionActt.getText();
+
+            ActiviteCrud service = new ActiviteCrud();
+
+            // Vérifiez si la connexion à la base de données est ouverte avant d'ajouter l'activité
+            if (MyConnection.getInstance().getCnx().isClosed()) {
+                System.out.println("Erreur : La connexion à la base de données est fermée.");
+                return;
+            }
+
+            // Ajoutez des journaux pour vérifier l'état de la connexion
+            System.out.println("Connexion à la base de données : Ouverte");
+
+            // Ajoutez l'activité en utilisant l'ID de la catégorie sélectionnée
+            service.ajouter(new Activite(selectedCategoryId, nom, prix, localisation, nb_P, "en cours", description_act), image);
+
+            showAlert("Activité ajoutée", "L'activité a été ajoutée avec succès.");
+            categorieComboBox.getSelectionModel().clearSelection();
+            nomm.clear();
+            prixx.clear();
+            nombreP.clear();
+            localisationn.clear();
+            descriptionActt.clear();
+        } else {
+            System.out.println("Erreur : Données d'entrée non valides.");
+        }
     }
+
+
+
+
     @FXML
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -133,6 +196,7 @@ public class ajouteractiviteF {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
     @FXML
     void naviguezVersAffichage(ActionEvent event) {
         try {
@@ -158,8 +222,15 @@ public class ajouteractiviteF {
             imageView.setImage(image);
         }
     }
+
     private boolean isInputValid() {
         boolean isValid = true;
+        /*if (categorieComboBox.getValue() == null) {
+            errorCategorie.setText("Veuillez sélectionner une catégorie.");
+            isValid = false;
+        } else {
+            errorCategorie.setText("");
+        }*/
         if (categorieComboBox.getValue() == null) {
             errorCategorie.setText("Veuillez sélectionner une catégorie.");
             isValid = false;
@@ -209,8 +280,6 @@ public class ajouteractiviteF {
     }
 
 
-
-
     @FXML
     void initialize() {
         assert nomm != null : "fx:id=\"nom\" was not injected: check your FXML file 'activiteAjout.fxml'.";
@@ -220,11 +289,34 @@ public class ajouteractiviteF {
 
         assert localisationn != null : "fx:id=\"localisation\" was not injected: check your FXML file 'activiteAjout.fxml'.";
         assert save != null : "fx:id=\"save\" was not injected: check your FXML file 'activiteAjout.fxml'.";
-        ActiviteCrud service = new ActiviteCrud();
+       /*ActiviteCrud service = new ActiviteCrud();
         List<Integer> categorieIds = service.getAllCategorieIds();
         if (categorieIds != null) {
             categorieComboBox.getItems().addAll(categorieIds);
         } else {
             System.out.println("La liste des IDs de catégories est null.");
+        }*/
+        ActiviteCrud service = new ActiviteCrud();
+        Map<String, Integer> typesCategories = service.getAllTypesCategories();
+
+        if (!typesCategories.isEmpty()) {
+            categorieComboBox.getItems().addAll(typesCategories.keySet());
+
+            // Ajouter un écouteur d'événements pour mettre à jour selectedCategoryId
+            categorieComboBox.setOnAction(event -> {
+                if (categorieComboBox.getValue() != null) {
+                    String selectedType = categorieComboBox.getValue().toString();
+                    selectedCategoryId = typesCategories.get(selectedType);
+                    System.out.println("ID de la catégorie sélectionnée : " + selectedCategoryId);
+                }
+            });
+
+        } else {
+            System.out.println("Aucune catégorie disponible.");
         }
-    }}
+    }
+}
+
+
+
+

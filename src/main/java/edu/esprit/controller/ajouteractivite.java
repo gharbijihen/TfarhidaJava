@@ -1,6 +1,7 @@
 package edu.esprit.controller;
 import edu.esprit.entites.Activite;
 import edu.esprit.servies.ActiviteCrud;
+import edu.esprit.tools.MyConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,6 +33,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import javafx.stage.Stage;
 
@@ -95,17 +97,22 @@ public class ajouteractivite {
     private Button browseImage;
     @FXML
     private TextField selectedImagePath;
-
+    @FXML
+    private ComboBox<String> categorieComboBox;
     private String imagePathInDatabase;
     private ObservableList<Activite> listeActivites = FXCollections.observableArrayList();
 
+    private int selectedCategoryId=-1;
 
     @FXML
-    void ajouteractiviteAction(ActionEvent event) {
+    void ajouteractiviteAction(ActionEvent event) throws SQLException {
         if (isInputValid()) {
             String image=imagePathInDatabase;
-            int categorie_id = Integer.parseInt(categoriee.getText());
-            System.out.println("hello"+categorie_id);
+            // Assurez-vous que selectedCategoryId est correctement initialisé avec l'ID de la catégorie sélectionnée
+            if (selectedCategoryId == -1) {
+                System.out.println("Erreur : Aucune catégorie sélectionnée.");
+                return;
+            }
             String nom= nomm.getText();
             int prix = Integer.parseInt(prixx.getText());
             int nb_P = Integer.parseInt(nombreP.getText());
@@ -113,21 +120,33 @@ public class ajouteractivite {
             String etat = etatt.getText();
             String description_act = descriptionActt.getText();
             ActiviteCrud service = new ActiviteCrud();
-            System.out.println(description_act);
+
+            // Vérifiez si la connexion à la base de données est ouverte avant d'ajouter l'activité
+            if (MyConnection.getInstance().getCnx().isClosed()) {
+                System.out.println("Erreur : La connexion à la base de données est fermée.");
+                return;
+            }
+
+            // Ajoutez des journaux pour vérifier l'état de la connexion
+            System.out.println("Connexion à la base de données : Ouverte");
+
 
             /*System.out.println(descriptionActt.getText());*/
            /* service.ajouter(new Activite(nom, prix, localisation, nb_P, etat, description_act,categorie_id), image);*/
-            service.ajouter(new Activite(categorie_id, nom, prix, localisation, nb_P, etat, description_act), image);
+            service.ajouter(new Activite(selectedCategoryId, nom, prix, localisation, nb_P, etat, description_act), image);
 
 
             showAlert("Activité ajoutée", "L'activité a été ajoutée avec succès.");
-            categoriee.clear();
             nomm.clear();
             prixx.clear();
             nombreP.clear();
             localisationn.clear();
             etatt.clear();
             descriptionActt.clear();
+            categorieComboBox.getSelectionModel().clearSelection();
+
+        } else {
+            System.out.println("Erreur : Données d'entrée non valides.");
         }
     }
 
@@ -166,8 +185,8 @@ public class ajouteractivite {
     }
     private boolean isInputValid() {
         boolean isValid = true;
-        if (categoriee.getText().isEmpty() || !categoriee.getText().matches("^[0-9]+$")) {
-            errorCategorie.setText("id categorie est requis et doit contenir uniquement des nombres");
+        if (categorieComboBox.getValue() == null) {
+            errorCategorie.setText("Veuillez sélectionner une catégorie.");
             isValid = false;
         } else {
             errorCategorie.setText("");
@@ -231,6 +250,24 @@ public class ajouteractivite {
         assert etatt != null : "fx:id=\"etat\" was not injected: check your FXML file 'activiteAjout.fxml'.";
         assert localisationn != null : "fx:id=\"localisation\" was not injected: check your FXML file 'activiteAjout.fxml'.";
         assert save != null : "fx:id=\"save\" was not injected: check your FXML file 'activiteAjout.fxml'.";
+        ActiviteCrud service = new ActiviteCrud();
+        Map<String, Integer> typesCategories = service.getAllTypesCategories();
 
+        if (!typesCategories.isEmpty()) {
+            categorieComboBox.getItems().addAll(typesCategories.keySet());
+
+            // Ajouter un écouteur d'événements pour mettre à jour selectedCategoryId
+            categorieComboBox.setOnAction(event -> {
+                if (categorieComboBox.getValue() != null) {
+                    String selectedType = categorieComboBox.getValue().toString();
+                    selectedCategoryId = typesCategories.get(selectedType);
+                    System.out.println("ID de la catégorie sélectionnée : " + selectedCategoryId);
+                }
+            });
+
+        } else {
+            System.out.println("Aucune catégorie disponible.");
+        }
     }
-}
+    }
+
