@@ -8,7 +8,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -113,10 +112,7 @@
         </HBox>
         <VBox layoutX="312.0" layoutY="106.0" prefHeight="817.0" prefWidth="1044.0">
             <children>
-                <ScrollPane fx:id="scroll" prefHeight="695.0" prefWidth="1199.0">
-               <content>
-                  <FlowPane fx:id="activiteflow"  prefHeight="694.0" prefWidth="1030.0" />
-               </content></ScrollPane>
+                <ScrollPane fx:id="scroll" prefHeight="695.0" prefWidth="1199.0" />
             <Pane prefHeight="115.0" prefWidth="1044.0">
                <children>
                    <Button fx:id="ajouterButton" layoutX="266.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="25.0" prefWidth="145.0" style="-fx-background-radius: 100 ;" text="Ajouter" visible="false" />
