@@ -1,259 +1,152 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="673.0" prefWidth="1012.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherLogement">
+<AnchorPane prefHeight="740.0" prefWidth="1538.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherLogement">
    <children>
-      <Pane layoutX="14.0" layoutY="56.0" prefHeight="618.0" prefWidth="294.0" style="-fx-background-color: #FF7F00;">
+      <Pane layoutX="14.0" layoutY="56.0" prefHeight="728.0" prefWidth="294.0" style="-fx-background-color: #FF7F00;">
          <children>
-            <Text layoutX="40.0" layoutY="608.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
-            <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="14.0" layoutY="596.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
+            <Text layoutX="121.0" layoutY="686.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
+            <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="95.0" layoutY="674.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
                <image>
                   <Image url="@images/logoutIcon.png" />
                </image>
             </ImageView>
-            <TextField layoutX="12.0" layoutY="23.0" prefHeight="30.0" prefWidth="242.0" promptText="chercher........." style="-fx-background-radius: 100;" stylesheets="@../java/edu/esprit/values/style.css" />
-            <VBox fx:id="chosenRestau" alignment="TOP_CENTER" layoutX="5.0" layoutY="59.0" prefHeight="502.0" prefWidth="286.0" stylesheets="@../java/edu/esprit/values/styleafficher.css">
+            <VBox alignment="CENTER" layoutX="13.0" layoutY="170.0" prefHeight="304.0" prefWidth="269.0">
                <children>
-                  <HBox prefHeight="83.0" prefWidth="272.0">
-                     <children>
-                        <Label fx:id="nomRestau" alignment="TOP_CENTER" prefHeight="80.0" prefWidth="282.0" text="Hotel Monastir centre">
-                           <font>
-                              <Font name="Cambria" size="23.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets top="20.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                     <opaqueInsets>
-                        <Insets />
-                     </opaqueInsets>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </HBox>
-                  <ImageView fx:id="imageRestau" fitHeight="154.0" fitWidth="240.0" pickOnBounds="true" preserveRatio="true">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                     <image>
-                        <Image url="@images/iberostar-selection-royal.jpg" />
-                     </image>
-                  </ImageView>
-                  <VBox prefHeight="173.0" prefWidth="286.0">
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="34.0" prefWidth="286.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="34.0" prefWidth="98.0" text="Localisation">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Label>
-                              <Label fx:id="adresse" alignment="CENTER" prefHeight="49.0" prefWidth="178.0" text=" Zone Industrielle Mnihla,tunis" />
-                           </children>
-                           <opaqueInsets>
-                              <Insets />
-                           </opaqueInsets>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
-                        <HBox prefHeight="34.0" prefWidth="286.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="34.0" prefWidth="88.0" text="Prix">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="email" alignment="CENTER" prefHeight="34.0" prefWidth="173.0" text="223" />
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="34.0" prefWidth="286.0">
-                           <children>
-                              <Label alignment="CENTER" prefHeight="38.0" prefWidth="94.0" text="Phone">
-                                 <font>
-                                    <Font size="18.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="phone" alignment="CENTER" prefHeight="38.0" prefWidth="134.0" text="53996264" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </VBox>
-                  <Button fx:id="butonAvis" mnemonicParsing="false" prefHeight="2.0" prefWidth="82.0" styleClass="avis-button" stylesheets="@../../../../../Downloads/resQfood/resQfood5/src/main/resources/style/styleafficher.css" text="Voir details" textFill="WHITE" />
-               </children>
-               <padding>
-                  <Insets bottom="30.0" />
-               </padding>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <styleClass>
-                  <String fx:value="show-box" />
-                  <String fx:value="shadow" />
-               </styleClass>
-            </VBox>
-            <Text layoutX="219.0" layoutY="601.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reclamation" />
-            <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="197.0" layoutY="588.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/wirte.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane layoutX="-2.0" prefHeight="50.0" prefWidth="1014.0" style="-fx-background-color: #FF7F00;">
-         <children>
-            <HBox layoutX="308.0" layoutY="-2.0" prefHeight="54.0" prefWidth="706.0">
-               <children>
-                  <ImageView fitHeight="28.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/resQfood/resQfood5/src/main/resources/images/bouton-retour.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="10.0" top="10.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Label prefHeight="54.0" prefWidth="70.0" text="Mon Profil">
-                     <HBox.margin>
-                        <Insets left="430.0" />
-                     </HBox.margin>
+                  <Button prefHeight="36.0" prefWidth="116.0" style="-fx-background-radius: 100;" text="Reclamation">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="22.0">
+                           <image>
+                              <Image url="@images/wirte.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                      <font>
-                        <Font size="14.0" />
+                        <Font size="13.0" />
                      </font>
-                  </Label>
-                  <ImageView fitHeight="35.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../../../Downloads/resQfood/resQfood5/src/main/resources/images/profil.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="5.0" top="10.0" />
-                     </HBox.margin>
-                  </ImageView>
+                  </Button>
+                  <VBox prefHeight="21.0" prefWidth="270.0" />
+                  <Button fx:id="showLogement" onAction="#showLogement" prefHeight="36.0" prefWidth="114.0" style="-fx-background-radius: 100; -fx-cursor: hand;" text="Logement">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/bed.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <VBox prefHeight="21.0" prefWidth="270.0" />
+                  <Button prefHeight="38.0" prefWidth="122.0" style="-fx-background-radius: 100;" text="Activite">
+                     <graphic>
+                        <ImageView fitHeight="18.0" fitWidth="18.0">
+                           <image>
+                              <Image url="@images/3555663.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <VBox prefHeight="21.0" prefWidth="270.0" />
+                  <Button prefHeight="38.0" prefWidth="119.0" style="-fx-background-radius: 100;" text="Restaurant">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="22.0">
+                           <image>
+                              <Image url="@images/food-service.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
+                  <VBox prefHeight="21.0" prefWidth="270.0" />
+                  <Button prefHeight="38.0" prefWidth="127.0" style="-fx-background-radius: 100;" text="Transport">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="22.0">
+                           <image>
+                              <Image url="@images/1.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Button>
                </children>
-            </HBox>
-            <ImageView fitHeight="72.0" fitWidth="98.0" layoutX="-1.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+            </VBox>
+            <ImageView fitHeight="119.0" fitWidth="200.0" layoutX="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/tfarhida.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <HBox alignment="CENTER" layoutX="300.0" layoutY="62.0" prefHeight="36.0" prefWidth="652.0" style="-fx-background-radius: 100;" AnchorPane.rightAnchor="60.39999999999998">
+      <Pane layoutX="-2.0" prefHeight="50.0" prefWidth="1578.0" style="-fx-background-color: #FF7F00;">
          <children>
-            <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="28.0" fitWidth="32.0" layoutX="314.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/homeIconpng.png" />
+                  <Image url="@images/bouton-retour.png" />
                </image>
             </ImageView>
-            <HBox prefHeight="36.0" prefWidth="10.0" />
-            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="110.0" style="-fx-background-color: #ffff;" styleClass="box" stylesheets="@../java/edu/esprit/values/style.css">
-               <children>
-                  <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/food-service.png" />
-                     </image>
-                  </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Restauurant">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox prefHeight="36.0" prefWidth="15.0" />
-            <HBox alignment="CENTER" prefHeight="36.0" prefWidth="110.0" styleClass="box" stylesheets="@../java/edu/esprit/values/style.css">
-               <children>
-                  <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/homeIconpng.png" />
-                     </image>
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Transport" />
-               </children>
-            </HBox>
-            <HBox prefHeight="36.0" prefWidth="15.0" />
-            <HBox fx:id="vboxdash" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="box" stylesheets="@../java/edu/esprit/values/style.css">
-               <children>
-                  <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" style="-fx-image: #000;">
-                     <image>
-                        <Image url="@images/bed.png" />
-                     </image>
-                     <effect>
-                        <Blend />
-                     </effect>
-                  </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="logement">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox prefHeight="36.0" prefWidth="15.0" />
-            <HBox alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="box" stylesheets="@../java/edu/esprit/values/style.css">
-               <children>
-                  <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" style="-fx-image: #000;">
-                     <image>
-                        <Image url="@images/bed.png" />
-                     </image>
-                     <effect>
-                        <Blend />
-                     </effect>
-                  </ImageView>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Activite">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-            </HBox>
+            <ImageView fitHeight="35.0" fitWidth="41.0" layoutX="1451.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/utilisateur.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="1376.0" layoutY="-2.0" prefHeight="54.0" prefWidth="82.0" text="Mon Profil">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
-         <opaqueInsets>
-            <Insets left="5.0" />
-         </opaqueInsets>
-      </HBox>
-      <HBox layoutX="312.0" layoutY="106.0" prefHeight="569.0" prefWidth="700.0">
+      </Pane>
+      <VBox layoutX="317.0" layoutY="114.0" prefHeight="659.0" prefWidth="1246.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="570.0" prefWidth="724.0">
+            <Pane prefHeight="29.0" prefWidth="690.0" />
+            <ScrollPane fx:id="scroll" prefHeight="646.0" prefWidth="1246.0" styleClass="transparent">
+               <content>
+                  <GridPane fx:id="grid" prefHeight="8.0" prefWidth="5.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                     </rowConstraints>
+                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                     </children>
+                  </GridPane>
+               </content>
+            </ScrollPane>
+            <Pane prefHeight="60.0" prefWidth="1246.0">
                <children>
-                  <ScrollPane fx:id="scroll" prefHeight="0.0" prefWidth="570.0" styleClass="transparent">
-                     <content>
-                        <GridPane fx:id="grid" prefHeight="8.0" prefWidth="5.0">
-                           <rowConstraints>
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" />
-                           </rowConstraints>
-                        </GridPane>
-                     </content>
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin>
-                  </ScrollPane>
+                  <Button fx:id="ajouterButton" layoutX="556.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleAjouterLogement" prefHeight="35.0" prefWidth="179.0" style="-fx-background-radius: 100 ;" text="Ajouter Logement" visible="false">
+                     <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/bed.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                </children>
-            </HBox>
+            </Pane>
          </children>
-      </HBox>
+      </VBox>
+      <TextField layoutX="318.0" layoutY="62.0" prefHeight="38.0" prefWidth="633.0" promptText="chercher........." style="-fx-background-radius: 100;" stylesheets="@../java/edu/esprit/values/style.css" />
    </children>
 </AnchorPane>

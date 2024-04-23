@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollBar?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,162 +14,78 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="648.0" prefWidth="955.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherLogement">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="877.0" prefWidth="1404.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.back">
+
    <children>
-      <Pane layoutX="-3.0" layoutY="27.0" prefHeight="620.0" prefWidth="218.0" styleClass="bg-color-1" stylesheets="@../java/edu/esprit/values/style.css">
+      <Pane layoutY="-5.0" prefHeight="886.0" prefWidth="230.0" style="-fx-background-color: #ffff;">
          <children>
-            <Text layoutX="40.0" layoutY="573.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
-            <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="14.0" layoutY="561.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
-               <image>
-                  <Image url="@images/logoutIcon.png" />
-               </image>
-            </ImageView>
-            <VBox alignment="TOP_CENTER" layoutX="8.0" layoutY="136.0" prefHeight="402.0" prefWidth="183.0">
-               <children>
-                  <HBox alignment="CENTER" prefHeight="34.0" prefWidth="183.0">
-                     <children>
-                        <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/homeIconpng.png" />
-                           </image>
-                        </ImageView>
-                        <HBox prefHeight="34.0" prefWidth="11.0" />
-                        <Button mnemonicParsing="false" styleClass="nav-btn-1" stylesheets="@../java/edu/esprit/values/style.css" text="DashBord" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="31.0" prefWidth="183.0" stylesheets="@../java/edu/esprit/values/style.css">
-                     <children>
-                        <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/food-service.png" />
-                           </image>
-                        </ImageView>
-                        <HBox prefHeight="34.0" prefWidth="11.0" />
-                        <Button mnemonicParsing="false" styleClass="nav-btn-1" stylesheets="@../java/edu/esprit/values/style.css" text="Restauurant" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="37.0" prefWidth="183.0">
-                     <children>
-                        <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/homeIconpng.png" />
-                           </image>
-                        </ImageView>
-                        <HBox prefHeight="34.0" prefWidth="11.0" />
-                        <Button mnemonicParsing="false" styleClass="nav-btn-1" stylesheets="@../java/edu/esprit/values/style.css" text="Activite" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="43.0" prefWidth="183.0">
-                     <children>
-                        <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true" style="-fx-image: #000;">
-                           <image>
-                              <Image url="@images/bed.png" />
-                           </image>
-                           <effect>
-                              <Blend />
-                           </effect>
-                        </ImageView>
-                        <HBox prefHeight="34.0" prefWidth="11.0" />
-                        <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="79.0" styleClass="nav-btn-1" stylesheets="@../java/edu/esprit/values/style.css" text="Logement" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="34.0" prefWidth="183.0">
-                     <children>
-                        <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/homeIconpng.png" />
-                           </image>
-                        </ImageView>
-                        <HBox prefHeight="34.0" prefWidth="11.0" />
-                        <Button mnemonicParsing="false" prefHeight="32.0" prefWidth="75.0" styleClass="nav-btn-1" stylesheets="@../java/edu/esprit/values/style.css" text="Transport" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="40.0" prefWidth="183.0">
-                     <children>
-                        <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/wirte.png" />
-                           </image>
-                        </ImageView>
-                        <HBox prefHeight="34.0" prefWidth="11.0" />
-                        <Button mnemonicParsing="false" styleClass="nav-btn-1" stylesheets="@../java/edu/esprit/values/style.css" text="Reclamation" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <Text layoutX="71.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text layoutX="73.0" layoutY="366.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Text layoutX="71.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <Separator layoutX="19.0" layoutY="117.0" prefHeight="17.0" prefWidth="183.0" />
-            <HBox alignment="CENTER" layoutX="8.0" layoutY="39.0" prefHeight="77.0" prefWidth="200.0">
-               <children>
-                  <ImageView fitHeight="32.0" fitWidth="62.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@images/user.png" />
-                     </image>
-                  </ImageView>
-                  <HBox prefHeight="78.0" prefWidth="10.0" />
-                  <VBox alignment="CENTER" prefHeight="78.0" prefWidth="114.0">
-                     <children>
-                        <HBox alignment="CENTER" prefHeight="18.0" prefWidth="114.0">
-                           <children>
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom:   " />
-                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
-                                 <font>
-                                    <Font name="System Bold" size="15.0" />
-                                 </font>
-                              </Text>
-                              <HBox prefHeight="18.0" prefWidth="18.0" />
-                              <ImageView fitHeight="14.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@images/activeIcon.png" />
-                                 </image>
-                              </ImageView>
-                           </children>
-                        </HBox>
-                        <VBox prefHeight="9.0" prefWidth="114.0" />
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin@gmail.com">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
-         </children>
-      </Pane>
-      <Pane layoutX="-2.0" prefHeight="62.0" prefWidth="962.0" styleClass="bg-color-1" stylesheets="@../java/edu/esprit/values/style.css">
-         <children>
-            <TextField layoutX="217.0" layoutY="17.0" prefHeight="25.0" prefWidth="729.0" promptText="chercher........." />
-            <ImageView fitHeight="62.0" fitWidth="127.0" layoutX="45.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="96.0" fitWidth="144.0" layoutX="62.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/tfarhida.png" />
                </image>
             </ImageView>
+            <VBox alignment="CENTER" layoutX="56.0" layoutY="184.0" spacing="10" />
+            <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="22.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/user.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="56.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin@gmail.com">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text layoutX="110.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Text>
+            <Text layoutX="74.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom:   " />
+            <ImageView fitHeight="14.0" fitWidth="10.0" layoutX="171.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/activeIcon.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="87.0" layoutY="794.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
+            <Button fx:id="EquipementButton" layoutX="40.0" layoutY="336.0" onAction="#goToafficherNavBar" prefHeight="74.0" prefWidth="153.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;" text="Navigator">
+               <graphic>
+                  <ImageView fitHeight="17.0" fitWidth="22.0">
+                     <image>
+                        <Image url="@images/food-service.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="61.0" layoutY="781.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
+               <image>
+                  <Image url="@images/logoutIcon.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
-      <AnchorPane layoutX="227.0" layoutY="287.0" prefHeight="362.0" prefWidth="720.0" styleClass="shadow" stylesheets="@../java/edu/esprit/values/style.css">
+      <HBox fx:id="contentHBox" layoutX="250.0" layoutY="109.0" prefHeight="694.0" prefWidth="1157.0">
          <children>
-            <ScrollBar layoutX="705.0" orientation="VERTICAL" prefHeight="383.0" prefWidth="14.0" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="227.0" layoutY="86.0" prefHeight="162.0" prefWidth="719.0" style="-fx-background-color: #ffff;" styleClass="shadow" stylesheets="@../java/edu/esprit/values/style.css">
+            <GridPane prefHeight="228.0" prefWidth="21.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+            </GridPane>
+         </children></HBox>
+      <Pane layoutX="229.0" prefHeight="74.0" prefWidth="1173.0" style="-fx-background-color: #53a0ec;">
          <children>
-            <ScrollPane prefHeight="200.0" prefWidth="719.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="706.0">
-                     <children>
-                        <GridPane layoutY="14.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                        </GridPane>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </ScrollPane>
+            <TextField layoutX="26.0" layoutY="19.0" prefHeight="37.0" prefWidth="1099.0" promptText="chercher........." style="-fx-background-radius: 100;" />
          </children>
-      </AnchorPane>
+      </Pane>
+
+
+
+
+      <Separator layoutX="29.0" layoutY="169.0" prefHeight="17.0" prefWidth="183.0" />
+
+
    </children>
 </AnchorPane>

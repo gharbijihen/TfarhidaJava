@@ -4,7 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface IcrudL<T>{
-    void ajouter(T t);
+    boolean ajouter(T t);
     void modifier(T T) throws SQLException;
     void supprimer(T T) throws SQLException;
     List<T> afficher();

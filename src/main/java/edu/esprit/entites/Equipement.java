@@ -8,17 +8,21 @@ public class Equipement {
 
     public int nbr_chambre;
     public String description;
-    public String type_chambre;
+    public String types_de_chambre;
 
 
 
-    public Equipement(boolean parking, boolean inetrnet, boolean climatisation, int nbr_chambre, String description, String type_chambre) {
+    public Equipement(boolean parking, boolean inetrnet, boolean climatisation, int nbr_chambre, String description, String types_de_chambre) {
         this.parking = parking;
         this.inetrnet = inetrnet;
         this.climatisation = climatisation;
         this.nbr_chambre = nbr_chambre;
         this.description = description;
-        this.type_chambre = type_chambre;
+        this.types_de_chambre = types_de_chambre;
+    }
+
+    public Equipement() {
+
     }
 
     public int getId() {
@@ -70,11 +74,11 @@ public class Equipement {
     }
 
     public String getType_chambre() {
-        return type_chambre;
+        return types_de_chambre;
     }
 
-    public void setType_chambre(String type_chambre) {
-        this.type_chambre = type_chambre;
+    public void setType_chambre(String types_de_chambre) {
+        this.types_de_chambre = types_de_chambre;
     }
     @Override
     public String toString() {
@@ -85,7 +89,7 @@ public class Equipement {
                 ", climatisation=" + climatisation +
                 ", nbr_chambre=" + nbr_chambre +
                 ", description='" + description + '\'' +
-                ", type_chambre='" + type_chambre + '\'' +
+                ", type_chambre='" + types_de_chambre + '\'' +
                 '}';
     }
 }

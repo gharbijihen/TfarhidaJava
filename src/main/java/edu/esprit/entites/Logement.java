@@ -12,10 +12,9 @@ public class Logement {
     public String type_log;
 
     public int note_moyenne;
-    public int user_id;
     public int equipement_id;
 
-    public Logement(String nom, String localisation, int num, int prix, String image, String etat, String type_log, int note_moyenne, int user_id, int equipement_id) {
+    public Logement(String nom, String localisation, int num, int prix, String image, String etat, String type_log, int note_moyenne, int equipement_id) {
         this.nom = nom;
         this.localisation = localisation;
         this.num = num;
@@ -24,19 +23,11 @@ public class Logement {
         this.etat = etat;
         this.type_log = type_log;
         this.note_moyenne = note_moyenne;
-        this.user_id = user_id;
         this.equipement_id = equipement_id;
     }
 
     public Logement() {
-        this.nom = nom;
-        this.localisation = localisation;
-        this.num = num;
-        this.prix = prix;
-        this.etat = etat;
-        this.etat = image;
 
-        this.note_moyenne = note_moyenne;
     }
 
 
@@ -113,19 +104,13 @@ public class Logement {
         this.note_moyenne = note_moyenne;
     }
 
-    public int getUser_id() {
-        return user_id;
-    }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
 
-    public int getEquipement_id() {
+    public int getEquipement() {
         return equipement_id;
     }
 
-    public void setEquipement_id(int equipement_id) {
+    public void setEquipement(int equipement_id) {
         this.equipement_id = equipement_id;
     }
 
@@ -141,8 +126,7 @@ public class Logement {
                 ", etat='" + etat + '\'' +
                 ", type_log='" + type_log + '\'' +
                 ", note_moyenne=" + note_moyenne +
-                ", user_id=" + user_id +
-                ", equipement_id=" + equipement_id +
+                ", equipement=" + equipement_id +
                 '}';
     }
 }

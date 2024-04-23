@@ -22,7 +22,6 @@
     -fx-font-family: Arial;
     -fx-cursor: hand;
     -fx-font-size: 13px;
-    -fx-alignment: CENTER_LEFT;
 }
 .bg-color-1{
     -fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);

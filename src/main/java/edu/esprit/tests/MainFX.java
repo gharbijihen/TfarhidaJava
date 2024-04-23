@@ -14,20 +14,14 @@ import java.io.IOException;
 
 public class MainFX extends Application {
     @Override
-    public void start(Stage stage)  {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/indexLogement.fxml"));
-        Parent root = null;
+    public void start(Stage stage) throws Exception {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Back.fxml"));
+        Parent root = loader.load();
         Scene scene = new Scene(root);
+
         stage.setScene(scene);
-        stage.setTitle("Tfarhida");
+        stage.setTitle("Tfarida");
         stage.show();
-        try {
-            root = loader.load();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
-
     }
 
     public static void main(String[] args) {
@@ -36,3 +30,7 @@ public class MainFX extends Application {
 
 
 }
+
+
+
+
