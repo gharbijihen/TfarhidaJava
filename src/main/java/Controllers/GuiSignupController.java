@@ -234,7 +234,7 @@ public class GuiSignupController implements Initializable {
         alert.showAndWait().filter(response -> response == ButtonType.OK)
                 .ifPresent(response -> {
                     System.out.println("OK button clicked");
-                    RouterController.navigate("/fxml/ClientDashboard.fxml");
+                    RouterController.navigate("/fxml/login.fxml");
                 });
 
     }

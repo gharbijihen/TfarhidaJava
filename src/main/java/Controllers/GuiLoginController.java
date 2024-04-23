@@ -75,21 +75,21 @@ public class GuiLoginController implements Initializable {
 
     @FXML
     private void login(ActionEvent event) throws SQLException {
-    /*    ServiceUser su = new ServiceUser();
+        ServiceUser su = new ServiceUser();
 
         String email = emailInput.getText();
         String password = passwordInput.getText();
 
 
-      //  user = su.login(email, password, Role.valueOf("CLIENT"));
-        if (user == null){
+        user = su.login(email, password);
+        if (user == null) {
             erreur.setText("Email ou mot de passe incorrecte");
+            return;
         }
-        else{  System.out.println("connected");*/
-            RouterController Router=new RouterController();
-            Router.navigate("../fxml/ClientDashboard.fxml");
-
-     //   }
+        if (user.getRoles() == "[\"ROLE_ADMIN\"]")
+            RouterController.navigate("/fxml/AdminDashboard.fxml");
+        else
+            RouterController.navigate("/fxml/ClientDashboard.fxml");
     }
 
 
@@ -105,5 +105,9 @@ public class GuiLoginController implements Initializable {
         } catch (IOException ex) {
             System.out.println(ex);
         }
+    }
+
+    public void goToSignup(MouseEvent mouseEvent) {
+        RouterController.navigate("/fxml/signup.fxml");
     }
 }

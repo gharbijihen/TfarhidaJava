@@ -7,7 +7,9 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import Entities.Role;
+import javafx.scene.control.Alert;
 
+import org.mindrot.jbcrypt.BCrypt;
 
 public class ServiceUser implements IService<User> {
     private Connection connection = Datasource.getConn();
@@ -119,4 +121,55 @@ public class ServiceUser implements IService<User> {
         statement.close();
         return user;
     }
+    public boolean emailExists(String email){
+        String query = "SELECT  COUNT(*) FROM user WHERE email = ?";
+        try{ PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, email);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0; //if count>0 email exists
+            }
+        }catch(SQLException e){
+            System.err.println("error checking email existence "+e.getMessage());
+        }
+        return false;
+    }
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+    public User login(String email, String password) throws SQLException {
+        User user = null;
+        if (!emailExists(email)) {
+            System.out.println("email doesn't exist");
+            showAlert("email non existante");
+            return null;
+        }
+        String query = "SELECT * FROM user WHERE email = ?";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, email);
+          //   statement.setString(2, password);
+
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                    user = new User();
+                    user.setId(resultSet.getInt("id"));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setPassword(resultSet.getString("password"));
+                  //  user.setName(resultSet.getString("name"));
+                   // user.setLastName(resultSet.getString("lastname"));
+                    user.setRoles(resultSet.getString("roles"));
+                    if (BCrypt.checkpw(password,user.getPassword()))
+                        return user; // User found with the given email, password, and role
+                    else
+                        return null;
+            }
+            return null; // No user found with the given email, password, and role
+        }
+    }
+
 }

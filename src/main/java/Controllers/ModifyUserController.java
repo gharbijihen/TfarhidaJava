@@ -29,6 +29,7 @@ import javafx.stage.FileChooser;
 
 public class ModifyUserController implements Initializable {
     public static User user = new User();
+    public static boolean isUser = false;
     private int userId;
     private byte[] imageData;
     @FXML
@@ -141,6 +142,11 @@ public class ModifyUserController implements Initializable {
             serviceUser.update(user);
             showSuccessMessage("Votre utilisateur a été modifiée avec succées");
             MouseEvent e=null;
+            if(ModifyUserController.isUser)
+            {
+                ModifyUserController.isUser = false;
+                RouterController.navigate("/fxml/ClientDashboard.fxml");
+            }
             this.returnTo(e);
 
         } catch (SQLException e) {

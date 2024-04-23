@@ -72,6 +72,16 @@
                         <Image url="@../assets/logo.png" />
                     </image>
                 </ImageView>
+            <Label layoutX="65.0" layoutY="511.0" text="Vous n'avez pas d'un compte?">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="243.0" layoutY="511.0" onMouseClicked="#goToSignup" text="S'inscrire" textFill="#f2b50d">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
             </children>
         </Pane>
     </children>
