@@ -3,6 +3,7 @@ package edu.esprit.controller;
 import edu.esprit.entites.Reclamation;
 import edu.esprit.servies.ReclamationCrud;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -37,6 +38,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -230,7 +232,7 @@ public class ReclamationsListController_new implements Initializable {
         reclamation.setTitre(titleInput.getText());
         reclamation.setType(TypeInput.getValue());
 
-        reclamation.setDate(new Date(2020));
+        reclamation.setDate(java.sql.Date.valueOf(LocalDate.now()));
         reclamation.setEtat(false);
       /*  if (containsBadWords(reclamation.getDescription_reclamation())) {
             // Le commentaire contient des mots inappropriés, ne pas l'ajouter à la review
@@ -256,7 +258,13 @@ public class ReclamationsListController_new implements Initializable {
         }
             utils.TrayNotificationAlert.notif("Reclamation", "Reclamation added successfully.",
                     NotificationType.SUCCESS, AnimationType.POPUP, Duration.millis(2500));
-
+        addReviewsModel.setVisible(false);
+        this.commentInput.setText("");
+        this.TypeInput.getSelectionModel().select(0);
+        this.selectedImageFile=null;
+        this.img.setImage(null);
+        this.updateBtn.setVisible(false);
+        this.submitBtn.setVisible(true);
     }
     public void uploadImage(File imageFile) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         HttpPost httpPost = new HttpPost("http://localhost:8000/upload-image");
@@ -388,7 +396,13 @@ public class ReclamationsListController_new implements Initializable {
         }
         utils.TrayNotificationAlert.notif("Review", "Review added successfully.",
                 NotificationType.SUCCESS, AnimationType.POPUP, Duration.millis(2500));
-
+        addReviewsModel.setVisible(false);
+        this.commentInput.setText("");
+        this.TypeInput.getSelectionModel().select(0);
+        this.selectedImageFile=null;
+        this.img.setImage(null);
+        this.updateBtn.setVisible(false);
+        this.submitBtn.setVisible(true);
     }
     private File selectedImageFile;
         @FXML

@@ -52,7 +52,7 @@ public class ReclamationItem {
         // IProduitService produitService = new ProduitService();
         title.setText(reclamation.getTitre());
         comment.setText(reclamation.getDescription_reclamation());
-        date.setText("");
+        date.setText(reclamation.getDate().toString());
         this.image.setImage(new Image("http://localhost:8000/uploads/" + reclamation.getImage()));
         System.out.println("http://localhost:8000/uploads/" + reclamation.getImage());
         if (reclamation.getEtat()){
@@ -112,36 +112,41 @@ public class ReclamationItem {
             editReclamation.setId(String.valueOf(reclamation.getId()));
 
            editReclamation.setOnMouseClicked(event -> {
-                System.out.println("ID du reclamation à modifier : " + reclamation.getId());
-               ReclamationsListController_new.reclamation= reclamation;
+               if(reclamation.getEtat()==true) {
+                   utils.TrayNotificationAlert.notif("Reclamation", "Reclamation cannot be modified upon admin supervision.",
+                           NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+               }
+                   else {
+                   System.out.println("ID du reclamation à modifier : " + reclamation.getId());
+                   ReclamationsListController_new.reclamation = reclamation;
 
-               TextField titleInput = (TextField) ((Node) event.getSource()).getScene().lookup("#titleInput");
-                titleInput.setText(reclamation.getTitre());
+                   TextField titleInput = (TextField) ((Node) event.getSource()).getScene().lookup("#titleInput");
+                   titleInput.setText(reclamation.getTitre());
 
-                TextArea commentInput = (TextArea) ((Node) event.getSource()).getScene().lookup("#commentInput");
-                commentInput.setText(reclamation.getDescription_reclamation());
+                   TextArea commentInput = (TextArea) ((Node) event.getSource()).getScene().lookup("#commentInput");
+                   commentInput.setText(reclamation.getDescription_reclamation());
 
-                ImageView image = (ImageView) ((Node) ((Node) event.getSource()).getScene().lookup("#img"));
-               Image imagemodif = new Image("http://localhost:8000/uploads/"+reclamation.getImage());
-               image.setImage(imagemodif);
+                   ImageView image = (ImageView) ((Node) ((Node) event.getSource()).getScene().lookup("#img"));
+                   Image imagemodif = new Image("http://localhost:8000/uploads/" + reclamation.getImage());
+                   image.setImage(imagemodif);
 
-               System.out.println(image);
+                   System.out.println(image);
 
-               ComboBox<String> typeInput = (ComboBox<String>) ((Node) event.getSource()).getScene().lookup("#TypeInput");
-                typeInput.getSelectionModel().select(reclamation.getType());
-               HBox updateBtn = (HBox) ((Node) event.getSource()).getScene().lookup("#updateBtn");
-               updateBtn.setVisible(true);
+                   ComboBox<String> typeInput = (ComboBox<String>) ((Node) event.getSource()).getScene().lookup("#TypeInput");
+                   typeInput.getSelectionModel().select(reclamation.getType());
+                   HBox updateBtn = (HBox) ((Node) event.getSource()).getScene().lookup("#updateBtn");
+                   updateBtn.setVisible(true);
 
-                System.out.println("image "+"https://localhost:8000/uploads/"+reclamation.getImage());
-                HBox updateBtnContainer = (HBox) ((Node) event.getSource()).getScene().lookup("#updateBtnContainer");
-                updateBtnContainer.setVisible(true);
+                   System.out.println("image " + "https://localhost:8000/uploads/" + reclamation.getImage());
+                   HBox updateBtnContainer = (HBox) ((Node) event.getSource()).getScene().lookup("#updateBtnContainer");
+                   updateBtnContainer.setVisible(true);
 
-                HBox submitBtn = (HBox) ((Node) event.getSource()).getScene().lookup("#submitBtn");
-                submitBtn.setVisible(false);
+                   HBox submitBtn = (HBox) ((Node) event.getSource()).getScene().lookup("#submitBtn");
+                   submitBtn.setVisible(false);
 
-                HBox addReviewsModel = (HBox) ((Node) event.getSource()).getScene().lookup("#addReviewsModel");
-                addReviewsModel.setVisible(true);
-
+                   HBox addReviewsModel = (HBox) ((Node) event.getSource()).getScene().lookup("#addReviewsModel");
+                   addReviewsModel.setVisible(true);
+               }
             });
         }
     private void showSuccessMessage(String message) {

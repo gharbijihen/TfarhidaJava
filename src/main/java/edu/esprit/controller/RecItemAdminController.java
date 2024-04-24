@@ -42,7 +42,7 @@ public class RecItemAdminController {
     public void setReviewData(Reclamation reclamation) {
         title.setText(reclamation.getTitre());
         comment.setText(reclamation.getDescription_reclamation());
-        date.setText("");
+        date.setText(reclamation.getDate().toString());
         this.image.setImage(new Image("http://localhost:8000/uploads/"+reclamation.getImage()));
         System.out.println("http://localhost:8000/uploads/"+reclamation.getImage());
         if(reclamation.getEtat())
