@@ -1,0 +1,24 @@
+/* styles.css */
+
+/* Styles pour les champs de texte */
+.input-field {
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: #2EB67D;
+    -fx-border-width: 2px;
+    -fx-font-size: 14px;
+}
+
+/* Styles pour les boutons d'action */
+.action-button {
+    -fx-background-color: #2EB67D;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 20;
+}
+
+/* Styles pour les messages d'erreur */
+.error-text {
+    -fx-font-size: 12px;
+    -fx-fill: red;
+}
