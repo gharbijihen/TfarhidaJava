@@ -15,7 +15,6 @@ import java.util.List;
 public class AfficherReclamationBackController {
 
     @FXML
-    private ListView<Reclamation> reclamationListView;
 
     private final ReclamationCrud reclamationCrud = new ReclamationCrud();
 
