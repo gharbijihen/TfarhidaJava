@@ -185,8 +185,8 @@ public class ModifierProfile implements Initializable {
         List<String> roles = Arrays.asList("ROLE_ADMIN", "ROLE_USER");
         Type.getItems().addAll(roles);
         // Type.setValue(Role.valueOf(user.getRoles()));
-      //  String displayRole = user.getRoles().substring(2, user.getRoles().length() - 2); // Remove "[ROLE_" and "]"
-       // Type.setValue(displayRole);
+        //  String displayRole = user.getRoles().substring(2, user.getRoles().length() - 2); // Remove "[ROLE_" and "]"
+        // Type.setValue(displayRole);
         email.setText(user.getEmail());
         numero.setText(String.valueOf(user.getNumero()));
         nom.setText(user.getFirst_name());
@@ -214,5 +214,3 @@ public class ModifierProfile implements Initializable {
         alert.showAndWait();
     }
 }
-
-

@@ -88,9 +88,9 @@ public class ModifyUserController implements Initializable {
 
     @FXML
     private Label prenomLabel;
-   @Override
+    @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-       // Type.getItems().addAll(Role.values());
+        // Type.getItems().addAll(Role.values());
         loadData();
         btnReturn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -121,22 +121,22 @@ public class ModifyUserController implements Initializable {
     }
     @FXML
     void ModifiyUser(ActionEvent event) {
-            if(!validateInputsAndProceed()) return;
-           // String nom = Nom.getText();
-            //String prenom = Prenom.getText();
-            //String addres = address.getText();
-            //String Num_tel = num_tel.getText();
-            //String email = Email.getText();
-            //String password  = Password.getText();
-            //String confirmPass=confirmpass.getText();
-            String type = Type.getValue();
+        if(!validateInputsAndProceed()) return;
+        // String nom = Nom.getText();
+        //String prenom = Prenom.getText();
+        //String addres = address.getText();
+        //String Num_tel = num_tel.getText();
+        //String email = Email.getText();
+        //String password  = Password.getText();
+        //String confirmPass=confirmpass.getText();
+        String type = Type.getValue();
 
-            user.setRoles("[\""+type+"\"]");
-            System.out.println(user);
-           // Role type = Type.getValue(); // Get the selected item from ComboBox
-           // java.util.Date dateJoined = java.sql.Date.valueOf(Date.getValue());
-         //   System.out.println(nom+prenom);
-      try {
+        user.setRoles("[\""+type+"\"]");
+        System.out.println(user);
+        // Role type = Type.getValue(); // Get the selected item from ComboBox
+        // java.util.Date dateJoined = java.sql.Date.valueOf(Date.getValue());
+        //   System.out.println(nom+prenom);
+        try {
             // Update the user
 
             serviceUser.update(user);
@@ -173,32 +173,32 @@ public class ModifyUserController implements Initializable {
 
     private void loadData() {
 
-            // if (user != null) {
-            System.out.println(user);
-            Username.setText(user.getUsername());
+        // if (user != null) {
+        System.out.println(user);
+        Username.setText(user.getUsername());
         List<String> roles = Arrays.asList("ROLE_ADMIN", "ROLE_USER");
         Type.getItems().addAll(roles);
-            // Type.setValue(Role.valueOf(user.getRoles()));
+        // Type.setValue(Role.valueOf(user.getRoles()));
         String displayRole = user.getRoles().substring(2, user.getRoles().length() - 2); // Remove "[ROLE_" and "]"
         Type.setValue(displayRole);
-            email.setText(user.getEmail());
-            isverified.setText(user.getIs_verified().toString());
-               numero.setText(String.valueOf(user.getNumero()));
-            nom.setText(user.getFirst_name());
-            prenom.setText(user.getLast_name());
-            //     Password.setText(user.getPassword());
+        email.setText(user.getEmail());
+        isverified.setText(user.getIs_verified().toString());
+        numero.setText(String.valueOf(user.getNumero()));
+        nom.setText(user.getFirst_name());
+        prenom.setText(user.getLast_name());
+        //     Password.setText(user.getPassword());
 
-            //   imageData = user.getImageData(); // Load image data
-            // if (imageData != null && imageData.length > 0) {
-            //   imageView.setImage(new javafx.scene.image.Image(new ByteArrayInputStream(user.getImageData())));
-            //}
-            //} else {
-            //  System.out.println("user not found.");
-            //}
-            // } catch (SQLException e) {
-            //   e.printStackTrace();
-            // System.out.println("Error");
-            //}
+        //   imageData = user.getImageData(); // Load image data
+        // if (imageData != null && imageData.length > 0) {
+        //   imageView.setImage(new javafx.scene.image.Image(new ByteArrayInputStream(user.getImageData())));
+        //}
+        //} else {
+        //  System.out.println("user not found.");
+        //}
+        // } catch (SQLException e) {
+        //   e.printStackTrace();
+        // System.out.println("Error");
+        //}
 
     }
     private void showSuccessMessage(String message) {
@@ -209,5 +209,3 @@ public class ModifyUserController implements Initializable {
         alert.showAndWait();
     }
 }
-
-

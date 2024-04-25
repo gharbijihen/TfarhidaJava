@@ -81,7 +81,7 @@ public class UsersCrudController implements Initializable {
     private void initializeTableColumns() {
         tableView.getColumns().clear();
 
-       // imageColumn.setCellFactory(getImageCellFactory());
+        // imageColumn.setCellFactory(getImageCellFactory());
         TableColumn<User, Void> RoleColumn = new TableColumn<>("Role");
         RoleColumn.setCellFactory(column -> new TableCell<User, Void>() {
             @Override
@@ -106,7 +106,7 @@ public class UsersCrudController implements Initializable {
 
         TableColumn<User, String> lastname = new TableColumn<>("last_name");
         lastname.setCellValueFactory(new PropertyValueFactory<>("last_name"));
-       TableColumn<User, Boolean> isVerifiedColumn = new TableColumn<>("isverified");
+        TableColumn<User, Boolean> isVerifiedColumn = new TableColumn<>("isverified");
         isVerifiedColumn.setCellValueFactory(new PropertyValueFactory<>("is_verified"));
 
         isVerifiedColumn.setCellFactory(column -> new TableCell<User, Boolean>() {
@@ -176,10 +176,10 @@ public class UsersCrudController implements Initializable {
         TableColumn<User, String> numeroColumn = new TableColumn<>("numero");
         numeroColumn.setCellValueFactory(new PropertyValueFactory<>("numero"));
 
-       // TableColumn<User, String> Num_telColumn = new TableColumn<>("Num_tel");
-       // Num_telColumn.setCellValueFactory(new PropertyValueFactory<>("Num_tel"));
-       // TableColumn<User, String> dateJoinedColumn = new TableColumn<>("dateJoined");
-       // dateJoinedColumn.setCellValueFactory(new PropertyValueFactory<>("dateJoined"));
+        // TableColumn<User, String> Num_telColumn = new TableColumn<>("Num_tel");
+        // Num_telColumn.setCellValueFactory(new PropertyValueFactory<>("Num_tel"));
+        // TableColumn<User, String> dateJoinedColumn = new TableColumn<>("dateJoined");
+        // dateJoinedColumn.setCellValueFactory(new PropertyValueFactory<>("dateJoined"));
 
         TableColumn<User, Void> actionColumn = new TableColumn<>("Action");
         actionColumn.setCellFactory(getButtonCellFactory());
