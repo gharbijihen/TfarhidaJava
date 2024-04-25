@@ -144,7 +144,7 @@ public class ProfileDetailsControllers implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }*/
-        RouterController.navigate("ModifierProfile.fxml");
+        RouterController.navigate("/fxml/ModifierProfile.fxml");
     }
     @FXML
     void returnTo(MouseEvent event) {
