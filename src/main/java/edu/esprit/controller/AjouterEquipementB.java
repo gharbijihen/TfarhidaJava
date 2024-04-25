@@ -3,40 +3,23 @@ package edu.esprit.controller;
 import edu.esprit.entites.Equipement;
 import edu.esprit.entites.Logement;
 import edu.esprit.servies.EquipementCrud;
-import edu.esprit.servies.LogementCrud;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.awt.*;
 
-public class AjouterEquipement implements Initializable {
-
+public class AjouterEquipementB {
 
     @FXML
     private Button ButtonAjouterEquipement;
 
     @FXML
     private TextField DescriptionEquipement;
-    public static Logement logement;
     @FXML
     private CheckBox climatitation;
 
@@ -63,9 +46,13 @@ public class AjouterEquipement implements Initializable {
 
     @FXML
     private TextField typeChambre;
-
     @FXML
-    void ajouterEquipementAction(ActionEvent event) {
+    private TextField nomLogementField;
+    private Logement logement;
+    @FXML
+    void ajouterEquipementAction(ActionEvent event)  {
+
+
         if (isInputValid()) {
             boolean climatisationE = climatitation.isSelected();
             boolean internetE = internet.isSelected();
@@ -75,8 +62,11 @@ public class AjouterEquipement implements Initializable {
             String types_de_chambre = typeChambre.getText();
 
             EquipementCrud service = new EquipementCrud();
-            boolean ajoutReussi = service.ajouter(new Equipement(parkingE, internetE, climatisationE, nbrChambreE, types_de_chambre, descriptionE));
+            
 
+            Equipement equipement;
+            boolean ajoutReussi = service.ajouter( equipement = new Equipement(parkingE, internetE, climatisationE, nbrChambreE, types_de_chambre, descriptionE));
+            logement.setEquipement_id(equipement.getId());
             if (ajoutReussi) {
                 // Afficher un message dans le terminal
                 System.out.println("Equipement ajouté");
@@ -90,25 +80,10 @@ public class AjouterEquipement implements Initializable {
                 DescriptionEquipement.clear();
                 typeChambre.clear();
                 nbrChambre.clear();
-                naviguezVersAffichage(event);
             } else {
                 // Afficher un message d'erreur dans le terminal
                 System.out.println("Échec de l'ajout de l'équipement");
             }
-        }
-    }
-    void naviguezVersAffichage(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/indexLogement.fxml"));
-            DescriptionEquipement.getScene().setRoot(root);
-            internet.getScene().setRoot(root);
-            parking.getScene().setRoot(root);
-            nbrChambre.getScene().setRoot(root);
-            climatitation.getScene().setRoot(root);
-            typeChambre.getScene().setRoot(root);
-
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
         }
     }
 
@@ -120,6 +95,8 @@ public class AjouterEquipement implements Initializable {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+
     @FXML
 
     private boolean isInputValid() {
@@ -151,11 +128,9 @@ public class AjouterEquipement implements Initializable {
         return isValid;
     }
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(AjouterEquipement.logement);
+    public void initData(Logement logement) {
+        this.logement = logement;
+        // Initialiser les champs de la page avec les données du logement
+        // Initialiser les autres champs avec les autres données du logement
     }
 }
-
-

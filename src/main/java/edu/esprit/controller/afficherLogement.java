@@ -9,6 +9,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,7 +20,6 @@ import javafx.event.ActionEvent;
 import java.awt.*;
 import javafx.scene.control.Button;
 
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -27,7 +28,8 @@ import java.util.ResourceBundle;
 public class afficherLogement  {
     private List<Logement> logements;
     private MyListener myListener;
-
+    @FXML
+    private AnchorPane bord;
     @FXML
     private ScrollPane scroll;
     private ObservableList<Logement> logementsList;
@@ -47,7 +49,17 @@ public class afficherLogement  {
         this.logementsList = logementsList;
     }
 
+    @FXML
+    private void returnTo(MouseEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../fxml/Home.fxml"));
+        try {
+            Parent root = loader.load();
+            bord.getChildren().setAll(root);
 
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
 
     public void showLogement() {
 
@@ -75,7 +87,7 @@ public class afficherLogement  {
             hBox.getChildren().add(itemNode);
 
             // Si la ligne est pleine (2 éléments), l'ajouter au VBox principal et créer une nouvelle ligne
-            if (hBox.getChildren().size() == 2) {
+            if (hBox.getChildren().size() == 3) {
                 mainVBox.getChildren().add(hBox);
                 hBox = new HBox();
                 hBox.setSpacing(20.0); // Réinitialiser l'espacement horizontal pour la nouvelle ligne

@@ -16,8 +16,7 @@
    <children>
       <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="54.0" prefWidth="945.0" style="-fx-background-color: #FAF7F2;">
          <items>
-            <ToggleButton mnemonicParsing="false" style="-fx-background-color: #004A54; -fx-background-radius: 100;" text="Sinscrire" textFill="WHITE" />
-            <ToggleButton mnemonicParsing="false" style="-fx-background-color: #FF7F00; -fx-background-radius: 100;" text="se connecter" textFill="WHITE" />
+            <ToggleButton mnemonicParsing="false" prefHeight="22.0" prefWidth="31.0" style="-fx-background-color: #004A54; -fx-background-radius: 100;" text="X" textFill="WHITE" />
          </items>
       </ToolBar>
       <Text fill="#632d2d" layoutX="149.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter votre logement " wrappingWidth="478.3999999999999">
@@ -91,7 +90,6 @@
                   <Insets bottom="8.0" top="8.0" />
                </VBox.margin>
             </ComboBox>
-            <TextField fx:id="equipementId" prefHeight="26.0" prefWidth="442.0" promptText="equipement" style="-fx-background-radius: 100;" />
          </children>
          <opaqueInsets>
             <Insets bottom="8.0" left="8.0" top="8.0" />

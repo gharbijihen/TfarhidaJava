@@ -9,6 +9,7 @@ public class Equipement {
     public int nbr_chambre;
     public String description;
     public String types_de_chambre;
+    //private Logement logement;
 
 
 

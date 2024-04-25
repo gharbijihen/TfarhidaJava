@@ -16,10 +16,9 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.sql.SQLException;
 
 
-public class ModifierLogementController {
+public class ModifierLogementB {
 
     @FXML
     private Button ButtonModifierLogement;
@@ -116,7 +115,42 @@ public class ModifierLogementController {
     }
     @FXML
     void modifierLogementAction(ActionEvent event) {
-
+        if (nom.getText().isEmpty()) {
+            nom.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            nom.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (note.getText().isEmpty()) {
+            note.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            note.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (localisation.getText().isEmpty()) {
+            localisation.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            localisation.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (prix.getText().isEmpty()) {
+            prix.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            prix.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (num.getText().isEmpty()) {
+            num.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            num.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (type_log.getValue()==null ) {
+            type_log.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            type_log.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
         if (isInputValid()) {
             // Récupérer l'ID de l'activité sélectionnée
             int LogementId = logement.getId();
@@ -136,7 +170,6 @@ public class ModifierLogementController {
                     // Créez un objet Activite avec les nouvelles valeurs
                     Logement logementModifiee = new Logement();
                     logementModifiee.setId(LogementId); // Assurez-vous de définir l'ID de l'activité
-                    logementModifiee.setEquipement(equipement_Id);
                     logementModifiee.setNom(nomL);
                     logementModifiee.setNum(numL);
                     logementModifiee.setPrix(prixL);
@@ -156,7 +189,7 @@ public class ModifierLogementController {
                     LogementCrud service = new LogementCrud();
                     service.modifier(logementModifiee);
 
-                    System.out.println("Activité modifiée avec succès !");
+                    System.out.println("Logement modifiée avec succès !");
                     // Vous pouvez également afficher une boîte de dialogue ou un message pour informer l'utilisateur
                 } catch (NumberFormatException e) {
                     System.out.println("Erreur de format : Assurez-vous que les champs Prix et Nombre Participant sont des nombres entiers.");

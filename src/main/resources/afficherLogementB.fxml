@@ -12,12 +12,12 @@
 
 <ScrollPane fx:id="logementScrollPane" prefHeight="450.0" prefWidth="963.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherLogementB">
     <content>
-        <AnchorPane prefHeight="443.0" prefWidth="1054.0">
+        <AnchorPane prefHeight="501.0" prefWidth="1054.0">
             <children>
-                <TableView fx:id="tableView" layoutX="2.0" layoutY="36.0" prefHeight="288.0" prefWidth="1034.0" visible="true">
+                <TableView fx:id="tableView" layoutX="2.0" layoutY="36.0" prefHeight="314.0" prefWidth="1034.0" visible="true">
                     <columns>
-                  <TableColumn fx:id="colIdUser" prefWidth="161.0" text="id_user" />
-                        <TableColumn fx:id="colIdEquipement" prefWidth="161.0" text="id_equipement" />
+                  <TableColumn fx:id="colIdUser" prefWidth="161.0" text="User" />
+                        <TableColumn fx:id="colIdEquipement" prefWidth="161.0" text="Equipement" />
                         <TableColumn fx:id="colTypeLog" prefWidth="139.0" text="Type de logement" />
                         <TableColumn fx:id="colNom" prefWidth="161.0" text="Nom" />
                         <TableColumn fx:id="colNote" prefWidth="139.0" text="Note moyenne" />
@@ -28,7 +28,7 @@
                   <TableColumn fx:id="colAction" prefWidth="161.0" text="Action" />
                     </columns>
                 </TableView>
-            <HBox alignment="CENTER" layoutX="172.0" layoutY="324.0" prefHeight="76.0" prefWidth="590.0">
+            <HBox alignment="CENTER" layoutX="207.0" layoutY="358.0" prefHeight="76.0" prefWidth="590.0">
                <children>
                   <Button onAction="#handleAjouter" prefWidth="120" style="-fx-background-radius: 100;" text="Ajouter">
                      <font>

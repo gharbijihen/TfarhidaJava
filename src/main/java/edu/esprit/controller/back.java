@@ -6,7 +6,6 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent ;
 import java.io.IOException;
@@ -36,7 +35,7 @@ public class back {
     private void goToafficherEquipement() {
         try {
             // Charger le contenu de afficherActivite.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherEquipementB.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEquipementB.fxml"));
             Node afficherEquipementContent = loader.load();
 
             // Ajouter le contenu au contentHBox

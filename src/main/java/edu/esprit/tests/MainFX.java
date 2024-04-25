@@ -1,6 +1,7 @@
 package edu.esprit.tests;
 
 
+import edu.esprit.controller.RouterController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,7 +16,8 @@ import java.io.IOException;
 public class MainFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Back.fxml"));
+        RouterController.setPrimaryStage(stage);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/indexLogement.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 

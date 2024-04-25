@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="644.0" prefWidth="850.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.AjouterEquipementB">
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="54.0" prefWidth="945.0" style="-fx-background-color: #FAF7F2;">
+                    <items>
+                        <ToggleButton mnemonicParsing="false" prefHeight="26.0" prefWidth="34.0" style="-fx-background-color: #004A54; -fx-background-radius: 100;" text="X" textFill="WHITE" />
+                    </items>
+                </ToolBar>
+                <VBox alignment="CENTER" layoutX="77.0" layoutY="54.0" prefHeight="562.0" prefWidth="774.0">
+                    <children>
+                        <Text fill="#632d2d" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter votre Equipement " wrappingWidth="578.3999999999999">
+                            <font>
+                                <Font name="Broadway" size="35.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets bottom="26.0" />
+                            </VBox.margin>
+                        </Text>
+                        <CheckBox fx:id="parking" mnemonicParsing="false" prefHeight="30.0" prefWidth="434.0" text="Parking">
+                            <font>
+                                <Font name="Bodoni MT Bold" size="18.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="8.0" />
+                            </padding>
+                        </CheckBox>
+                        <CheckBox fx:id="internet" mnemonicParsing="false" prefHeight="30.0" prefWidth="434.0" text="Internet">
+                            <font>
+                                <Font name="Bodoni MT Bold" size="18.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="8.0" top="8.0" />
+                            </padding>
+                        </CheckBox>
+                        <CheckBox fx:id="climatitation" mnemonicParsing="false" prefHeight="30.0" prefWidth="434.0" text="Climatitation">
+                            <font>
+                                <Font name="Bodoni MT Bold" size="18.0" />
+                            </font>
+                            <padding>
+                                <Insets bottom="8.0" top="8.0" />
+                            </padding>
+                        </CheckBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre des chambres :" wrappingWidth="765.3113403320312">
+                            <font>
+                                <Font name="Bodoni MT" size="18.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <TextField fx:id="nbrChambre" alignment="CENTER" prefHeight="26.0" prefWidth="442.0" promptText="Nombre des chambres " style="-fx-background-radius: 100;">
+                            <VBox.margin>
+                                <Insets top="4.0" />
+                            </VBox.margin>
+                        </TextField>
+                        <Text fx:id="errorNbrChambre" fill="RED" strokeWidth="0.0" wrappingWidth="757.6000061273575">
+                            <VBox.margin>
+                                <Insets bottom="4.0" top="4.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Type de chambre " wrappingWidth="765.3113403320312">
+                            <font>
+                                <Font name="Bodoni MT" size="18.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <TextField fx:id="typeChambre" alignment="CENTER" prefHeight="26.0" prefWidth="442.0" promptText="Type de chambre" style="-fx-background-radius: 100;" />
+                        <Text fx:id="errorTypeCHambre" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="769.6000060081482">
+                            <VBox.margin>
+                                <Insets bottom="4.0" top="4.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" wrappingWidth="765.3113403320312">
+                            <font>
+                                <Font name="Bodoni MT" size="18.0" />
+                            </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <TextField fx:id="DescriptionEquipement" alignment="CENTER" prefHeight="52.0" prefWidth="774.0" promptText="Descriprion" style="-fx-background-radius: 100;" />
+                        <Text fx:id="errorDescriptionEquipement" fill="RED" wrappingWidth="774.3999938011169">
+                            <VBox.margin>
+                                <Insets bottom="4.0" top="4.0" />
+                            </VBox.margin>
+                        </Text>
+                        <Button fx:id="ButtonAjouterEquipement" mnemonicParsing="false" onAction="#ajouterEquipementAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: #2EB67D;" text="Ajouter " />
+                    </children>
+                    <padding>
+                        <Insets bottom="4.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

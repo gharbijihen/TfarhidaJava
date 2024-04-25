@@ -2,7 +2,6 @@ package edu.esprit.controller;
 
 import edu.esprit.entites.Logement;
 import edu.esprit.servies.LogementCrud;
-import edu.esprit.tools.Data;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,13 +12,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -112,8 +111,8 @@ public class afficherLogementB {
                 // Afficher une boîte de dialogue de confirmation
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Confirmation de suppression");
-                alert.setHeaderText("Supprimer l'activité sélectionnée");
-                alert.setContentText("Êtes-vous sûr de vouloir supprimer cette activité ?");
+                alert.setHeaderText("Supprimer le logement sélectionné");
+                alert.setContentText("Êtes-vous sûr de vouloir supprimer ce logement ?");
 
                 Optional<ButtonType> result = alert.showAndWait();
                 if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -135,10 +134,11 @@ public class afficherLogementB {
 
 
     @FXML
-    void handleAjouter(ActionEvent event) {
+     public void handleAjouter(ActionEvent event) {
+       // RouterController.navigate("AjouterEquipement.fxml");
         try {
             // Charger la vue ou le formulaire d'ajout
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/logementAjouter.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterLogementB.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle fenêtre pour afficher le formulaire d'ajout
@@ -151,8 +151,9 @@ public class afficherLogementB {
 
     }
 
+
     @FXML
-    void modifierLogementAction(ActionEvent event) {
+    public void modifierLogementAction(ActionEvent event) {
         // Récupérer l'activité sélectionnée dans le TableView
         Logement logementSelectionnee = tableView.getSelectionModel().getSelectedItem();
 
@@ -167,11 +168,11 @@ public class afficherLogementB {
     }
 
     @FXML
-    private void openModifierLogementPage(Logement logement) {
+    public void openModifierLogementPage(Logement logement) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/logementModifier.fxml"));
             Parent root = loader.load();
-            ModifierLogementController modifierController = loader.getController();
+            ModifierLogementB modifierController = loader.getController();
             modifierController.initData(logement, selectedImageFile); // Transmettre également le fichier d'image sélectionné
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -207,7 +208,7 @@ public class afficherLogementB {
       }
   }
     @FXML
-    private void goToafficherLogement() {
+    public void goToafficherLogement() {
         try {
             // Charger le contenu de afficherActivite.fxml
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherLogementB.fxml"));
@@ -217,6 +218,39 @@ public class afficherLogementB {
             contentHBox.getChildren().clear(); // Efface tout contenu précédent
             contentHBox.getChildren().add(afficherLogementContent);
         } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToAfficherEquipement(ActionEvent event) {
+        try {
+            // Charger le contenu de afficherActivite.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EquipementB.fxml"));
+            Node afficherLogementContent = loader.load();
+
+            // Ajouter le contenu au contentHBox
+            contentHBox.getChildren().clear(); // Efface tout contenu précédent
+            contentHBox.getChildren().add(afficherLogementContent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void goToClient(MouseEvent mouseEvent) {
+        try {
+            // Charger le fichier FXML de la nouvelle page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/indexLogement.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène sur la fenêtre et l'afficher
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

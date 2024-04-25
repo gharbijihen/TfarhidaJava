@@ -7,6 +7,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -43,7 +44,7 @@
                      <graphic>
                         <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/bed.png" />
+                              <Image url="@images/homeIconpng.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -101,7 +102,7 @@
       </Pane>
       <Pane layoutX="-2.0" prefHeight="50.0" prefWidth="1578.0" style="-fx-background-color: #FF7F00;">
          <children>
-            <ImageView fitHeight="28.0" fitWidth="32.0" layoutX="314.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="28.0" fitWidth="32.0" layoutX="314.0" layoutY="11.0" onMouseClicked="#returnTo" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/bouton-retour.png" />
                </image>
@@ -130,6 +131,9 @@
                      <children>
                         <Pane prefHeight="200.0" prefWidth="200.0" />
                      </children>
+                     <columnConstraints>
+                        <ColumnConstraints />
+                     </columnConstraints>
                   </GridPane>
                </content>
             </ScrollPane>

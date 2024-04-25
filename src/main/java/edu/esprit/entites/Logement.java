@@ -12,9 +12,14 @@ public class Logement {
     public String type_log;
 
     public int note_moyenne;
-    public int equipement_id;
 
-    public Logement(String nom, String localisation, int num, int prix, String image, String etat, String type_log, int note_moyenne, int equipement_id) {
+
+
+    public int equipement_id;
+    public Equipement equipement;
+
+
+    public Logement(String nom, String localisation, int num, int prix, String image, String etat, String type_log, int note_moyenne) {
         this.nom = nom;
         this.localisation = localisation;
         this.num = num;
@@ -23,11 +28,34 @@ public class Logement {
         this.etat = etat;
         this.type_log = type_log;
         this.note_moyenne = note_moyenne;
-        this.equipement_id = equipement_id;
+      //  this.equipement = equipement;
     }
 
     public Logement() {
 
+    }
+
+    public Logement(int id, int equipement_id, String nom, int prix, String localisation, int num, String etat, int note_moyenne, String type_log, String image) {
+        this.id = id;
+        this.equipement_id = equipement_id;
+        this.nom = nom;
+
+        this.localisation = localisation;
+        this.num = num;
+        this.prix = prix;
+        this.image = image;
+        this.etat = etat;
+        this.type_log = type_log;
+        this.note_moyenne = note_moyenne;
+    }
+
+
+    public int getEquipement_id() {
+        return equipement_id;
+    }
+
+    public void setEquipement_id(int equipement_id) {
+        this.equipement_id = equipement_id;
     }
 
 
@@ -106,12 +134,12 @@ public class Logement {
 
 
 
-    public int getEquipement() {
-        return equipement_id;
+    public Equipement getEquipement() {
+        return equipement;
     }
 
-    public void setEquipement(int equipement_id) {
-        this.equipement_id = equipement_id;
+    public  void setEquipement(Equipement equipement) {
+        this.equipement = equipement;
     }
 
     @Override
@@ -126,7 +154,7 @@ public class Logement {
                 ", etat='" + etat + '\'' +
                 ", type_log='" + type_log + '\'' +
                 ", note_moyenne=" + note_moyenne +
-                ", equipement=" + equipement_id +
+                ", equipement=" + equipement +
                 '}';
     }
 }
