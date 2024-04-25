@@ -189,6 +189,9 @@ private ImageView img;
     }
 
     public void goToNavigate(ActionEvent event) {
+        RouterController router=new RouterController();
+        router.navigate("/back.fxml");
+
     }
 
     public void goToClient(MouseEvent mouseEvent) {

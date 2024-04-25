@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="768.0" style="-fx-background-color: #fff;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.RecItemAdminController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="1200.0" style="-fx-background-color: #fff;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.RecItemAdminController">
     <children>
         <HBox prefHeight="170.0" prefWidth="700.0">
             <children>
@@ -52,12 +52,18 @@
         </HBox>
         <HBox prefHeight="35.0" prefWidth="700.0">
             <children>
-                <Text fx:id="title" fill="#32594a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="addReview__btnText" text="Title Title Title" />
+                <Text fx:id="title" fill="#32594a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="addReview__btnText" text="Title Title Title">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin></Text>
             </children>
         </HBox>
         <HBox prefHeight="50.0" prefWidth="700.0">
             <children>
-                <Text fx:id="comment" fill="#32594a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="comment_desc" text="comment comment comment comment  comment comment comment comment " wrappingWidth="407.52796936035156" />
+                <Text fx:id="comment" fill="#32594a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="comment_desc" text="comment comment comment comment  comment comment comment comment " wrappingWidth="407.52796936035156">
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin></Text>
             </children>
         </HBox>
         <HBox prefHeight="45.0" prefWidth="700.0">
@@ -68,6 +74,9 @@
                         <Text fill="#223e35" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="comment_dateAjout" text="  par  " />
                         <Text fx:id="userName" fill="#162823" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="comment_dateAjout" text="Tayssir" />
                     </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
                 </HBox>
                 <HBox prefHeight="44.0" prefWidth="115.0">
                     <children>
@@ -84,6 +93,6 @@
                 </HBox>
             </children>
         </HBox>
-        <Line endX="666.5858154296875" endY="-0.2270977944135666" startX="-100.0" stroke="#2f2b43" strokeWidth="2.0" />
+        <Line endX="1008.5858154296875" endY="-0.7796388864517212" startX="-100.0" stroke="#2f2b43" strokeWidth="2.0" />
     </children>
 </VBox>

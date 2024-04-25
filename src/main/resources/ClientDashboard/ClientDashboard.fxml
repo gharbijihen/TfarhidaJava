@@ -316,7 +316,7 @@
                 </AnchorPane>
                 <ImageView fitHeight="66.0" fitWidth="77.0" layoutX="149.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../assets/logo.png" />
+                        <Image url="@../assets/tfarhida.png" />
                     </image>
                 </ImageView>
             </children>
