@@ -25,9 +25,10 @@ public class ClientDashboardController {
     }
 
     public void goToUsers(MouseEvent mouseEvent) {
-        ModifyUserController.user=GuiLoginController.user;
-        ModifyUserController.isUser=true;
-        RouterController.navigate("/fxml/ModifyUser.fxml");
+        ModifierProfile.user=GuiLoginController.user;
+        ModifierProfile.isUser=true;
+        ProfileDetailsControllers.user=GuiLoginController.user;
+        RouterController.navigate("/fxml/ProfileDetails.fxml");
 
     }
 

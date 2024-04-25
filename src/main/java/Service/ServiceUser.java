@@ -9,6 +9,7 @@ import java.util.List;
 import Entities.Role;
 import javafx.scene.control.Alert;
 
+import javafx.scene.control.TextField;
 import org.mindrot.jbcrypt.BCrypt;
 
 public class ServiceUser implements IService<User> {
@@ -47,6 +48,7 @@ public class ServiceUser implements IService<User> {
         statement.setInt(4, user.getNumero());
         statement.setString(5, user.getEmail());
         statement.setString(6, user.getRoles());
+        System.out.println("Updating this password : "+user.getPassword());
         statement.setString(7, user.getPassword());
         statement.setBoolean(8, user.getIs_verified());
         statement.setString(9, user.getReset_token());
@@ -160,8 +162,11 @@ public class ServiceUser implements IService<User> {
                     user.setId(resultSet.getInt("id"));
                     user.setEmail(resultSet.getString("email"));
                     user.setPassword(resultSet.getString("password"));
-                  //  user.setName(resultSet.getString("name"));
-                   // user.setLastName(resultSet.getString("lastname"));
+                    user.setFirst_name(resultSet.getString("first_name"));
+                    user.setLast_name(resultSet.getString("last_name"));
+                    user.setIs_verified(resultSet.getBoolean("is_verified"));
+                    user.setNumero(resultSet.getInt("numero"));
+                    user.setUsername(resultSet.getString("username"));
                     user.setRoles(resultSet.getString("roles"));
                     if (BCrypt.checkpw(password,user.getPassword()))
                         return user; // User found with the given email, password, and role
@@ -172,4 +177,10 @@ public class ServiceUser implements IService<User> {
         }
     }
 
+    public boolean checkpassword(User user, String newPassword) {
+        String hashedPasswordFromDB = user.getPassword(); // Already hashed in the database
+
+        // Check if the provided password matches the hashed password from the database
+        return BCrypt.checkpw(newPassword, hashedPasswordFromDB);
+    }
 }

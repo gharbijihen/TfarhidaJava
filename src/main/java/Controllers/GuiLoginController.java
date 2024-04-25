@@ -24,6 +24,7 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -86,7 +87,8 @@ public class GuiLoginController implements Initializable {
             erreur.setText("Email ou mot de passe incorrecte");
             return;
         }
-        if (user.getRoles() == "[\"ROLE_ADMIN\"]")
+
+        if (Objects.equals(user.getRoles(), "[\"ROLE_ADMIN\"]"))
             RouterController.navigate("/fxml/AdminDashboard.fxml");
         else
             RouterController.navigate("/fxml/ClientDashboard.fxml");

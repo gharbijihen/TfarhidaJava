@@ -81,9 +81,6 @@ public class UsersCrudController implements Initializable {
     private void initializeTableColumns() {
         tableView.getColumns().clear();
 
-        TableColumn<User, Integer> idColumn = new TableColumn<>("Id");
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
-       // TableColumn<User, Void> imageColumn = new TableColumn<>("Image");
        // imageColumn.setCellFactory(getImageCellFactory());
         TableColumn<User, Void> RoleColumn = new TableColumn<>("Role");
         RoleColumn.setCellFactory(column -> new TableCell<User, Void>() {
@@ -187,7 +184,7 @@ public class UsersCrudController implements Initializable {
         TableColumn<User, Void> actionColumn = new TableColumn<>("Action");
         actionColumn.setCellFactory(getButtonCellFactory());
 
-        tableView.getColumns().addAll(idColumn,emailColumn,usernameColumn,nameColumn,lastname,isVerifiedColumn,numeroColumn,RoleColumn,actionColumn);
+        tableView.getColumns().addAll(emailColumn,usernameColumn,nameColumn,lastname,isVerifiedColumn,numeroColumn,RoleColumn,actionColumn);
     }
     /*
     private Callback<TableColumn<User, Void>, TableCell<User, Void>> getImageCellFactory() {
