@@ -14,6 +14,8 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.geometry.Insets;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -32,7 +34,7 @@ public class AfficherMoyF {
     }
 
     @FXML
-    void afficherMoyens() {
+    public void afficherMoyens() {
         try {
             // Créer un VBox pour contenir tous les éléments Item
             VBox mainVBox = new VBox();
@@ -51,15 +53,20 @@ public class AfficherMoyF {
                 // Vérifier si le moyen est valide avant de l'ajouter à l'affichage
                 if (moyen.isValide()) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/ItemM.fxml"));
+
                     Node itemNode = loader.load();
+
                     ItemMController controller = loader.getController();
                     controller.setData(moyen, null);
+
+                    // Centrer le contenu de l'élément horizontalement
+                    VBox.setMargin(itemNode, new Insets(0, 0, 0, (mainVBox.getWidth() - itemNode.getBoundsInParent().getWidth()) / 2));
 
                     // Ajouter l'élément à la ligne actuelle
                     hBox.getChildren().add(itemNode);
 
                     // Si la ligne est pleine (2 éléments), l'ajouter au VBox principal et créer une nouvelle ligne
-                    if (hBox.getChildren().size() == 2) {
+                    if (hBox.getChildren().size() == 3) {
                         mainVBox.getChildren().add(hBox);
                         hBox = new HBox();
                         hBox.setSpacing(20.0); // Réinitialiser l'espacement horizontal pour la nouvelle ligne
@@ -89,7 +96,7 @@ public class AfficherMoyF {
     void handleAjouter(ActionEvent event) {
         try {
             // Charger la vue ou le formulaire d'ajout
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouterCrudF.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouterMoyen.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle fenêtre pour afficher le formulaire d'ajout
@@ -99,6 +106,26 @@ public class AfficherMoyF {
 
         } catch (IOException e) {
             // Handle the exception appropriately (e.g., show an error message to the user)
+            e.printStackTrace();
+        }
+    }
+
+    public void gotodash(ActionEvent event) {
+        try {
+            // Charger le fichier FXML de la nouvelle page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminDashbord.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène sur la fenêtre et l'afficher
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

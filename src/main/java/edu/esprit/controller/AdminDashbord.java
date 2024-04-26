@@ -52,8 +52,25 @@ public class AdminDashbord {
     }
 
 
-    public void goToCommands(MouseEvent mouseEvent) {
+    public void goToaffichertrajet(MouseEvent event) {
+     try {
+        // Charger le fichier FXML de la nouvelle page
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherTrajet.fxml"));
+        Parent root = loader.load();
+
+        // Créer une nouvelle scène avec la nouvelle page
+        Scene scene = new Scene(root);
+
+        // Obtenir la fenêtre actuelle à partir de l'événement
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        // Définir la nouvelle scène sur la fenêtre et l'afficher
+        stage.setScene(scene);
+        stage.show();
+    } catch (IOException e) {
+        e.printStackTrace();
     }
+}
 
     public void goToReclamations(MouseEvent mouseEvent) {
     }

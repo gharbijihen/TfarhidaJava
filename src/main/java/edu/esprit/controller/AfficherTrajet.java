@@ -81,7 +81,6 @@ public class AfficherTrajet {
         colLieuA.setCellValueFactory(new PropertyValueFactory<>("lieu_arrivee"));
         colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
         colHeure.setCellValueFactory(new PropertyValueFactory<>("heure"));
-        colMoyt.setCellValueFactory(new PropertyValueFactory<>("moyen_transport_id"));
         tableView.setStyle("-fx-background-color: #f2f2f2;");
 
 
@@ -90,14 +89,12 @@ public class AfficherTrajet {
         colLieuA.setStyle("-fx-alignment: CENTER;");
         colDate.setStyle("-fx-alignment: CENTER;");
         colHeure.setStyle("-fx-alignment: CENTER;");
-        colMoyt.setStyle("-fx-alignment: CENTER;");
 
         // Set preferred widths for the columns
-        colLieuD.setPrefWidth(150);
-        colLieuA.setPrefWidth(100);
-        colDate.setPrefWidth(100);
-        colHeure.setPrefWidth(150);
-        colMoyt.setPrefWidth(200);
+        colLieuD.setPrefWidth(260);
+        colLieuA.setPrefWidth(260);
+        colDate.setPrefWidth(260);
+        colHeure.setPrefWidth(260);
 
 
         tableView.setVisible(true); // Rend la table visible par défaut

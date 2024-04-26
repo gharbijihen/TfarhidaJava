@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -89,6 +90,25 @@ public class AjoutermoyenF {
 
     @FXML
     void ajoutermoyenAction(ActionEvent event) {
+        if (type.getText().isEmpty()) {
+            type.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            type.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (lieu.getText().isEmpty()) {
+            lieu.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            lieu.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (capacite.getText().isEmpty()) {
+            capacite.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            capacite.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+
         if (isInputValid()) {
             if (isInputValid()) {
                 String image=imagePathInDatabase;
@@ -96,21 +116,21 @@ public class AjoutermoyenF {
                 int capaciteM = Integer.parseInt(capacite.getText());
                 String lieuM = lieu.getText();
                 boolean etatM = etat.isSelected();
-                boolean valideM = valide.isSelected();
-
 
                 String imageL = (selectedImageFile != null) ? selectedImageFile.getPath():"";
 
                 Moyen_transport moyen_transport = new Moyen_transport();
                 Moyen_transportCrud service = new Moyen_transportCrud();
-                service.ajouter(new Moyen_transport(typeM, capaciteM, lieuM, etatM, valideM, image));
+                service.ajouter(new Moyen_transport(typeM, capaciteM, lieuM, etatM, false, image));
+                Node source = (Node) event.getSource();
+                Stage stage = (Stage) source.getScene().getWindow();
+                stage.close();
 
 
                 type.clear();
                 capacite.clear();
                 lieu.clear();
                 etat.setSelected(false);
-                valide.setSelected(false);
 
                 imageView.setImage(null);
                 selectedImageFile = null; }
@@ -147,6 +167,7 @@ public class AjoutermoyenF {
             // Charger l'image sélectionnée dans l'ImageView
             Image image = new Image(selectedFile.toURI().toString());
             imageView.setImage(image);
+
         }
     }
     private boolean isInputValid() {
@@ -171,6 +192,7 @@ public class AjoutermoyenF {
         }  else {
             errorCapacite.setText("");
         }
+
         return isValid;
     }
 

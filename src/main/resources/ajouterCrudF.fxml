@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="644.0" prefWidth="850.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.AjoutermoyenF">
+<AnchorPane prefHeight="644.0" prefWidth="850.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.AjouterMoyen">
     <children>
         <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="54.0" prefWidth="945.0" style="-fx-background-color: #FAF7F2;">
             <items>
@@ -38,7 +38,7 @@
                 <Button fx:id="selectImage" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#browseImageAction" prefHeight="35.0" prefWidth="137.0" stylesheets="@../java/edu/esprit/values/style.css" text="ajouter image" />
             </children>
         </VBox>
-        <Button fx:id="ButtonAjouterMoy" layoutX="136.0" layoutY="550.0" mnemonicParsing="false" onAction="#ajoutermoyenAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: #2EB67D;" text="Ajouter " />
+        <Button fx:id="ButtonAjouterMoy" layoutX="136.0" layoutY="550.0" mnemonicParsing="false" onAction="#ajouterMoyenAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: #2EB67D;" text="Ajouter " />
         <CheckBox fx:id="etat" layoutX="85.0" layoutY="275.0" mnemonicParsing="false" text="Etat" />
         <CheckBox fx:id="valide" layoutX="85.0" layoutY="308.0" mnemonicParsing="false" text="Valide" />
         <Text fx:id="errorEtat" fill="RED" layoutX="188.0" layoutY="289.0" strokeWidth="0.0" wrappingWidth="137.0" />

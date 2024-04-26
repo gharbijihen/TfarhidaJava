@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -27,7 +28,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 
 
+
 public class AffichermoyenB {
+    @FXML
     private HBox contentHBox;
 
     private Button MoyenButton;
@@ -56,6 +59,7 @@ public class AffichermoyenB {
     private final Moyen_transportCrud ps = new Moyen_transportCrud();
     @FXML
     private ScrollPane activityScrollPane; // Ajout du ScrollPane
+    @FXML
     private ScrollPane logementScrollPane; // Ajout du ScrollPane
 
     @FXML
@@ -117,12 +121,12 @@ public class AffichermoyenB {
         colAction.setStyle("-fx-alignment: CENTER;");
 
         // Set preferred widths for the columns
-        colType.setPrefWidth(150);
-        colCapacite.setPrefWidth(100);
-        colLieu.setPrefWidth(100);
-        colEtat.setPrefWidth(150);
-        colValide.setPrefWidth(100);
-        colAction.setPrefWidth(200);
+        colType.setPrefWidth(170);
+        colCapacite.setPrefWidth(170);
+        colLieu.setPrefWidth(170);
+        colEtat.setPrefWidth(170);
+        colValide.setPrefWidth(170);
+        colAction.setPrefWidth(190);
 
 
         tableView.setVisible(true); // Rend la table visible par défaut
@@ -219,7 +223,7 @@ public class AffichermoyenB {
     void handleAjouter(ActionEvent event) throws SQLException {
         try {
             // Charger la vue ou le formulaire d'ajout
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouterMoyen.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouterCrudF.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle fenêtre pour afficher le formulaire d'ajout
@@ -273,8 +277,23 @@ public class AffichermoyenB {
 
 
 
+    public void goToClient(javafx.scene.input.MouseEvent event) {
+        try {
+            // Charger le fichier FXML de la nouvelle page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherMoyenF.fxml"));
+            Parent root = loader.load();
 
+            // Créer une nouvelle scène avec la nouvelle page
+            Scene scene = new Scene(root);
 
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-
+            // Définir la nouvelle scène sur la fenêtre et l'afficher
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

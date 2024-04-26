@@ -163,5 +163,49 @@ public class Moyen_transportCrud implements IcrudL<Moyen_transport> {
         // Return the list of moyens de transport
         return moyens;
     }
+    public static Moyen_transport getMoyenParId(int id) {
+        Connection conn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        Moyen_transport moyen = null;
+
+        try {
+            conn = MyConnection.getInstance().getCnx();
+            if (conn == null) {
+                throw new SQLException("La connexion à la base de données est nulle.");
+            }
+
+            String query = "SELECT * FROM moyen_transport WHERE id = ?";
+            stmt = conn.prepareStatement(query);
+            stmt.setInt(1, id);
+            rs = stmt.executeQuery();
+
+            if (rs.next()) {
+
+                String Type = rs.getString("type");
+                int Capacite = rs.getInt("capacite");
+                String Lieu = rs.getString("lieu");
+                Boolean etat = rs.getBoolean("etat");
+                String image = rs.getString("image");
+
+                moyen = new Moyen_transport(Type, Capacite,Lieu, etat,false,image);
+            } else {
+                System.out.println("Aucune activité trouvée avec l'ID : " + id);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Vous pouvez gérer l'exception en renvoyant une valeur par défaut ou en lançant une nouvelle exception personnalisée
+        } finally {
+            // Fermer les ressources
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return moyen;
+    }
 
 }

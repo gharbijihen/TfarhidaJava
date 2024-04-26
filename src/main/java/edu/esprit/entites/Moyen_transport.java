@@ -94,14 +94,6 @@ public class Moyen_transport {
 
     @Override
     public String toString() {
-        return "Moyent_transport{" +
-                "id=" + id +'\'' +
-                ", type=" + type +'\'' +
-                ", capacité=" + capacite +'\'' +
-                ", lieu=" + lieu +'\'' +
-                ", etat=" + etat +'\'' +
-                ", valide='" + valide + '\'' +
-                ", image='" + image + '\'' +
-                '}';
+        return type;
     }
 }

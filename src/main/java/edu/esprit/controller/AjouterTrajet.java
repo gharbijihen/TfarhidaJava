@@ -6,6 +6,7 @@ import edu.esprit.entites.Moyen_transport;
 import edu.esprit.servies.Moyen_transportCrud;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -16,6 +17,8 @@ import java.io.File;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 
 
@@ -59,6 +62,37 @@ public class AjouterTrajet {
 
     @FXML
     void ajoutertrajetAction(ActionEvent event) {
+        if (lieudepart.getText().isEmpty()) {
+            lieudepart.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            lieudepart.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (lieuarrivée.getText().isEmpty()) {
+            lieuarrivée.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            lieuarrivée.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (date.getValue() == null) {
+            date.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            date.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (heure.getText().isEmpty()) {
+            heure.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            heure.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (moyt.getValue()==null) {
+            moyt.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            moyt.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+
         if (isInputValid()) {
             String lieud= lieudepart.getText();
             String lieua = lieuarrivée.getText();
@@ -71,12 +105,15 @@ public class AjouterTrajet {
             Trajet trajet = new Trajet(lieud, lieua, heure1, date1, moyenTransportId);
             TrajetCrud service = new TrajetCrud();
             service.ajouter(trajet);
+            Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
 
-            lieudepart.clear();
-            lieuarrivée.clear();
-            date.setValue(null);
-            heure.clear();
-            moyt.setValue(null); // Clear the selected moyen_transport
+           // lieudepart.clear();
+            //lieuarrivée.clear();
+//            date.setValue(null);
+//            heure.clear();
+//            moyt.setValue(null); // Clear the selected moyen_transport
         }
     }
 

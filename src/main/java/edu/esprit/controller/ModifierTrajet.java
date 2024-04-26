@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -96,6 +97,36 @@ public class ModifierTrajet {
 
     @FXML
     void modifierMoyenAction(ActionEvent event) {
+        if (lieudepart.getText().isEmpty()) {
+            lieudepart.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            lieudepart.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (lieuarrivée.getText().isEmpty()) {
+            lieuarrivée.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            lieuarrivée.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (date.getValue() == null) {
+            date.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            date.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (heure.getText().isEmpty()) {
+            heure.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            heure.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (moyt.getValue()==null) {
+            moyt.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            moyt.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
         if (isInputValid()) {
             // Récupérer l'ID de l'activité sélectionnée
             int trajetId = trajet.getId();
@@ -130,6 +161,9 @@ public class ModifierTrajet {
                     // Utilisez votre service ActiviteCrud pour mettre à jour l'activité dans la base de données
                     TrajetCrud service = new TrajetCrud();
                     service.modifier(trajetModifiee);
+                    Node source = (Node) event.getSource();
+                    Stage stage = (Stage) source.getScene().getWindow();
+                    stage.close();
 
                     System.out.println("Moyen modifiée avec succès !");
                     // Vous pouvez également afficher une boîte de dialogue ou un message pour informer l'utilisateur
@@ -172,7 +206,7 @@ public class ModifierTrajet {
         }
 
         if (heure.getText().isEmpty()) {
-            errorheure.setText("Note is required");
+            errorheure.setText("Heure is required");
             isValid = false;
         }  else {
             errorheure.setText("");

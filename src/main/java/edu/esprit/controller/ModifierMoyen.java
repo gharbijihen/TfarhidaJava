@@ -4,6 +4,7 @@ import edu.esprit.entites.Moyen_transport;
 import edu.esprit.servies.Moyen_transportCrud;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -167,8 +168,9 @@ public class ModifierMoyen {
                     Moyen_transportCrud service = new Moyen_transportCrud();
                     service.modifier(moyenModifiee);
                     initData(moyen,selectedImageFile);
-                    ((Stage) type.getScene().getWindow()).close();
-
+                    Node source = (Node) event.getSource();
+                    Stage stage = (Stage) source.getScene().getWindow();
+                    stage.close();
                     System.out.println("Moyen modifiée avec succès !");
                     // Vous pouvez également afficher une boîte de dialogue ou un message pour informer l'utilisateur
                 } catch (NumberFormatException e) {
