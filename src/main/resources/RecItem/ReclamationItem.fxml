@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Text?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="1200.0" style="-fx-background-color: #fff;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.ReclamationItem">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="1150.0" style="-fx-background-color: #fff;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.ReclamationItem">
     <children>
       <HBox prefHeight="170.0" prefWidth="700.0">
          <children>
@@ -21,6 +21,7 @@
                         <Insets right="30.0" />
                     </HBox.margin>
                 </HBox>
+            <HBox prefHeight="40.0" prefWidth="338.0" />
             <HBox fx:id="displayReponse" alignment="CENTER" layoutX="658.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="46.0" styleClass="product__card-btns">
                <children>
                   <ImageView fitHeight="35.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
@@ -38,6 +39,9 @@
                               </image>
                           </ImageView>
                       </children>
+               <HBox.margin>
+                  <Insets left="7.0" />
+               </HBox.margin>
                   </HBox>
                   <HBox fx:id="editReclamation" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="46.0" styleClass="product__card-btns">
                       <children>
@@ -70,20 +74,7 @@
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin></Text>
-            </children>
-        </HBox>
-        <HBox prefHeight="45.0" prefWidth="700.0">
-            <children>
-                <HBox prefHeight="45.0" prefWidth="591.0">
-                    <children>
-                        <Text fx:id="date" fill="#192622" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="comment_dateAjout" text="10-03-2023" />
-                        <Text fill="#223e35" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="comment_dateAjout" text="  par  " />
-                        <Text fx:id="userName" fill="#162823" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="comment_dateAjout" text="Tay" />
-                    </children>
-               <HBox.margin>
-                  <Insets left="20.0" />
-               </HBox.margin>
-                </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
                 <HBox prefHeight="44.0" prefWidth="115.0">
                     <children>
                         <ImageView fx:id="etatimg" fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
@@ -98,6 +89,20 @@
                     </children>
                <HBox.margin>
                   <Insets left="150.0" />
+               </HBox.margin>
+                </HBox>
+            </children>
+        </HBox>
+        <HBox prefHeight="45.0" prefWidth="700.0">
+            <children>
+                <HBox prefHeight="45.0" prefWidth="591.0">
+                    <children>
+                        <Text fx:id="date" fill="#192622" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="comment_dateAjout" text="10-03-2023" />
+                        <Text fill="#223e35" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="comment_dateAjout" text="  par  " />
+                        <Text fx:id="userName" fill="#162823" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="comment_dateAjout" text="Tay" />
+                    </children>
+               <HBox.margin>
+                  <Insets left="20.0" />
                </HBox.margin>
                 </HBox>
             </children>

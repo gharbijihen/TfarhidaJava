@@ -394,7 +394,7 @@ public class ReclamationsListController_new implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        utils.TrayNotificationAlert.notif("Review", "Review added successfully.",
+        utils.TrayNotificationAlert.notif("Reclamation", "Reclamation modified successfully.",
                 NotificationType.SUCCESS, AnimationType.POPUP, Duration.millis(2500));
         addReviewsModel.setVisible(false);
         this.commentInput.setText("");

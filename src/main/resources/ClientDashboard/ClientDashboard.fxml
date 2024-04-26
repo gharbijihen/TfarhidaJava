@@ -30,11 +30,21 @@
                                 <Image url="@../assets/ic_usr.png" />
                             </image>
                         </ImageView>
-                        <Label fx:id="nomPrenom" layoutX="130.0" layoutY="23.0" text="Client" textFill="#fffefe">
+                        <Label fx:id="nomPrenom" layoutX="154.0" layoutY="14.0" text="Client" textFill="#fffefe">
                             <font>
                                 <Font name="System Bold" size="18.0" />
                             </font>
                         </Label>
+                        <Label layoutX="178.0" layoutY="41.0" text="Déconnecter" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="36.0" fitWidth="28.0" layoutX="145.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/assets/logOut.png" />
+                            </image>
+                        </ImageView>
                     </children>
                 </Pane>
                 <VBox fx:id="vbox2" layoutX="37.0" layoutY="-14.0" prefHeight="800.0" prefWidth="74.0" style="-fx-background-color: #131022;" AnchorPane.bottomAnchor="-170.0" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="-14.0">
@@ -58,9 +68,18 @@
                 <AnchorPane layoutX="114.0" layoutY="65.0" prefHeight="716.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" stylesheets="@../guiadmin.css">
                     <VBox fx:id="content_area" layoutX="12.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1187.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
                         <children>
-                            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="100.0" prefWidth="1188.0">
+                            <HBox prefHeight="100.0" prefWidth="200.0">
                                 <children>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="1095.0">
+                                    <Pane prefHeight="41.0" prefWidth="1070.0" style="-fx-background-color: #aac0dc; -fx-background-radius: 70;">
+                                        <children>
+                                            <TextField layoutX="16.0" layoutY="7.0" prefHeight="52.0" prefWidth="1041.0" promptText="chercher........." style="-fx-background-radius: 100;" />
+                                        </children>
+                                    </Pane>
+                                </children>
+                            </HBox>
+                            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="1188.0">
+                                <children>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="46.0" prefWidth="1047.0">
                                         <children>
                                             <Text fill="#32594a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="paymentMethodTitle" text="Reclamations (" />
                                             <Text fill="#32594a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="paymentMethodTitle" text="14" />
@@ -69,9 +88,12 @@
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="308.0">
                                         <children>
-                                            <HBox fx:id="addNewReviewBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#open_addReviewModel" prefHeight="45.0" prefWidth="200.0" style="-fx-background-radius: 20 20 20 20;" styleClass="linear-grad">
+                                            <HBox fx:id="addNewReviewBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#open_addReviewModel" prefHeight="35.0" prefWidth="181.0" style="-fx-background-radius: 20 20 20 20;" styleClass="linear-grad">
                                                 <children>
-                                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="addReview__btnText" text="Ajouter réclamation" />
+                                                    <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="addReview__btnText" text="Ajouter réclamation">
+                                          <font>
+                                             <Font size="14.0" />
+                                          </font></Text>
                                                 </children>
                                             </HBox>
                                         </children>
@@ -90,7 +112,7 @@
 
                         </children>
                     </VBox>
-                    <HBox fx:id="addReviewsModel" alignment="CENTER" layoutX="-155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1214.0" styleClass="categoriesModel" stylesheets="@Style.css" translateX="140.0" translateY="-5.0">
+                    <HBox fx:id="addReviewsModel" alignment="CENTER" layoutX="-155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1214.0" styleClass="categoriesModel" stylesheets="@Style.css" translateX="140.0" translateY="-5.0" visible="false">
                         <children>
                             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="600.0" styleClass="productAddedToCart__card" stylesheets="@Style.css">
                                 <children>
@@ -314,7 +336,7 @@
                     </HBox>
 
                 </AnchorPane>
-                <ImageView fitHeight="66.0" fitWidth="77.0" layoutX="149.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="86.0" fitWidth="238.0" layoutX="111.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../assets/tfarhida.png" />
                     </image>
