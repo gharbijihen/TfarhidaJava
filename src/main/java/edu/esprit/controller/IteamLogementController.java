@@ -14,8 +14,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.image.WritableImage;
+
+import javax.imageio.ImageIO;
 
 public class IteamLogementController {
 
@@ -87,31 +98,41 @@ public class IteamLogementController {
         this.priceLogement.setText(logement.getPrix() + "DT/Personne");
         this.loalisationLogement.setText(logement.getLocalisation());
         this.phoneLogement.setText("+216" + logement.getNum());
-        imgLogement.setFitWidth(450); // Ajuster la largeur de l'image
-        imgLogement.setFitHeight(350); // Ajuster la hauteur de l'image
-        String imagePath = logement.getImage();
-        idLabel.setText(String.valueOf(logement.getId()));
 
+        idLabel.setText(String.valueOf(logement.getId()));
+        // Récupérer l'image à partir de la base de données
+        String imagePath = logement.getImage();
         if (imagePath != null && !imagePath.isEmpty()) {
-            File imageFile = new File(imagePath);
-            if (imageFile.exists()) {
-                Image image = new Image(imageFile.toURI().toString());
-                this.imgLogement.setImage(image);
-            } else {
-                System.err.println("L'image n'existe pas à l'emplacement spécifié : " + imagePath);
-                // Afficher une image par défaut ou un message d'erreur
-                // Par exemple :
-                // Image image = new Image(getClass().getResourceAsStream("default_image.png"));
-                // this.imgLogement.setImage(image);
+            try {
+                byte[] imageData = Files.readAllBytes(Paths.get(imagePath));
+                if (imageData != null && imageData.length > 0) {
+                    // Convertir les données d'image en image JavaFX
+                    Image image = new Image(new ByteArrayInputStream(imageData));
+                    imgLogement.setImage(image);
+                    ImageView imageView = new ImageView(image);
+                    imageView.setFitWidth(1000); // Définissez la largeur souhaitée
+                    imageView.setFitHeight(600);
+                    imgLogement.setImage(imageView.snapshot(null, null));
+                } else {
+                    System.err.println("L'image est vide.");
+                }
+            } catch (IOException e) {
+                System.err.println("Erreur lors de la lecture de l'image : " + e.getMessage());
             }
         } else {
-            System.err.println("Le chemin d'accès à l'image est vide ou invalide pour le logement : " + logement.getNom());
-            // Afficher une image par défaut ou un message d'erreur
-            // Par exemple :
-            // Image image = new Image(getClass().getResourceAsStream("default_image.png"));
-            // this.imgLogement.setImage(image);
-        }
+            System.err.println("Chemin d'accès à l'image non spécifié.");
+        }}
+    // Méthode pour redimensionner une image
+    private Image resizeImage(Image image, int width, int height) {
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
+        java.awt.Image scaledImage = bufferedImage.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
+        bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D graphics = bufferedImage.createGraphics();
+        graphics.drawImage(scaledImage, 0, 0, null);
+        graphics.dispose();
+        return SwingFXUtils.toFXImage(bufferedImage, null);
     }
+
 
 
 
@@ -133,19 +154,6 @@ public class IteamLogementController {
         }
     }
 
-    public int getIdFromLabel() {
-        int id = 0;
-        if (idLabel != null && idLabel.getText() != null && !idLabel.getText().isEmpty()) {
-            try {
-                id = Integer.parseInt(idLabel.getText().trim());
-            } catch (NumberFormatException e) {
-                System.err.println("La chaîne n'est pas un entier valide : " + idLabel.getText());
-            }
-        } else {
-            System.err.println("Label is null or empty.");
-        }
-        return id;
-    }
 
 
 }

@@ -15,8 +15,7 @@
     <children>
         <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="54.0" prefWidth="945.0" style="-fx-background-color: #FAF7F2;">
             <items>
-                <ToggleButton mnemonicParsing="false" style="-fx-background-color: #004A54; -fx-background-radius: 100;" text="Sinscrire" textFill="WHITE" />
-                <ToggleButton mnemonicParsing="false" style="-fx-background-color: #FF7F00; -fx-background-radius: 100;" text="se connecter" textFill="WHITE" />
+                <ToggleButton mnemonicParsing="false" style="-fx-background-color: #004A54; -fx-background-radius: 100;" text="X" textFill="WHITE" />
             </items>
         </ToolBar>
         <Button fx:id="ButtonModifierEquipement" layoutX="625.0" layoutY="535.0" mnemonicParsing="false" onAction="#modifierEquipementAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: #2EB67D;" text="Modifer " />

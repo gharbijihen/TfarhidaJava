@@ -65,10 +65,9 @@ public class afficherLogementB {
     private final LogementCrud ps = new LogementCrud();
     private File selectedImageFile;
 
-    private List<Logement> logements = ps.afficher();
+    public List<Logement> logements = ps.afficher();
 
-    private ObservableList<Logement> observableList = FXCollections.observableArrayList(logements);
-    private ObservableList<Logement> logementList = FXCollections.observableArrayList();
+    public ObservableList<Logement> observableList = FXCollections.observableArrayList(logements);
     // Dans afficherLogementB.java
 
     public void initialize() {
@@ -83,24 +82,17 @@ public class afficherLogementB {
         colNum.setCellValueFactory(new PropertyValueFactory<>("num"));
         colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
         colAction.setCellFactory(cell -> new ActionCell());
-        refreshLogementTable();
+
+
     }
 
     @FXML
     private void afficherLogementB() {
             tableView.setVisible(true);
-        refreshLogementTable();
+
 
     }
-    @FXML
-    private void refreshLogementTable() {
-        LogementCrud service = new LogementCrud();
-        // Recharger les données du TableView à partir de la base de données
-        logementList.clear();
-        logementList.addAll(service.afficher());
-        tableView.setItems(logementList);
-        System.out.println("TableView rafraîchi avec succès !");
-    }
+
     @FXML
     void deleteAction(ActionEvent event) {
             // Récupérer l'élément sélectionné dans le TableView
@@ -215,26 +207,13 @@ public class afficherLogementB {
             Node afficherLogementContent = loader.load();
 
             // Ajouter le contenu au contentHBox
-            contentHBox.getChildren().clear(); // Efface tout contenu précédent
-            contentHBox.getChildren().add(afficherLogementContent);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public void goToAfficherEquipement(ActionEvent event) {
-        try {
-            // Charger le contenu de afficherActivite.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EquipementB.fxml"));
-            Node afficherLogementContent = loader.load();
 
-            // Ajouter le contenu au contentHBox
-            contentHBox.getChildren().clear(); // Efface tout contenu précédent
-            contentHBox.getChildren().add(afficherLogementContent);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     public void goToClient(MouseEvent mouseEvent) {
         try {
             // Charger le fichier FXML de la nouvelle page
@@ -251,6 +230,20 @@ public class afficherLogementB {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToafficherEquipement(ActionEvent event) {
+        try {
+            // Charger le contenu de afficherActivite.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EquipementB.fxml"));
+            Node afficherLogementContent = loader.load();
+
+            // Ajouter le contenu au contentHBox
+            contentHBox.getChildren().clear(); // Efface tout contenu précédent
+            contentHBox.getChildren().add(afficherLogementContent);
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

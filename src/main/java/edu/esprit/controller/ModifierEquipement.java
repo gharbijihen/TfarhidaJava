@@ -3,6 +3,9 @@ package edu.esprit.controller;
 import edu.esprit.entites.Equipement;
 import edu.esprit.entites.Logement;
 import edu.esprit.servies.EquipementCrud;
+import edu.esprit.tools.Data;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +13,7 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 
+import java.io.File;
 import java.sql.SQLException;
 
 public class ModifierEquipement {
@@ -42,18 +46,21 @@ public class ModifierEquipement {
     private CheckBox parking;
 
     @FXML
+    private Button cancelButton;
+
+    @FXML
     private TextField typeChambre;
     private Equipement equipement;
+
 
     public void initData(Equipement equipement) {
         this.equipement = equipement; // Assigner la catégorie reçue à la variable de classe
         // Utilisez les données de la catégorie pour initialiser les champs de saisie
-        typeChambre.setText(equipement.getType_chambre());
+        typeChambre.setText(equipement.getTypes_de_chambre());
         DescriptionEquipement.setText(equipement.getDescription());
         nbrChambre.setText(String.valueOf(equipement.getNbr_chambre()));
-        climatitation.setText(String.valueOf(equipement.isClimatisation()));
         climatitation.setSelected(equipement.isClimatisation());
-        internet.setSelected(equipement.isInetrnet());
+        internet.setSelected(equipement.isInternet());
         parking.setSelected(equipement.isParking());
 
 
@@ -78,24 +85,20 @@ public class ModifierEquipement {
                 // Créez un objet Categorie avec les nouvelles valeurs
                 Equipement equipementModifiee = new Equipement();
                 equipementModifiee.setId(equipementId); // Assurez-vous de définir l'ID de la catégorie
-                equipementModifiee.setType_chambre(typeChambreE);
+                equipementModifiee.setTypes_de_chambre(typeChambreE);
                 equipementModifiee.setDescription(description);
                 equipementModifiee.setNbr_chambre(nbrChambreE);
                 equipementModifiee.setParking(parkingE);
                 equipementModifiee.setInetrnet(internetE);
                 equipementModifiee.setClimatisation(climatitationE);
 
+
                 // Utilisez votre service CategorieCrud pour mettre à jour la catégorie dans la base de données
                 EquipementCrud service = new EquipementCrud();
-                try {
-                    // Appelez la méthode modifier de votre service pour mettre à jour la catégorie
-                    service.modifier(equipementModifiee);
-                    System.out.println("Equipement mise à jour avec succès !");
-                    // Vous pouvez également afficher une boîte de dialogue ou un message pour informer l'utilisateur
-                } catch (SQLException e) {
-                    System.out.println("Erreur lors de la mise à jour de l'equipement : " + e.getMessage());
-                    // Gérez l'exception en affichant un message à l'utilisateur ou en enregistrant des journaux
-                }
+                // Appelez la méthode modifier de votre service pour mettre à jour la catégorie
+                service.modifier(equipementModifiee);
+                System.out.println("Equipement mise à jour avec succès !");
+                // Vous pouvez également afficher une boîte de dialogue ou un message pour informer l'utilisateur
             } else {
                 System.out.println("L'ID de l'equipement sélectionnée est invalide.");
                 // Afficher un message d'erreur dans l'interface utilisateur
@@ -133,6 +136,10 @@ public class ModifierEquipement {
         }
 
         return isValid;
+    }
+    @FXML
+    void CancelAction(ActionEvent event) {
+
     }
     }
 

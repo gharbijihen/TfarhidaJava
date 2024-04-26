@@ -78,6 +78,11 @@
                                     </Button>
                                  </children>
                               </HBox>
+                              <Text layoutX="14.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Les equipements disponibles :">
+                                 <font>
+                                    <Font name="Bodoni MT" size="18.0" />
+                                 </font>
+                              </Text>
                            </children>
                         </AnchorPane>
                      </content>

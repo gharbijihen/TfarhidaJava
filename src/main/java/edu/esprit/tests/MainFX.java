@@ -17,7 +17,7 @@ public class MainFX extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         RouterController.setPrimaryStage(stage);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/indexLogement.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Back.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
@@ -27,6 +27,7 @@ public class MainFX extends Application {
     }
 
     public static void main(String[] args) {
+
         launch();
     }
 

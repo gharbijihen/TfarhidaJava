@@ -16,11 +16,11 @@
             try {
                 PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req1);
                 pst.setBoolean(1, equipement.isParking());
-                pst.setBoolean(2, equipement.isInetrnet());
+                pst.setBoolean(2, equipement.isInternet());
                 pst.setBoolean(3, equipement.isClimatisation());
                 pst.setInt(4, equipement.getNbr_chambre());
                 pst.setString(5, equipement.getDescription());
-                pst.setString(6, equipement.getType_chambre());
+                pst.setString(6, equipement.getTypes_de_chambre());
                 pst.executeUpdate();
                 System.out.println("Equipement ajouté!");
                 return true; // Retourne true si l'ajout est réussi
@@ -29,6 +29,7 @@
                 return false; // Retourne false si une exception est levée
             }
         }
+        /*
         public int ajouterreturnsID(Equipement reponse) {
             String req1 = "INSERT INTO reponse (parking, internet, climatisation, nbr_chambre, description, types_de_chambre) VALUES (?, ?, ?, ?, ?, ?)";
             int generatedId = -1;
@@ -57,6 +58,7 @@
             }
             return generatedId;
         }
+         */
         // Autres méthodes de la classe
         public Equipement getById(int id) throws SQLException {
             String query = "SELECT * FROM reponse WHERE id = ?";
@@ -83,9 +85,24 @@
 
 
         @Override
-        public void modifier(Equipement T) throws SQLException {
-
+        public void modifier(Equipement equipement) {
+            final String query = "UPDATE equipement SET parking=?, internet=?, climatisation=?, nbr_chambre=?, description=?, types_de_chambre=? WHERE id=?";
+            try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
+                pst.setBoolean(1, equipement.isParking());
+                pst.setBoolean(2, equipement.isInternet());
+                pst.setBoolean(3, equipement.isClimatisation());
+                pst.setInt(4, equipement.getNbr_chambre());
+                pst.setString(5, equipement.getDescription());
+                pst.setString(6, equipement.getTypes_de_chambre());
+                pst.setInt(7, equipement.getId());
+                pst.executeUpdate();
+                System.out.println("Equipement mis à jour avec succès !");
+            } catch (SQLException e) {
+                System.out.println("Erreur lors de la modification de l'équipement : " + e.getMessage());
+                e.printStackTrace();
+            }
         }
+
 
         @Override
         public void supprimer(Equipement equipement) throws SQLException {
@@ -114,7 +131,7 @@
                     equipement.setClimatisation(rs.getBoolean("climatisation"));
                     equipement.setDescription(rs.getString("description"));
                     equipement.setNbr_chambre(rs.getInt("nbr_chambre"));
-                    equipement.setType_chambre(rs.getString("types_de_chambre"));
+                    equipement.setTypes_de_chambre(rs.getString("types_de_chambre"));
                     equipements.add(equipement);
                 }
             } catch (SQLException e) {

@@ -8,6 +8,15 @@ public class Equipement {
 
     public int nbr_chambre;
     public String description;
+
+    public String getTypes_de_chambre() {
+        return types_de_chambre;
+    }
+
+    public void setTypes_de_chambre(String types_de_chambre) {
+        this.types_de_chambre = types_de_chambre;
+    }
+
     public String types_de_chambre;
     //private Logement logement;
 
@@ -42,7 +51,7 @@ public class Equipement {
         this.parking = parking;
     }
 
-    public boolean isInetrnet() {
+    public boolean isInternet() {
         return inetrnet;
     }
 
@@ -74,13 +83,7 @@ public class Equipement {
         this.description = description;
     }
 
-    public String getType_chambre() {
-        return types_de_chambre;
-    }
 
-    public void setType_chambre(String types_de_chambre) {
-        this.types_de_chambre = types_de_chambre;
-    }
     @Override
     public String toString() {
         return "Equipement{" +

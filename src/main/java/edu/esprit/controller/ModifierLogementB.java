@@ -2,8 +2,16 @@ package edu.esprit.controller;
 
 import edu.esprit.entites.Logement;
 import edu.esprit.servies.LogementCrud;
+import edu.esprit.tools.Data;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -16,6 +24,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 
 public class ModifierLogementB {
@@ -63,13 +72,13 @@ public class ModifierLogementB {
     private Button selectImage;
 
     @FXML
-    private ComboBox<?> type_log;
+    private ComboBox<String> type_log;
 
-    @FXML
-    private TextField typelLog;
+
 
     private Logement logement;
     private File selectedImageFile;
+    ObservableList<String> typeLog = FXCollections.observableArrayList(Data.typeLogement);
 
     private String imagePathInDatabase;
 
@@ -78,7 +87,8 @@ public class ModifierLogementB {
         // Utilisez les données de l'activité pour initialiser les champs de saisie
         nom.setText(logement.getNom());
         prix.setText(String.valueOf(logement.getPrix()));
-        typelLog.setText(String.valueOf(logement.getType_log()));
+        type_log.setItems(typeLog);
+       // typelLog.setText(String.valueOf(logement.getType_log()));
         localisation.setText(logement.getLocalisation());
         note.setText(String.valueOf(logement.getNote_moyenne()));
         num.setText(String.valueOf(logement.getNote_moyenne()));
@@ -161,7 +171,7 @@ public class ModifierLogementB {
                 try {
                     int equipement_Id = Integer.parseInt(equipementId.getText());
                     String nomL = nom.getText();
-                    String typeL = typelLog.getText();
+                    String typeL = type_log.getValue();
                     int prixL = Integer.parseInt(prix.getText());
                     int numL = Integer.parseInt(num.getText());
                     int noteL = Integer.parseInt(note.getText());
@@ -190,9 +200,11 @@ public class ModifierLogementB {
                     service.modifier(logementModifiee);
 
                     System.out.println("Logement modifiée avec succès !");
+                    showAlert("Logement modifiee", "Votre logement a été modiffie avec succès.");
+
                     // Vous pouvez également afficher une boîte de dialogue ou un message pour informer l'utilisateur
                 } catch (NumberFormatException e) {
-                    System.out.println("Erreur de format : Assurez-vous que les champs Prix et Nombre Participant sont des nombres entiers.");
+                    System.out.println("Erreur de format : Assurez-vous que les champs Prix et nombre de chambre  Participant sont des nombres entiers.");
                     // Afficher un message d'erreur dans l'interface utilisateur
                 }
             } else {
@@ -204,9 +216,38 @@ public class ModifierLogementB {
             System.out.println("Les données saisies ne sont pas valides. Veuillez vérifier les champs.");
             // Vous pouvez également afficher des messages d'erreur spécifiques à chaque champ si nécessaire
         }
+        naviguezVersEquipement(event);
+
     }
+    @FXML
+    void naviguezVersEquipement(ActionEvent event) {
 
+            try {
+                // Charger le fichier FXML de la nouvelle page
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementAffB.fxml"));
+                Parent root = loader.load();
 
+                // Créer une nouvelle scène avec la nouvelle page
+                Scene scene = new Scene(root);
+
+                // Obtenir la fenêtre actuelle à partir de l'événement
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                // Définir la nouvelle scène sur la fenêtre et l'afficher
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+    }
+    @FXML
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
 
     private boolean isInputValid() {
         boolean isValid = true;

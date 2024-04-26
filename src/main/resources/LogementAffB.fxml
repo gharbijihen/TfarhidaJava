@@ -80,6 +80,11 @@
                               </Button>
                            </children>
                         </HBox>
+                        <Text layoutX="15.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="les Logements disponibles :" wrappingWidth="346.2902374267578">
+                           <font>
+                              <Font name="Bodoni MT" size="18.0" />
+                           </font>
+                        </Text>
                      </children>
                   </AnchorPane>
                </content>
@@ -213,7 +218,7 @@
                </font>
             </Button>
             <Text layoutX="87.0" layoutY="794.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
-            <Button fx:id="EquipementButton1" layoutX="56.0" layoutY="534.0" onAction="#goToAfficherEquipement" prefWidth="120" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;" text="Equipement">
+            <Button fx:id="EquipementButton1" layoutX="56.0" layoutY="534.0" onAction="#goToafficherEquipement" prefWidth="120" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;" text="Equipement">
                <graphic>
                   <ImageView fitHeight="17.0" fitWidth="22.0">
                      <image>

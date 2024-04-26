@@ -3,7 +3,6 @@ package edu.esprit.controller;
 import edu.esprit.entites.Equipement;
 import edu.esprit.entites.Logement;
 import edu.esprit.servies.EquipementCrud;
-import edu.esprit.servies.LogementCrud;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -130,7 +129,43 @@ public class AfficherEquipementB {
 
     @FXML
     void modifierAction(ActionEvent event) {
+        // Récupérer l'activité sélectionnée dans le TableView
+        Equipement equipementSelectionnee = tableView.getSelectionModel().getSelectedItem();
 
+        // Vérifier si une activité est sélectionnée
+        if (equipementSelectionnee != null) {
+            // Ouvrir la page de modification avec les données de l'activité sélectionnée
+            openModifierEquipementPage(equipementSelectionnee);
+        } else {
+            // Afficher un message d'erreur ou une boîte de dialogue indiquant à l'utilisateur de sélectionner une activité
+        }
+        AfficherEquipementB();
+    
+    }
+
+    private void AfficherEquipementB() {
+        tableView.setVisible(true);
+    }
+
+    @FXML
+    public void openModifierEquipementPage(Equipement equipement) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierEquipement.fxml"));
+            Parent root = loader.load();
+
+            // Récupérer le contrôleur de la fenêtre de modification
+            ModifierEquipement modifierController = loader.getController();
+
+            // Initialiser les données de l'équipement dans le contrôleur
+            modifierController.initData(equipement);
+
+            // Afficher la fenêtre de modification
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -154,6 +189,7 @@ public class AfficherEquipementB {
         }
     }
 
+
     @FXML
     public void goToafficherLogement() {
         try {
@@ -169,19 +205,7 @@ public class AfficherEquipementB {
         }
     }
 
-    public void goToEquipement(ActionEvent event) {
-        try {
-            // Charger le contenu de afficherActivite.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EquipementB.fxml"));
-            Node afficherLogementContent = loader.load();
 
-            // Ajouter le contenu au contentHBox
-            contentHBox.getChildren().clear(); // Efface tout contenu précédent
-            contentHBox.getChildren().add(afficherLogementContent);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     public void goToClient(MouseEvent mouseEvent) {
         try {
@@ -201,5 +225,11 @@ public class AfficherEquipementB {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void initData(Equipement equipement) {
+
+
+
     }
 }

@@ -20,17 +20,17 @@
             </items>
         </ToolBar>
 
-        <Text fx:id="errorNum" fill="RED" layoutX="34.0" layoutY="213.0" wrappingWidth="442.4" />
-        <TextField fx:id="equipementId" layoutX="39.0" layoutY="410.0" prefHeight="26.0" prefWidth="442.0" promptText="equipement_id" style="-fx-background-radius: 100;" />
-        <TextField fx:id="num" layoutX="34.0" layoutY="167.0" prefHeight="30.0" prefWidth="442.0" promptText="Numéro" style="-fx-background-radius: 100;" />
-        <TextField fx:id="localisation" layoutX="37.0" layoutY="216.0" prefHeight="26.0" prefWidth="442.0" promptText="Localisation" style="-fx-background-radius: 100;" />
-        <Text fx:id="errorLocalisation" fill="RED" layoutX="39.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="442.4" />
-        <TextField fx:id="prix" layoutX="36.0" layoutY="265.0" prefHeight="26.0" prefWidth="442.0" promptText="prix" style="-fx-background-radius: 100;" />
-        <Text fx:id="errorPrix" fill="RED" layoutX="41.0" layoutY="309.0" wrappingWidth="442.4" />
-        <TextField fx:id="note" layoutX="36.0" layoutY="321.0" prefHeight="26.0" prefWidth="442.0" promptText="note " style="-fx-background-radius: 100;" />
-        <Text fx:id="errorNote" fill="RED" layoutX="37.0" layoutY="367.0" strokeWidth="0.0" wrappingWidth="442.4" />
-        <TextField fx:id="nom" layoutX="36.0" layoutY="120.0" prefHeight="30.0" prefWidth="442.0" promptText="Nom" style="-fx-background-radius: 100;" />
-        <Text fx:id="errorNom" fill="RED" layoutX="34.0" layoutY="164.0" wrappingWidth="442.4" />
+        <Text fx:id="errorNum" fill="RED" layoutX="45.0" layoutY="254.0" wrappingWidth="442.4" />
+        <TextField fx:id="equipementId" layoutX="38.0" layoutY="463.0" prefHeight="26.0" prefWidth="442.0" promptText="equipement_id" style="-fx-background-radius: 100;" />
+        <TextField fx:id="num" layoutX="40.0" layoutY="208.0" prefHeight="30.0" prefWidth="442.0" promptText="Numéro" style="-fx-background-radius: 100;" />
+        <TextField fx:id="localisation" layoutX="41.0" layoutY="277.0" prefHeight="26.0" prefWidth="442.0" promptText="Localisation" style="-fx-background-radius: 100;" />
+        <Text fx:id="errorLocalisation" fill="RED" layoutX="43.0" layoutY="320.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="442.4" />
+        <TextField fx:id="prix" layoutX="37.0" layoutY="346.0" prefHeight="26.0" prefWidth="442.0" promptText="prix" style="-fx-background-radius: 100;" />
+        <Text fx:id="errorPrix" fill="RED" layoutX="42.0" layoutY="388.0" wrappingWidth="442.4" />
+        <TextField fx:id="note" layoutX="37.0" layoutY="410.0" prefHeight="26.0" prefWidth="442.0" promptText="note " style="-fx-background-radius: 100;" />
+        <Text fx:id="errorNote" fill="RED" layoutX="38.0" layoutY="452.0" strokeWidth="0.0" wrappingWidth="442.4" />
+        <TextField fx:id="nom" layoutX="37.0" layoutY="136.0" prefHeight="30.0" prefWidth="442.0" promptText="Nom" style="-fx-background-radius: 100;" />
+        <Text fx:id="errorNom" fill="RED" layoutX="40.0" layoutY="181.0" wrappingWidth="442.4" />
         <Text fill="#632d2d" layoutX="149.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier votre logement " wrappingWidth="478.3999999999999">
             <font>
                 <Font name="Broadway" size="35.0" />
@@ -43,8 +43,12 @@
             </children>
         </VBox>
 
-        <Button fx:id="ButtonModifierLogement" onAction="#modifierLogementAction" layoutX="136.0" layoutY="550.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: #2EB67D;" text="Modifier" />
-        <TextField fx:id="typelLog" layoutX="39.0" layoutY="367.0" prefHeight="26.0" prefWidth="442.0" promptText="type de logement" style="-fx-background-radius: 100;" />
-        <ComboBox fx:id="type_log" layoutX="43.0" layoutY="452.0" prefHeight="26.0" prefWidth="431.0" promptText="Type de logement" />
+        <Button fx:id="ButtonModifierLogement" layoutX="137.0" layoutY="582.0" mnemonicParsing="false" onAction="#modifierLogementAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: #2EB67D;" text="Modifier" />
+        <ComboBox fx:id="type_log" layoutX="43.0" layoutY="511.0" prefHeight="26.0" prefWidth="431.0" promptText="Type de logement" />
+      <Text layoutX="46.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom:" />
+      <Text layoutX="49.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero:" />
+      <Text layoutX="47.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Localisation:" wrappingWidth="431.19999999999993" />
+      <Text layoutX="42.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix:" wrappingWidth="431.19999999999993" />
+      <Text layoutX="42.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note:" wrappingWidth="431.19999999999993" />
     </children>
 </AnchorPane>

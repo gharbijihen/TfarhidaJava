@@ -50,6 +50,8 @@ public class AdminDashbord {
             e.printStackTrace();
         }
     }
+
+
     public void goToEquipement(MouseEvent event) {
         try {
             // Charger le fichier FXML de la nouvelle page
@@ -70,7 +72,6 @@ public class AdminDashbord {
         }
     }
 
-
     public void goToCommands(MouseEvent mouseEvent) {
     }
 
@@ -82,4 +83,5 @@ public class AdminDashbord {
 
     public void goToLivraisons(MouseEvent mouseEvent) {
     }
+
 }

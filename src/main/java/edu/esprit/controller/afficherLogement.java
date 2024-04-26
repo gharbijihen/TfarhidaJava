@@ -78,6 +78,7 @@ public class afficherLogement  {
 
         // Ajouter chaque paire d'éléments à une ligne dans la HBox
         for (Logement logement : logementsList) {
+            if (logement.getEtat().equals("Acceptee")) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/IteamLogement.fxml"));
             Node itemNode = loader.load();
             IteamLogementController controller = loader.getController();
@@ -92,7 +93,7 @@ public class afficherLogement  {
                 hBox = new HBox();
                 hBox.setSpacing(20.0); // Réinitialiser l'espacement horizontal pour la nouvelle ligne
             }
-        }
+        }}
 
         // Ajouter la dernière ligne si elle n'est pas pleine
         if (!hBox.getChildren().isEmpty()) {
