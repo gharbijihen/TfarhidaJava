@@ -75,7 +75,7 @@
                         <Font name="System Bold" size="19.0" />
                     </font>
                 </Label>
-                <Label layoutX="82.0" layoutY="255.0" text="Username">
+                <Label layoutX="82.0" layoutY="255.0" text="Nom d'utilisateur">
                     <font>
                         <Font name="System Bold" size="19.0" />
                     </font>
@@ -88,12 +88,12 @@
                         <Font size="18.0" />
                     </font>
                 </TextField>
-                <Label layoutX="82.0" layoutY="345.0" text="nom">
+                <Label layoutX="82.0" layoutY="345.0" text="Nom">
                     <font>
                         <Font name="System Bold" size="19.0" />
                     </font>
                 </Label>
-                <Label layoutX="443.0" layoutY="345.0" text="prenom">
+                <Label layoutX="443.0" layoutY="345.0" text="Prénom">
                     <font>
                         <Font name="System Bold" size="19.0" />
                     </font>

@@ -113,11 +113,7 @@ public class AddUserController implements Initializable {
         });
     }
     public boolean validateInputsAndProceed() {
-      /*  if (
-                selectedImageFile == null) {
-            showAlert("Selectionner une image stp.");
-            return false; // Stop the process
-        }*/
+
         String numero = this.numero.getText();
         if (!numero.matches("\\d{8}")) {
             showAlert("le numéro est invalide");
