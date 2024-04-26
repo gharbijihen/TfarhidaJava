@@ -9,18 +9,18 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PwdChangeController">
+<AnchorPane prefHeight="771.0" prefWidth="1147.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.PwdChangeController">
     <children>
-        <Pane layoutX="92.0" layoutY="10.0" prefHeight="578.0" prefWidth="812.0" style="-fx-background-radius: 15; -fx-background-color: white;">
+        <Pane layoutX="61.0" layoutY="47.0" prefHeight="702.0" prefWidth="1053.0" style="-fx-background-radius: 15; -fx-background-color: white;">
             <children>
-                <Label layoutX="203.0" layoutY="14.0" text="Changer votre mot de passe">
+                <Label layoutX="332.0" layoutY="51.0" text="Changer votre mot de passe">
                     <font>
                         <Font name="System Bold" size="30.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnSignup" layoutX="309.0" layoutY="524.0" mnemonicParsing="false" onAction="#ChangePwd" prefHeight="40.0" prefWidth="184.0" style="-fx-background-color: #FF7F00; -fx-background-radius: 8;" text="Changer mot de passe" textFill="WHITE">
+                <Button fx:id="btnSignup" layoutX="413.0" layoutY="384.0" mnemonicParsing="false" onAction="#ChangePwd" prefHeight="45.0" prefWidth="271.0" style="-fx-background-color: #FF7F00; -fx-background-radius: 8;" text="Changer mot de passe" textFill="WHITE">
                     <font>
-                        <Font name="System Bold" size="15.0" />
+                        <Font name="System Bold" size="21.0" />
                     </font>
                 </Button>
                 <TextField fx:id="isverified" layoutX="77.0" layoutY="463.0" prefHeight="50.0" prefWidth="295.0" promptText="Email" style="-fx-background-radius: 7;" visible="false">
@@ -28,7 +28,7 @@
                         <Font size="18.0" />
                     </font>
                 </TextField>
-                <TextField fx:id="newpwd" layoutX="369.0" layoutY="289.0" prefHeight="50.0" prefWidth="295.0" promptText="nouvelle mot de passe" style="-fx-background-radius: 7;">
+                <TextField fx:id="newpwd" layoutX="401.0" layoutY="289.0" prefHeight="50.0" prefWidth="295.0" promptText="nouvelle mot de passe" style="-fx-background-radius: 7;">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -54,19 +54,19 @@
                     </font>
                 </Label>
 
-                <Label layoutX="148.0" layoutY="300.0" text="Nouvelle mot de passe">
+                <Label layoutX="169.0" layoutY="300.0" text="Nouvelle mot de passe">
                     <font>
                         <Font name="System Bold" size="19.0" />
                     </font>
                 </Label>
-                <Label layoutX="157.0" layoutY="214.0" text="Ancien mot de passe">
+                <Label layoutX="178.0" layoutY="189.0" text="Ancien mot de passe">
                     <font>
                         <Font name="System Bold" size="19.0" />
                     </font>
                 </Label>
 
                 <!-- ImageView to display selected image -->
-                <TextField fx:id="oldpwd" layoutX="369.0" layoutY="203.0" prefHeight="50.0" prefWidth="295.0" promptText="ancien mot de passe" style="-fx-background-radius: 7;">
+                <TextField fx:id="oldpwd" layoutX="401.0" layoutY="178.0" prefHeight="50.0" prefWidth="295.0" promptText="ancien mot de passe" style="-fx-background-radius: 7;">
                     <font>
                         <Font size="18.0" />
                     </font>

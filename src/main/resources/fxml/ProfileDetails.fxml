@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ProfileDetailsControllers">
+<AnchorPane prefHeight="771.0" prefWidth="1147.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ProfileDetailsControllers">
     <children>
-        <Pane layoutX="92.0" layoutY="10.0" prefHeight="578.0" prefWidth="812.0" style="-fx-background-radius: 15; -fx-background-color: white;">
+        <Pane layoutX="28.0" layoutY="55.0" prefHeight="669.0" prefWidth="1106.0" style="-fx-background-radius: 15; -fx-background-color: white;">
             <children>
-                <Label layoutX="203.0" layoutY="14.0" text="Modifier Utilisateur">
+                <Label layoutX="261.0" layoutY="14.0" text="Mon Profil">
                     <font>
-                        <Font name="System Bold" size="30.0" />
+                        <Font name="System Bold" size="38.0" />
                     </font>
                 </Label>
                 <Button fx:id="btnSignup" layoutX="173.0" layoutY="482.0" mnemonicParsing="false" onAction="#ModifiyUser" prefHeight="40.0" prefWidth="171.0" style="-fx-background-color: #FF7F00; -fx-background-radius: 8;" text="Modifier Profile" textFill="WHITE">
@@ -89,9 +89,9 @@
                         <Font name="System Bold" size="19.0" />
                     </font>
                 </Label>
-            <Button fx:id="btnSignup1" layoutX="406.0" layoutY="482.0" mnemonicParsing="false" onAction="#ChangePassword" prefHeight="40.0" prefWidth="151.0" style="-fx-background-color: #FF7F00; -fx-background-radius: 8;" text="Changer le mot de passe" textFill="WHITE">
+            <Button fx:id="btnSignup1" layoutX="406.0" layoutY="482.0" mnemonicParsing="false" onAction="#ChangePassword" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #FF7F00; -fx-background-radius: 8;" text="Changer le mot de passe" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="11.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Button>
             </children>

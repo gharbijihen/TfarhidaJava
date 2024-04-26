@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 
 <?import javafx.scene.effect.DropShadow?>
-<AnchorPane id="AnchorPane" fx:id="bord" prefHeight="600.0" prefWidth="970.0" style="-fx-background-color: #fbf3e4;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GuiLoginController">
+<AnchorPane id="AnchorPane" fx:id="bord" prefHeight="771.0" prefWidth="1147.0" style="-fx-background-color: #fbf3e4;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GuiLoginController">
     <stylesheets>
         <URL value="@guilogin.css" />
     </stylesheets>

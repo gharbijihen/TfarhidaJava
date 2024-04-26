@@ -96,17 +96,17 @@ public class UsersCrudController implements Initializable {
                     setText(displayRole);
                 }
             }
-        });        TableColumn<User, String> usernameColumn = new TableColumn<>("username");
+        });        TableColumn<User, String> usernameColumn = new TableColumn<>("Nom d'utilisateur");
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
-        TableColumn<User, String> emailColumn = new TableColumn<>("email");
+        TableColumn<User, String> emailColumn = new TableColumn<>("Email");
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-        TableColumn<User, String> nameColumn = new TableColumn<>("name");
+        TableColumn<User, String> nameColumn = new TableColumn<>("Nom");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("first_name"));
 
-        TableColumn<User, String> lastname = new TableColumn<>("last_name");
+        TableColumn<User, String> lastname = new TableColumn<>("prénom");
         lastname.setCellValueFactory(new PropertyValueFactory<>("last_name"));
-        TableColumn<User, Boolean> isVerifiedColumn = new TableColumn<>("isverified");
+        TableColumn<User, Boolean> isVerifiedColumn = new TableColumn<>("vérifier");
         isVerifiedColumn.setCellValueFactory(new PropertyValueFactory<>("is_verified"));
 
         isVerifiedColumn.setCellFactory(column -> new TableCell<User, Boolean>() {
@@ -173,7 +173,7 @@ public class UsersCrudController implements Initializable {
 
 
 // Add the column to your TableView
-        TableColumn<User, String> numeroColumn = new TableColumn<>("numero");
+        TableColumn<User, String> numeroColumn = new TableColumn<>("Numero");
         numeroColumn.setCellValueFactory(new PropertyValueFactory<>("numero"));
 
         // TableColumn<User, String> Num_telColumn = new TableColumn<>("Num_tel");

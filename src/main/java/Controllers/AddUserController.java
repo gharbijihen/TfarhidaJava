@@ -96,6 +96,7 @@ public class AddUserController implements Initializable {
 
 
 
+
     private File selectedImageFile;
 
     private ServiceUser serviceUser = new ServiceUser();
@@ -118,7 +119,7 @@ public class AddUserController implements Initializable {
             return false; // Stop the process
         }*/
         String numero = this.numero.getText();
-        if (!numero.matches("[0-9]*")) {
+        if (!numero.matches("\\d{8}")) {
             showAlert("le numéro est invalide");
             return false;
         }
