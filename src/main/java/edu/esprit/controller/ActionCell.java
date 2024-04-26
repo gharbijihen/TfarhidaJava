@@ -68,7 +68,7 @@ public class ActionCell extends TableCell<Activite, Void> {
     private Button createButton(String text, String backgroundColor) {
         Button button = new Button(text);
         button.setStyle("-fx-background-color: " + backgroundColor + "; -fx-text-fill: white;");
-        button.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+        button.setFont(Font.font("Arial", FontWeight.BOLD, 12));
         return button;
     }
 }

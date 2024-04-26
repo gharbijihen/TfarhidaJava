@@ -43,7 +43,7 @@
         <VBox alignment="CENTER" layoutX="529.0" layoutY="131.2" nodeOrientation="LEFT_TO_RIGHT" prefHeight="467.0" prefWidth="454.0" spacing="6.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="155.0">
             <children>
                 <ImageView fx:id="imageView" fitHeight="253.0" fitWidth="402.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
-                <Button fx:id="selectImage" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#browseImageAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100;" stylesheets="@../java/edu/esprit/values/style.css" text="ajouter image" />
+                <Button fx:id="selectImage" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#browseImageAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100;"  text="ajouter image" />
             </children>
         </VBox>
 

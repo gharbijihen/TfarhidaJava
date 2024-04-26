@@ -36,29 +36,23 @@ public class CategorieCrud implements IcrudC<Categorie>{
     public void modifier(Categorie categorie) throws SQLException {
         final String query="UPDATE categorie SET description = ?, type_categorie = ? WHERE id= ?";
         try( PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);){
-
             pst.setString(1,categorie.getDescription());
             pst.setString(2,categorie.getType_categorie());
-
             pst.setInt(3,categorie.getId());
-
-
-
             pst.executeUpdate();
         }
     }
 
     @Override
-    public void supprimer(Categorie categorie) {
+    public void supprimer(Categorie categorie) throws SQLException {
         final String query = "DELETE FROM categorie WHERE id=? ";
-        try(PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)){
+        try(PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);){
             pst.setInt(1,categorie.getId());
             pst.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
         }
-
     }
+
+
 
     @Override
     public List<Categorie> afficher() {

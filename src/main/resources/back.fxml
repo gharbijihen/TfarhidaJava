@@ -117,7 +117,7 @@
                </font>
             </Button>
             <Text layoutX="144.0" layoutY="944.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
-            <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="109.0" layoutY="934.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
+            <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="109.0" layoutY="934.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/logoutIcon.png" />
                </image>

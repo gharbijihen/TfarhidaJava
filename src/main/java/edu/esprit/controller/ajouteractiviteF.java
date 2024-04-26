@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -174,12 +175,15 @@ public class ajouteractiviteF {
             service.ajouter(new Activite(selectedCategoryId, nom, prix, localisation, nb_P, "en cours", description_act), image);
 
             showAlert("Activité ajoutée", "L'activité a été ajoutée avec succès.");
-            categorieComboBox.getSelectionModel().clearSelection();
-            nomm.clear();
-            prixx.clear();
-            nombreP.clear();
-            localisationn.clear();
-            descriptionActt.clear();
+           // categorieComboBox.getSelectionModel().clearSelection();
+           // nomm.clear();
+           // prixx.clear();
+           // nombreP.clear();
+            //localisationn.clear();
+            //descriptionActt.clear();
+            Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
         } else {
             System.out.println("Erreur : Données d'entrée non valides.");
         }
@@ -239,14 +243,14 @@ public class ajouteractiviteF {
         }
 
         // Validate and display error messages
-        if (nomm.getText().isEmpty() || !nomm.getText().matches("^[a-zA-Z]+$")) {
+        if (nomm.getText().isEmpty() || !nomm.getText().matches("^[\\p{L} \\s]+$")) {
             errorName.setText("Nom is required and should not contain numbers");
             isValid = false;
         } else {
             errorName.setText("");
         }
 
-        if (descriptionActt.getText().isEmpty() && !descriptionActt.getText().matches("^[a-zA-Z]+$")) {
+        if (descriptionActt.getText().isEmpty() && !descriptionActt.getText().matches("^[\\p{L} \\s]+$")) {
             errorDesc.setText("Description is required and should not contain numbers ");
             isValid = false;
         } else {

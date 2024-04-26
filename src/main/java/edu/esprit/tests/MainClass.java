@@ -25,7 +25,6 @@ public class MainClass {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        cc.supprimer(c);
         System.out.println("c id is "+c.id);
         //Activite p = new Activite(2,"Bikee", 20, "Nabeul", 10, "En cours","1", "5.jpg", 2);
 

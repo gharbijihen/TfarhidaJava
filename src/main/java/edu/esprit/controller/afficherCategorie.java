@@ -1,12 +1,14 @@
 package edu.esprit.controller;
 
 import edu.esprit.entites.Categorie;
+import edu.esprit.servies.ActiviteCrud;
 import edu.esprit.servies.CategorieCrud;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -87,6 +89,7 @@ public class afficherCategorie{
 
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
+            stage.setOnHidden(e -> refreshList());
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -109,6 +112,21 @@ public class afficherCategorie{
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 // Supprimer l'élément de la liste ou de la base de données
                 CategorieCrud service = new CategorieCrud();
+                try {
+                    service.supprimer(categorieSelectionnee);
+                    // Rafraîchir le TableView après la suppression
+                    tableView.getItems().remove(categorieSelectionnee);
+                    System.out.println("Catégorie supprimée avec succès !");
+                } catch (SQLException e) {
+                    System.out.println("Erreur lors de la suppression de l'activité : " + e.getMessage());
+                }
+            }
+        } else {
+            // Afficher un message d'erreur ou une boîte de dialogue indiquant à l'utilisateur de sélectionner une activité à supprimer
+        }
+    }
+            /*if (result.isPresent() && result.get() == ButtonType.OK) {
+                // Supprimer l'élément de la liste ou de la base de données
                 service.supprimer(categorieSelectionnee);
                 // Rafraîchir le TableView après la suppression
                 tableView.getItems().remove(categorieSelectionnee);
@@ -117,17 +135,63 @@ public class afficherCategorie{
         } else {
             // Afficher un message d'erreur ou une boîte de dialogue indiquant à l'utilisateur de sélectionner une activité à supprimer
         }
-    }
+    }*/
     @FXML
     void handleAjouter(ActionEvent event) {
         try {
-            // Charger la vue ou le formulaire d'ajout
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/categorieAjouter.fxml"));
             Parent root = loader.load();
-
-            // Créer une nouvelle fenêtre pour afficher le formulaire d'ajout
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
+            stage.setOnHiding(e -> {
+                refreshList();
+            });
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void refreshList() {
+        try {
+            initialize();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    public void goToafficherNavBarCat(ActionEvent event) {
+        try {
+            // Charger le fichier FXML de la nouvelle page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminDashbord.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène sur la fenêtre et l'afficher
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void goToActivite(MouseEvent event) {
+        try {
+            // Charger le fichier FXML de la nouvelle page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ActiviteAffB.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène sur la fenêtre et l'afficher
+            stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

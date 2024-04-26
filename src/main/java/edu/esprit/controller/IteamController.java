@@ -90,8 +90,8 @@ public class IteamController {
             System.out.println("Erreur : Impossible de convertir le texte en entier.");
             e.printStackTrace();
         }
-        //img.setFitWidth(300); // Ajuster la largeur de l'image
-        //img.setFitHeight(300); // Ajuster la hauteur de l'image
+        img.setFitWidth(400); // Ajuster la largeur de l'image
+        img.setFitHeight(300); // Ajuster la hauteur de l'image
 
 
         String imagePath = activite.getImage();
@@ -99,6 +99,7 @@ public class IteamController {
             // Charger l'image à partir du chemin d'accès spécifié
             Image image = new Image(new File(imagePath).toURI().toString());
             this.img.setImage(image);
+
         } else {
             // Afficher une image par défaut ou gérer le cas où l'image est absente
         }
@@ -136,8 +137,6 @@ public class IteamController {
   public void initialize() {
       int idActivite = getIdFromLabel(idLabel);
       voirDetailsButton.setUserData(idActivite);
-
-      // Ajouter un message de journalisation pour vérifier la valeur de idActivite
       System.out.println("ID de l'activité défini comme userData : " + idActivite);
   }
 
@@ -152,7 +151,7 @@ public class IteamController {
             } catch (NumberFormatException e) {
                 System.out.println("Erreur lors de la conversion du texte en entier : " + e.getMessage());
             }
-            return -1; // Valeur par défaut ou une valeur qui indique une erreur
+            return -1;
         }
 
 
@@ -163,12 +162,10 @@ public class IteamController {
         // Récupérer l'identifiant de l'activité associée au bouton
         int id = Integer.parseInt(idLabel.getText().trim()); // Assurez-vous que le label contient bien l'ID de l'activité
 
-        // Récupérer l'activité correspondante à partir de votre source de données
         Activite activite = ActiviteCrud.getActiviteParId(id);
 
         if (activite != null) {
             try {
-                // Charger la vue FXML de détails
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/show.fxml"));
                 Parent root = loader.load();
 

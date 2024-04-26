@@ -4,9 +4,12 @@ import edu.esprit.entites.Categorie;
 import edu.esprit.servies.CategorieCrud;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.sql.SQLException;
 
@@ -35,7 +38,7 @@ public class ModifierCategorieController {
     }
 
     @FXML
-    void modifierCategorieAction(ActionEvent event) {
+    void modifierCategorieAction(ActionEvent event) throws SQLException {
         if (isInputValid()) {
             // Récupérer l'ID de la catégorie sélectionnée
             int categorieId = categorie.getId();
@@ -51,35 +54,33 @@ public class ModifierCategorieController {
                 categorieModifiee.setId(categorieId); // Assurez-vous de définir l'ID de la catégorie
                 categorieModifiee.setType_categorie(type_categorie);
                 categorieModifiee.setDescription(description);
-
-                // Utilisez votre service CategorieCrud pour mettre à jour la catégorie dans la base de données
                 CategorieCrud service = new CategorieCrud();
-                try {
-                    // Appelez la méthode modifier de votre service pour mettre à jour la catégorie
+               // try {
                     service.modifier(categorieModifiee);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Succée");
+                    alert.setContentText("Catégorie modifié avec succée");
                     System.out.println("Catégorie mise à jour avec succès !");
-                    // Vous pouvez également afficher une boîte de dialogue ou un message pour informer l'utilisateur
-                } catch (SQLException e) {
-                    System.out.println("Erreur lors de la mise à jour de la catégorie : " + e.getMessage());
-                    // Gérez l'exception en affichant un message à l'utilisateur ou en enregistrant des journaux
-                }
+                    //alert.showAndWait();
+                    Node source = (Node) event.getSource();
+                    Stage stage = (Stage) source.getScene().getWindow();
+                    stage.close();
+               // } catch (SQLException e) {
+                   // System.out.println("Erreur lors de la mise à jour de la catégorie : " + e.getMessage());
+               // }
             } else {
                 System.out.println("L'ID de la catégorie sélectionnée est invalide.");
-                // Afficher un message d'erreur dans l'interface utilisateur
             }
         } else {
-            // Les données saisies par l'utilisateur ne sont pas valides, affichez un message d'erreur ou effectuez une action appropriée
             System.out.println("Les données saisies ne sont pas valides. Veuillez vérifier les champs.");
-            // Vous pouvez également afficher des messages d'erreur spécifiques à chaque champ si nécessaire
         }
     }
 
-    // Méthode de validation des données saisies par l'utilisateur
     private boolean isInputValid() {
         boolean isValid = true;
 
         // Validate and display error messages
-        if (descriptionCatt.getText().isEmpty() || !descriptionCatt.getText().matches("^[a-zA-Z]+$")) {
+        if (descriptionCatt.getText().isEmpty() || !descriptionCatt.getText().matches("^[\\p{L} \\s]+$")) {
             errorDescC.setText("Description is required and should not contain numbers");
             isValid = false;
         } else {

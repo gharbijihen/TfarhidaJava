@@ -8,6 +8,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -80,8 +81,12 @@ public class ajouterCategorie {
             service.ajouter(new Categorie(description,type_categorie));
 
             showAlert("Catégorie ajoutée", "La catégorie a été ajoutée avec succès.");
-            descriptionCatt.clear();
-            type.clear();
+            //descriptionCatt.clear();
+            //type.clear();
+
+            Node source = (Node) event.getSource();
+            Stage stage = (Stage) source.getScene().getWindow();
+            stage.close();
 
         }
     }
@@ -110,14 +115,13 @@ public class ajouterCategorie {
 
 
         // Validate and display error messages
-        if (descriptionCatt.getText().isEmpty() || !descriptionCatt.getText().matches("^[a-zA-Z]+$")) {
+        if (descriptionCatt.getText().isEmpty() || !descriptionCatt.getText().matches("^[\\p{L} \\s]+$")) {
             errorDescC.setText("Description is required and should not contain numbers");
             isValid = false;
         } else {
             errorDescC.setText("");
         }
-
-        if (type.getText().isEmpty() && !type.getText().matches("^[a-zA-Z]+$")) {
+        if (type.getText().isEmpty() && !type.getText().matches("^[\\p{L} \\s]+$")) {
             errorType.setText("Type is required and should not contain numbers ");
             isValid = false;
         } else {

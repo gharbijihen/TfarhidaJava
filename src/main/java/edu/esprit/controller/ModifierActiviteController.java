@@ -4,6 +4,7 @@ import edu.esprit.entites.Activite;
 import edu.esprit.servies.ActiviteCrud;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -89,7 +90,6 @@ public class ModifierActiviteController {
                 Image image = new Image(imageFile.toURI().toString());
                 imageView.setImage(image);
             } else {
-                // Le fichier image n'existe pas, affichez un message d'erreur ou une image par défaut
                 System.out.println("Le fichier image n'existe pas : " + imagePath);
             }
         }
@@ -126,10 +126,8 @@ public class ModifierActiviteController {
     @FXML
     void modifierActiviteAction(ActionEvent event) {
         if (isInputValid()) {
-            // Récupérer l'ID de l'activité sélectionnée
             int activiteId = activite.getId();
 
-            // Si l'ID de l'activité est valide
             if (activiteId != 0) {
                 // Récupérez d'abord les nouvelles valeurs saisies par l'utilisateur dans les champs de texte
                 try {
@@ -156,36 +154,34 @@ public class ModifierActiviteController {
                     if (selectedImageFile != null) {
                         activiteModifiee.setImage(selectedImageFile.getAbsolutePath());
                     } else {
-                        // Si aucune nouvelle image n'a été sélectionnée, conservez le chemin de l'image existante
                         activiteModifiee.setImage(activite.getImage());
                     }
-
                     // Utilisez votre service ActiviteCrud pour mettre à jour l'activité dans la base de données
                     ActiviteCrud service = new ActiviteCrud();
                     service.modifier(activiteModifiee);
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Success");
-                    alert.setContentText("workout updated successfully");
-                    alert.showAndWait();
+                    alert.setTitle("Succée");
+                    alert.setContentText("Activité modifié avec succée");
+                    //alert.showAndWait();
+                    Node source = (Node) event.getSource();
+                    Stage stage = (Stage) source.getScene().getWindow();
+                    stage.close();
+                    //System.out.println("Activité modifiée avec succès !");
 
-                    System.out.println("Activité modifiée avec succès !");
-                    // Vous pouvez également afficher une boîte de dialogue ou un message pour informer l'utilisateur
                 } catch (NumberFormatException e) {
                     System.out.println("Erreur de format : Assurez-vous que les champs Prix et Nombre Participant sont des nombres entiers.");
-                    // Afficher un message d'erreur dans l'interface utilisateur
                 } catch (SQLException e) {
                     System.out.println("Erreur lors de la modification de l'activité : " + e.getMessage());
-                    // Afficher un message d'erreur dans l'interface utilisateur
                 }
             } else {
                 System.out.println("L'ID de l'activité sélectionnée est invalide.");
-                // Afficher un message d'erreur dans l'interface utilisateur
             }
-        } else {
+        }else {
             // Les données saisies par l'utilisateur ne sont pas valides, affichez un message d'erreur ou effectuez une action appropriée
             System.out.println("Les données saisies ne sont pas valides. Veuillez vérifier les champs.");
             // Vous pouvez également afficher des messages d'erreur spécifiques à chaque champ si nécessaire
         }
+
     }
 
 
@@ -199,14 +195,14 @@ public class ModifierActiviteController {
             errorCategorie.setText("");
         }
 
-        if (nomm.getText().isEmpty() || !nomm.getText().matches("^[a-zA-Z]+$")) {
+        if (nomm.getText().isEmpty() || !nomm.getText().matches("^[\\p{L} \\s]+$")) {
             errorName.setText("Nom is required and should not contain numbers");
             isValid = false;
         } else {
             errorName.setText("");
         }
 
-        if (descriptionActt.getText().isEmpty() || !descriptionActt.getText().matches("^[a-zA-Z]+$")) {
+        if (descriptionActt.getText().isEmpty() || !descriptionActt.getText().matches("^[\\p{L} \\s]+$")) {
             errorDesc.setText("Description is required and should not contain numbers ");
             isValid = false;
         } else {

@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -140,12 +141,9 @@ public void initialize() throws SQLException {
     }
     @FXML
     void modifierActiviteAction(ActionEvent event) {
-        // Récupérer l'activité sélectionnée dans le TableView
         Activite activiteSelectionnee = tableView.getSelectionModel().getSelectedItem();
 
-        // Vérifier si une activité est sélectionnée
         if (activiteSelectionnee != null) {
-            // Ouvrir la page de modification avec les données de l'activité sélectionnée
             openModifierActivitePage(activiteSelectionnee);
         } else {
             // Afficher un message d'erreur ou une boîte de dialogue indiquant à l'utilisateur de sélectionner une activité
@@ -162,7 +160,6 @@ public void initialize() throws SQLException {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setOnHidden(e -> refreshList());
-
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -171,12 +168,9 @@ public void initialize() throws SQLException {
 
     @FXML
     void deleteAction(ActionEvent event) {
-        // Récupérer l'élément sélectionné dans le TableView
         Activite activiteSelectionnee = tableView.getSelectionModel().getSelectedItem();
 
-        // Vérifier si un élément est sélectionné
         if (activiteSelectionnee != null) {
-            // Afficher une boîte de dialogue de confirmation
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Confirmation de suppression");
             alert.setHeaderText("Supprimer l'activité sélectionnée");
@@ -210,7 +204,6 @@ public void initialize() throws SQLException {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setOnHiding(e -> {
-                // Rafraîchir la liste des activités dans la TableView après la fermeture de la fenêtre d'ajout
                 refreshList();
             });
 
@@ -220,6 +213,49 @@ public void initialize() throws SQLException {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+        @FXML
+        public void goToafficherNavBarAct(ActionEvent event) {
+            try {
+                // Charger le fichier FXML de la nouvelle page
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminDashbord.fxml"));
+                Parent root = loader.load();
+
+                // Créer une nouvelle scène avec la nouvelle page
+                Scene scene = new Scene(root);
+
+                // Obtenir la fenêtre actuelle à partir de l'événement
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                // Définir la nouvelle scène sur la fenêtre et l'afficher
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    public void goToCategorie(MouseEvent event) {
+        try {
+            // Charger le fichier FXML de la nouvelle page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CategorieAffB.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène sur la fenêtre et l'afficher
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void goToClient(MouseEvent mouseEvent) {
+        RouterController.navigate("/activiteAfficher.fxml");
+    }
 
     }
 
@@ -227,7 +263,7 @@ public void initialize() throws SQLException {
 
 
 
-}
+
 
 
 
