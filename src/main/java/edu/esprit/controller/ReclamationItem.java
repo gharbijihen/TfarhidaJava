@@ -33,6 +33,7 @@ public class ReclamationItem {
     public ImageView etatimg;
     public HBox deleteReclamation;
     public HBox editReclamation;
+    public Text type;
     @FXML
     private Text comment;
 
@@ -55,6 +56,7 @@ public class ReclamationItem {
         date.setText(reclamation.getDate().toString());
         this.image.setImage(new Image("http://localhost:8000/uploads/" + reclamation.getImage()));
         System.out.println("http://localhost:8000/uploads/" + reclamation.getImage());
+        type.setText(reclamation.getType());
         if (reclamation.getEtat()){
             etat.setText("Traitée");
         displayReponse.setVisible(true);

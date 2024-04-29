@@ -76,43 +76,6 @@ public class ReclamationsListController_new implements Initializable {
         private ImageView img;
 
 
-        private ImageView star4;
-
-        @FXML
-        private ImageView star5;
-
-        @FXML
-        private ImageView reviewsBox_star1;
-
-        @FXML
-        private ImageView reviewsBox_star2;
-
-        @FXML
-        private ImageView reviewsBox_star3;
-
-        @FXML
-        private ImageView reviewsBox_star4;
-
-        @FXML
-        private ImageView reviewsBox_star5;
-
-        @FXML
-        private ImageView reviewsBox_star51;
-
-        @FXML
-        private ImageView reviewsBox_star41;
-
-        @FXML
-        private ImageView reviewsBox_star31;
-
-        @FXML
-        private ImageView reviewsBox_star21;
-
-        @FXML
-        private ImageView reviewsBox_star11;
-
-        @FXML
-        private ImageView favBtn;
 
        // private User user = null;
 

@@ -146,6 +146,8 @@ private ImageView img;
             utils.TrayNotificationAlert.notif("Réponse", "Réponse must contain at most 255 characters.",
                     NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
             return;
+            // commentInput_error.setText("Na");
+            //
         }
         Reclamation rc=new Reclamation();
 

@@ -31,20 +31,38 @@ public class ReclamationCrud implements IcrudL<Reclamation> {
 
     @Override
     public void modifier(Reclamation reclamation) throws SQLException {
-        final String query="UPDATE reclamation SET titre= ?,type= ?,description_reclamation= ?,date= ?,etat = ?,image = ?,reponse_id= ? WHERE id= ?";
-        try( PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);){
-            pst.setString(1, reclamation.getTitre());
-            pst.setString(2, reclamation.getType());
-            pst.setString(3, reclamation.getDescription_reclamation());
-            pst.setDate(4, reclamation.getDate());
-            pst.setBoolean(5, reclamation.getEtat());
-            pst.setString(6, reclamation.getImage());
-            pst.setInt(7,reclamation.getReponseid());
-            pst.setInt(8,reclamation.getId());
+        System.out.println(reclamation.getReponseid());
+
+        if(reclamation.getReponseid()!=0)
+            System.out.println("modifying reponse from client interface responseid != 0");
+            final String query="UPDATE reclamation SET titre= ?,type= ?,description_reclamation= ?,date= ?,etat = ?,image = ?,reponse_id= ? WHERE id= ?";
+            try( PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);) {
+                pst.setString(1, reclamation.getTitre());
+                pst.setString(2, reclamation.getType());
+                pst.setString(3, reclamation.getDescription_reclamation());
+                pst.setDate(4, reclamation.getDate());
+                pst.setBoolean(5, reclamation.getEtat());
+                pst.setString(6, reclamation.getImage());
+             pst.setInt(7, reclamation.getReponseid());
+                pst.setInt(8, reclamation.getId());
 
             pst.executeUpdate();
         }
-    }
+            if(reclamation.getReponseid()==0) {
+                System.out.println("modifying reponse from client interface responseid ==0");
+                String query2 = "UPDATE reclamation SET titre= ?,type= ?,description_reclamation= ?,date= ?,etat = ?,image = ? WHERE id= ?";
+                try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query2);) {
+                    pst.setString(1, reclamation.getTitre());
+                    pst.setString(2, reclamation.getType());
+                    pst.setString(3, reclamation.getDescription_reclamation());
+                    pst.setDate(4, reclamation.getDate());
+                    pst.setBoolean(5, reclamation.getEtat());
+                    pst.setString(6, reclamation.getImage());
+                    pst.setInt(7, reclamation.getId());
+                    pst.executeUpdate();
+                }
+            }
+        }
 
     @Override
     public void supprimer(Reclamation reclamation) throws SQLException {

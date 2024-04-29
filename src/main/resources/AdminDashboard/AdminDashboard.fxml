@@ -81,7 +81,7 @@
                                     <HBox alignment="CENTER_LEFT" prefHeight="34.0" prefWidth="627.0">
                                         <children>
                                             <Text fill="#32594a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="paymentMethodTitle" text="Reclamations (" />
-                                            <Text fill="#32594a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="paymentMethodTitle" text="14" />
+                                            <Text fill="#32594a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="paymentMethodTitle" text="4" />
                                             <Text fill="#32594a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="paymentMethodTitle" text=")" />
                                         </children>
                                     </HBox>
