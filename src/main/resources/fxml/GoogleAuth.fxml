@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="bord" prefHeight="771.0" prefWidth="1147.0" style="-fx-background-color: #fbf3e4;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.GoogleAuthController">
+    <stylesheets>
+        <URL value="@guilogin.css" />
+    </stylesheets>
+    <children>
+        <Pane layoutY="-2.0" prefHeight="779.0" prefWidth="1147.0" style="-fx-background-radius: 15; -fx-background-color: white;">
+         <children>
+                <ImageView fitHeight="152.0" fitWidth="256.0" layoutX="392.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../assets/logo.png" />
+                    </image>
+                </ImageView>
+            <Text layoutX="348.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 30px;" styleClass="signUp__title" text="Google authentification" />
+            <Text layoutX="298.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-size: 18px;" styleClass="signUp__title" text="please complete the sign in process in your browser" />
+            <Label layoutX="481.0" layoutY="480.0" prefHeight="34.0" style="-fx-label-padding: 5;" styleClass="form__member" text="Back to login" />
+            <Hyperlink fx:id="logInLink" layoutX="552.0" layoutY="480.0" onAction="#toLogin" prefHeight="34.0" style="-fx-label-padding: 5;" styleClass="form__member__link" text="Log in" />
+         </children>
+        </Pane>
+    </children>
+</AnchorPane>

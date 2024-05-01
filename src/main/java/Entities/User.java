@@ -14,6 +14,12 @@ public class User {
   private Boolean is_verified;
   private String reset_token;
 
+  public int getVerificationCode() {
+    return verificationCode;
+  }
+
+  private int verificationCode;
+
   public User(int id, String username, String first_name, String last_name, int numero, String email,String roles, String password, boolean is_verified, String reset_token) {
     this.id = id;
     this.username = username;
@@ -136,5 +142,8 @@ public class User {
 
   public void setReset_token(String reset_token) {
     this.reset_token = reset_token;
+  }
+  public void setVerificationCode(int verificationCode) {
+    this.verificationCode = verificationCode;
   }
 }

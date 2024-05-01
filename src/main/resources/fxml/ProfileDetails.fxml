@@ -94,6 +94,11 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
+            <Button fx:id="voirlog" layoutX="705.0" layoutY="483.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="171.0" style="-fx-background-color: #FF7F00; -fx-background-radius: 8;" text="Voir logements" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
             </children>
         </Pane>
         <ImageView fx:id="btnReturn" fitHeight="44.0" fitWidth="48.0" layoutX="14.0" layoutY="20.0" onMouseClicked="#returnTo" pickOnBounds="true" preserveRatio="true">

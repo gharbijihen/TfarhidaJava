@@ -39,7 +39,7 @@ public class ServiceUser implements IService<User> {
 
     @Override
     public void update(User user) throws SQLException {
-        String query = "UPDATE user SET username = ?, first_name = ?, last_name = ?, numero = ?, email = ?, roles = ?, password = ?, is_verified = ?, reset_token = ? "
+        String query = "UPDATE user SET username = ?, first_name = ?, last_name = ?, numero = ?, email = ?, roles = ?, password = ?, is_verified = ?, reset_token = ?, verification_code = ? "
                 + "WHERE id = ?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setString(1, user.getUsername());
@@ -52,7 +52,8 @@ public class ServiceUser implements IService<User> {
         statement.setString(7, user.getPassword());
         statement.setBoolean(8, user.getIs_verified());
         statement.setString(9, user.getReset_token());
-        statement.setInt(10, user.getId());
+        statement.setInt(10, user.getVerificationCode());
+        statement.setInt(11,user.getId());
         statement.executeUpdate();
         statement.close();
     }
@@ -108,7 +109,10 @@ public class ServiceUser implements IService<User> {
         String password = resultSet.getString("password");
         boolean is_verified = resultSet.getBoolean("is_verified");
         String reset_token = resultSet.getString("reset_token");
-        return new User(id, username, first_name, last_name, numero, email, roles, password, is_verified, reset_token);
+        User user= new User(id, username, first_name, last_name, numero, email, roles, password, is_verified, reset_token);
+        System.out.println("verification code = "+resultSet.getInt("verification_code"));
+        user.setVerificationCode(resultSet.getInt("verification_code"));
+        return user;
     }
     public User findByEmail(String email) throws SQLException {
         String query = "SELECT * FROM user WHERE email = ?";
@@ -183,4 +187,20 @@ public class ServiceUser implements IService<User> {
         // Check if the provided password matches the hashed password from the database
         return BCrypt.checkpw(newPassword, hashedPasswordFromDB);
     }
+
+    public User getOneUser(String email) throws SQLException {
+        String req = "SELECT * FROM `user` where email = ?";
+        PreparedStatement ps = connection.prepareStatement(req);
+        ps.setString(1, email);
+
+        ResultSet rs = ps.executeQuery();
+        User user = new User();
+        user.setId(-999);
+        while (rs.next()) {
+            user=mapResultSetToUser(rs);
+        }
+        ps.close();
+        return user;
+    }
+
 }

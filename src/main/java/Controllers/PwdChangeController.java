@@ -17,6 +17,7 @@ public class PwdChangeController {
     public TextField newpwd;
 
     public void returnTo(MouseEvent mouseEvent) {
+        RouterController.navigate("/fxml/ProfileDetails.fxml");
     }
     public ServiceUser su=new ServiceUser();
 
