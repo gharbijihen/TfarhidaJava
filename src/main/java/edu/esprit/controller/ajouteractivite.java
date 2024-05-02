@@ -107,6 +107,37 @@ public class ajouteractivite {
 
     @FXML
     void ajouteractiviteAction(ActionEvent event) throws SQLException {
+        if (nomm.getText().isEmpty()) {
+            nomm.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            nomm.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (prixx.getText().isEmpty()) {
+            prixx.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            prixx.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (localisationn.getText().isEmpty()) {
+            localisationn.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            localisationn.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (descriptionActt.getText().isEmpty()) {
+            descriptionActt.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            descriptionActt.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (nombreP.getText().isEmpty()) {
+            nombreP.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            nombreP.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+
         if (isInputValid()) {
             String image=imagePathInDatabase;
             // Assurez-vous que selectedCategoryId est correctement initialisé avec l'ID de la catégorie sélectionnée
@@ -190,49 +221,48 @@ public class ajouteractivite {
     }
     private boolean isInputValid() {
         boolean isValid = true;
-        if (categorieComboBox.getValue() == null) {
-            errorCategorie.setText("Veuillez sélectionner une catégorie.");
+        if (categoriee.getText().isEmpty() || !categoriee.getText().matches("^[0-9]+$")) {
+            errorCategorie.setText("Id categorie est requis et doit contenir uniquement des nombres");
             isValid = false;
         } else {
             errorCategorie.setText("");
         }
 
-        // Validate and display error messages
         if (nomm.getText().isEmpty() || !nomm.getText().matches("^[\\p{L} \\s]+$")) {
-            errorName.setText("Nom is required and should not contain numbers");
+            errorName.setText("Nom est requis et ne doit pas  contenir des nombres ");
             isValid = false;
         } else {
             errorName.setText("");
         }
 
-        if (descriptionActt.getText().isEmpty() && !descriptionActt.getText().matches("^[\\p{L} \\s]+$")) {
-            errorDesc.setText("Description is required and should not contain numbers ");
+        if (descriptionActt.getText().isEmpty() || !descriptionActt.getText().matches("^[\\p{L} \\s]+$")) {
+            errorDesc.setText("Description est requise et ne doit pas  contenir des nombres  ");
             isValid = false;
         } else {
             errorDesc.setText("");
         }
 
         if (localisationn.getText().isEmpty() || !localisationn.getText().matches("^[a-zA-Z]+$")) {
-            errorLocalisation.setText("Localisation is required and should not contain numbers ");
+            errorLocalisation.setText("Localisation est requise et ne doit pas  contenir des nombres  ");
             isValid = false;
         } else {
             errorLocalisation.setText("");
         }
-        if (etatt.getText().isEmpty() || !etatt.getText().equals("Acceptee")) {
-            etatt.setText("L'état doit être 'Acceptee'");
+        if (etatt.getText().isEmpty() || !etatt.getText().matches("^[a-zA-Z]+$")) {
+            etatt.setText("Etat est requis et ne doit pas  contenir des nombres ");
             isValid = false;
         } else {
             errorLocalisation.setText("");
         }
 
         if (prixx.getText().isEmpty() || !prixx.getText().matches("^[0-9]+$")) {
-            errorPrix.setText("Le prix est requis et doit contenir uniquement des nombres");
+            errorPrix.setText("Prix est requis et doit contenir uniquement des nombres");
             isValid = false;
         } else {
             errorPrix.setText("");
         }
         if (nombreP.getText().isEmpty() || !nombreP.getText().matches("^[0-9]+$")) {
-            errorNbp.setText("Le prix est requis et doit contenir uniquement des nombres");
+            errorNbp.setText("Nombre de personne est requis et doit contenir uniquement des nombres");
             isValid = false;
         } else {
             errorNbp.setText("");

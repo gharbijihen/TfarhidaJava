@@ -1,5 +1,6 @@
 package edu.esprit.controller;
 
+import com.google.zxing.qrcode.encoder.QRCode;
 import edu.esprit.entites.Activite;
 import edu.esprit.entites.Categorie;
 import edu.esprit.servies.ActiviteCrud;
@@ -111,6 +112,33 @@ public class IteamController {
         this.typeLabel.setText(categorie.getType_categorie());
         this.descLabel.setText(categorie.getDescription());
 
+    }
+    public Activite getActivite() {
+        return activite;
+    }
+    @FXML
+    void QrCode(ActionEvent event) {
+// Récupérer le logement associé à cette carte
+        Activite selectedAct =getActivite();
+
+        try {
+            // Chargez le fichier FXML des détails du logement
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/QRcode.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+
+            // Obtenez le contrôleur des détails du logement
+            QrCode QrController = loader.getController();
+
+            // Passez les informations du logement sélectionné au contrôleur des détails du logement
+            QrController.setAct(selectedAct);
+
+            // Afficher la fenêtre modale des détails du logement
+            stage.setTitle("Scan du QrCode");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     void voirDetails(ActionEvent event) {

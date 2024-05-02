@@ -69,6 +69,18 @@ public class ajouterCategorie {
 
     @FXML
     void ajoutercategorieAction(ActionEvent event) {
+        if (type.getText().isEmpty()) {
+            type.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            type.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
+        if (descriptionCatt.getText().isEmpty()) {
+            descriptionCatt.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
+            // Placer l'étiquette en dessous du champ
+        } else {
+            descriptionCatt.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
+        }
         if (isInputValid()) {
 
             String  description= descriptionCatt.getText();
@@ -116,13 +128,13 @@ public class ajouterCategorie {
 
         // Validate and display error messages
         if (descriptionCatt.getText().isEmpty() || !descriptionCatt.getText().matches("^[\\p{L} \\s]+$")) {
-            errorDescC.setText("Description is required and should not contain numbers");
+            errorDescC.setText("Description est requise et ne doit pas  contenir des nombres");
             isValid = false;
         } else {
             errorDescC.setText("");
         }
         if (type.getText().isEmpty() && !type.getText().matches("^[\\p{L} \\s]+$")) {
-            errorType.setText("Type is required and should not contain numbers ");
+            errorType.setText("Type est requis et ne doit pas  contenir des nombres ");
             isValid = false;
         } else {
             errorType.setText("");

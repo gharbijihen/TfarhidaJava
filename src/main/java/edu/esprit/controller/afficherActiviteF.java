@@ -1,7 +1,9 @@
 package edu.esprit.controller;
 
 import edu.esprit.entites.Activite;
+import edu.esprit.entites.mailAct;
 import edu.esprit.servies.ActiviteCrud;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,12 +13,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class afficherActiviteF {
@@ -29,32 +34,114 @@ public class afficherActiviteF {
     @FXML
     private FlowPane activiteflow;
 
+    // Déclaration de la liste d'offres
+
 
     // Méthode pour initialiser activitesList
     public void setActivitesList(ObservableList<Activite> activitesList) {
         this.activitesList = activitesList;
     }
-
+    @FXML
+    private int currentPage = 0;
+    private int pageSize = 6;
+    @FXML
+    private VBox paginationContent;
 
     @FXML
+    private Button precedentButton;
+
+    @FXML
+    private Button suivantButton;
+    @FXML
+    private TextField champRecherche; // Ajout du champ de recherche
+
+    private ObservableList<Activite> listeFiltree;
+    @FXML
+    private Pane statPane; // Injection du Pane pour les statistiques
+    @FXML
+    private Button triButton;
+    @FXML
+    void initialize() {
+        // Initialisez activitesList avec les données appropriées
+        ActiviteCrud activityCrud = new ActiviteCrud();
+        activitesList = FXCollections.observableArrayList(activityCrud.afficher());
+
+        // Initialisez la liste filtrée avec toutes les activités au démarrage
+        listeFiltree = FXCollections.observableArrayList(activitesList);
+
+        // Configurer la fonctionnalité de recherche
+        champRecherche.textProperty().addListener((observable, ancienneValeur, nouvelleValeur) -> {
+            filtrerActivites(nouvelleValeur);
+        });
+
+    }
+    @FXML
+    void OnclickTrier(ActionEvent event) throws SQLException {
+        ActiviteCrud serviceAct = new ActiviteCrud();
+        List<Activite> coworkingListTrie = serviceAct.trierParPrix(activitesList);
+
+        // Mettre à jour la liste filtrée et afficher la première page
+        listeFiltree.setAll(coworkingListTrie);
+        afficherActivites(0);
+    }
+    @FXML
+    void handleAfficherActivites(ActionEvent event) {
+        afficherActivites(currentPage);
+    }
+//recehrche
+private void filtrerActivites(String texteRecherche) {
+    listeFiltree.clear();
+    for (Activite activite : activitesList) {
+        String nom = activite.getNom().toLowerCase();
+        String localisation = activite.getLocalisation().toLowerCase();
+        if (nom.contains(texteRecherche.toLowerCase()) || localisation.contains(texteRecherche.toLowerCase())) {
+            listeFiltree.add(activite);
+        }
+    }
+}
+
+    @FXML
+    void previousPage(ActionEvent event) {
+        if (currentPage > 0) {
+            currentPage--;
+            afficherActivites(currentPage);
+        }
+    }
+
+    @FXML
+    void nextPage(ActionEvent event) {
+        int totalPages = (int) Math.ceil((double) activitesList.size() / pageSize);
+        if (currentPage < totalPages - 1) {
+            currentPage++;
+            afficherActivites(currentPage);
+        }
+    }
+    @FXML
     void afficherActivites() {
+        // Appeler la méthode d'affichage en passant la page actuelle
+        afficherActivites(currentPage);
+    }
+    @FXML
+    void afficherActivites(int page) {
         try {
             // Créer un VBox pour contenir tous les éléments Iteam
             VBox mainVBox = new VBox();
             mainVBox.setSpacing(20.0); // Espacement vertical entre les lignes
 
-            // Récupérer la liste des activités depuis la base de données
-            ActiviteCrud activityCrud = new ActiviteCrud();
-            List<Activite> activitesList = activityCrud.afficher();
+            // Calculer les index de début et de fin pour la page spécifiée
+            int startIndex = page * pageSize;
+            int endIndex = Math.min(startIndex + pageSize, listeFiltree.size());
 
             // Créer une HBox pour chaque ligne d'éléments
             HBox hBox = new HBox();
             hBox.setSpacing(10.0); // Espacement horizontal entre les éléments
 
             // Ajouter chaque paire d'éléments à une ligne dans la HBox
-            for (Activite activite : activitesList) {
+            for (int i = startIndex; i < endIndex; i++) {
+                Activite activite = listeFiltree.get(i);
                 // Vérifier si l'état de l'activité est "accepter"
                 if (activite.getEtat().equals("Acceptee")) {
+
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/IteamA.fxml"));
                     Node itemNode = loader.load();
                     IteamController controller = loader.getController();
@@ -62,31 +149,25 @@ public class afficherActiviteF {
 
                     // Ajouter l'élément à la ligne actuelle
                     hBox.getChildren().add(itemNode);
-
-                    // Si la ligne est pleine (2 éléments), l'ajouter au VBox principal et créer une nouvelle ligne
-                    if (hBox.getChildren().size() == 3) {
-                        mainVBox.getChildren().add(hBox);
-                        hBox = new HBox();
-                        hBox.setSpacing(20.0); // Réinitialiser l'espacement horizontal pour la nouvelle ligne
-                    }
                 }
             }
 
-            // Ajouter la dernière ligne si elle n'est pas pleine
-            if (!hBox.getChildren().isEmpty()) {
-                mainVBox.getChildren().add(hBox);
-            }
+            // Ajouter la ligne actuelle au VBox principal
+            mainVBox.getChildren().add(hBox);
 
-            // Définir le contenu du ScrollPane comme le VBox principal
-            scroll.setContent(mainVBox);
+            // Remplacer le contenu de paginationContent par le VBox principal
+            paginationContent.getChildren().setAll(mainVBox);
 
-            System.out.println("Chargement des éléments terminé avec succès.");
-
+            System.out.println("Chargement des éléments de la page " + page + " terminé avec succès.");
         } catch (IOException e) {
             e.printStackTrace();
         }
         ajouterButton.setVisible(true);
+        precedentButton.setVisible(true);
+        suivantButton.setVisible(true);
+        champRecherche.setVisible(true);
     }
+
 
     @FXML
     void handleAjouter(ActionEvent event) {
@@ -94,7 +175,6 @@ public class afficherActiviteF {
             // Charger la vue ou le formulaire d'ajout
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouterCrudF.fxml"));
             Parent root = loader.load();
-
             // Créer une nouvelle fenêtre pour afficher le formulaire d'ajout
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -105,19 +185,7 @@ public class afficherActiviteF {
     }
 
 }
-    /*@FXML
-    void afficherActivites() {
-        try {
-            // Charger le contenu de afficherActivite.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Iteam.fxml"));
-            Node afficherActiviteContent = loader.load();
 
-            // Définir le contenu du ScrollPane
-            scroll.setContent(afficherActiviteContent);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }*/
 
 
 

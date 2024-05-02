@@ -64,6 +64,8 @@
                     <children>
                         <!--<Button fx:id="map" contentDisplay="CENTER" mnemonicParsing="false" layoutX="267.0" layoutY="472.0" style="-fx-background-radius: 100; -fx-background-color: orange;" text="Map" /> -->
                         <Button fx:id="voirDetailsButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#afficherDetails" layoutX="267.0" layoutY="472.0" style="-fx-background-radius: 100; -fx-background-color: orange;" prefHeight="70.0" prefWidth="180.0" text="Voir Détails" />
+                        <Button fx:id="qrCode" contentDisplay="CENTER" mnemonicParsing="false" onAction="#QrCode" layoutX="200.0" layoutY="472.0" style="-fx-background-radius: 100; -fx-background-color: orange;" prefHeight="70.0" prefWidth="180.0" text="QrCode" />
+
                     </children>
                 </HBox>
             </children>

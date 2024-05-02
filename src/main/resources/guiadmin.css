@@ -6,6 +6,9 @@
 
 }
 
+.default-color0.chart-pie { -fx-pie-color: #0077CC; } /* Bleu clair */
+.default-color1.chart-pie { -fx-pie-color: #003366; } /* Bleu moyen */
+.default-color2.chart-pie { -fx-pie-color: #000033; } /* Bleu foncé */
 
 .tableUsers .column-header {
     -fx-background-color: #4D3F18;

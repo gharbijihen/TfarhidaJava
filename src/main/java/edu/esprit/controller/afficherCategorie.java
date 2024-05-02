@@ -5,6 +5,8 @@ import edu.esprit.servies.ActiviteCrud;
 import edu.esprit.servies.CategorieCrud;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +21,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import edu.esprit.entites.Activite;
 import javafx.scene.input.MouseEvent;
@@ -45,7 +48,9 @@ public class afficherCategorie{
     private Button categorieButton; // Référence au bouton "Categorie"
     private File selectedImageFile;
 
-
+    @FXML
+    private TextField filtrefield;
+    private FilteredList<Categorie> filteredList;
 
 
     public void initialize() throws SQLException {
@@ -57,6 +62,13 @@ public class afficherCategorie{
         colType.setCellValueFactory(new PropertyValueFactory<>("type_categorie"));
         colDesc.setCellValueFactory(new PropertyValueFactory<>("description"));
         tableView.setVisible(true);
+        // Wrap the ObservableList in a FilteredList (initially display all data).
+        filteredList = new FilteredList<>(tableView.getItems(), b -> true);
+
+        // Set the filter Predicate whenever the filter changes.
+        filtrefield.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterTableView();
+        });
     }
 
 
@@ -94,6 +106,24 @@ public class afficherCategorie{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    private void filterTableView() {
+        // Créer un prédicat pour filtrer les éléments de la TableView
+        Predicate<Categorie> filterPredicate = categorie -> {
+            // Vérifier si le texte de filtrage correspond à l'une des propriétés de l'offre
+            return categorie.getType_categorie().toLowerCase().contains(filtrefield.getText().toLowerCase())
+                    || categorie.getDescription().toLowerCase().contains(filtrefield.getText().toLowerCase())
+                    || String.valueOf(categorie.getId()).contains(filtrefield.getText());
+        };
+
+        // Mettre à jour la liste filtrée
+        filteredList.setPredicate(filterPredicate);
+
+        // Lier la liste filtrée à la TableView
+        SortedList<Categorie> sortedData = new SortedList<>(filteredList);
+        sortedData.comparatorProperty().bind(tableView.comparatorProperty());
+        tableView.setItems(sortedData);
     }
     @FXML
     void deleteAction(ActionEvent event) throws SQLException {

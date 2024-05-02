@@ -1,6 +1,7 @@
 package edu.esprit.controller;
 
 import edu.esprit.entites.Activite;
+import edu.esprit.entites.mailAct;
 import edu.esprit.servies.ActiviteCrud;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
@@ -27,6 +28,9 @@ public class ActionCell extends TableCell<Activite, Void> {
             // Mettre à jour la ligne de la table
             getTableView().refresh();
             // Enregistrer les modifications dans la base de données
+            // Envoyer l'e-mail
+            mailAct mailer = new mailAct();
+            mailer.sendEmail("oumeyma.sokkeh@esprit.tn");
             try {
                 activiteCrud.modifier(activite);
             } catch (SQLException e) {

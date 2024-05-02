@@ -6,6 +6,7 @@ import java.util.*;
 import edu.esprit.entites.Categorie;
 import edu.esprit.tools.MyConnection;
 import edu.esprit.entites.Activite;
+import javafx.collections.ObservableList;
 import javafx.util.Pair;
 
 import java.sql.Connection;
@@ -143,6 +144,31 @@ public class ActiviteCrud implements IcrudA<Activite> {
             System.out.println(e.getMessage());
         }
         return  activites;
+    }
+    public List<Activite> trierParPrix(ObservableList<Activite> activiteslist)throws SQLException {
+        List<Activite> activites = new ArrayList<>();
+        String req = "SELECT * FROM activitee ORDER BY prix";
+        try {
+            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet rs = st.executeQuery(req);
+            while (rs.next()) {
+                Activite p;
+                p = new Activite();
+                p.setId(rs.getInt("id"));
+                p.setNom(rs.getString("nom")); //avec label
+                p.setPrix(rs.getInt("prix"));
+                p.setLocalisation(rs.getString("localisation"));
+                p.setNb_P(rs.getInt("nb_P"));
+                p.setEtat(rs.getString("etat"));
+                p.setImage(rs.getString("image"));
+                p.setDescription_act(rs.getString("description_act"));
+                p.setCategorie_id(rs.getInt("categorie_id"));
+                activites.add(p);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return activites;
     }
 
 
@@ -285,7 +311,24 @@ public class ActiviteCrud implements IcrudA<Activite> {
 
         return typesCategories;
     }
+    public Map<String, Integer> getActivitebyEtat() {
+        Map<String, Integer> activiteByetat = new HashMap<>();
 
+        try  (Connection connection = MyConnection.getInstance().getCnx()) {
+            String query = "SELECT etat, COUNT(*) AS count FROM activitee GROUP BY etat";
+           try(PreparedStatement preparedStatement = connection.prepareStatement(query);
+            ResultSet resultSet = preparedStatement.executeQuery();) {
+               while (resultSet.next()) {
+                   String etat = resultSet.getString("etat");
+                   int count = resultSet.getInt("count");
+                   activiteByetat.put(etat, count);
+               }
+           }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return activiteByetat;
+    }
 
 }
 

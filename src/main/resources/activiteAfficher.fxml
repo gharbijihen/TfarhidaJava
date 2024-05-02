@@ -14,10 +14,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="927.0" prefWidth="1534.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherActiviteF">
+<AnchorPane prefHeight="932.0" prefWidth="1508.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherActiviteF">
 
     <children>
-        <Pane layoutX="-1.0" layoutY="69.0" prefHeight="858.0" prefWidth="283.0" style="-fx-background-color: #FF7F00;">
+        <Pane layoutX="-1.0" layoutY="69.0" prefHeight="863.0" prefWidth="283.0" style="-fx-background-color: #FF7F00;">
             <children>
                 <Text layoutX="86.0" layoutY="838.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter">
                <font>
@@ -29,8 +29,7 @@
                         <Image url="@images/logoutIcon.png" />
                     </image>
                 </ImageView>
-                <TextField layoutX="12.0" layoutY="38.0" prefHeight="49.0" prefWidth="242.0" promptText="chercher........." style="-fx-background-radius: 100;" />
-                  <Button layoutX="50.0" layoutY="187.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Restaurant ">
+                  <Button layoutX="50.0" layoutY="140.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Restaurant ">
                       <graphic>
                           <ImageView fitHeight="26.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -39,7 +38,7 @@
                           </ImageView>
                       </graphic>
                   </Button>
-                  <Button layoutX="50.0" layoutY="300.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Transport">
+                  <Button layoutX="50.0" layoutY="264.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Transport">
                       <graphic>
                           <ImageView fitHeight="34.0" fitWidth="32.0">
                               <image>
@@ -48,7 +47,7 @@
                           </ImageView>
                       </graphic>
                   </Button>
-                  <Button layoutX="50.0" layoutY="429.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Logement">
+                  <Button layoutX="50.0" layoutY="395.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Logement">
                       <graphic>
                           <ImageView fitHeight="26.0" fitWidth="32.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true">
                               <image>
@@ -60,7 +59,7 @@
                           </ImageView>
                       </graphic>
                   </Button>
-                  <Button layoutX="50.0" layoutY="555.0" mnemonicParsing="false" onAction="#afficherActivites" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Activité">
+                  <Button layoutX="50.0" layoutY="530.0" mnemonicParsing="false" onAction="#handleAfficherActivites" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Activité">
                       <graphic>
                           <ImageView fitHeight="23.0" fitWidth="25.0">
                               <image>
@@ -69,7 +68,7 @@
                           </ImageView>
                       </graphic>
                   </Button>
-                <Button layoutX="50.0" layoutY="676.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Reclamation">
+                <Button layoutX="50.0" layoutY="672.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Reclamation">
                     <graphic>
                         <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -80,16 +79,16 @@
                 </Button>
             </children>
         </Pane>
-        <Pane prefHeight="73.0" prefWidth="1663.0" style="-fx-background-color: #FF7F00;">
+        <Pane prefHeight="73.0" prefWidth="1508.0" style="-fx-background-color: #FF7F00;">
             <children>
-                <ImageView fitHeight="122.0" fitWidth="156.0" layoutX="51.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="140.0" fitWidth="220.0" layoutX="20.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@images/tfarhida.png" />
                     </image>
                 </ImageView>
             </children>
         </Pane>
-        <HBox alignment="CENTER" layoutX="300.0" layoutY="62.0" prefHeight="36.0" prefWidth="652.0" style="-fx-background-radius: 100;" AnchorPane.rightAnchor="60.39999999999998">
+        <HBox alignment="CENTER" layoutX="300.0" layoutY="62.0" prefHeight="36.0" prefWidth="609.0" style="-fx-background-radius: 100;" AnchorPane.rightAnchor="104.0">
             <children>
                 <HBox prefHeight="36.0" prefWidth="10.0" />
                 <HBox alignment="CENTER" prefHeight="36.0" prefWidth="110.0" styleClass="box" />
@@ -111,15 +110,84 @@
                 <Insets left="5.0" />
             </opaqueInsets>
         </HBox>
-        <VBox layoutX="312.0" layoutY="106.0" prefHeight="817.0" prefWidth="1255.0">
+        <VBox layoutX="289.0" layoutY="243.0" prefHeight="674.0" prefWidth="1215.0">
             <children>
-                <ScrollPane fx:id="scroll" prefHeight="643.0" prefWidth="1227.0" />
-            <Pane prefHeight="160.0" prefWidth="1204.0">
+                <ScrollPane fx:id="scroll" prefHeight="572.0" prefWidth="1215.0">
+               <content>
+                  <VBox fx:id="paginationContent" prefHeight="683.0" prefWidth="1101.0" />
+               </content></ScrollPane>
+
+                                        <Pane prefHeight="234.0" prefWidth="1215.0">
+                    <children>
+                        <Button fx:id="precedentButton" layoutX="390.0" layoutY="64.0" mnemonicParsing="false" onAction="#previousPage" prefHeight="36.0" prefWidth="98.0" style="-fx-background-radius: 100; -fx-background-color: orange;" text="Précédant" visible="false">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="22.0">
+                           <image>
+                              <Image url="@images/fleche-de-retour (1).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                        <Button fx:id="suivantButton" layoutX="518.0" layoutY="64.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="36.0" prefWidth="98.0" style="-fx-background-radius: 100; -fx-background-color: orange;" text="Suivant" visible="false">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="24.0">
+                           <image>
+                              <Image url="@images/suivant.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                    </children>
+                </Pane>
+            <Pane prefHeight="231.0" prefWidth="1215.0">
                <children>
-                   <Button fx:id="ajouterButton" layoutX="300.0" layoutY="30.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="25.0" prefWidth="145.0" style="-fx-background-radius: 100 ;" text="Ajouter" visible="false" />
+                   <Button fx:id="ajouterButton" layoutX="20.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="49.0" prefWidth="153.0" style="-fx-background-radius: 100 ;" text="Ajouter" textFill="#595555" visible="false">
+                     <graphic>
+                        <ImageView fitHeight="56.0" fitWidth="56.0">
+                           <image>
+                              <Image url="@images/ajouter (1).png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="56.0" fitWidth="59.0" layoutX="128.0" layoutY="48.0">
+                     <image>
+                        <Image url="@images/robinet.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
+
             </children>
         </VBox>
+        <TextField fx:id="champRecherche" layoutX="359.0" layoutY="136.0" prefHeight="56.0" prefWidth="967.0" promptText="chercher........." style="-fx-background-radius: 100; -fx-background-color: #AEE4FF;" visible="false">
+         <font>
+            <Font size="22.0" />
+         </font></TextField>
+      <ImageView fitHeight="49.0" fitWidth="48.0" layoutX="300.0" layoutY="138.0">
+         <image>
+            <Image url="@images/loupe.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="1404.0" layoutY="140.0" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="49.0" prefWidth="83.0" style="-fx-background-radius: 100;" text="Trier" textFill="#00adff">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="20.0">
+               <image>
+                  <Image url="@images/trier-par-ordre-croissant.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <ImageView fitHeight="60.0" fitWidth="59.0" layoutX="1347.0" layoutY="141.0">
+         <image>
+            <Image url="@images/meilleur-prix.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

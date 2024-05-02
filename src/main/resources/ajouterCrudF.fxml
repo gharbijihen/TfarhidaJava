@@ -22,19 +22,16 @@
         </ToolBar>
         <VBox layoutX="15.0" layoutY="88.0" prefHeight="547.0" prefWidth="529.0" />
         <TextField fx:id="descriptionActt" layoutX="36.0" layoutY="226.0" prefHeight="30.0" prefWidth="442.0" promptText="Description" style="-fx-background-radius: 100;" />
-        <Text fx:id="errorDesc" fill="RED" layoutX="34.0" layoutY="164.0" wrappingWidth="442.4" />
-        <Text fx:id="errorName" fill="RED" layoutX="34.0" layoutY="213.0" wrappingWidth="442.4" />
+        <Text fx:id="errorDesc" fill="RED" layoutX="34.0" layoutY="276.0" wrappingWidth="442.4" />
         <TextField fx:id="nomm" layoutX="34.0" layoutY="313.0" prefHeight="30.0" prefWidth="442.0" promptText="Nom" style="-fx-background-radius: 100;" />
+        <Text fx:id="errorName" fill="RED" layoutX="34.0" layoutY="364.0" wrappingWidth="442.4" />
+
         <TextField fx:id="prixx" layoutX="34.0" layoutY="394.0" prefHeight="30.0" prefWidth="442.0" promptText="Prix" style="-fx-background-radius: 100;" />
-        <Text fx:id="errorPrix" fill="RED" layoutX="39.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="442.4" />
+        <Text fx:id="errorPrix" fill="RED" layoutX="39.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="442.4" />
         <TextField fx:id="localisationn" layoutX="34.0" layoutY="479.0" prefHeight="30.0" prefWidth="442.0" promptText="Localisation" style="-fx-background-radius: 100;" />
-        <Text fx:id="errorLocalisation" fill="RED" layoutX="41.0" layoutY="305.0" wrappingWidth="442.4" />
+        <Text fx:id="errorLocalisation" fill="RED" layoutX="41.0" layoutY="531.0" wrappingWidth="442.4" />
         <TextField fx:id="nombreP" layoutX="31.0" layoutY="575.0" prefHeight="30.0" prefWidth="442.0" promptText="Nombre Participant " style="-fx-background-radius: 100;" />
-        <Text fx:id="errorNbp" fill="RED" layoutX="37.0" layoutY="367.0" strokeWidth="0.0" wrappingWidth="442.4" />
-
-        <Text fx:id="errorCategorie" fill="RED" layoutX="34.0" layoutY="164.0" wrappingWidth="442.4" />
-
-
+        <Text fx:id="errorNbp" fill="RED" layoutX="37.0" layoutY="628.0" strokeWidth="0.0" wrappingWidth="442.4" />
         <Text fill="#632d2d" layoutX="148.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter votre Activité " wrappingWidth="478.3999999999999">
             <font>
                 <Font name="Broadway" size="35.0" />
@@ -43,14 +40,13 @@
         <VBox alignment="CENTER" layoutX="529.0" layoutY="131.2" nodeOrientation="LEFT_TO_RIGHT" prefHeight="467.0" prefWidth="454.0" spacing="6.0" style="-fx-background-color: #ffff;" AnchorPane.bottomAnchor="155.0">
             <children>
                 <ImageView fx:id="imageView" fitHeight="253.0" fitWidth="402.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
-                <Button fx:id="selectImage" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#browseImageAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100;"  text="ajouter image" />
+                <Button fx:id="selectImage" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#browseImageAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100;" text="ajouter image" />
             </children>
         </VBox>
-
               <Button fx:id="ButtonAjouterActivite" layoutX="183.0" layoutY="702.0" mnemonicParsing="false" onAction="#ajouteractiviteAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: '2EB67D';" text="Ajouter " />
-
-        <ComboBox fx:id="categorieComboBox" layoutX="34.0" layoutY="132.0" prefHeight="30.0" prefWidth="442.0" promptText="Sélectionnez une catégorie" style="-fx-background-radius: 100;" />
-      <Label layoutX="42.0" layoutY="199.0" text="Description Activité" textFill="#ed7016">
+        <ComboBox fx:id="categorieComboBox" layoutX="34.0" layoutY="130.0" prefHeight="30.0" prefWidth="442.0" promptText="Sélectionnez une catégorie" style="-fx-background-radius: 100;" />
+        <Text fx:id="errorCategorie" fill="RED" layoutX="33.0" layoutY="180.0" wrappingWidth="442.4" />
+        <Label layoutX="42.0" layoutY="199.0" text="Description Activité" textFill="#ed7016">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
