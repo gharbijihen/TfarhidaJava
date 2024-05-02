@@ -1,8 +1,10 @@
 package edu.esprit.controller;
 
+import edu.esprit.entites.Trajet;
 import edu.esprit.servies.Moyen_transportCrud;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +25,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableCell;
 
 import edu.esprit.entites.Moyen_transport;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
@@ -34,6 +37,8 @@ public class AffichermoyenB {
     private HBox contentHBox;
 
     private Button MoyenButton;
+    public TextField STextField;
+
 
 
     @FXML
@@ -75,6 +80,8 @@ public class AffichermoyenB {
     @FXML
     private TableColumn<Moyen_transport, Void> colAction;
     @FXML
+    private FilteredList<Moyen_transport> filteredMoyensList;
+
 
 
 
@@ -102,6 +109,8 @@ public class AffichermoyenB {
         List<Moyen_transport> moy = ps.afficher();
         ObservableList<Moyen_transport> observableList = FXCollections.observableList(moy);
         tableView.setItems(observableList);
+        filteredMoyensList = new FilteredList<>(observableList);
+        tableView.setItems(filteredMoyensList);
         // Configure les colonnes pour correspondre aux attributs de l'activité
         colType.setCellValueFactory(new PropertyValueFactory<>("type"));
         colCapacite.setCellValueFactory(new PropertyValueFactory<>("Capacite"));
@@ -295,5 +304,27 @@ public class AffichermoyenB {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void searchAction(KeyEvent keyEvent) {
+        String query = STextField.getText().trim().toLowerCase();
+
+        filteredMoyensList.setPredicate(moyen -> {
+            if (query.isEmpty()) {
+                return true; // Show all items if the query is empty
+            } else {
+                String capaciteString = String.valueOf(moyen.getCapacite());
+                String etatString = moyen.isEtat() ? "true" : "false";
+                String valideString = moyen.isValide() ? "true" : "false";
+
+                // Filter the moyens based on the search query
+                return moyen.getType().toLowerCase().contains(query) ||
+                        capaciteString.contains(query) ||
+                        moyen.getLieu().toLowerCase().contains(query) ||
+                        etatString.toLowerCase().contains(query) ||
+                        valideString.toLowerCase().contains(query);
+            }
+        });
+
     }
 }

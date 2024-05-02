@@ -5,6 +5,7 @@ import edu.esprit.servies.Moyen_transportCrud;
 import edu.esprit.servies.TrajetCrud;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -34,7 +36,7 @@ import javafx.scene.layout.HBox;
 public class AfficherTrajet {
 
 
-
+    public TextField searchTextField;
     @FXML
     private TableColumn<Trajet, Date> colDate;
 
@@ -66,6 +68,8 @@ public class AfficherTrajet {
 
     private File selectedImageFile;
 
+    private FilteredList<Trajet> filteredTrajetsList;
+
 
     @FXML
     private final TrajetCrud ps = new TrajetCrud();
@@ -76,6 +80,8 @@ public class AfficherTrajet {
         List<Trajet> tra = ps.afficher();
         ObservableList<Trajet> observableList = FXCollections.observableList(tra);
         tableView.setItems(observableList);
+        filteredTrajetsList = new FilteredList<>(observableList);
+        tableView.setItems(filteredTrajetsList);
         // Configure les colonnes pour correspondre aux attributs de l'activité
         colLieuD.setCellValueFactory(new PropertyValueFactory<>("lieu_depart"));
         colLieuA.setCellValueFactory(new PropertyValueFactory<>("lieu_arrivee"));
@@ -243,10 +249,22 @@ public class AfficherTrajet {
 
 
 
+    public void searchAction(javafx.scene.input.KeyEvent keyEvent) {
+        // Get the search query from the TextField
+        String query = searchTextField.getText().trim().toLowerCase();
 
-
-
-
-
-
+        // Apply a filter to the filteredTrajetsList based on the search query
+        filteredTrajetsList.setPredicate(trajet -> {
+            if (query.isEmpty()) {
+                // If the query is empty, display all trajets
+                return true;
+            } else {
+                // Filter the trajets based on the search query
+                return trajet.getLieu_depart().toLowerCase().contains(query) ||
+                        trajet.getLieu_arrivee().toLowerCase().contains(query) ||
+                        trajet.getDate().toString().toLowerCase().contains(query) ||
+                        trajet.getHeure().toLowerCase().contains(query);
+            }
+        });
+    }
 }
