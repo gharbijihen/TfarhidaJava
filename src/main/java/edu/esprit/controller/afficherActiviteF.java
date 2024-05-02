@@ -5,6 +5,7 @@ import edu.esprit.entites.mailAct;
 import edu.esprit.servies.ActiviteCrud;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -43,7 +45,7 @@ public class afficherActiviteF {
     }
     @FXML
     private int currentPage = 0;
-    private int pageSize = 6;
+    private int pageSize = 3;
     @FXML
     private VBox paginationContent;
 
@@ -71,9 +73,38 @@ public class afficherActiviteF {
 
         // Configurer la fonctionnalité de recherche
         champRecherche.textProperty().addListener((observable, ancienneValeur, nouvelleValeur) -> {
+            // Appel de la méthode de filtrage à chaque modification du texte de recherche
             filtrerActivites(nouvelleValeur);
+            // Afficher les activités filtrées à partir de la première page
+            afficherActivites(0);
         });
-
+    }
+    @FXML
+    void handleAfficherActivites(ActionEvent event) {
+        afficherActivites(currentPage);
+    }
+    //recehrche
+    private void filtrerActivites(String texteRecherche) {
+        // Effacer la liste filtrée actuelle
+        listeFiltree.clear();
+        // Si le texte de recherche est vide, ajouter toutes les activités à la liste filtrée
+        if (texteRecherche.isEmpty()) {
+            listeFiltree.addAll(activitesList);
+        } else {
+            // Convertir le texte de recherche en minuscules pour une comparaison insensible à la casse
+            String rechercheEnMinuscules = texteRecherche.toLowerCase();
+            // Parcourir toutes les activités
+            for (Activite activite : activitesList) {
+                // Obtenir le nom et la localisation de l'activité en minuscules
+                String nom = activite.getNom().toLowerCase();
+                String localisation = activite.getLocalisation().toLowerCase();
+                // Vérifier si le nom ou la localisation de l'activité contient le texte de recherche
+                if (nom.contains(rechercheEnMinuscules) || localisation.contains(rechercheEnMinuscules)) {
+                    // Ajouter l'activité à la liste filtrée
+                    listeFiltree.add(activite);
+                }
+            }
+        }
     }
     @FXML
     void OnclickTrier(ActionEvent event) throws SQLException {
@@ -84,21 +115,9 @@ public class afficherActiviteF {
         listeFiltree.setAll(coworkingListTrie);
         afficherActivites(0);
     }
-    @FXML
-    void handleAfficherActivites(ActionEvent event) {
-        afficherActivites(currentPage);
-    }
-//recehrche
-private void filtrerActivites(String texteRecherche) {
-    listeFiltree.clear();
-    for (Activite activite : activitesList) {
-        String nom = activite.getNom().toLowerCase();
-        String localisation = activite.getLocalisation().toLowerCase();
-        if (nom.contains(texteRecherche.toLowerCase()) || localisation.contains(texteRecherche.toLowerCase())) {
-            listeFiltree.add(activite);
-        }
-    }
-}
+
+
+
 
     @FXML
     void previousPage(ActionEvent event) {
@@ -141,7 +160,6 @@ private void filtrerActivites(String texteRecherche) {
                 Activite activite = listeFiltree.get(i);
                 // Vérifier si l'état de l'activité est "accepter"
                 if (activite.getEtat().equals("Acceptee")) {
-
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/IteamA.fxml"));
                     Node itemNode = loader.load();
                     IteamController controller = loader.getController();
@@ -151,10 +169,8 @@ private void filtrerActivites(String texteRecherche) {
                     hBox.getChildren().add(itemNode);
                 }
             }
-
             // Ajouter la ligne actuelle au VBox principal
             mainVBox.getChildren().add(hBox);
-
             // Remplacer le contenu de paginationContent par le VBox principal
             paginationContent.getChildren().setAll(mainVBox);
 

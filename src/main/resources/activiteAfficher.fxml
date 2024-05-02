@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="932.0" prefWidth="1508.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherActiviteF">
+<AnchorPane prefHeight="932.0" prefWidth="1638.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherActiviteF">
 
     <children>
         <Pane layoutX="-1.0" layoutY="69.0" prefHeight="863.0" prefWidth="283.0" style="-fx-background-color: #FF7F00;">
@@ -79,7 +79,7 @@
                 </Button>
             </children>
         </Pane>
-        <Pane prefHeight="73.0" prefWidth="1508.0" style="-fx-background-color: #FF7F00;">
+        <Pane prefHeight="73.0" prefWidth="1647.0" style="-fx-background-color: #FF7F00;">
             <children>
                 <ImageView fitHeight="140.0" fitWidth="220.0" layoutX="20.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -163,16 +163,13 @@
 
             </children>
         </VBox>
-        <TextField fx:id="champRecherche" layoutX="359.0" layoutY="136.0" prefHeight="56.0" prefWidth="967.0" promptText="chercher........." style="-fx-background-radius: 100; -fx-background-color: #AEE4FF;" visible="false">
-         <font>
-            <Font size="22.0" />
-         </font></TextField>
-      <ImageView fitHeight="49.0" fitWidth="48.0" layoutX="300.0" layoutY="138.0">
+        <TextField fx:id="champRecherche" layoutX="359.0" layoutY="136.0"  prefHeight="56.0" prefWidth="1146.0" promptText="chercher........." style="-fx-background-radius: 100; -fx-background-color: #AEE4FF;" visible="true"/>
+        <ImageView fitHeight="49.0" fitWidth="48.0" layoutX="300.0" layoutY="138.0">
          <image>
             <Image url="@images/loupe.png" />
          </image>
       </ImageView>
-      <Button layoutX="1404.0" layoutY="140.0" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="49.0" prefWidth="83.0" style="-fx-background-radius: 100;" text="Trier" textFill="#00adff">
+      <Button layoutX="1528.0" layoutY="140.0" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="49.0" prefWidth="83.0" style="-fx-background-radius: 100;" text="Trier" textFill="#00adff">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
@@ -184,7 +181,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <ImageView fitHeight="60.0" fitWidth="59.0" layoutX="1347.0" layoutY="141.0">
+      <ImageView fitHeight="60.0" fitWidth="59.0" layoutX="1498.0" layoutY="97.0">
          <image>
             <Image url="@images/meilleur-prix.png" />
          </image>
