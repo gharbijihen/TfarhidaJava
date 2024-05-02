@@ -71,14 +71,12 @@ public class ReclamationItem {
         }
         ReponseCrud reponseCrud = new ReponseCrud();
         this.displayReponse.setOnMouseClicked(event -> {
-            System.out.println("ID du réclamation à supprimer : " + reclamation.getId());
-            if (reclamation.getReponseid()<1)
-                utils.TrayNotificationAlert.notif("Reclamation", "You haven't replied to this Reclamation yet.",
-                        NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-            else {
-                showSuccessMessage(reclamation.getReponse().description);
-            }
-        });
+            TextArea replyInput = (TextArea) ((Node) event.getSource()).getScene().lookup("#replyInput");
+            replyInput.setText(reclamation.getReponse().getDescription());
+            replyInput.setDisable(true);
+            HBox viewReplyModel = (HBox) ((Node) event.getSource()).getScene().lookup("#viewReplyModel");
+            viewReplyModel.setVisible(true);
+            });
 
         this.deleteReclamation.setOnMouseClicked(event -> {
                System.out.println("ID du réclamation à supprimer : " + reclamation.getId());

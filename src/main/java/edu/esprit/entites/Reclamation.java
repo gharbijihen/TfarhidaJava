@@ -105,6 +105,9 @@ public class Reclamation {
         return etat;
     }
 
+    public String getEtatAsString() {
+        return etat ? "traitée" : "non traitée";
+    }
     public void setEtat(Boolean etat) {
         this.etat = etat;
     }

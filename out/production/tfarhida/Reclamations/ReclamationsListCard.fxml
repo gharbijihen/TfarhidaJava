@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<Pane fx:id="content_area" prefHeight="623.0" prefWidth="954.0" styleClass="userProductsContainer" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.ReclamationsCardController">
+    <ScrollPane layoutX="14.0" layoutY="93.0" prefHeight="526.0" prefWidth="847.0" style="-fx-background: #fff; -fx-background-color: transparent;" styleClass="product-card-scrollPane" stylesheets="@Style.css">
+        <content>
+            <GridPane fx:id="ReclamationsListContainer">
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                </rowConstraints>
+            </GridPane>
+        </content>
+    </ScrollPane>
+</Pane>

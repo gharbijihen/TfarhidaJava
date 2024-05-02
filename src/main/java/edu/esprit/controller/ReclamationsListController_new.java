@@ -1,6 +1,8 @@
 package edu.esprit.controller;
 
+import edu.esprit.entites.Notification;
 import edu.esprit.entites.Reclamation;
+import edu.esprit.servies.NotificationService;
 import edu.esprit.servies.ReclamationCrud;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -83,6 +85,9 @@ public class ReclamationsListController_new implements Initializable {
 
         @Override
         public void initialize(URL url, ResourceBundle rb) {
+
+            this.viewReplyModel.setVisible(false);
+
             updateBtnContainer.setVisible(false);
             addReviewsModel.setVisible(false);
             TypeInput.getItems().addAll("Activité", "Logement", "Restaurant", "Transport");
@@ -121,32 +126,30 @@ public class ReclamationsListController_new implements Initializable {
 
         @FXML
         void open_addReviewModel(MouseEvent event) throws SQLException {
+            System.out.println("Opening modify/addview modal");
             HBox addReviewsModel = (HBox) ((Node) event.getSource()).getScene().lookup("#addReviewsModel");
+            submitBtn.setVisible(true);
+            submitBtn.setDisable(false);
+
             addReviewsModel.setVisible(true);
         }
 
     public void close_addReviewsModel(MouseEvent mouseEvent) {
-        addReviewsModel.setVisible(false);
         this.commentInput.setText("");
+        this.titleInput.setText("");
         this.TypeInput.getSelectionModel().select(0);
         this.selectedImageFile=null;
         this.img.setImage(null);
         this.updateBtn.setVisible(false);
         this.submitBtn.setVisible(true);
+        addReviewsModel.setVisible(false);
+
     }
     @FXML
     DatePicker dateAjout;
-    public void add_new_comment(MouseEvent mouseEvent) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+    public void add_new_comment(MouseEvent mouseEvent) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, SQLException {
         Reclamation reclamation = new Reclamation();
 
-       /* review.setUser_id(user.getId());
-        review.setProduct_id(Collecte.getIdProduit());
-        review.setTitle(titleInput.getText());
-        review.setComment(commentInput.getText());
-
-        review.setValue(value);
-
-        String comment = commentInput.getText();*/
         if(TypeInput.getSelectionModel().getSelectedIndex()==-1)
         {
             utils.TrayNotificationAlert.notif("Reclamation", "Please select a type.",
@@ -209,8 +212,15 @@ public class ReclamationsListController_new implements Initializable {
         }*/
 
         ReclamationCrud rc = new ReclamationCrud();
-      //  if (value != 0) {
-            rc.ajouter(reclamation);
+        int id= rc.ajouterReturnsID(reclamation);
+        NotificationService ns=new NotificationService();
+        Notification newnotif=new Notification();
+        newnotif.setCreatedAt(new java.util.Date());
+        newnotif.setMessage("Vous avez réçu une nouvelle réclamation");
+        newnotif.userId=0;
+        newnotif.setReclamationId(id);
+        ns.add(newnotif);
+
         Parent fxml;
         try {
             fxml = FXMLLoader.load(getClass().getResource("/RecItem/ReclamationsList.fxml"));
@@ -221,13 +231,15 @@ public class ReclamationsListController_new implements Initializable {
         }
             utils.TrayNotificationAlert.notif("Reclamation", "Reclamation added successfully.",
                     NotificationType.SUCCESS, AnimationType.POPUP, Duration.millis(2500));
-        addReviewsModel.setVisible(false);
         this.commentInput.setText("");
+        this.titleInput.setText("");
         this.TypeInput.getSelectionModel().select(0);
         this.selectedImageFile=null;
         this.img.setImage(null);
         this.updateBtn.setVisible(false);
         this.submitBtn.setVisible(true);
+        addReviewsModel.setVisible(false);
+
     }
     public void uploadImage(File imageFile) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         HttpPost httpPost = new HttpPost("http://localhost:8000/upload-image");
@@ -350,6 +362,18 @@ public class ReclamationsListController_new implements Initializable {
         //  if (value != 0) {
         reclamationCrud.modifier(rc);
         Parent fxml;
+        System.out.println("########### comment input"+this.commentInput.getText());
+        this.commentInput.setText("");
+        this.titleInput.setText("");
+        System.out.println("########### comment input after reset"+this.commentInput.getText());
+
+        this.TypeInput.getSelectionModel().select(0);
+        this.selectedImageFile=null;
+        this.img.setImage(null);
+        this.updateBtn.setVisible(false);
+        this.submitBtn.setVisible(true);
+        addReviewsModel.setVisible(false);
+
         try {
             fxml = FXMLLoader.load(getClass().getResource("/RecItem/ReclamationsList.fxml"));
             content_area.getChildren().removeAll();
@@ -357,15 +381,10 @@ public class ReclamationsListController_new implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         utils.TrayNotificationAlert.notif("Reclamation", "Reclamation modified successfully.",
                 NotificationType.SUCCESS, AnimationType.POPUP, Duration.millis(2500));
-        addReviewsModel.setVisible(false);
-        this.commentInput.setText("");
-        this.TypeInput.getSelectionModel().select(0);
-        this.selectedImageFile=null;
-        this.img.setImage(null);
-        this.updateBtn.setVisible(false);
-        this.submitBtn.setVisible(true);
+
     }
     private File selectedImageFile;
         @FXML
@@ -392,6 +411,22 @@ public class ReclamationsListController_new implements Initializable {
 
     public void gotoAdmin(MouseEvent mouseEvent) {
             RouterController.navigate("/AdminDashboard/AdminDashboard.fxml");
+    }
+
+
+
+    public void close_viewReplyModel(MouseEvent mouseEvent) {
+        System.out.println("Closing modal");
+        this.replyInput.setText("");
+        this.viewReplyModel.setVisible(false);
+
+    }
+
+    public void close_viewReplyModal(MouseEvent mouseEvent) {
+        System.out.println("Closing modal");
+
+        this.replyInput.setText("");
+            this.viewReplyModel.setVisible(false);
     }
 }
 

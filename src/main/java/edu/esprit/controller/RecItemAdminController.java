@@ -86,8 +86,6 @@ public class RecItemAdminController {
         editReclamation.setOnMouseClicked(event -> {
                 System.out.println("ID du reclamation à modifier : " + reclamation.getId());
                 RecListAdminController.reclamation = reclamation;
-
-
                 TextArea commentInput = (TextArea) ((Node) event.getSource()).getScene().lookup("#commentInput");
                 if(reclamation.getReponse()!=null)
                 commentInput.setText(reclamation.getReponse().getDescription());

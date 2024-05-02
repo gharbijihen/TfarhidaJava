@@ -12,7 +12,7 @@ import java.io.IOException;
 public class RouterController {
 
         private static Stage primaryStage;
-        private static final Duration TRANSITION_DURATION = Duration.seconds(1.0);
+        private static final Duration TRANSITION_DURATION = Duration.seconds(0.1);
 
 
         public static void setPrimaryStage(Stage stage) {
