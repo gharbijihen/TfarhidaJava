@@ -253,6 +253,7 @@ public class GuiSignupController implements Initializable {
         //java.util.Date date = java.sql.Date.valueOf(Date.getValue());
         serviceUser.add(GuiSignupController.user);
         showSuccessMessage("Votre inscription a été enregistrée avec succès");
+        SmsController.Sms();
     }
 
 }

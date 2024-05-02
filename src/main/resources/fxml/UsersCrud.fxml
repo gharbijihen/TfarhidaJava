@@ -34,7 +34,7 @@
                 <AnchorPane layoutX="114.0" layoutY="65.0" prefHeight="683.0" prefWidth="1070.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" stylesheets="@./guiadmin.css">
 
                     <children>
-                        <Pane layoutX="17.0" layoutY="96.0" prefHeight="50.0" prefWidth="856.0" style="-fx-background-color: #4D3F18;">
+                        <Pane layoutX="17.0" layoutY="96.0" prefHeight="50.0" prefWidth="856.0" style="-fx-background-color: #ffffff;">
 
                             <children>           <TableView fx:id="tableView" prefHeight="467.0" prefWidth="1042.0" stylesheets="@./guiViewTable.css">
                                 <columns>

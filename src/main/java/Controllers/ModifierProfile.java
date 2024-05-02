@@ -154,6 +154,8 @@ public class ModifierProfile implements Initializable {
                 RouterController.navigate("/fxml/ClientDashboard.fxml");
             }
             this.returnTo(e);
+            RouterController.navigate("/fxml/ClientDashboard.fxml");
+
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -161,7 +163,7 @@ public class ModifierProfile implements Initializable {
     }
     @FXML
     void returnTo(MouseEvent event) {
-
+        RouterController.navigate("/fxml/ClientDashboard.fxml");
 
     }
     @FXML
