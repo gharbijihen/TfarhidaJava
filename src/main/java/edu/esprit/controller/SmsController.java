@@ -8,7 +8,7 @@ import java.net.URI;
 import java.math.BigDecimal;
 public class SmsController {
     // Find your Account Sid and Token at twilio.com/console
-    public static final String ACCOUNT_SID = "ACe1066284a1c153e92f884d183dec7869";
+    public static final String ACCOUNT_SID = "";
     public static final String AUTH_TOKEN = "";
 
     public static void Sms() {
