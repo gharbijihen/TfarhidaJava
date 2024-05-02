@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 public class SmsController {
     // Find your Account Sid and Token at twilio.com/console
     public static final String ACCOUNT_SID = "ACe1066284a1c153e92f884d183dec7869";
-    public static final String AUTH_TOKEN = "c86cf0b4ecfe7c4685f7dbcbf59d7528";
+    public static final String AUTH_TOKEN = "";
 
     public static void Sms() {
         System.out.println("Sending SMS now");
