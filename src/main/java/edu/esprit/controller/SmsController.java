@@ -8,12 +8,11 @@ import java.net.URI;
 import java.math.BigDecimal;
 public class SmsController {
     // Find your Account Sid and Token at twilio.com/console
-    public static final String ACCOUNT_SID = "";
-    public static final String AUTH_TOKEN = "";
+
 
     public static void Sms() {
         System.out.println("Sending SMS now");
-        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+       
         Message message = Message.creator(
                 new com.twilio.type.PhoneNumber("+21696638088"),
                 new com.twilio.type.PhoneNumber("+15098222653"),
