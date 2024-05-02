@@ -13,9 +13,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
+import javafx.scene.layout.AnchorPane;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -27,10 +29,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.cert.PolicyNode;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.Map;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableCell;
 
@@ -39,7 +42,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
-
 
 
 public class AffichermoyenB {
@@ -94,6 +96,11 @@ public class AffichermoyenB {
 
     @FXML
     private Button exportPDFButton;
+    @FXML
+    private PieChart pieChart;
+
+    @FXML
+    private AnchorPane  parentPane;
 
 
 
@@ -152,7 +159,18 @@ public class AffichermoyenB {
 
         tableView.setVisible(true); // Rend la table visible par défaut
 
+
+
+
+
+
     }
+
+
+
+
+
+
 
 
     @FXML

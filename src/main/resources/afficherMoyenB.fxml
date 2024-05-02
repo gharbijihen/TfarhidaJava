@@ -5,25 +5,25 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="877.0" prefWidth="1404.0" style="-fx-background-color: #53a0ec;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.AffichermoyenB">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="913.0" prefWidth="1569.0" style="-fx-background-color: 100;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.AffichermoyenB">
     <children>
         <HBox fx:id="contentHBox" layoutX="285.0" layoutY="193.0" prefHeight="610.0" prefWidth="1121.0">
             <children>
-                <ScrollPane fx:id="logementScrollPane" prefHeight="610.0" prefWidth="1099.0">
+                <ScrollPane fx:id="logementScrollPane" prefHeight="610.0" prefWidth="1226.0">
                     <content>
-        <AnchorPane prefHeight="759.0" prefWidth="1085.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);">
+        <AnchorPane prefHeight="756.0" prefWidth="1184.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);">
             <children>
-                <TableView fx:id="tableView" layoutX="15.0" layoutY="66.0" prefHeight="467.0" prefWidth="1043.0" style="-fx-border-color: linear-gradient(to bottom right, #188ba7, #306090);" visible="true">
+                <TableView fx:id="tableView" layoutX="15.0" layoutY="66.0" prefHeight="467.0" prefWidth="1067.0" style="-fx-border-color: linear-gradient(to bottom right, #188ba7, #306090);" visible="true">
                     <columns>
-                        <TableColumn fx:id="colType" prefWidth="161.0" text="Type" />
-                        <TableColumn fx:id="colCapacite" prefWidth="161.0" text="Capacite" />
-                        <TableColumn fx:id="colLieu" prefWidth="139.0" text="Lieu" />
-                        <TableColumn fx:id="colEtat" prefWidth="150.0" text="Etat" />
-                        <TableColumn fx:id="colValide" prefWidth="161.0" text="Valide" />
-                        <TableColumn fx:id="colAction" prefWidth="150.0" text="Action" />
+                        <TableColumn fx:id="colType" prefWidth="117.0" text="Type" />
+                        <TableColumn fx:id="colCapacite" prefWidth="165.0" text="Capacite" />
+                        <TableColumn fx:id="colLieu" prefWidth="157.0" text="Lieu" />
+                        <TableColumn fx:id="colEtat" prefWidth="168.0" text="Etat" />
+                        <TableColumn fx:id="colValide" prefWidth="216.0" text="Valide" />
+                        <TableColumn fx:id="colAction" prefWidth="242.0" text="Action" />
                     </columns>
                 </TableView>
-                <HBox alignment="CENTER" layoutX="262.0" layoutY="529.0" prefHeight="76.0" prefWidth="590.0">
+                <HBox alignment="CENTER" layoutX="16.0" layoutY="531.0" prefHeight="74.0" prefWidth="1090.0">
                     <children>
 
                         <Button onAction="#handleAjouter" prefHeight="30.0" prefWidth="124.0" style="-fx-background-radius: 100;" text="Ajouter">
@@ -38,6 +38,8 @@
                                 </ImageView>
                             </graphic>
                         </Button>
+
+
 
 
                         <HBox prefHeight="79.0" prefWidth="102.0" />
@@ -74,7 +76,7 @@
                 </ScrollPane>
             </children>
         </HBox>
-        <Pane layoutX="199.0" prefHeight="74.0" prefWidth="1204.0" style="-fx-background-color: #306090;">
+        <Pane layoutX="199.0" prefHeight="74.0" prefWidth="1370.0" style="-fx-background-color: #306090;">
             <children>
                 <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="1128.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -99,7 +101,7 @@
             </children>
         </Pane>
         <Separator layoutX="29.0" layoutY="169.0" prefHeight="17.0" prefWidth="183.0" />
-        <Pane prefHeight="878.0" prefWidth="215.0" style="-fx-background-color: #ffff;">
+        <Pane prefHeight="913.0" prefWidth="215.0" style="-fx-background-color: #ffff;">
             <children>
                 <ImageView fitHeight="96.0" fitWidth="144.0" layoutX="62.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
