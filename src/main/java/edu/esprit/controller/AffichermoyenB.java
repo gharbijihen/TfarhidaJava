@@ -1,7 +1,9 @@
 package edu.esprit.controller;
 
+import com.itextpdf.text.DocumentException;
 import edu.esprit.entites.Trajet;
 import edu.esprit.servies.Moyen_transportCrud;
+import edu.esprit.servies.generatepdf;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -14,11 +16,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import javafx.scene.control.Button;
 
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javafx.scene.control.TableColumn;
@@ -82,6 +92,8 @@ public class AffichermoyenB {
     @FXML
     private FilteredList<Moyen_transport> filteredMoyensList;
 
+    @FXML
+    private Button exportPDFButton;
 
 
 
@@ -327,4 +339,23 @@ public class AffichermoyenB {
         });
 
     }
+    @FXML
+    void GeneratePdf(ActionEvent event) throws DocumentException, SQLException {
+        try {
+            ArrayList<Moyen_transport> moyens= (ArrayList<Moyen_transport>) new Moyen_transportCrud().afficher();
+            generatepdf.generatePDF(moyens, new FileOutputStream("C:\\Users\\RT0\\Desktop\\pijava\\TfarhidaJava\\Activite.pdf"), "C:\\Users\\RT0\\Desktop\\pijava\\TfarhidaJava\\src\\main\\resources\\images\\logo.png");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("PDF Généré");
+            alert.setHeaderText(null);
+            alert.setContentText("Le PDF des moyens a été généré avec succès!");
+            alert.showAndWait();
+        } catch (FileNotFoundException | DocumentException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Erreur lors de la génération du PDF des moyens: " + e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
 }

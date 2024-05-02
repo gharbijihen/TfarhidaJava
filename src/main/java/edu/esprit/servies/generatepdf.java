@@ -18,12 +18,11 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-
 import edu.esprit.entites.Moyen_transport;
 
 public class generatepdf {
 
-    public static void generatePDF(List<Activite> activites, FileOutputStream fileOutputStream, String logoPath)
+    public static void generatePDF(List<Moyen_transport> moyens, FileOutputStream fileOutputStream, String logoPath)
             throws FileNotFoundException, DocumentException {
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document, fileOutputStream);
@@ -47,36 +46,34 @@ public class generatepdf {
 
         // Titre du document
         Font fontTitle = FontFactory.getFont(FontFactory.COURIER, 20, Font.BOLD, BaseColor.BLUE);
-        Paragraph titleParagraph = new Paragraph("Liste des Activités", fontTitle);
+        Paragraph titleParagraph = new Paragraph("Liste des moyens", fontTitle);
         titleParagraph.setAlignment(Element.ALIGN_CENTER);
         document.add(titleParagraph);
         document.add(new Paragraph("\n"));
 
         // Contenu des activités
-        PdfPTable table = new PdfPTable(8); // 8 colonnes pour les détails des activités
+        PdfPTable table = new PdfPTable(6); // 8 colonnes pour les détails des activités
         table.setWidthPercentage(100);
         table.setSpacingBefore(10f);
         table.setSpacingAfter(10f);
 
         Font fontHeader = FontFactory.getFont(FontFactory.COURIER, 12, Font.BOLD);
-        addCell(table, "Nom", fontHeader);
-        addCell(table, "Prix", fontHeader);
-        addCell(table, "Localisation", fontHeader);
-        addCell(table, "Nombre de participants", fontHeader);
+        addCell(table, "Type", fontHeader);
+        addCell(table, "Capacite", fontHeader);
+        addCell(table, "Lieu", fontHeader);
         addCell(table, "Etat", fontHeader);
+        addCell(table, "Valide", fontHeader);
         addCell(table, "Image", fontHeader);
-        addCell(table, "Description", fontHeader);
-        addCell(table, "ID de catégorie", fontHeader);
 
-        for (Activite activite : activites) {
-            addCell(table, activite.getNom());
-            addCell(table, String.valueOf(activite.getPrix()));
-            addCell(table, activite.getLocalisation());
-            addCell(table, String.valueOf(activite.getNb_P()));
-            addCell(table, activite.getEtat());
-            addCell(table, activite.getImage());
-            addCell(table, activite.getDescription_act());
-            addCell(table, String.valueOf(activite.getCategorie_id()));
+
+        for (Moyen_transport moyen : moyens) {
+            addCell(table, moyen.getType());
+            addCell(table, String.valueOf(moyen.getCapacite()));
+            addCell(table, moyen.getLieu());
+            addCell(table, String.valueOf(moyen.isEtat()));
+            addCell(table, String.valueOf(moyen.isValide()));
+            addCell(table, moyen.getImage());
+
         }
 
         document.add(table);
