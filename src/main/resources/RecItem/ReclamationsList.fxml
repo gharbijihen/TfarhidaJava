@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -66,7 +67,7 @@
 
         </children>
     </VBox>
-    <HBox fx:id="addReviewsModel" alignment="CENTER" layoutX="-155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1214.0" styleClass="categoriesModel" stylesheets="@Style.css" translateX="140.0" translateY="-5.0" visible="false">
+    <HBox fx:id="addReviewsModel" alignment="CENTER" layoutX="-155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1214.0" styleClass="categoriesModel" stylesheets="@Style.css" translateX="140.0" translateY="-5.0">
         <children>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="600.0" styleClass="productAddedToCart__card" stylesheets="@Style.css">
                 <children>
@@ -201,6 +202,11 @@
                     <VBox prefHeight="167.0" prefWidth="600.0">
                         <children>
                             <ImageView fx:id="img" fitHeight="147.0" fitWidth="598.0" nodeOrientation="INHERIT" opacity="0.87" pickOnBounds="true" preserveRatio="true" />
+                     <HBox alignment="CENTER" onMouseClicked="#uploadImage" prefHeight="61.0" prefWidth="600.0">
+                        <children>
+                           <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="415.0" styleClass="error-label" stylesheets="@Style.css" text="Error" />
+                        </children>
+                     </HBox>
                         </children>
                     </VBox>
                     <HBox alignment="CENTER" prefHeight="20.0" prefWidth="600.0">
@@ -225,7 +231,7 @@
             </VBox>
         </children>
     </HBox>
-    <HBox fx:id="viewReplyModel" alignment="CENTER" layoutX="-155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1208.0" styleClass="categoriesModel" stylesheets="@Style.css" translateX="140.0" translateY="-5.0">
+    <HBox fx:id="viewReplyModel" alignment="CENTER" layoutX="-155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1208.0" styleClass="categoriesModel" stylesheets="@Style.css" translateX="140.0" translateY="-5.0" visible="false">
         <children>
             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="612.0" styleClass="productAddedToCart__card" stylesheets="@Style.css">
                 <children>

@@ -12,10 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -68,8 +65,11 @@ public class ReclamationsListController_new implements Initializable {
     public HBox updateBtn;
     public HBox viewReplyModel;
     public TextArea replyInput;
+    public Label error;
+  public HBox nameInputErrorHbox;
+  public Text nameInputError;
 
-    @FXML
+  @FXML
         private GridPane commentsListContainer;
 
         @FXML
@@ -87,6 +87,7 @@ public class ReclamationsListController_new implements Initializable {
         public void initialize(URL url, ResourceBundle rb) {
 
             this.viewReplyModel.setVisible(false);
+            this.error.setVisible(false);
 
             updateBtnContainer.setVisible(false);
             addReviewsModel.setVisible(false);
@@ -147,54 +148,88 @@ public class ReclamationsListController_new implements Initializable {
     }
     @FXML
     DatePicker dateAjout;
-    public void add_new_comment(MouseEvent mouseEvent) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, SQLException {
+        //submit add/update action
+    public void add_new_comment(MouseEvent mouseEvent) throws Exception {
         Reclamation reclamation = new Reclamation();
+        System.out.println("controle saisie");
+      if( titleInput.getText().isEmpty() || commentInput.getText().isEmpty()){
+        //    utils.TrayNotificationAlert.notif("Reclamation", "Please fill all the fields.",
+        //          NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+        this.error.setText("Please fill all the fields");
+        this.error.setVisible(true);
+        this.nameInputError.setText("Title cannot be empty");
 
+        this.nameInputErrorHbox.setVisible(true);
+        return;
+      }
+
+      if(titleInput.getText().length() < 5){
+        // utils.TrayNotificationAlert.notif("Reclamation", "Title must contain at least 5 characters.",
+        //       NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+        this.error.setText("Title must contain at least 5 characters.");
+        this.error.setVisible(true);
+        this.nameInputError.setText("Title must contain at least 5 characters");
+
+        this.nameInputErrorHbox.setVisible(true);
+
+        return;
+
+      }
         if(TypeInput.getSelectionModel().getSelectedIndex()==-1)
         {
-            utils.TrayNotificationAlert.notif("Reclamation", "Please select a type.",
-                    NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+           // utils.TrayNotificationAlert.notif("Reclamation", "Please select a type.",
+             //       NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+            this.error.setText("Please select a type for Reclamation");
+            this.error.setVisible(true);
+
             return;
         }
-        if( titleInput.getText().isEmpty() || commentInput.getText().isEmpty()){
-            utils.TrayNotificationAlert.notif("Reclamation", "Please fill all the fields.",
-                    NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-            return;
-        }
-        if(titleInput.getText().isEmpty() || commentInput.getText().isEmpty()){
-            utils.TrayNotificationAlert.notif("Reclamation", "Please fill all the fields.",
-                    NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-            return;
-        }
-        if(titleInput.getText().length() < 5){
-            utils.TrayNotificationAlert.notif("Reclamation", "Title must contain at least 5 characters.",
-                    NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-            return;
-        }
+
         if (commentInput.getText().length() < 10) {
-            utils.TrayNotificationAlert.notif("Reclamation", "Description must contain at least 10 characters.",
-                    NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+       //     utils.TrayNotificationAlert.notif("Reclamation", "Description must contain at least 10 characters.",
+         //           NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+            this.error.setText("Description must contain at least 10 characters");
+            this.error.setVisible(true);
+
+
             return;
         }
         if (commentInput.getText().length() > 255) {
-            utils.TrayNotificationAlert.notif("Reclamation", "Description must contain at most 255 characters.",
-                    NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+           // utils.TrayNotificationAlert.notif("Reclamation", "Description must contain at most 255 characters.",
+             //       NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+            error.setText("Description must contain at most 255 characters.");
+            this.error.setVisible(true);
+
+
             return;
         }
         if (titleInput.getText().length() > 15) {
-            utils.TrayNotificationAlert.notif("Reclamation", "Title must contain at most 15 characters.",
-                    NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+        //    utils.TrayNotificationAlert.notif("Reclamation", "Title must contain at most 15 characters.",
+          //          NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+            error.setText("Title must contain at most 15 characters.");
+            this.error.setVisible(true);
+
             return;
         }
         if (selectedImageFile == null)
         {
-            utils.TrayNotificationAlert.notif("Reclamation", "Please select an image.",
-                    NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+           // utils.TrayNotificationAlert.notif("Reclamation", "Please select an image.",
+             //       NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+            error.setText("Please select an image.");
+            this.error.setVisible(true);
+
             return;
         }
+
         uploadImage(selectedImageFile);
         reclamation.setImage(selectedImageFile.getName());
-        reclamation.setDescription_reclamation(commentInput.getText());
+      String description = BadWordFilter.filterText(this.commentInput.getText().trim());
+      int colonIndex = description.indexOf(":");
+      int braceIndex = description.indexOf("}");
+      System.out.println(description);
+      String extractedContent = description.substring(colonIndex + 2, braceIndex - 1).trim();
+
+      reclamation.setDescription_reclamation(extractedContent);
         reclamation.setTitre(titleInput.getText());
         reclamation.setType(TypeInput.getValue());
 
@@ -284,6 +319,9 @@ public class ReclamationsListController_new implements Initializable {
         return filename;
     }
     public static Reclamation reclamation;
+
+
+    // Update function reclamation
     public void update_reclamation(MouseEvent mouseEvent) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, SQLException {
 
         Reclamation reclamation = new Reclamation();
@@ -296,34 +334,56 @@ public class ReclamationsListController_new implements Initializable {
         review.setValue(value);
 
         String comment = commentInput.getText();*/
-        if(TypeInput.getValue().isEmpty() || titleInput.getText().isEmpty() || commentInput.getText().isEmpty()){
-            utils.TrayNotificationAlert.notif("Reclamation", "Please fill all the fields.",
-                    NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+        error.setVisible(false);
+        if(TypeInput.getSelectionModel().getSelectedIndex()==-1)
+        {
+            // utils.TrayNotificationAlert.notif("Reclamation", "Please select a type.",
+            //       NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+            error.setText("Please select a type for Reclamation");
+            error.setVisible(true);
             return;
         }
-        if(titleInput.getText().isEmpty() || commentInput.getText().isEmpty() || TypeInput.getValue().isEmpty()){
-            utils.TrayNotificationAlert.notif("Reclamation", "Please fill all the fields.",
-                    NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+        if( titleInput.getText().isEmpty() || commentInput.getText().isEmpty()){
+            //    utils.TrayNotificationAlert.notif("Reclamation", "Please fill all the fields.",
+            //          NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+            error.setText("Please fill all the fields");
+            error.setVisible(true);
+
             return;
         }
+
         if(titleInput.getText().length() < 5){
-            utils.TrayNotificationAlert.notif("Reclamation", "Title must contain at least 5 characters.",
-                    NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+            // utils.TrayNotificationAlert.notif("Reclamation", "Title must contain at least 5 characters.",
+            //       NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+            error.setText("Title must contain at least 5 characters.");
+            error.setVisible(true);
+
             return;
+
         }
         if (commentInput.getText().length() < 10) {
-            utils.TrayNotificationAlert.notif("Reclamation", "Comment must contain at least 10 characters.",
-                    NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+            //     utils.TrayNotificationAlert.notif("Reclamation", "Description must contain at least 10 characters.",
+            //           NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+            error.setText("Description must contain at least 10 characters");
+            error.setVisible(true);
+
+
             return;
         }
         if (commentInput.getText().length() > 255) {
-            utils.TrayNotificationAlert.notif("Reclamation", "Comment must contain at most 255 characters.",
-                    NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+            // utils.TrayNotificationAlert.notif("Reclamation", "Description must contain at most 255 characters.",
+            //       NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+            error.setText("Description must contain at most 255 characters.");
+            error.setVisible(true);
+
             return;
         }
         if (titleInput.getText().length() > 15) {
-            utils.TrayNotificationAlert.notif("Reclamation", "Title must contain at most 15 characters.",
-                    NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+            //    utils.TrayNotificationAlert.notif("Reclamation", "Title must contain at most 15 characters.",
+            //          NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
+            error.setText("Title must contain at most 15 characters.");
+            error.setVisible(true);
+
             return;
         }
         Reclamation rc=new Reclamation();
@@ -418,13 +478,14 @@ public class ReclamationsListController_new implements Initializable {
     public void close_viewReplyModel(MouseEvent mouseEvent) {
         System.out.println("Closing modal");
         this.replyInput.setText("");
+        this.error.setVisible(false);
         this.viewReplyModel.setVisible(false);
 
     }
 
     public void close_viewReplyModal(MouseEvent mouseEvent) {
         System.out.println("Closing modal");
-
+        this.error.setVisible(false);
         this.replyInput.setText("");
             this.viewReplyModel.setVisible(false);
     }

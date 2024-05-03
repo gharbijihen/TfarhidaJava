@@ -112,7 +112,7 @@
 
                         </children>
                     </VBox>
-                    <HBox fx:id="addReviewsModel" alignment="CENTER" layoutX="-155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1214.0" styleClass="categoriesModel" stylesheets="@Style.css" translateX="140.0" translateY="-5.0" visible="false">
+                    <HBox fx:id="addReviewsModel" alignment="CENTER" layoutX="-155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1214.0" styleClass="categoriesModel" stylesheets="@Style.css" translateX="140.0" translateY="-5.0">
                         <children>
                             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="600.0" styleClass="productAddedToCart__card" stylesheets="@Style.css">
                                 <children>
@@ -168,7 +168,7 @@
                                                     <Insets />
                                                 </VBox.margin>
                                             </TextField>
-                                            <HBox fx:id="nameInputErrorHbox" prefHeight="67.0" prefWidth="598.0" styleClass="form_errors-product" stylesheets="@Style.css" visible="false">
+                                            <HBox fx:id="nameInputErrorHbox" prefHeight="198.0" prefWidth="540.0" styleClass="form_errors-product" stylesheets="@Style.css" visible="false">
                                                 <children>
                                                     <Text fill="#dc284c" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="form_errors-product-point" text=".  " translateY="-15.0" wrappingWidth="23.18400001525879" />
                                                     <Text fx:id="nameInputError" fill="#dc284c" strokeType="OUTSIDE" strokeWidth="0.0" text="the product  name can not be empty !">
@@ -230,7 +230,7 @@
                                                     <Insets bottom="10.0" />
                                                 </padding>
                                             </HBox>
-                                            <TextArea fx:id="commentInput" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="138.0" prefWidth="539.0" promptText="Contenu" styleClass="product__add-input-textArea" />
+                                            <TextArea fx:id="commentInput" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="91.0" prefWidth="539.0" promptText="Contenu" styleClass="product__add-input-textArea" />
                                         </children>
                                     </VBox>
                                     <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="353.0" prefHeight="52.0" prefWidth="600.0">
@@ -249,6 +249,11 @@
                                     <VBox prefHeight="167.0" prefWidth="600.0">
                                         <children>
                                             <ImageView fx:id="img" fitHeight="147.0" fitWidth="598.0" nodeOrientation="INHERIT" opacity="0.87" pickOnBounds="true" preserveRatio="true" />
+                                 <VBox alignment="CENTER">
+                                    <children>
+                                       <Label fx:id="error" alignment="CENTER" contentDisplay="CENTER" prefHeight="38.0" prefWidth="394.0" styleClass="error-label" stylesheets="@../RecItem/Style.css" text="Error" />
+                                    </children>
+                                 </VBox>
                                         </children>
                                     </VBox>
                                     <HBox alignment="CENTER" prefHeight="20.0" prefWidth="600.0">
@@ -260,7 +265,7 @@
                                             </HBox>
                                         </children>
                                     </HBox>
-                                    <HBox fx:id="updateBtnContainer" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" translateX="1.0" translateY="-51.0">
+                                    <HBox fx:id="updateBtnContainer" alignment="TOP_CENTER" prefHeight="58.0" prefWidth="600.0" translateX="1.0" translateY="-51.0">
                                         <children>
                                             <HBox fx:id="updateBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#update_reclamation" prefHeight="51.0" prefWidth="121.0" styleClass="contenuShoppingBtn">
                                                 <children>
@@ -273,7 +278,7 @@
                             </VBox>
                         </children>
                     </HBox>
-                    <HBox fx:id="viewReplyModel" alignment="CENTER" layoutX="-155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1208.0" styleClass="categoriesModel" stylesheets="@Style.css" translateX="140.0" translateY="-5.0">
+                    <HBox fx:id="viewReplyModel" alignment="CENTER" layoutX="-155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1208.0" styleClass="categoriesModel" stylesheets="@Style.css" translateX="140.0" translateY="-5.0" visible="false">
                         <children>
                             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="612.0" styleClass="productAddedToCart__card" stylesheets="@Style.css">
                                 <children>
