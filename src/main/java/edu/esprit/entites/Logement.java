@@ -1,5 +1,7 @@
 package edu.esprit.entites;
 
+import edu.esprit.servies.EquipementCrud;
+
 public class Logement {
     public int id;
     public String nom;
@@ -13,10 +15,10 @@ public class Logement {
 
     public int note_moyenne;
 
+//public EquipementCrud equipementCrud;
 
-
-    public int equipement_id;
-    public Equipement equipement;
+    //public int equipement_id;
+    public Equipement equipement_id;
 
 
     public Logement(String nom, String localisation, int num, int prix, String image, String etat, String type_log, int note_moyenne) {
@@ -28,14 +30,14 @@ public class Logement {
         this.etat = etat;
         this.type_log = type_log;
         this.note_moyenne = note_moyenne;
-      //  this.equipement = equipement;
+        //  this.equipement = equipement;
     }
 
     public Logement() {
 
     }
 
-    public Logement(int id, int equipement_id, String nom, int prix, String localisation, int num, String etat, int note_moyenne, String type_log, String image) {
+    public Logement(int id, Equipement equipement_id, String nom, int prix, String localisation, int num, String etat, int note_moyenne, String type_log, String image) {
         this.id = id;
         this.equipement_id = equipement_id;
         this.nom = nom;
@@ -50,11 +52,11 @@ public class Logement {
     }
 
 
-    public int getEquipement_id() {
+    public Equipement getEquipement_id() {
         return equipement_id;
     }
 
-    public void setEquipement_id(int equipement_id) {
+    public void setEquipement_id(Equipement equipement_id) {
         this.equipement_id = equipement_id;
     }
 
@@ -134,13 +136,6 @@ public class Logement {
 
 
 
-    public Equipement getEquipement() {
-        return equipement;
-    }
-
-    public  void setEquipement(Equipement equipement) {
-        this.equipement = equipement;
-    }
 
     @Override
     public String toString() {
@@ -154,7 +149,7 @@ public class Logement {
                 ", etat='" + etat + '\'' +
                 ", type_log='" + type_log + '\'' +
                 ", note_moyenne=" + note_moyenne +
-                ", equipement=" + equipement +
+                ", equipement=" + equipement_id +
                 '}';
     }
 }

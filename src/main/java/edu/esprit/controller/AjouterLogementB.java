@@ -121,7 +121,7 @@ public class AjouterLogementB {
             LogementCrud service = new LogementCrud();
             Logement log;
             service.ajouter(log =new Logement(nomL, localisationL, numL, prixL, imageL, "en cours", typeLog, noteL));
-
+            System.out.println("loggg eli tzed"+log);
             showAlert("Logement ajouté", "Votre logement a été ajouté avec succès.");
 
             // Effacez les champs et réinitialisez l'image
@@ -153,18 +153,19 @@ public class AjouterLogementB {
         imageView.setImage(null);
         selectedImageFile = null;
     }
-        @FXML
-        void naviguezVersEquipement(ActionEvent event,Logement logement) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterEquipementB.fxml"));
-                Parent root = loader.load();
-                nom.getScene().setRoot(root);
-                AjouterEquipementB controller = loader.getController();
-                controller.initData(logement);
-            } catch (IOException e) {
-                System.err.println(e.getMessage());
-            }
+    @FXML
+    void naviguezVersEquipement(ActionEvent event,Logement logement) {
+        try {
+            //System.out.println(logement+"navigiha");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterEquipementB.fxml"));
+            Parent root = loader.load();
+            nom.getScene().setRoot(root);
+            AjouterEquipementB controller = loader.getController();
+            controller.initData(logement);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
         }
+    }
 
 
     private boolean isInputValid() {
@@ -234,8 +235,6 @@ public class AjouterLogementB {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
-
 
 
 

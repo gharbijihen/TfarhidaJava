@@ -25,6 +25,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 
 public class ModifierLogementB {
@@ -74,54 +75,56 @@ public class ModifierLogementB {
     @FXML
     private ComboBox<String> type_log;
 
-
-
+    private String img;
+    private Image image;
+    private Image imageGet;
     private Logement logement;
     private File selectedImageFile;
     ObservableList<String> typeLog = FXCollections.observableArrayList(Data.typeLogement);
 
     private String imagePathInDatabase;
 
-    public void initData(Logement logement, File selectedImageFile) {
-        this.logement = logement; // Assigner l'activité reçue à la variable de classe
-        // Utilisez les données de l'activité pour initialiser les champs de saisie
+    public void initData(Logement logement) {
+        this.logement = logement;
+
+        this.img= logement.getImage();
+
         nom.setText(logement.getNom());
         prix.setText(String.valueOf(logement.getPrix()));
         type_log.setItems(typeLog);
-       // typelLog.setText(String.valueOf(logement.getType_log()));
+        type_log.setValue(logement.getType_log());
         localisation.setText(logement.getLocalisation());
         note.setText(String.valueOf(logement.getNote_moyenne()));
-        num.setText(String.valueOf(logement.getNote_moyenne()));
-        equipementId.setText(String.valueOf(logement.getEquipement()));
+        num.setText(String.valueOf(logement.getNum()));
+
         if (selectedImageFile != null) {
-            // Affichez l'image sélectionnée dans l'ImageView
-            try {
+              try {
                 Image image = new Image(new FileInputStream(selectedImageFile));
                 imageView.setImage(image);
             } catch (FileNotFoundException e) {
                 System.out.println("Erreur lors du chargement de l'image : " + e.getMessage());
             }
         } else {
-            // Aucun fichier image sélectionné, conservez l'image existante de l'activité
-            String imagePath = logement.getImage();
+              String imagePath = logement.getImage();
             File imageFile = new File(imagePath);
             if (imageFile.exists()) {
                 Image image = new Image(imageFile.toURI().toString());
                 imageView.setImage(image);
             } else {
-                // Le fichier image n'existe pas, affichez un message d'erreur ou une image par défaut
                 System.out.println("Le fichier image n'existe pas : " + imagePath);
             }
         }
-       /* String imagePath = activite.getImage();
-        File imageFile = new File(imagePath);
-        if (imageFile.exists()) {
-            Image image = new Image(imageFile.toURI().toString());
-            imageView.setImage(image);
-        } else {
-            // Le fichier image n'existe pas, affichez un message d'erreur ou une image par défaut
-            System.out.println("Le fichier image n'existe pas : " + imagePath);
-        }*/
+
+        String path = logement.getImage();
+        try {
+            imageGet = new Image(new File(path).toURI().toURL().toString(), 207, 138, false, true);
+            imageView.setImage(imageGet);
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("imagini"+logement.getImage());
+
     }
     @FXML
     void modifierLogementAction(ActionEvent event) {
@@ -162,14 +165,12 @@ public class ModifierLogementB {
             type_log.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
         }
         if (isInputValid()) {
-            // Récupérer l'ID de l'activité sélectionnée
+
             int LogementId = logement.getId();
 
-            // Si l'ID de l'activité est valide
+
             if (LogementId != 0) {
-                // Récupérez d'abord les nouvelles valeurs saisies par l'utilisateur dans les champs de texte
-                try {
-                    int equipement_Id = Integer.parseInt(equipementId.getText());
+                    try {
                     String nomL = nom.getText();
                     String typeL = type_log.getValue();
                     int prixL = Integer.parseInt(prix.getText());
@@ -187,35 +188,27 @@ public class ModifierLogementB {
                     logementModifiee.setLocalisation(localisationL);
                     logementModifiee.setType_log(typeL);
 
-                    // Si une nouvelle image a été sélectionnée, mettez à jour le chemin de l'image
-                    if (selectedImageFile != null) {
+                     if (selectedImageFile != null) {
                         logementModifiee.setImage(selectedImageFile.getAbsolutePath());
                     } else {
-                        // Si aucune nouvelle image n'a été sélectionnée, conservez le chemin de l'image existante
                         logementModifiee.setImage(logement.getImage());
                     }
 
-                    // Utilisez votre service ActiviteCrud pour mettre à jour l'activité dans la base de données
-                    LogementCrud service = new LogementCrud();
+                      LogementCrud service = new LogementCrud();
                     service.modifier(logementModifiee);
 
                     System.out.println("Logement modifiée avec succès !");
                     showAlert("Logement modifiee", "Votre logement a été modiffie avec succès.");
 
-                    // Vous pouvez également afficher une boîte de dialogue ou un message pour informer l'utilisateur
-                } catch (NumberFormatException e) {
+                       } catch (NumberFormatException e) {
                     System.out.println("Erreur de format : Assurez-vous que les champs Prix et nombre de chambre  Participant sont des nombres entiers.");
-                    // Afficher un message d'erreur dans l'interface utilisateur
-                }
+                    }
             } else {
                 System.out.println("L'ID de l'activité sélectionnée est invalide.");
-                // Afficher un message d'erreur dans l'interface utilisateur
-            }
+                   }
         } else {
-            // Les données saisies par l'utilisateur ne sont pas valides, affichez un message d'erreur ou effectuez une action appropriée
-            System.out.println("Les données saisies ne sont pas valides. Veuillez vérifier les champs.");
-            // Vous pouvez également afficher des messages d'erreur spécifiques à chaque champ si nécessaire
-        }
+              System.out.println("Les données saisies ne sont pas valides. Veuillez vérifier les champs.");
+           }
         naviguezVersEquipement(event);
 
     }
@@ -310,4 +303,22 @@ public class ModifierLogementB {
         }
     }
 
+    @FXML
+    void updateEquip(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/modifierEquipement.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+
+            System.out.println(logement+"new here we go");
+            Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+            ModifierEquipement modifierEquipement=loader.getController();
+            modifierEquipement.initData(logement.equipement_id);
+            stage.setTitle("One Equip");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

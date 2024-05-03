@@ -8,12 +8,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class ModifierEquipement {
@@ -54,8 +61,7 @@ public class ModifierEquipement {
 
 
     public void initData(Equipement equipement) {
-        this.equipement = equipement; // Assigner la catégorie reçue à la variable de classe
-        // Utilisez les données de la catégorie pour initialiser les champs de saisie
+        this.equipement = equipement;
         typeChambre.setText(equipement.getTypes_de_chambre());
         DescriptionEquipement.setText(equipement.getDescription());
         nbrChambre.setText(String.valueOf(equipement.getNbr_chambre()));
@@ -68,46 +74,34 @@ public class ModifierEquipement {
 
     @FXML
     void modifierEquipementAction(ActionEvent event) {
-        if (isInputValid()) {
-            // Récupérer l'ID de la catégorie sélectionnée
-            int equipementId = equipement.getId();
 
-            // Si l'ID de la catégorie est valide
+            int equipementId = equipement.getId();
             if (equipementId != 0) {
-                // Récupérez d'abord les nouvelles valeurs saisies par l'utilisateur dans les champs de texte
                 String typeChambreE = typeChambre.getText();
                 String description = DescriptionEquipement.getText();
-                int nbrChambreE= Integer.parseInt(nbrChambre.getText());
-                Boolean parkingE = Boolean.valueOf(parking.getText());
-                Boolean climatitationE = Boolean.valueOf(climatitation.getText());
-                Boolean internetE = Boolean.valueOf(internet.getText());
+                int nbrChambreE = Integer.parseInt(nbrChambre.getText());
+                boolean parkingE = parking.isSelected();
+                boolean climatitationE = climatitation.isSelected();
+                boolean internetE = internet.isSelected();
 
-                // Créez un objet Categorie avec les nouvelles valeurs
                 Equipement equipementModifiee = new Equipement();
-                equipementModifiee.setId(equipementId); // Assurez-vous de définir l'ID de la catégorie
+                equipementModifiee.setId(equipementId);
                 equipementModifiee.setTypes_de_chambre(typeChambreE);
                 equipementModifiee.setDescription(description);
                 equipementModifiee.setNbr_chambre(nbrChambreE);
                 equipementModifiee.setParking(parkingE);
-                equipementModifiee.setInetrnet(internetE);
                 equipementModifiee.setClimatisation(climatitationE);
+                equipementModifiee.setInetrnet(internetE);
 
-
-                // Utilisez votre service CategorieCrud pour mettre à jour la catégorie dans la base de données
                 EquipementCrud service = new EquipementCrud();
-                // Appelez la méthode modifier de votre service pour mettre à jour la catégorie
                 service.modifier(equipementModifiee);
-                System.out.println("Equipement mise à jour avec succès !");
-                // Vous pouvez également afficher une boîte de dialogue ou un message pour informer l'utilisateur
+                System.out.println("Equipement mis à jour avec succès !");
+                showAlert("Logement modifiee", "Votre logement a été modiffie avec succès.");
+
             } else {
                 System.out.println("L'ID de l'equipement sélectionnée est invalide.");
-                // Afficher un message d'erreur dans l'interface utilisateur
             }
-        } else {
-            // Les données saisies par l'utilisateur ne sont pas valides, affichez un message d'erreur ou effectuez une action appropriée
-            System.out.println("Les données saisies ne sont pas valides. Veuillez vérifier les champs.");
-            // Vous pouvez également afficher des messages d'erreur spécifiques à chaque champ si nécessaire
-        }
+        naviguezVersEquipement(event);
     }
 
     // Méthode de validation des données saisies par l'utilisateur
@@ -140,6 +134,35 @@ public class ModifierEquipement {
     @FXML
     void CancelAction(ActionEvent event) {
 
+    }
+    private void showAlert(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+    @FXML
+    void naviguezVersEquipement(ActionEvent event) {
+
+        try {
+            // Charger le fichier FXML de la nouvelle page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementAffB.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène sur la fenêtre et l'afficher
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     }
 

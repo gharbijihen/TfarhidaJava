@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.DetailsLogementController">
+   <children>
+      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="526.0" prefWidth="798.0" stylesheets="@dashboardDesign.css">
+         <children>
+            <ImageView fx:id="img" fitHeight="231.0" fitWidth="265.0" layoutX="99.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="474.0" layoutY="40.0" prefHeight="23.0" prefWidth="131.0" text="Nom logement  :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="nomLog" layoutX="631.0" layoutY="41.0" text="nomLog">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="474.0" layoutY="80.0" prefHeight="23.0" prefWidth="131.0" text="Type logement :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="typeLog" layoutX="631.0" layoutY="80.0" prefHeight="22.0" prefWidth="85.0" text="typeLog">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="476.0" layoutY="122.0" prefHeight="23.0" prefWidth="131.0" text="Localisation:">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="localLog" layoutX="631.0" layoutY="122.0" prefHeight="22.0" prefWidth="85.0" text="localLog">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="476.0" layoutY="161.0" prefHeight="23.0" prefWidth="131.0" text="Prix :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button fx:id="delete" layoutX="689.0" layoutY="469.0" mnemonicParsing="false" onAction="#delete" prefHeight="35.0" prefWidth="88.0" styleClass="delete-btn" stylesheets="@../../../../tunArtProject/src/main/resources/dashboardDesign.css" text="Supprimer" />
+            <Button fx:id="update" layoutX="595.0" layoutY="469.0" mnemonicParsing="false" onAction="#ModifierLogement" prefHeight="35.0" prefWidth="88.0" styleClass="update-btn" stylesheets="@../../../../tunArtProject/src/main/resources/dashboardDesign.css" text="Modifier" />
+            <Label fx:id="prixLog" layoutX="631.0" layoutY="161.0" prefHeight="22.0" prefWidth="85.0" stylesheets="@../../../../tunArtProject/src/main/resources/dashboardDesign.css" text="prixLog">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Button layoutX="8.0" layoutY="14.0" mnemonicParsing="false" onAction="#Retour" styleClass="import-btn" stylesheets="@../../../../tunArtProject/src/main/resources/dashboardDesign.css" text="Retour" />
+            <Label layoutX="474.0" layoutY="205.0" prefHeight="23.0" prefWidth="131.0" text="Note Moyenne :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="noteMoy" layoutX="629.0" layoutY="205.0" prefHeight="22.0" prefWidth="85.0" stylesheets="@../../../../tunArtProject/src/main/resources/dashboardDesign.css" text="noteMoy">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="474.0" layoutY="244.0" prefHeight="23.0" prefWidth="131.0" text="Etat :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="etatLog" layoutX="629.0" layoutY="244.0" prefHeight="22.0" prefWidth="85.0" stylesheets="@../../../../tunArtProject/src/main/resources/dashboardDesign.css" text="etatLog">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="474.0" layoutY="286.0" prefHeight="23.0" prefWidth="131.0" text="num :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="numLog" layoutX="629.0" layoutY="286.0" prefHeight="22.0" prefWidth="85.0" stylesheets="@../../../../tunArtProject/src/main/resources/dashboardDesign.css" text="numLog">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="34.0" layoutY="337.0" prefHeight="23.0" prefWidth="131.0" styleClass="titre" text="Equipements :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="34.0" layoutY="376.0" prefHeight="23.0" prefWidth="131.0" text="Parking :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="parking" layoutX="189.0" layoutY="376.0" prefHeight="22.0" prefWidth="85.0" stylesheets="@../../../../tunArtProject/src/main/resources/dashboardDesign.css" text="parking">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="34.0" layoutY="415.0" prefHeight="23.0" prefWidth="131.0" text="Climatisation :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="clim" layoutX="189.0" layoutY="415.0" prefHeight="22.0" prefWidth="85.0" stylesheets="@../../../../tunArtProject/src/main/resources/dashboardDesign.css" text="clim">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="34.0" layoutY="457.0" prefHeight="23.0" prefWidth="131.0" text="Internet :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="internet" layoutX="189.0" layoutY="457.0" prefHeight="22.0" prefWidth="85.0" stylesheets="@../../../../tunArtProject/src/main/resources/dashboardDesign.css" text="internet">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="15.0" prefHeight="23.0" prefWidth="131.0" styleClass="titre-grand" stylesheets="@dashboardDesign.css" text="Détails :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="279.0" layoutY="374.0" prefHeight="23.0" prefWidth="131.0" text="Nombre chambres :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="nbrCham" layoutX="434.0" layoutY="374.0" prefHeight="22.0" prefWidth="85.0" stylesheets="@../../../../tunArtProject/src/main/resources/dashboardDesign.css" text="nbrCham">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="279.0" layoutY="413.0" prefHeight="23.0" prefWidth="131.0" text="Types de chambre :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="typeCham" layoutX="434.0" layoutY="413.0" prefHeight="22.0" prefWidth="85.0" stylesheets="@../../../../tunArtProject/src/main/resources/dashboardDesign.css" text="typeCham">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="279.0" layoutY="455.0" prefHeight="23.0" prefWidth="131.0" text="Description :">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="desc" layoutX="434.0" layoutY="455.0" prefHeight="22.0" prefWidth="85.0" stylesheets="@../../../../tunArtProject/src/main/resources/dashboardDesign.css" text="desc">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

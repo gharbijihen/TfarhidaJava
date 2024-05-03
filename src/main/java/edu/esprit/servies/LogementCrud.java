@@ -21,27 +21,29 @@ public class LogementCrud implements IcrudL<Logement>{
 
     @Override
     public boolean ajouter(Logement logement) {
-        String req1 = "INSERT INTO logement(nom,prix,localisation,num,image,note_moyenne,etat,type_log) VALUES (?,?,?,?,?,?,?,?)";
+        String req1 = "INSERT INTO logement(nom, prix, localisation, num, image, note_moyenne, etat, type_log) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try {
-            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req1);
-            pst.setString(1, logement.getNom()); //tab3a ? eli fel values
+            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req1, Statement.RETURN_GENERATED_KEYS);
+            pst.setString(1, logement.getNom());
             pst.setInt(2, logement.getPrix());
             pst.setString(3, logement.getLocalisation());
             pst.setInt(4, logement.getNum());
             pst.setString(5, logement.getImage());
             pst.setInt(6, logement.getNote_moyenne());
             pst.setString(7, logement.getEtat());
+            pst.setString(8, logement.getType_log());
 
-           // pst.setInt(9, logement.getEquipement_id());
-            pst.setString(8,logement.getType_log());
-          //  pst.setInt(9, logement.getEquipement().getId());// Utiliser l'ID de l'équipement associé au logement
+            int rowsAffected = pst.executeUpdate();
 
-           // pst.setInt(9, logement.getUser_id());
-           // pst.setInt(10, logement.getEquipement_id());
-
-
-            pst.executeUpdate();
-            System.out.println("logement ajoutéé!");
+            if (rowsAffected == 1) {
+                // Retrieve the generated id
+                ResultSet rs = pst.getGeneratedKeys();
+                if (rs.next()) {
+                    int generatedId = rs.getInt(1);
+                    logement.setId(generatedId);
+                    return true;
+                }
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
@@ -101,9 +103,15 @@ public class LogementCrud implements IcrudL<Logement>{
                 logement.setEtat(rs.getString("etat"));
                 logement.setType_log(rs.getString("type_log"));
                 logement.setNote_moyenne(rs.getInt("note_moyenne"));
-                logement.setEquipement_id(rs.getInt("equipement_id"));
+
+                int equi_id=rs.getInt("equipement_id");
+
+                EquipementCrud equipementCrud = new EquipementCrud();
+                Equipement equipement=equipementCrud.getById(equi_id);
+                System.out.println("hedhhhaaah"+equipement);
+
                 EquipementCrud equipementservice=new EquipementCrud();
-                logement.setEquipement(equipementservice.getById(logement.getEquipement_id()));
+                logement.setEquipement_id(equipement);
                 logements.add(logement);
             }
         } catch (SQLException e) {
@@ -111,7 +119,17 @@ public class LogementCrud implements IcrudL<Logement>{
         }
         return logements;
     }
+    public void associerEquipementALogement(Logement logement, Equipement equipement) throws SQLException {
+        String sql = "UPDATE logement SET equipement_id = ? WHERE id = ?";
+        PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(sql);
 
+        System.out.println("eq"+equipement.getId()+"log"+logement.getId());
+        pst.setInt(1, equipement.getId());
+        pst.setInt(2, logement.getId());
+
+        pst.executeUpdate();
+
+    }
 
     public static Logement getLogementParId(int id) {
         Connection conn = null;
@@ -131,7 +149,10 @@ public class LogementCrud implements IcrudL<Logement>{
             rs = stmt.executeQuery();
 
             if (rs.next()) {
-                int equipement_id = rs.getInt("equipement_id");
+                int equi_id=rs.getInt("equipement_id");
+                EquipementCrud equipementCrud = new EquipementCrud();
+                Equipement equipement=equipementCrud.getById(equi_id);
+
                 String nom = rs.getString("nom");
                 int prix = rs.getInt("prix");
                 String localisation = rs.getString("localisation");
@@ -141,7 +162,7 @@ public class LogementCrud implements IcrudL<Logement>{
                 String image = rs.getString("image");
                 String type_log = rs.getString("type_log");
 
-                logement = new Logement(id, equipement_id, nom, prix, localisation, num, etat, note_moyenne,type_log,image);
+                logement = new Logement(id, equipement, nom, prix, localisation, num, etat, note_moyenne,type_log,image);
             } else {
                 System.out.println("Aucune activité trouvée avec l'ID : " + id);
             }

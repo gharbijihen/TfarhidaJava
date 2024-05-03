@@ -13,6 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
@@ -25,104 +27,77 @@ import java.util.Optional;
 public class afficherLogementB {
     @FXML
     private HBox contentHBox;
-    @FXML
-    private Button logementButton;
-    @FXML
-    private TableColumn<Logement, Void> colAction;
 
     @FXML
-    private TableColumn<Logement,String> colEtat;
+    private GridPane gridLog;
 
     @FXML
-    private TableColumn<Logement,Integer> colIdEquipement;
+    private TextField searchLog;
 
-    @FXML
-    private TableColumn<Logement, Integer> colIdUser;
-
-    @FXML
-    private TableColumn<Logement,String> colLocalisation;
-
-    @FXML
-    private TableColumn<Logement,String> colNom;
-
-    @FXML
-    private TableColumn<Logement,Integer> colNote;
-
-    @FXML
-    private TableColumn<Logement,Integer> colNum;
-
-    @FXML
-    private TableColumn<Logement,Integer> colPrix;
-
-    @FXML
-    private TableColumn<Logement,String> colTypeLog;
-    @FXML
-    private TableView<Logement> tableView;
-
-    @FXML
-    private ScrollPane logementScrollPane;
-    @FXML
-    private final LogementCrud ps = new LogementCrud();
-    private File selectedImageFile;
-
-    public List<Logement> logements = ps.afficher();
-
-    public ObservableList<Logement> observableList = FXCollections.observableArrayList(logements);
-    // Dans afficherLogementB.java
-
-    public void initialize() {
-        tableView.setItems(observableList);
-      //  colIdUser.setCellValueFactory(new PropertyValueFactory<>("user_id"));
-        colIdEquipement.setCellValueFactory(new PropertyValueFactory<>("equipement_id"));
-        colTypeLog.setCellValueFactory(new PropertyValueFactory<>("type_log"));
-        colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
-        colNote.setCellValueFactory(new PropertyValueFactory<>("note_moyenne"));
-        colLocalisation.setCellValueFactory(new PropertyValueFactory<>("localisation"));
-        colPrix.setCellValueFactory(new PropertyValueFactory<>("prix"));
-        colNum.setCellValueFactory(new PropertyValueFactory<>("num"));
-        colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
-        colAction.setCellFactory(cell -> new ActionCell());
+    private final LogementCrud logementCrud = new LogementCrud();
+    private ObservableList<Logement> logementList = FXCollections.observableArrayList();
 
 
+
+    public ObservableList<Logement> getAllLogementCard() throws SQLException {
+        logementList.addAll(logementCrud.afficher());
+        System.out.println(logementList);
+        return logementList;
     }
 
-    @FXML
-    private void afficherLogementB() {
-            tableView.setVisible(true);
+    public void displayLogementCards(ObservableList<Logement> logementsList) {
+        gridLog.getRowConstraints().clear();
+        gridLog.getColumnConstraints().clear();
+        int row = 0;
+        int column = 0;
+        for (Logement logement : logementsList) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementCard.fxml"));
+                AnchorPane pane = loader.load();
+                LogementCardController logCard = loader.getController();
+                logCard.setData(logement);
+                logCard.setLogement(logement);
+                gridLog.addRow(row);
+                gridLog.add(pane, column, row);
 
-
-    }
-
-    @FXML
-    void deleteAction(ActionEvent event) {
-            // Récupérer l'élément sélectionné dans le TableView
-            Logement logementSelectionnee = tableView.getSelectionModel().getSelectedItem();
-
-            // Vérifier si un élément est sélectionné
-            if (logementSelectionnee != null) {
-                // Afficher une boîte de dialogue de confirmation
-                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                alert.setTitle("Confirmation de suppression");
-                alert.setHeaderText("Supprimer le logement sélectionné");
-                alert.setContentText("Êtes-vous sûr de vouloir supprimer ce logement ?");
-
-                Optional<ButtonType> result = alert.showAndWait();
-                if (result.isPresent() && result.get() == ButtonType.OK) {
-                    // Supprimer l'élément de la liste ou de la base de données
-                    LogementCrud service = new LogementCrud();
-                    try {
-                        service.supprimer(logementSelectionnee);
-                        // Rafraîchir le TableView après la suppression
-                        tableView.getItems().remove(logementSelectionnee);
-                        System.out.println("Activité supprimée avec succès !");
-                    } catch (SQLException e) {
-                        System.out.println("Erreur lors de la suppression de l'activité : " + e.getMessage());
-                    }
+                column++;
+                if (column == 2) {
+                    column = 0;
+                    row++;
                 }
-            } else {
-                // Afficher un message d'erreur ou une boîte de dialogue indiquant à l'utilisateur de sélectionner une activité à supprimer
+            } catch (Exception e) {
+                System.out.println(e);
             }
         }
+    }
+
+    private void filterData(String searchText) {
+        ObservableList<Logement> filteredList = FXCollections.observableArrayList();
+        for (Logement logement : logementList) {
+            if (logement.getNom().toLowerCase().contains(searchText.toLowerCase())) {
+                filteredList.add(logement);
+            }
+        }
+        gridLog.getChildren().clear();
+        displayLogementCards(filteredList);
+    }
+
+    public void initialize() {
+        try {
+            getAllLogementCard();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        displayLogementCards(logementList);
+        searchLog.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterData(newValue);
+        });
+
+    }
+
+
+
 
 
     @FXML
@@ -144,41 +119,7 @@ public class afficherLogementB {
     }
 
 
-    @FXML
-    public void modifierLogementAction(ActionEvent event) {
-        // Récupérer l'activité sélectionnée dans le TableView
-        Logement logementSelectionnee = tableView.getSelectionModel().getSelectedItem();
 
-        // Vérifier si une activité est sélectionnée
-        if (logementSelectionnee != null) {
-            // Ouvrir la page de modification avec les données de l'activité sélectionnée
-            openModifierLogementPage(logementSelectionnee);
-        } else {
-            // Afficher un message d'erreur ou une boîte de dialogue indiquant à l'utilisateur de sélectionner une activité
-        }
-        afficherLogementB();
-    }
-
-    @FXML
-    public void openModifierLogementPage(Logement logement) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/logementModifier.fxml"));
-            Parent root = loader.load();
-            ModifierLogementB modifierController = loader.getController();
-            modifierController.initData(logement, selectedImageFile); // Transmettre également le fichier d'image sélectionné
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-  //  private void refreshTable()
-   // {
-       // observableList.clear();
-       // observableList = LogementCrud.afficher();
-     //   tableView.setItems(observableList);
-   // }
   @FXML
   public void goToafficherNavBar(ActionEvent event) {
       try {

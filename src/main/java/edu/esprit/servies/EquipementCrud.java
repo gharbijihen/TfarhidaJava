@@ -14,20 +14,30 @@
         public boolean ajouter(Equipement equipement) {
             String req1 = "INSERT INTO equipement (parking, internet, climatisation, nbr_chambre, description, types_de_chambre) VALUES (?, ?, ?, ?, ?, ?)";
             try {
-                PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req1);
+                PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req1, Statement.RETURN_GENERATED_KEYS);
                 pst.setBoolean(1, equipement.isParking());
                 pst.setBoolean(2, equipement.isInternet());
                 pst.setBoolean(3, equipement.isClimatisation());
                 pst.setInt(4, equipement.getNbr_chambre());
                 pst.setString(5, equipement.getDescription());
                 pst.setString(6, equipement.getTypes_de_chambre());
-                pst.executeUpdate();
-                System.out.println("Equipement ajouté!");
-                return true; // Retourne true si l'ajout est réussi
+
+                int rowsAffected = pst.executeUpdate();
+
+                if (rowsAffected == 1) {
+                    // Retrieve the generated id
+                    ResultSet rs = pst.getGeneratedKeys();
+                    if (rs.next()) {
+                        int generatedId = rs.getInt(1);
+                        equipement.setId(generatedId);
+                        System.out.println("Equipement ajouté avec succès ! ID généré : " + generatedId);
+                        return true;
+                    }
+                }
             } catch (SQLException e) {
-                System.out.println(e.getMessage());
-                return false; // Retourne false si une exception est levée
+                System.out.println("Erreur lors de l'ajout de l'équipement : " + e.getMessage());
             }
+            return false;
         }
         /*
         public int ajouterreturnsID(Equipement reponse) {
@@ -60,8 +70,8 @@
         }
          */
         // Autres méthodes de la classe
-        public Equipement getById(int id) throws SQLException {
-            String query = "SELECT * FROM reponse WHERE id = ?";
+        public Equipement getById(int id) {
+            String query = "SELECT * FROM equipement WHERE id = ?";
             try {
                 PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
                 pst.setInt(1, id);
@@ -70,11 +80,12 @@
                     Equipement rec = new Equipement();
                     rec.setId(rs.getInt("id"));
                     rec.setDescription(rs.getString("description"));
-                    rec.setDescription(rs.getString("parking"));
-                    rec.setDescription(rs.getString("intertnet"));
-                    rec.setDescription(rs.getString("climatisation"));
-                    rec.setDescription(rs.getString("type_de_chambre"));
-                    rec.setDescription(rs.getString("nbr_chambre"));
+                    rec.setParking(rs.getBoolean("parking"));
+                    rec.setInetrnet(rs.getBoolean("internet"));
+                    rec.setClimatisation(rs.getBoolean("climatisation"));
+                    rec.setTypes_de_chambre(rs.getString("types_de_chambre"));
+                    rec.setNbr_chambre(rs.getInt("nbr_chambre"));
+                    System.out.println("Equipement found: " + rec);
                     return rec;
                 }
             } catch (SQLException e) {

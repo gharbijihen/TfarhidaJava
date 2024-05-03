@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -65,7 +66,7 @@ public class AjouterEquipement implements Initializable {
     private TextField typeChambre;
 
     @FXML
-    void ajouterEquipementAction(ActionEvent event) {
+    void ajouterEquipementAction(ActionEvent event) throws SQLException {
         if (isInputValid()) {
             boolean climatisationE = climatitation.isSelected();
             boolean internetE = internet.isSelected();

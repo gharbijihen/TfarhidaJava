@@ -3,15 +3,23 @@ package edu.esprit.controller;
 import edu.esprit.entites.Equipement;
 import edu.esprit.entites.Logement;
 import edu.esprit.servies.EquipementCrud;
+import edu.esprit.servies.LogementCrud;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.awt.*;
+import java.io.IOException;
+import java.sql.SQLException;
 
 public class AjouterEquipementB {
 
@@ -50,7 +58,7 @@ public class AjouterEquipementB {
     private TextField nomLogementField;
     private Logement logement;
     @FXML
-    void ajouterEquipementAction(ActionEvent event)  {
+    void ajouterEquipementAction(ActionEvent event) throws SQLException {
 
 
         if (isInputValid()) {
@@ -62,14 +70,15 @@ public class AjouterEquipementB {
             String types_de_chambre = typeChambre.getText();
 
             EquipementCrud service = new EquipementCrud();
-            
+
 
             Equipement equipement;
             boolean ajoutReussi = service.ajouter( equipement = new Equipement(parkingE, internetE, climatisationE, nbrChambreE, types_de_chambre, descriptionE));
-            logement.setEquipement_id(equipement.getId());
+           //logement.setEquipement_id(equipement.getId());
             if (ajoutReussi) {
                 // Afficher un message dans le terminal
                 System.out.println("Equipement ajouté");
+                System.out.println("hedha eqq"+equipement);
 
                 showAlert("Equipement ajoutée", "Votre equipement a été ajoutée avec succès.");
 
@@ -80,6 +89,27 @@ public class AjouterEquipementB {
                 DescriptionEquipement.clear();
                 typeChambre.clear();
                 nbrChambre.clear();
+                System.out.println(logement+"log equipe");
+                // Associate equipment with lodging
+                LogementCrud logementCrud = new LogementCrud();
+                logementCrud.associerEquipementALogement(logement, equipement);
+
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementAffB.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+
+                    // Refresh the list by initializing the controller again
+                    afficherLogementB controller = loader.getController();
+                    //controller.initialize(); // You may need to create this method in your list controller
+
+                    // Show the list scene
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else {
                 // Afficher un message d'erreur dans le terminal
                 System.out.println("Échec de l'ajout de l'équipement");
@@ -130,6 +160,7 @@ public class AjouterEquipementB {
 
     public void initData(Logement logement) {
         this.logement = logement;
+
         // Initialiser les champs de la page avec les données du logement
         // Initialiser les autres champs avec les autres données du logement
     }
