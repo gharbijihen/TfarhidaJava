@@ -1,6 +1,7 @@
 package Controllers;
 import Entities.User;
 import Service.ServiceUser;
+import Service.generatepdf;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,12 +16,15 @@ import javafx.scene.layout.VBox;
 import javafx.util.Callback;
 
 import java.io.ByteArrayInputStream;
+import java.io.FileOutputStream;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+import com.itextpdf.text.DocumentException;
 
 public class UsersCrudController implements Initializable {
     private final ServiceUser serviceUser = new ServiceUser();
@@ -323,5 +327,23 @@ public class UsersCrudController implements Initializable {
     }
 
     public void searchquery(KeyEvent keyEvent) {
+    }
+    @FXML
+    void GeneratePdf(ActionEvent event) throws DocumentException, SQLException {
+        try {
+            ArrayList<User > users= (ArrayList<User>) new ServiceUser().ReadAll();
+            generatepdf.generatePDF(users, new FileOutputStream("C:\\Users\\MSI\\IdeaProjects\\Users.pdf"), "C:\\Users\\MSI\\Downloads\\tfarhida2\\src\\main\\resources\\assets\\tfarhida.png");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("PDF Généré");
+            alert.setHeaderText(null);
+            alert.setContentText("Le PDF  a été généré avec succès!");
+            alert.showAndWait();
+        } catch (FileNotFoundException | DocumentException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Erreur lors de la génération du PDF des Activités: " + e.getMessage());
+            alert.showAndWait();
+        }
     }
 }
