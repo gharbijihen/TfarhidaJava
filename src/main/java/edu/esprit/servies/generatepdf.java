@@ -92,3 +92,14 @@ public class generatepdf {
         table.addCell(cell);
     }
 }
+
+
+
+
+
+
+
+
+
+
+

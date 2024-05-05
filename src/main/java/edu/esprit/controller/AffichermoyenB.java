@@ -18,6 +18,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -358,10 +359,30 @@ public class AffichermoyenB {
 
     }
     @FXML
-    void GeneratePdf(ActionEvent event) throws DocumentException, SQLException {
+    void generatePdf(ActionEvent event) throws DocumentException, SQLException {
         try {
-            ArrayList<Moyen_transport> moyens= (ArrayList<Moyen_transport>) new Moyen_transportCrud().afficher();
-            generatepdf.generatePDF(moyens, new FileOutputStream("C:\\Users\\RT0\\Desktop\\pijava\\TfarhidaJava\\Activite.pdf"), "C:\\Users\\RT0\\Desktop\\pijava\\TfarhidaJava\\src\\main\\resources\\images\\logo.png");
+            // Initialize a file chooser
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Save PDF File");
+
+            // Set extension filters if needed
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("PDF Files", "*.pdf"),
+                    new FileChooser.ExtensionFilter("All Files", "*.*")
+            );
+
+            // Show the save file dialog
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            File file = fileChooser.showSaveDialog(stage);
+
+            // If the user cancels the dialog, file will be null, so return
+            if (file == null) {
+                return;
+            }
+
+            // Proceed with generating PDF using the selected file
+            ArrayList<Moyen_transport> moyens = (ArrayList<Moyen_transport>) new Moyen_transportCrud().afficher();
+            generatepdf.generatePDF(moyens, new FileOutputStream(file), "C:\\Users\\RT0\\Desktop\\pijava\\TfarhidaJava\\src\\main\\resources\\images\\logo.png");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("PDF Généré");
             alert.setHeaderText(null);
@@ -374,6 +395,4 @@ public class AffichermoyenB {
             alert.setContentText("Erreur lors de la génération du PDF des moyens: " + e.getMessage());
             alert.showAndWait();
         }
-    }
-
-}
+    }}

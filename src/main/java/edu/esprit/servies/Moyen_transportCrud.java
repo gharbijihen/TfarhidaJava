@@ -190,6 +190,7 @@ public class Moyen_transportCrud implements IcrudL<Moyen_transport> {
                 Boolean etat = rs.getBoolean("etat");
                 String image = rs.getString("image");
 
+
                 moyen = new Moyen_transport(Type, Capacite,Lieu, etat,false,image);
             } else {
                 System.out.println("Aucune activité trouvée avec l'ID : " + id);

@@ -66,7 +66,7 @@ public class ItemMController {
             System.out.println("Erreur : Impossible de convertir le texte en entier.");
             e.printStackTrace();
         }
-        img.setFitWidth(300);
+        img.setFitWidth(400);
         img.setFitHeight(300);
 
 
@@ -135,4 +135,31 @@ public class ItemMController {
             System.out.println("Aucune moyen trouvée avec l'ID : " + id);
         }
     }
+
+
+    private void openMap(String location) {
+        try {
+            // Charger le fichier FXML de la vue de la carte
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Map.fxml"));
+            Parent root = loader.load();
+
+            // Obtenir le contrôleur de la vue de la carte
+            Map mapController = loader.getController();
+
+            // Passer la localisation au contrôleur de la vue de la carte
+            mapController.setLocation(location);
+
+            // Afficher la vue de la carte dans une nouvelle fenêtre
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
+    public void afficherCarte(javafx.event.ActionEvent event) {
+        String location = localisationLabel.getText(); // Récupérer la localisation de l'activité
+        openMap(location);
+    }
+}

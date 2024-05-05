@@ -1,6 +1,13 @@
 package edu.esprit.controller;
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.Version;
+import com.restfb.exception.FacebookOAuthException;
+import com.restfb.types.FacebookType;
 import edu.esprit.entites.Moyen_transport;
 import edu.esprit.servies.Moyen_transportCrud;
+import edu.esprit.tests.MainFX;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -8,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.text.Text;
@@ -76,7 +84,12 @@ public class AjoutermoyenF {
     @FXML
     private Button browseImage;
     @FXML
+    private Button openmap;
+    @FXML
     private TextField selectedImagePath;
+    public  static float latitude;
+    public static float longitude;
+
 
     private String imagePathInDatabase;
 
@@ -90,6 +103,8 @@ public class AjoutermoyenF {
 
     @FXML
     void ajoutermoyenAction(ActionEvent event) {
+
+
         if (type.getText().isEmpty()) {
             type.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
             // Placer l'étiquette en dessous du champ
@@ -117,15 +132,22 @@ public class AjoutermoyenF {
                 String lieuM = lieu.getText();
                 boolean etatM = etat.isSelected();
 
+
+
+
                 String imageL = (selectedImageFile != null) ? selectedImageFile.getPath():"";
 
                 Moyen_transport moyen_transport = new Moyen_transport();
                 Moyen_transportCrud service = new Moyen_transportCrud();
-                service.ajouter(new Moyen_transport(typeM, capaciteM, lieuM, etatM, false, image));
+                service.ajouter(new Moyen_transport(typeM, capaciteM, lieuM, etatM, false, image ));
+                System.out.println(latitude);
+                System.out.println(longitude);
                 Node source = (Node) event.getSource();
                 Stage stage = (Stage) source.getScene().getWindow();
                 stage.close();
                 SmsController.Sms();
+
+
 
                 type.clear();
                 capacite.clear();
@@ -194,6 +216,21 @@ public class AjoutermoyenF {
         }
 
         return isValid;
+    }
+
+    //fb
+    private void postToFacebook(String message) {
+        // Utilisez le jeton d'accès pour créer une instance de FacebookClient
+        String accessToken = "EAAUkGc8Eii4BO0VqPuGFmBAdf7wZAHS8hBTzB8MTHgNaw6wemZCkDkUPo5OUJyG1tCLavnI3YqzsgvxG2wxO4etQvasZBiQzBPaPmy4sCG7FFf9bPOnYjy4Bs8iY3lTI8XVPD9N0z8EMhdZBZAmZBZAG4h2azYAcoZCGCDKib5efZAOj2ZCXpVXc8NR2xnfRh6iw5OaB2ketrrhHD9lhDYNhQEIrbVgs3aE2YZCjOnyKHcZD";  // Vous devez sécuriser ce jeton, par exemple, le stocker de manière sécurisée et le charger de la configuration
+        FacebookClient facebookClient = new DefaultFacebookClient(accessToken, Version.LATEST);
+
+        try {
+            facebookClient.publish("me/feed", FacebookType.class, Parameter.with("message", message));
+        } catch (FacebookOAuthException e) {
+            showAlert("Error Posting to Facebook", "Failed to post to Facebook: " + e.getErrorMessage());
+        } catch (Exception e) {
+            showAlert("Error", "An unexpected error occurred: " + e.getMessage());
+        }
     }
 
 

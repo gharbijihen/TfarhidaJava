@@ -10,13 +10,15 @@ public class Moyen_transport {
     public String image;
     public boolean etat;
     public boolean valide;
+
     private List<Trajet> trajets;
 
 
 
 
 
-    public Moyen_transport(String type, int capacite, String lieu, boolean etat, boolean valide, String image) {
+
+     public Moyen_transport(String type, int capacite, String lieu, boolean etat, boolean valide, String image) {
         this.type = type;
         this.capacite = capacite;
         this.lieu = lieu;
@@ -90,6 +92,8 @@ public class Moyen_transport {
     public void setImage(String image) {
         this.image = image;
     }
+
+
 
 
     @Override
