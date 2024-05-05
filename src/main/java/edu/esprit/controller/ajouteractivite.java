@@ -194,15 +194,7 @@ public class ajouteractivite {
         alert.setContentText(content);
         alert.showAndWait();
     }
-    @FXML
-    void naviguezVersAffichage(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/affiche.fxml"));
-            nomm.getScene().setRoot(root);
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-        }
-    }
+
 
 
     @FXML
@@ -221,12 +213,7 @@ public class ajouteractivite {
     }
     private boolean isInputValid() {
         boolean isValid = true;
-        if (categoriee.getText().isEmpty() || !categoriee.getText().matches("^[0-9]+$")) {
-            errorCategorie.setText("Id categorie est requis et doit contenir uniquement des nombres");
-            isValid = false;
-        } else {
-            errorCategorie.setText("");
-        }
+
 
         if (nomm.getText().isEmpty() || !nomm.getText().matches("^[\\p{L} \\s]+$")) {
             errorName.setText("Nom est requis et ne doit pas  contenir des nombres ");

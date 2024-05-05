@@ -19,12 +19,15 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 
 public class afficherActiviteF {
 
@@ -35,6 +38,8 @@ public class afficherActiviteF {
     private Button ajouterButton;
     @FXML
     private FlowPane activiteflow;
+    @FXML
+    private WebView mapWebView;
 
     // Déclaration de la liste d'offres
 
@@ -78,7 +83,63 @@ public class afficherActiviteF {
             // Afficher les activités filtrées à partir de la première page
             afficherActivites(0);
         });
+
+
     }
+    private void loadMap(String adresse) {
+        // Générer l'URL de la carte en remplaçant les espaces par "%20" dans l'adresse
+        String mapUrl = "https://maps.google.com/maps?q=" + adresse.replace(" ", "%20") + "&output=embed";
+
+        // Charger l'URL de la carte dans la WebView
+        WebEngine webEngine = mapWebView.getEngine();
+        webEngine.loadContent(generateMapHtml(mapUrl));
+    }
+
+    private String generateMapHtml(String adresse) {
+        // Générer l'URL de la carte en remplaçant les espaces par "%20" dans l'adresse
+        String mapUrl = "https://maps.google.com/maps?q=" + adresse.replace(" ", "%20") + "&output=embed";
+
+        // Generate HTML content with the correct map URL
+        return "<!DOCTYPE html>\n" +
+                "<html>\n" +
+                "<head>\n" +
+                "    <title>Google Maps Example</title>\n" +
+                "    <style>\n" +
+                "        /* Adjust the size and position of the map */\n" +
+                "        #mapouter {\n" +
+                "            position: relative;\n" +
+                "            text-align: right;\n" +
+                "            height: 500px; /* Adjust the height as needed */\n" +
+                "            width: 500px; /* Adjust the width as needed */\n" +
+                "        }\n" +
+                "\n" +
+                "        #gmap_canvas2 {\n" +
+                "            overflow: hidden;\n" +
+                "            background: none !important;\n" +
+                "            height: 500px; /* Adjust the height as needed */\n" +
+                "            width: 500px; /* Adjust the width as needed */\n" +
+                "        }\n" +
+                "\n" +
+                "        #gmap_canvas {\n" +
+                "            width: 100%;\n" +
+                "            height: 100%;\n" +
+                "            border: 0;\n" +
+                "            margin: 0;\n" +
+                "            padding: 0;\n" +
+                "        }\n" +
+                "    </style>\n" +
+                "</head>\n" +
+                "<body>\n" +
+                "<div id=\"mapouter\">\n" +
+                "    <div id=\"gmap_canvas2\">\n" +
+                "        <iframe id=\"gmap_canvas\"\n" +
+                "                src=\"" + mapUrl + "\" frameborder=\"0\" scrolling=\"no\" marginheight=\"0\" marginwidth=\"0\"></iframe>\n" +
+                "    </div>\n" +
+                "</div>\n" +
+                "</body>\n" +
+                "</html>";
+    }
+
     @FXML
     void handleAfficherActivites(ActionEvent event) {
         afficherActivites(currentPage);
@@ -109,10 +170,10 @@ public class afficherActiviteF {
     @FXML
     void OnclickTrier(ActionEvent event) throws SQLException {
         ActiviteCrud serviceAct = new ActiviteCrud();
-        List<Activite> coworkingListTrie = serviceAct.trierParPrix(activitesList);
+        List<Activite> activiteListTrie = serviceAct.trierParPrix(activitesList);
 
         // Mettre à jour la liste filtrée et afficher la première page
-        listeFiltree.setAll(coworkingListTrie);
+        listeFiltree.setAll(activiteListTrie);
         afficherActivites(0);
     }
 
@@ -201,7 +262,3 @@ public class afficherActiviteF {
     }
 
 }
-
-
-
-

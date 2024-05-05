@@ -232,15 +232,7 @@ public class ajouteractiviteF {
         alert.showAndWait();
     }
 
-    @FXML
-    void naviguezVersAffichage(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/affiche.fxml"));
-            nomm.getScene().setRoot(root);
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
-        }
-    }
+
 
 
     @FXML

@@ -23,9 +23,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="877.0" prefWidth="1404.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficheractivite">
     <children>
-        <HBox fx:id="contentHBox" layoutX="223.0" layoutY="193.0" prefHeight="610.0" prefWidth="1183.0">
+        <HBox fx:id="contentHBox" layoutX="223.0" layoutY="193.0" prefHeight="699.0" prefWidth="1192.0">
             <children>
-                <ScrollPane fx:id="activityScrollPane" prefHeight="610.0" prefWidth="1178.0">
+                <ScrollPane fx:id="activityScrollPane" prefHeight="733.0" prefWidth="1178.0">
                     <content>
                         <AnchorPane prefHeight="608.0" prefWidth="1116.0">
                             <children>
@@ -95,9 +95,9 @@
                                 <Font name="System Bold Italic" size="13.0" />
                              </font>
                           </Button>
-                          <RadioButton layoutX="90.0" layoutY="29.0" mnemonicParsing="false" onAction="#trierActivitesAcceptees" text="Acceptee" />
-                          <RadioButton layoutX="182.0" layoutY="29.0" mnemonicParsing="false" onAction="#trierActivitesRefusees" text="Refusee" />
-                          <RadioButton layoutX="266.0" layoutY="29.0" mnemonicParsing="false" onAction="#trierActivitesEnCours" text="E n cours" />
+                          <RadioButton layoutX="202.0" layoutY="29.0" mnemonicParsing="false" onAction="#trierActivitesAcceptees" text="Acceptee" />
+                          <RadioButton layoutX="298.0" layoutY="29.0" mnemonicParsing="false" onAction="#trierActivitesRefusees" text="Refusee" />
+                          <RadioButton layoutX="388.0" layoutY="29.0" mnemonicParsing="false" onAction="#trierActivitesEnCours" text="En cours" />
                           <AnchorPane layoutX="785.0" layoutY="71.0" prefHeight="399.0" prefWidth="496.0">
                               <children>
                                   <PieChart fx:id="pieChart" layoutY="2.0" prefHeight="398.0" prefWidth="380.0" />
@@ -106,6 +106,16 @@
                                   <URL value="@guiadmin.css" />
                               </stylesheets>
                           </AnchorPane>
+                        <Label layoutX="79.0" layoutY="28.0" text="Chercher par" textFill="#2e8afb">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="27.0" fitWidth="26.0" layoutX="53.0" layoutY="22.0">
+                           <image>
+                              <Image url="@images/chercher.png" />
+                           </image>
+                        </ImageView>
 
                               </children>
                           </AnchorPane>

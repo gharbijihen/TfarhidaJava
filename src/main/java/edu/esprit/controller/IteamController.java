@@ -106,13 +106,14 @@ public class IteamController {
         }
 
     }
-    public void setData1(Categorie categorie, MyListener myListener) {
-        this.categorie = categorie;
-        this.myListener = myListener;
-        this.typeLabel.setText(categorie.getType_categorie());
-        this.descLabel.setText(categorie.getDescription());
-
+   public void setLocal(String localisation) {
+        if (this.loalisationLabel.getText().isEmpty()) {
+            this.loalisationLabel.setText(localisation);
+        }
     }
+
+
+
     public Activite getActivite() {
         return activite;
     }
@@ -140,26 +141,8 @@ public class IteamController {
             e.printStackTrace();
         }
     }
-    @FXML
-    void voirDetails(ActionEvent event) {
-        // Code pour charger la vue de l'affichage de la catégorie correspondante
-        // Par exemple :
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IteamC.fxml"));
-        Parent root;
-        try {
-            root = loader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-  /* public void initialize() {
-        // Supposons que vous avez l'ID de l'activité dans une variable nommée idActivite
-        int idActivite = 46; // Remplacez 123 par l'ID réel de l'activité
-        voirDetailsButton.setUserData(idActivite);
-    }*/
+
+
   @FXML
 
   public void initialize() {
@@ -215,6 +198,56 @@ public class IteamController {
             System.out.println("Aucune activité trouvée avec l'ID : " + id);
         }
     }
+    //Map
+
+    @FXML
+    private void afficherCarte(ActionEvent event) {
+        String location = loalisationLabel.getText(); // Récupérer la localisation de l'activité
+        openMap(location);
+    }
+    private void openMap(String location) {
+        try {
+            // Charger le fichier FXML de la vue de la carte
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Map.fxml"));
+            Parent root = loader.load();
+
+            // Obtenir le contrôleur de la vue de la carte
+            MapController mapController = loader.getController();
+
+            // Passer la localisation au contrôleur de la vue de la carte
+            mapController.setLocation(location);
+
+            // Afficher la vue de la carte dans une nouvelle fenêtre
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+   /*@FXML
+    private void map(ActionEvent event) throws IOException {
+        // Récupérer la localisation de l'activité sélectionnée
+        String location = loalisationLabel.getText(); // Assurez-vous que la localisation est correctement définie dans votre vue
+
+        // Charger le fichier FXML de la vue de la carte
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Map.fxml"));
+        Parent root = loader.load();
+
+        // Obtenir le contrôleur de la vue de la carte
+        MapController mapController = loader.getController();
+
+        // Passer la localisation au contrôleur de la vue de la carte
+        mapController.setLocal(location);
+
+        // Afficher la vue de la carte dans une nouvelle fenêtre
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+
+        // Fermer la fenêtre actuelle
+        ((Node) (event.getSource())).getScene().getWindow().hide();
+    }*/
 
 }
 

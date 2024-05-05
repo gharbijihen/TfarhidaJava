@@ -30,7 +30,7 @@ public class ActionCell extends TableCell<Activite, Void> {
             // Enregistrer les modifications dans la base de données
             // Envoyer l'e-mail
             mailAct mailer = new mailAct();
-            mailer.sendEmail("oumeyma.sokkeh@esprit.tn");
+            mailer.sendEmail("eya.salhi@etudiant-enit.utm.tn",activite);
             try {
                 activiteCrud.modifier(activite);
             } catch (SQLException e) {
