@@ -87,8 +87,8 @@ public class ProfileDetailsControllers implements Initializable {
         btnReturn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Returning to users CRUD");
-                RouterController.navigate("/fxml/UsersCRUD.fxml");
+                System.out.println("Returning to users client dashboard");
+                RouterController.navigate("/fxml/ClientDashboard.fxml");
             }
         });
     }

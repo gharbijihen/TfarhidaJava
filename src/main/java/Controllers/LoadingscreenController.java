@@ -77,6 +77,6 @@ public class LoadingscreenController {
 
     private void loadAdminLoginScene() {
         RouterController Routes = new RouterController();
-        Routes.navigate("../fxml/Home.fxml");
+        Routes.navigate("../fxml/login.fxml");
     }
 }

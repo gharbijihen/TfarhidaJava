@@ -44,12 +44,12 @@
                                         </cellValueFactory>
                                     </TableColumn>
                                     <!-- Other columns remain the same -->
-                                    <TableColumn fx:id="Role" prefWidth="86.40000915527344" text="Role">
+                                    <TableColumn fx:id="Role" prefWidth="240.0" text="Role">
                                         <cellValueFactory>
                                             <PropertyValueFactory property="Role" />
                                         </cellValueFactory>
                                     </TableColumn>
-                                    <TableColumn fx:id="username" prefWidth="86.40000915527344" text="username">
+                                    <TableColumn fx:id="username" prefWidth="141.60000610351562" text="username">
                                         <cellValueFactory>
                                             <PropertyValueFactory property="imageData" />
                                         </cellValueFactory>
@@ -57,22 +57,22 @@
                                         </cellFactory>
                                     </TableColumn>
 
-                                    <TableColumn fx:id="name" prefWidth="122.39996337890625" text="first name">
+                                    <TableColumn fx:id="name" prefWidth="162.4000244140625" text="first name">
                                         <cellValueFactory>
                                             <PropertyValueFactory property="dateJoined" />
                                         </cellValueFactory>
                                     </TableColumn>
-                                    <TableColumn fx:id="last_name" prefWidth="83.2000732421875" text="last name">
+                                    <TableColumn fx:id="last_name" prefWidth="158.39996337890625" text="last name">
                                         <cellValueFactory>
                                             <PropertyValueFactory property="Email" />
                                         </cellValueFactory>
                                     </TableColumn>
-                                    <TableColumn fx:id="isverified" prefWidth="109.5999755859375" text="is verified">
+                                    <TableColumn fx:id="isverified" prefWidth="128.79998779296875" text="is verified">
                                         <cellValueFactory>
                                             <PropertyValueFactory property="Password" />
                                         </cellValueFactory>
                                     </TableColumn>
-                                    <TableColumn prefWidth="98.4000244140625" text="numero">
+                                    <TableColumn prefWidth="101.5999755859375" text="numero">
                                         <cellValueFactory>
                                             <PropertyValueFactory property="Prenom" />
                                         </cellValueFactory>
@@ -90,13 +90,13 @@
                                 <Font name="System Bold" size="31.0" />
                             </font>
                         </Label>
-                        <TextField fx:id="search_tv" layoutX="17.0" layoutY="59.0" onKeyPressed="#searchquery" prefHeight="26.0" prefWidth="203.0" promptText="chercherUser" />
+                        <TextField fx:id="filtrefield" layoutX="17.0" layoutY="59.0" prefHeight="26.0" prefWidth="203.0" promptText="chercher un utilisateur " />
                         <Button fx:id="btnAjouter" layoutX="872.0" layoutY="42.0" mnemonicParsing="false" onAction="#gotoAjouter" prefHeight="34.0" prefWidth="184.0" style="-fx-background-color: #53A0EC;" text="Ajouter un utilisateur" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="15.0" />
                             </font>
                         </Button>
-                   <Button layoutX="69.0" layoutY="583.0" mnemonicParsing="false" onAction="#GeneratePdf" prefHeight="37.0" prefWidth="83.0" style="-fx-background-radius: 100; -fx-background-color: red;" text="PDF" textFill="WHITE">
+                   <Button layoutX="69.0" layoutY="583.0" mnemonicParsing="false" onAction="#GeneratePdf" prefHeight="37.0" prefWidth="83.0" style="-fx-background-radius: 100; -fx-background-color: #53a0ec;" text="PDF" textFill="WHITE">
                        <graphic>
                            <ImageView fitHeight="29.0" fitWidth="28.0">
                                <image>

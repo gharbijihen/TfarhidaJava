@@ -2,6 +2,7 @@ package Controllers;
 import Entities.User;
 import Service.ServiceUser;
 import Service.generatepdf;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,6 +26,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 
 import com.itextpdf.text.DocumentException;
+import java.util.function.Predicate;
+import javafx.collections.transformation.FilteredList;
 
 public class UsersCrudController implements Initializable {
     private final ServiceUser serviceUser = new ServiceUser();
@@ -46,19 +49,23 @@ public class UsersCrudController implements Initializable {
     private TextField search_tv;
 
     @FXML
+    private TextField filtrefield;
+
+    @FXML
     private TableView<User> tableView;
 
+    private FilteredList<User> filteredList;
 
 
     @FXML
     void goToNavigate(ActionEvent event) {
-        RouterController router=new RouterController();
+        RouterController router = new RouterController();
         router.navigate("/fxml/AdminDashboard.fxml");
     }
 
     @FXML
     void gotoAjouter(ActionEvent event) {
-        RouterController router=new RouterController();
+        RouterController router = new RouterController();
         router.navigate("/fxml/AddUser.fxml");
     }
 
@@ -66,6 +73,12 @@ public class UsersCrudController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         initializeTableColumns();
         updateUserList();
+        filteredList = new FilteredList<>(tableView.getItems(), b -> true);
+
+        // Set the filter Predicate whenever the filter changes.
+        filtrefield.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterTableView();
+        });
     }
 
     public void updateUserList() {
@@ -100,7 +113,8 @@ public class UsersCrudController implements Initializable {
                     setText(displayRole);
                 }
             }
-        });        TableColumn<User, String> usernameColumn = new TableColumn<>("Nom d'utilisateur");
+        });
+        TableColumn<User, String> usernameColumn = new TableColumn<>("Nom d'utilisateur");
         usernameColumn.setCellValueFactory(new PropertyValueFactory<>("username"));
         TableColumn<User, String> emailColumn = new TableColumn<>("Email");
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -149,7 +163,7 @@ public class UsersCrudController implements Initializable {
                         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                         alert.setTitle("Confirmation");
                         alert.setHeaderText("User ban");
-                        if(user.getIs_verified())
+                        if (user.getIs_verified())
                             alert.setContentText("Vous etes sur de bloque cette utilisateur ?");
                         else
                             alert.setContentText("Vous etes sur de verifier cette utilisateur ?");
@@ -172,6 +186,7 @@ public class UsersCrudController implements Initializable {
 
                     setGraphic(button);
                 }
+
             }
         });
 
@@ -180,52 +195,13 @@ public class UsersCrudController implements Initializable {
         TableColumn<User, String> numeroColumn = new TableColumn<>("Numero");
         numeroColumn.setCellValueFactory(new PropertyValueFactory<>("numero"));
 
-        // TableColumn<User, String> Num_telColumn = new TableColumn<>("Num_tel");
-        // Num_telColumn.setCellValueFactory(new PropertyValueFactory<>("Num_tel"));
-        // TableColumn<User, String> dateJoinedColumn = new TableColumn<>("dateJoined");
-        // dateJoinedColumn.setCellValueFactory(new PropertyValueFactory<>("dateJoined"));
-
         TableColumn<User, Void> actionColumn = new TableColumn<>("Action");
         actionColumn.setCellFactory(getButtonCellFactory());
 
-        tableView.getColumns().addAll(emailColumn,usernameColumn,nameColumn,lastname,isVerifiedColumn,numeroColumn,RoleColumn,actionColumn);
+        tableView.getColumns().addAll(emailColumn, usernameColumn, nameColumn, lastname, isVerifiedColumn, numeroColumn, RoleColumn, actionColumn);
     }
-    /*
-    private Callback<TableColumn<User, Void>, TableCell<User, Void>> getImageCellFactory() {
-        return new Callback<TableColumn<User, Void>, TableCell<User, Void>>() {
-            @Override
-            public TableCell<User, Void> call(TableColumn<User, Void> param) {
-                return new TableCell<User, Void>() {
-                   /* private final ImageView imageView = new ImageView();
 
-                    {
-                        imageView.setFitWidth(100);
-                        imageView.setFitHeight(100);
-                        setGraphic(imageView);
-                    }
 
-                    @Override
-                    protected void updateItem(Void item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                        } else {
-                            User user = getTableView().getItems().get(getIndex());
-
-                            if (user != null && user.getImageData() != null) {
-                                Image image = new Image(new ByteArrayInputStream(user.getImageData()));
-                                imageView.setImage(image);
-
-                            } else {
-                                imageView.setImage(null);
-                            }
-                        }
-                    }
-                };
-            }
-        };
-    }
-    */
     private Callback<TableColumn<User, Void>, TableCell<User, Void>> getButtonCellFactory() {
         return new Callback<TableColumn<User, Void>, TableCell<User, Void>>() {
             @Override
@@ -287,7 +263,7 @@ public class UsersCrudController implements Initializable {
                             deleteButton.setGraphic(deleteIcon);
                             modifyButton.setOnAction((ActionEvent event) -> {
                                 User user = getTableView().getItems().get(getIndex());
-                                ModifyUserController.user=user;
+                                ModifyUserController.user = user;
                                 RouterController.navigate("/fxml/ModifyUser.fxml");
                             });
 
@@ -328,10 +304,11 @@ public class UsersCrudController implements Initializable {
 
     public void searchquery(KeyEvent keyEvent) {
     }
+
     @FXML
     void GeneratePdf(ActionEvent event) throws DocumentException, SQLException {
         try {
-            ArrayList<User > users= (ArrayList<User>) new ServiceUser().ReadAll();
+            ArrayList<User> users = (ArrayList<User>) new ServiceUser().ReadAll();
             generatepdf.generatePDF(users, new FileOutputStream("C:\\Users\\MSI\\IdeaProjects\\Users.pdf"), "C:\\Users\\MSI\\Downloads\\tfarhida2\\src\\main\\resources\\assets\\tfarhida.png");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("PDF Généré");
@@ -342,8 +319,28 @@ public class UsersCrudController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Erreur");
             alert.setHeaderText(null);
-            alert.setContentText("Erreur lors de la génération du PDF des Activités: " + e.getMessage());
+            alert.setContentText("Erreur lors de la génération du PDF des Utilisateurs: " + e.getMessage());
             alert.showAndWait();
         }
+    }
+
+    @FXML
+    private void filterTableView() {
+        // Créer un prédicat pour filtrer les éléments de la TableView
+        Predicate<User> filterPredicate = user -> {
+            // Vérifier si le texte de filtrage correspond à l'une des propriétés de l'offre
+            return user.getUsername().toLowerCase().contains(filtrefield.getText().toLowerCase())
+                    || user.getRoles().toLowerCase().contains(filtrefield.getText().toLowerCase())
+                    || String.valueOf(user.getRoles()).contains(filtrefield.getText())
+                    || String.valueOf(user.getUsername()).contains(filtrefield.getText());
+        };
+
+        // Mettre à jour la liste filtrée
+        filteredList.setPredicate(filterPredicate);
+
+        // Lier la liste filtrée à la TableView
+        SortedList<User> sortedData = new SortedList<>(filteredList);
+        sortedData.comparatorProperty().bind(tableView.comparatorProperty());
+        tableView.setItems(sortedData);
     }
 }

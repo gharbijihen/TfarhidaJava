@@ -95,8 +95,8 @@ public class ModifierProfile implements Initializable {
         btnReturn.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.out.println("Returning to users CRUD");
-                RouterController.navigate("/fxml/ClientDashboard.fxml");
+                System.out.println("Returning to Profil");
+                RouterController.navigate("/fxml/ProfileDetails.fxml");
             }
         });
     }
@@ -122,13 +122,7 @@ public class ModifierProfile implements Initializable {
     @FXML
     void ModifiyUser(ActionEvent event) {
         if(!validateInputsAndProceed()) return;
-        // String nom = Nom.getText();
-        //String prenom = Prenom.getText();
-        //String addres = address.getText();
-        //String Num_tel = num_tel.getText();
-        //String email = Email.getText();
-        //String password  = Password.getText();
-        //String confirmPass=confirmpass.getText();
+
         String type = Type.getValue();
         User user=new User();
         user=ModifierProfile.user;
@@ -139,9 +133,7 @@ public class ModifierProfile implements Initializable {
         user.setNumero(Integer.parseInt(numero.getText()));
 
         System.out.println(user);
-        // Role type = Type.getValue(); // Get the selected item from ComboBox
-        // java.util.Date dateJoined = java.sql.Date.valueOf(Date.getValue());
-        //   System.out.println(nom+prenom);
+
         try {
             // Update the user
 
@@ -154,8 +146,6 @@ public class ModifierProfile implements Initializable {
                 RouterController.navigate("/fxml/ClientDashboard.fxml");
             }
             this.returnTo(e);
-            RouterController.navigate("/fxml/ClientDashboard.fxml");
-
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -163,7 +153,10 @@ public class ModifierProfile implements Initializable {
     }
     @FXML
     void returnTo(MouseEvent event) {
-        RouterController.navigate("/fxml/ClientDashboard.fxml");
+        System.out.println("Returning to users CRUD");
+        RouterController.navigate("/fxml/ProfileDetails.fxml");
+
+
 
     }
     @FXML
