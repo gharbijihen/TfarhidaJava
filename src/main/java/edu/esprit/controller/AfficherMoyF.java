@@ -2,6 +2,7 @@ package edu.esprit.controller;
 
 import edu.esprit.entites.Moyen_transport;
 import edu.esprit.servies.Moyen_transportCrud;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,62 +28,77 @@ public class AfficherMoyF {
     private ObservableList<Moyen_transport> moyensList;
     @FXML
     private Button ajouterButton;
+    // Pagination parameters
+    private static final int ITEMS_PER_PAGE = 2;
+    private int currentPageIndex = 0;
 
     // Méthode pour initialiser activitesList
     public void setMoyensList(ObservableList<Moyen_transport> moyensList) {
         this.moyensList = moyensList;
     }
 
+
+
+    @FXML
+    void initialize() {
+        // Initialisez activitesList avec les données appropriées
+        Moyen_transportCrud activityCrud = new Moyen_transportCrud();
+        moyensList = FXCollections.observableArrayList(activityCrud.afficher());
+
+
+
+
+            // Afficher les activités filtrées à partir de la première page
+            afficherMoyens();
+
+
+
+    }
+
     @FXML
     public void afficherMoyens() {
         try {
-            // Créer un VBox pour contenir tous les éléments Item
+            // Calculate the range of items to display for the current page
+            int fromIndex = currentPageIndex * ITEMS_PER_PAGE;
+            int toIndex = Math.min(fromIndex + ITEMS_PER_PAGE, moyensList.size());
+
+            // Create a VBox to contain all item elements
             VBox mainVBox = new VBox();
-            mainVBox.setSpacing(20.0); // Espacement vertical entre les lignes
+            mainVBox.setSpacing(20.0); // Vertical spacing between rows
 
-            // Récupérer la liste des moyens depuis la base de données
-            Moyen_transportCrud crud = new Moyen_transportCrud();
-            List<Moyen_transport> moyensList = crud.afficher();
-
-            // Créer une HBox pour chaque ligne d'éléments
+            // Create a HBox for each row of elements
             HBox hBox = new HBox();
-            hBox.setSpacing(20.0); // Espacement horizontal entre les éléments
+            hBox.setSpacing(20.0); // Horizontal spacing between elements
 
-            // Ajouter chaque paire d'éléments à une ligne dans la HBox
-            for (Moyen_transport moyen : moyensList) {
-                // Vérifier si le moyen est valide avant de l'ajouter à l'affichage
+            // Add each pair of elements to a row in the HBox
+            for (int i = fromIndex; i < toIndex; i++) {
+                Moyen_transport moyen = moyensList.get(i);
+                // Check if the moyen is valid before adding it to the display
                 if (moyen.isValide()) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/ItemM.fxml"));
-
                     Node itemNode = loader.load();
-
                     ItemMController controller = loader.getController();
                     controller.setData(moyen, null);
-
-                    // Centrer le contenu de l'élément horizontalement
-                    VBox.setMargin(itemNode, new Insets(0, 0, 0, (mainVBox.getWidth() - itemNode.getBoundsInParent().getWidth()) / 2));
-
-                    // Ajouter l'élément à la ligne actuelle
                     hBox.getChildren().add(itemNode);
 
-                    // Si la ligne est pleine (2 éléments), l'ajouter au VBox principal et créer une nouvelle ligne
+                    // If the row is full (2 elements), add it to the main VBox and create a new row
                     if (hBox.getChildren().size() == 3) {
                         mainVBox.getChildren().add(hBox);
                         hBox = new HBox();
-                        hBox.setSpacing(20.0); // Réinitialiser l'espacement horizontal pour la nouvelle ligne
+                        hBox.setSpacing(20.0); // Reset horizontal spacing for the new row
                     }
                 }
             }
 
-            // Ajouter la dernière ligne si elle n'est pas pleine
+            // Add the last row if it's not full
             if (!hBox.getChildren().isEmpty()) {
                 mainVBox.getChildren().add(hBox);
             }
 
-            // Définir le contenu du ScrollPane comme le VBox principal
+            // Set the content of the ScrollPane as the main VBox
             scroll.setContent(mainVBox);
 
-            System.out.println("Chargement des éléments terminé avec succès.");
+            System.out.println("Loading items completed successfully.");
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,9 +106,25 @@ public class AfficherMoyF {
         ajouterButton.setVisible(true);
     }
 
-
-
     @FXML
+    private void navigateToPreviousPage() {
+        if (currentPageIndex > 0) {
+            currentPageIndex--;
+            afficherMoyens();
+        }
+    }
+    @FXML
+    private void navigateToNextPage() {
+        int totalPages = (int) Math.ceil((double) moyensList.size() / ITEMS_PER_PAGE);
+        if (currentPageIndex < totalPages - 1) {
+            currentPageIndex++;
+            afficherMoyens();
+        }
+    }
+
+
+
+        @FXML
     void handleAjouter(ActionEvent event) {
         try {
             // Charger la vue ou le formulaire d'ajout

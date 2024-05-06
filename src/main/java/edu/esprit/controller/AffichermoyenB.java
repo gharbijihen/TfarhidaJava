@@ -128,7 +128,6 @@ public class AffichermoyenB {
     public void initialize()  {
         List<Moyen_transport> moy = ps.afficher();
         ObservableList<Moyen_transport> observableList = FXCollections.observableList(moy);
-        tableView.setItems(observableList);
         filteredMoyensList = new FilteredList<>(observableList);
         tableView.setItems(filteredMoyensList);
         // Configure les colonnes pour correspondre aux attributs de l'activité
@@ -249,7 +248,7 @@ public class AffichermoyenB {
                 try {
                     service.supprimer(moyenSelectionnee);
                     // Rafraîchir le TableView après la suppression
-                    tableView.getItems().remove(moyenSelectionnee);
+                    filteredMoyensList.getSource().remove(moyenSelectionnee);
                     System.out.println("Activité supprimée avec succès !");
                 } catch (SQLException e) {
                     System.out.println("Erreur lors de la suppression de l'activité : " + e.getMessage());

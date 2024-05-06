@@ -24,6 +24,7 @@ import edu.esprit.entites.Moyen_transport;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TextField;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -86,6 +87,12 @@ public class Map implements Initializable {
         //System.out.println("Lat: " + lat);
         //System.out.println("Lon " + lon);
         coordinatesField.setText("Latitude : "+Double.toString(lat)+" Longitude : "+Double.toString(lon));
+    }
+
+    public void Retour(ActionEvent event) {
+        System.out.println("retourrrr");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
     }
 
    /* @FXML

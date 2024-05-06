@@ -105,5 +105,11 @@
                 </graphic>
             </Button>
           <TextField layoutX="305.0" layoutY="63.0" prefHeight="30.0" prefWidth="1210.0" promptText="chercher........." style="-fx-background-radius: 100;" stylesheets="@../java/edu/esprit/values/style.css" />
+        <HBox alignment="CENTER" layoutX="312.0" layoutY="900.0" prefHeight="36.0" prefWidth="1210.0">
+            <children>
+                <Button text="Previous" onAction="#navigateToPreviousPage"/>
+                <Button text="Next" onAction="#navigateToNextPage"/>
+            </children>
+        </HBox>
     </children>
 </AnchorPane>

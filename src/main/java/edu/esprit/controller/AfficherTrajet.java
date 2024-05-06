@@ -79,7 +79,6 @@ public class AfficherTrajet {
     public void initialize()  {
         List<Trajet> tra = ps.afficher();
         ObservableList<Trajet> observableList = FXCollections.observableList(tra);
-        tableView.setItems(observableList);
         filteredTrajetsList = new FilteredList<>(observableList);
         tableView.setItems(filteredTrajetsList);
         // Configure les colonnes pour correspondre aux attributs de l'activité
@@ -183,7 +182,7 @@ public class AfficherTrajet {
                 try {
                     service.supprimer(trajetSelectionnee);
                     // Rafraîchir le TableView après la suppression
-                    tableView.getItems().remove(trajetSelectionnee);
+                    filteredTrajetsList.getSource().remove(trajetSelectionnee);
                     System.out.println("Activité supprimée avec succès !");
                 } catch (SQLException e) {
                     System.out.println("Erreur lors de la suppression de l'activité : " + e.getMessage());

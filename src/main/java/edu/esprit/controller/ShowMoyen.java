@@ -3,12 +3,15 @@ package edu.esprit.controller;
 import edu.esprit.entites.Moyen_transport;
 import edu.esprit.tests.MyListener;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
+import java.awt.event.ActionEvent;
 import java.io.File;
 
 public class ShowMoyen {
@@ -45,6 +48,7 @@ public class ShowMoyen {
 
         }
     }
+
 
     // Méthode pour définir les données de l'activité
     public void setDatadetail(Moyen_transport moyen, MyListener myListener) {
@@ -104,4 +108,9 @@ public class ShowMoyen {
     }
 
 
+    public void Retour(javafx.event.ActionEvent event) {
+        System.out.println("retourrrr");
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.close();
+    }
 }

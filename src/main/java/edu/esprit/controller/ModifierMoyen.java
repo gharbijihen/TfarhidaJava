@@ -144,8 +144,8 @@ public class ModifierMoyen {
                     String typee = type.getText();
                     int capacitee = Integer.parseInt(capacite.getText());
                     String lieuu = lieu.getText();
-                    boolean etatt = Boolean.parseBoolean(etat.getText());
-                    boolean validee = Boolean.parseBoolean(valide.getText());
+                    boolean etatt= etat.isSelected();
+                    boolean validee = valide.isSelected();
 
                     // Créez un objet Activite avec les nouvelles valeurs
                     Moyen_transport moyenModifiee = new Moyen_transport();
