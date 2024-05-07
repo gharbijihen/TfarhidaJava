@@ -39,24 +39,15 @@ public class AfficherMoyF {
 
 
 
-    @FXML
-    void initialize() {
-        // Initialisez activitesList avec les données appropriées
-        Moyen_transportCrud activityCrud = new Moyen_transportCrud();
-        moyensList = FXCollections.observableArrayList(activityCrud.afficher());
 
-
-
-
-            // Afficher les activités filtrées à partir de la première page
-            afficherMoyens();
-
-
-
-    }
 
     @FXML
     public void afficherMoyens() {
+        Moyen_transportCrud activityCrud = new Moyen_transportCrud();
+        moyensList = FXCollections.observableArrayList(activityCrud.afficher());
+
+        // Afficher les activités filtrées à partir de la première page
+
         try {
             // Calculate the range of items to display for the current page
             int fromIndex = currentPageIndex * ITEMS_PER_PAGE;
