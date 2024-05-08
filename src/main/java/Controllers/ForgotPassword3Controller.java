@@ -15,6 +15,7 @@ public class ForgotPassword3Controller {
     public static User user;
     public TextField newpwd;
     public TextField confirmpwd;
+
     public ServiceUser serviceUser=new ServiceUser();
 
     public void ChangePwd(ActionEvent actionEvent) throws SQLException {
@@ -26,7 +27,7 @@ public class ForgotPassword3Controller {
             serviceUser.update(user);
             showSuccessMessage("Votre mot de passe à été changé avec succées success");
             GuiLoginController.user=user;
-            RouterController.navigate("/fxml/ClientDashboard.fxml");
+            RouterController.navigate("/fxml/login.fxml");
         }
         else {
             System.out.println("PASSWORDS NOT MATCH");

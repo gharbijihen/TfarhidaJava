@@ -28,7 +28,7 @@
                         <Font name="System Bold" size="18.0" />
                     </font>
                 </Label>
-                <Label layoutX="222.0" layoutY="45.0" onMouseClicked="#goToLogn" text="Déconnecter" textFill="WHITE">
+                <Label fx:id="btnExit" layoutX="222.0" layoutY="45.0" onMouseClicked="#goToLogn" text="Déconnecter" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="14.0" />
                     </font>

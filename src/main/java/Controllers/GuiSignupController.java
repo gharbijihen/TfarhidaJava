@@ -31,68 +31,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+
 public class GuiSignupController implements Initializable {
-
-    @FXML
-    private DatePicker Date;
-
-    @FXML
-    private TextField Email;
-
-    @FXML
-    private TextField Nom;
-
-    @FXML
-    private TextField Password;
-
-    @FXML
-    private TextField Prenom;
-
-    @FXML
-    private ComboBox<Role> Type;
-
-    @FXML
-    private TextField address;
-
-    @FXML
-    private Label adresseLabel;
-
-    @FXML
-    private AnchorPane bord;
-
-    @FXML
-    private ImageView btnReturn;
-
-    @FXML
-    private Button btnSignup;
-
-    @FXML
-    private Button btnUploadImage;
-
-    @FXML
-    private Label confirmPasswordLabel;
-
-    @FXML
-    private TextField confirmpass;
-
-    @FXML
-    private ImageView imageView;
-
-    @FXML
-    private Label nomLabel;
-
-    @FXML
-    private TextField num_tel;
-
-
-
-    private File selectedImageFile;
-
-    private ServiceUser serviceUser = new ServiceUser();
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
 
     @FXML
     private TextField password;
@@ -108,6 +48,22 @@ public class GuiSignupController implements Initializable {
     CheckBox isverified;
     @FXML
     TextField numero;
+    @FXML
+    private ImageView btnReturn;
+
+    private ServiceUser serviceUser = new ServiceUser();
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        btnReturn.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.out.println("Returning to userCrud");
+                RouterController.navigate("/fxml/login.fxml");
+            }
+        });
+    }
+
+
     public boolean validateInputsAndProceed() {
       /*  if (
                 selectedImageFile == null) {
@@ -224,6 +180,7 @@ public class GuiSignupController implements Initializable {
         System.out.println("Returning to ");
         RouterController.navigate("/fxml/Home.fxml");
     }
+
 
 
     private void showSuccessMessage(String message) {

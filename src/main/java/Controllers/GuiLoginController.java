@@ -33,7 +33,6 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-
 /**
  * FXML Controller class
  *
@@ -88,7 +87,7 @@ public class GuiLoginController implements Initializable {
         String email = emailInput.getText();
         String password = passwordInput.getText();
 
-        if(email.isEmpty() || password.isEmpty())
+        if(email.isEmpty() || password.equals(""))
         {
             erreur.setText("Veuillez remplir tous les champs");
             return;

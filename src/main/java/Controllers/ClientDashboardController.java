@@ -32,18 +32,6 @@ public class ClientDashboardController {
 
     }
 
-    public void goToActivities(MouseEvent mouseEvent) {
-        RouterController router=new RouterController();
-        router.navigate("/fxml/ActivitiesCRUD.fxml");
-    }
-
-    public void goToCommands(MouseEvent mouseEvent) {
-    }
-
-    public void goToReclamations(MouseEvent mouseEvent) {
-        RouterController router=new RouterController();
-        router.navigate("/fxml/Complaint.fxml");
-    }
 
 
 }
