@@ -1,11 +1,14 @@
 package edu.esprit.controller;
 
+import com.itextpdf.text.*;
 import edu.esprit.entites.Notification;
 import edu.esprit.entites.Reclamation;
 import edu.esprit.entites.Reponse;
 import edu.esprit.servies.NotificationService;
 import edu.esprit.servies.ReclamationCrud;
 import edu.esprit.servies.ReponseCrud;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,11 +16,12 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
+//import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -41,23 +45,21 @@ import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 
 
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.ResourceBundle;
 
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
+import javax.imageio.ImageIO;
 import javax.net.ssl.SSLContext;
 import java.io.File;
 import java.net.URL;
@@ -75,7 +77,7 @@ public class RecListAdminController implements Initializable {
 
   public HBox addReviewsModel;
   public TextArea commentInput;
-  public TextField titleInput;
+
   public ComboBox<String> TypeInput;
   public HBox updateBtnContainer;
   public HBox submitBtn;
@@ -94,9 +96,18 @@ public class RecListAdminController implements Initializable {
 
   private ImageView img;
   // private User user = null;
+@FXML
+  private TextField searchField;
+  private final ReclamationCrud reclamationCrud = new ReclamationCrud();
+  private ObservableList<Reclamation> reclamationList = FXCollections.observableArrayList();
 
 
 
+  public ObservableList<Reclamation> getAllReclamationCard() throws SQLException {
+    reclamationList.addAll(reclamationCrud.afficher());
+    System.out.println(reclamationList);
+    return reclamationList ;
+  }
   @Override
   public void initialize(URL url, ResourceBundle rb) {
     //    System.out.println("Time for fun?");
@@ -142,7 +153,15 @@ public class RecListAdminController implements Initializable {
 
     NotificationService ns = new NotificationService();
     /// Intégration, changer user ID ici
-
+//
+//    searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+//      try {
+//        updateSearchResults(newValue);
+//      } catch (SQLException e) {
+//        e.printStackTrace();
+//        // Gérer l'exception
+//      }
+//    });
     List<Notification> notifList = ns.getUserNotifications(0);
     int unreadNotifCount = 0;
 
@@ -197,7 +216,46 @@ public class RecListAdminController implements Initializable {
     System.out.println("Notifications are ready");
   }
 
+//
+//    public void updateSearchResults(String searchText) throws SQLException {
+//      if (searchText == null || searchText.trim().isEmpty()) {
+//        // Si le champ de recherche est vide, afficher toutes les cartes
+//        displayAllReclamationCards();
+//        return;
+//      }
+//
+//      ObservableList<Reclamation> filteredList = FXCollections.observableArrayList();
+//
+//      for (Reclamation reclamation : reclamationList) {
+//        // Ici, vous pouvez définir vos critères de recherche
+//        // Par exemple, chercher dans le titre ou le type de la réclamation
+//        if (reclamation.getTitre().toLowerCase().contains(searchText.toLowerCase())
+//                || reclamation.getType().toLowerCase().contains(searchText.toLowerCase())) {
+//          filteredList.add(reclamation);
+//        }
+//      }
+//
+//       //Afficher uniquement les cartes correspondant à la recherche
+//      displayReclamationCards(filteredList);
+//    }
 
+//  public void displayReclamationCards(ObservableList<Reclamation> filteredList) {
+//    // Effacer le contenu actuel des cartes
+//    // cardContainer est votre conteneur de cartes (par exemple, VBox)
+////    cardContainer.getChildren().clear();
+//
+//    // Ajouter les nouvelles cartes filtrées au conteneur
+//    for (Reclamation reclamation : filteredList) {
+//      // Créer et ajouter une carte pour chaque réclamation filtrée
+//      // cardNode est votre représentation visuelle de la carte (par exemple, un VBox avec des labels, des boutons, etc.)
+////      Node cardNode = createReclamationCard(reclamation); // Méthode à définir
+////      cardContainer.getChildren().add(cardNode);
+//    }
+//  }
+//  public void displayAllReclamationCards() throws SQLException {
+//    ObservableList<Reclamation> allReclamations = getAllReclamationCard(); // Obtenez toutes les réclamations
+//    displayReclamationCards(allReclamations); // Afficher toutes les cartes
+//  }
   @FXML
   void open_addReviewModel(MouseEvent event) throws SQLException {
     try {
@@ -320,6 +378,7 @@ public class RecListAdminController implements Initializable {
   private void pdf(MouseEvent event) throws SQLException {
     // Afficher la boîte de dialogue de sélection de fichier
     FileChooser fileChooser = new FileChooser();
+    String logoPath = "C:/Users/asus/Desktop/TfarhidaJava-gestion-reclamations/src/main/resources/assets/tfarhida.png";
     fileChooser.setTitle("Enregistrer le fichier PDF");
     fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Fichiers PDF", "*.pdf"));
     File selectedFile = fileChooser.showSaveDialog(((Node) event.getSource()).getScene().getWindow());
@@ -335,21 +394,46 @@ public class RecListAdminController implements Initializable {
         Document document = new Document(PageSize.A4.rotate());
         PdfWriter.getInstance(document, new FileOutputStream(selectedFile));
         document.open();
+        // Ajout du logo
+        try {
+          Image logo = Image.getInstance(logoPath);
+          logo.scaleToFit(150, 150);
+          document.add(logo);
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+
+        // Ajout de la date actuelle
+        LocalDate currentDate = LocalDate.now();
+        Font fontDate = FontFactory.getFont(FontFactory.COURIER, 12, Font.NORMAL);
+        Paragraph dateParagraph = new Paragraph("Date: " + currentDate.toString(), fontDate);
+        dateParagraph.setAlignment(Element.ALIGN_RIGHT);
+        document.add(dateParagraph);
 
         // Titre du document
-        Font titleFont = new Font(Font.FontFamily.TIMES_ROMAN, 32, Font.BOLD, BaseColor.DARK_GRAY);
-        Paragraph title = new Paragraph("Liste des réclamations", titleFont);
-        title.setAlignment(Element.ALIGN_CENTER);
-        title.setSpacingAfter(20);
-        document.add(title);
+        Font fontTitle = FontFactory.getFont(FontFactory.COURIER, 20, Font.BOLD, BaseColor.BLUE);
+        Paragraph titleParagraph = new Paragraph("Liste des Reclamations", fontTitle);
+        titleParagraph.setAlignment(Element.ALIGN_CENTER);
+        document.add(titleParagraph);
+        document.add(new Paragraph("\n"));
 
-        // Créer une table pour afficher les visites médicales
-        PdfPTable table = new PdfPTable(5);
+        // Créer une table pour afficher les réclamations
+        PdfPTable table = new PdfPTable(6);
         table.setWidthPercentage(100);
         table.setSpacingBefore(10);
+        table.setWidths(new float[]{20, 30, 40, 15, 15, 30});
+
+        // Définir le style de bordure du tableau et des cellules
+
+        table.getDefaultCell().setBorderWidth(0.5f);
+        table.getDefaultCell().setBorderColor(BaseColor.GRAY);
+        // Créer une table pour afficher les réclamations
+//        PdfPTable table = new PdfPTable(6);
+//        table.setWidthPercentage(100);
+//        table.setSpacingBefore(10);
 
         // Ajouter les en-têtes de colonnes
-        String[] headers = {"titre", "type", "description_reclamation", "Date","etat", "image"};
+        String[] headers = {"Titre", "Type", "Description", "Date", "État", "Image"};
         Font headerFont = new Font(Font.FontFamily.TIMES_ROMAN, 14, Font.BOLD, BaseColor.BLACK);
         for (String header : headers) {
           PdfPCell cell = new PdfPCell(new Paragraph(header, headerFont));
@@ -357,15 +441,23 @@ public class RecListAdminController implements Initializable {
           table.addCell(cell);
         }
 
-        // Ajouter les données des visites médicales
+        // Ajouter les données des réclamations à la table
         for (Reclamation reclamation : reclamationList) {
-          table.addCell(String.valueOf(reclamation.getTitre()));
-          table.addCell(String.valueOf(reclamation.getType()));
+          table.addCell(reclamation.getTitre());
+          table.addCell(reclamation.getType());
           table.addCell(reclamation.getDescription_reclamation());
           table.addCell(reclamation.getDate().toString());
           table.addCell(reclamation.getEtat() ? "Traitée" : "Non traitée");
-          table.addCell(reclamation.getDescription_reclamation());
 
+          // Ajouter l'image à la cellule
+          byte[] imageData = getImageData(reclamation.getImage());
+          if (imageData != null) {
+            Image img = Image.getInstance(imageData);
+            PdfPCell imgCell = new PdfPCell(img, true);
+            table.addCell(imgCell);
+          } else {
+            table.addCell("Image non disponible");
+          }
         }
 
         document.add(table);
@@ -378,6 +470,29 @@ public class RecListAdminController implements Initializable {
     }
   }
 
+  // Méthode pour obtenir les données de l'image à partir du chemin du fichier
+  private byte[] getImageData(String imagePath) {
+    try {
+      File imageFile = new File(imagePath);
+      BufferedImage bufferedImage = ImageIO.read(imageFile);
+      ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+      ImageIO.write(bufferedImage, "png", byteArrayOutputStream);
+      return byteArrayOutputStream.toByteArray();
+    } catch (IOException e) {
+      e.printStackTrace();
+      return null;
+    }
+  }
+  @FXML
+  void stat(ActionEvent event) throws IOException {
 
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminDashboard/Statistiques.fxml"));
+    Parent root = loader.load();
+
+    // Créer une nouvelle fenêtre pour afficher le formulaire d'ajout
+    Stage stage = new Stage();
+    stage.setScene(new Scene(root));
+    stage.show();
+  }
 
 }

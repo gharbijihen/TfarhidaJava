@@ -4,7 +4,9 @@ import edu.esprit.tools.MyConnection;
 import edu.esprit.entites.Reclamation;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ReclamationCrud implements IcrudL<Reclamation> {
     @Override
@@ -185,5 +187,39 @@ public Reclamation getReclamationById(int reclamationId) throws SQLException {
     statement.close();
     return null;
 }
+
+    public Map<Boolean, Integer> getReclamationByEtat() {
+        Map<Boolean, Integer> reclamationByetat = new HashMap<>();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            // Obtain the connection directly within the method
+            connection = MyConnection.getInstance().getCnx();
+
+            String query = "SELECT etat, COUNT(*) AS count FROM reclamation GROUP BY etat";            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                boolean etat = resultSet.getBoolean("etat");
+                int count = resultSet.getInt("count");
+                reclamationByetat.put(etat, count);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close the ResultSet, PreparedStatement, and Connection
+            try {
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                // Do not close the connection here to keep it open
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return reclamationByetat;
+    }
 }
 

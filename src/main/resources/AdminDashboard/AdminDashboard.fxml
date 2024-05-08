@@ -84,16 +84,35 @@
                         <children>
                                   <Pane prefHeight="41.0" prefWidth="1070.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 70;">
                                       <children>
-                                          <TextField layoutX="16.0" layoutY="7.0" prefHeight="52.0" prefWidth="1041.0" promptText="chercher........." style="-fx-background-radius: 100;" />
+                                          <TextField layoutX="16.0" layoutY="7.0"   prefHeight="52.0" prefWidth="1041.0" promptText="chercher........." style="-fx-background-radius: 100;" />
                                       </children>
                                   </Pane>
                            <HBox prefHeight="66.0" prefWidth="73.0">
                               <children>
-                                 <ImageView fitHeight="43.0" fitWidth="62.0" onMouseClicked="#pdf" pickOnBounds="true" preserveRatio="true">
-                                     <image>
-                                         <Image url="@../assets/icons8-export-pdf-48.png" />
-                                     </image>
-                                 </ImageView>
+                                  <Button layoutX="38.0" layoutY="546.0" mnemonicParsing="false" onAction="#pdf" prefHeight="37.0" prefWidth="83.0" style="-fx-background-radius: 100; -fx-background-color: red;" text="PDF" textFill="WHITE">
+                                      <graphic>
+                                          <ImageView fitHeight="29.0" fitWidth="28.0">
+                                              <image>
+                                                  <Image url="@../assets/cat.png"/>
+                                              </image>
+                                          </ImageView>
+                                      </graphic>
+                                      <font>
+                                          <Font name="System Bold Italic" size="13.0" />
+                                      </font>
+                                  </Button>
+                                  <Button layoutX="128.0" layoutY="18.0" mnemonicParsing="false" onAction="#stat" prefHeight="37.0" prefWidth="100.0" style="-fx-background-radius: 100; -fx-background-color: green;" text="Stat" textFill="WHITE">
+                                      <graphic>
+                                          <ImageView fitHeight="29.0" fitWidth="28.0">
+                                              <image>
+                                                  <Image url="@../assets/cat.png" />
+                                              </image>
+                                          </ImageView>
+                                      </graphic>
+                                      <font>
+                                          <Font name="System Bold Italic" size="13.0" />
+                                      </font>
+                                  </Button>
                               </children>
                            </HBox>
                         </children>
@@ -121,7 +140,7 @@
 
                         </children>
                     </VBox>
-                    <HBox fx:id="addReviewsModel" alignment="CENTER" layoutX="-155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1208.0" styleClass="categoriesModel" stylesheets="@Style.css" translateX="140.0" translateY="-5.0">
+                    <HBox fx:id="addReviewsModel" alignment="CENTER" layoutX="-155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="707.0" prefWidth="1208.0" styleClass="categoriesModel" stylesheets="@Style.css" translateX="140.0" translateY="-5.0" visible="false">
                         <children>
                             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="678.0" prefWidth="612.0" styleClass="productAddedToCart__card" stylesheets="@Style.css">
                                 <children>

@@ -119,7 +119,7 @@
                     </HBox>
                     <HBox fx:id="updateBtnContainer" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" translateX="1.0" translateY="-51.0">
                         <children>
-                            <HBox fx:id="updateBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#update_reclamation" prefHeight="51.0" prefWidth="121.0" styleClass="contenuShoppingBtn">
+                            <HBox fx:id="updateBtn" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#submitReponse" prefHeight="51.0" prefWidth="121.0" styleClass="contenuShoppingBtn">
                                 <children>
                                     <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="productDetails__price" text="Répondre" />
                                 </children>
