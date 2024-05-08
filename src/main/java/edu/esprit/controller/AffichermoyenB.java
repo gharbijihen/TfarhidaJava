@@ -125,20 +125,45 @@ public class AffichermoyenB {
             tableView.setVisible(false);
         }
     */
-    public void initialize()  {
+    public void initialize() {
         List<Moyen_transport> moy = ps.afficher();
         ObservableList<Moyen_transport> observableList = FXCollections.observableList(moy);
         filteredMoyensList = new FilteredList<>(observableList);
         tableView.setItems(filteredMoyensList);
-        // Configure les colonnes pour correspondre aux attributs de l'activité
-        colType.setCellValueFactory(new PropertyValueFactory<>("type"));
+
+        // Configure the columns to match the attributes of the Moyen_transport
+        colType.setCellValueFactory(new PropertyValueFactory<>("Type"));
         colCapacite.setCellValueFactory(new PropertyValueFactory<>("Capacite"));
         colLieu.setCellValueFactory(new PropertyValueFactory<>("Lieu"));
+
+        // Use a custom cell factory for colEtat to display "disponible" or "non-disponible"
         colEtat.setCellValueFactory(new PropertyValueFactory<>("Etat"));
+        colEtat.setCellFactory(tc -> new TableCell<>() {
+            @Override
+            protected void updateItem(Boolean item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item ? "Disponible" : "Non-disponible");
+                }
+            }
+        });
+
         colValide.setCellValueFactory(new PropertyValueFactory<>("Valide"));
+        colValide.setCellFactory(tc -> new TableCell<>() {
+            @Override
+            protected void updateItem(Boolean item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item ? "Validé" : "Non-Validé");
+                }
+            }
+        });
         tableView.setStyle("-fx-background-color: #f2f2f2;");
         colAction.setCellFactory(cell -> new ActionCell());
-
 
         // Set styles for each TableColumn
         colType.setStyle("-fx-alignment: CENTER;");
@@ -156,15 +181,9 @@ public class AffichermoyenB {
         colValide.setPrefWidth(170);
         colAction.setPrefWidth(190);
 
-
-        tableView.setVisible(true); // Rend la table visible par défaut
-
-
-
-
-
-
+        tableView.setVisible(true); // Make the table visible by default
     }
+
 
 
 
@@ -356,6 +375,19 @@ public class AffichermoyenB {
             }
         });
 
+    }
+    @FXML
+    void stat(ActionEvent event) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/stat.fxml"));
+
+
+        Parent root = loader.load();
+
+        // Créer une nouvelle fenêtre pour afficher le formulaire d'ajout
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
     }
     @FXML
     void generatePdf(ActionEvent event) throws DocumentException, SQLException {

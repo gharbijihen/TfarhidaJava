@@ -210,25 +210,42 @@ public class Moyen_transportCrud implements IcrudL<Moyen_transport> {
 
         return moyen;
     }
-    public Map<String, Integer> getMoyenbyType() {
-        Map<String, Integer> moyenByetat = new HashMap<>();
+    public Map<Boolean, Integer> getMoyenbyEtat() {
+        Map<Boolean, Integer> moyenByetat = new HashMap<>();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
-        try  (Connection connection = MyConnection.getInstance().getCnx()) {
+        try {
+            // Obtain the connection directly within the method
+            connection = MyConnection.getInstance().getCnx();
+
             String query = "SELECT etat, COUNT(*) AS count FROM moyen_transport GROUP BY etat";
-            try(PreparedStatement preparedStatement = connection.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery();) {
-                while (resultSet.next()) {
-                    String etat = resultSet.getString("etat");
-                    int count = resultSet.getInt("count");
-                    moyenByetat.put(etat, count);
-                }
+            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                boolean etat = resultSet.getBoolean("etat");
+                int count = resultSet.getInt("count");
+                moyenByetat.put(etat, count);
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            // Close the ResultSet, PreparedStatement, and Connection
+            try {
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                // Do not close the connection here to keep it open
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
 
         return moyenByetat;
     }
+
+
 
 
 }

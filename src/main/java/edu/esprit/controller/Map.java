@@ -16,6 +16,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,6 +54,9 @@ public class Map implements Initializable {
     @FXML
     private Button btn;
     public static String pos;
+    @FXML
+    private Button chatbotButton;
+
 
 
     public void setLocation(String location) {
@@ -93,6 +97,22 @@ public class Map implements Initializable {
         System.out.println("retourrrr");
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         stage.close();
+    }
+    @FXML
+    void chatbot(ActionEvent event) throws IOException, SQLException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/chatbot.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
    /* @FXML

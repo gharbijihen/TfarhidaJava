@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="915.0" prefWidth="1573.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.AfficherMoyF">
@@ -57,10 +58,45 @@
         </HBox>
         <VBox layoutX="312.0" layoutY="106.0" prefHeight="788.0" prefWidth="1210.0">
             <children>
-                <ScrollPane fx:id="scroll" prefHeight="869.0" prefWidth="1210.0" />
+                <ScrollPane fx:id="scroll" prefHeight="531.0" prefWidth="1210.0" />
                 <Pane prefHeight="200.0" prefWidth="1210.0">
                     <children>
-                        <Button fx:id="ajouterButton" layoutX="266.0" layoutY="21.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="25.0" prefWidth="145.0" style="-fx-background-radius: 100 ;" text="Ajouter" visible="false" />
+                        <Button fx:id="ajouterButton" layoutX="540.0" layoutY="70.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="25.0" prefWidth="145.0" style="-fx-background-radius: 100 ;" text="Ajouter" visible="false">
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="22.0" fitWidth="19.0">
+                                    <image>
+                                        <Image url="@images/ajouter.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                      <Button layoutX="515.0" layoutY="11.0" onAction="#navigateToPreviousPage" text="précedent">
+                          <font>
+                              <Font size="13.0" />
+                          </font>
+                          <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="19.0">
+                                  <image>
+                                      <Image url="@images/precedent.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                      </Button>
+                      <Button layoutX="633.0" layoutY="11.0" onAction="#navigateToNextPage" prefHeight="30.0" prefWidth="98.0" text="Suivant">
+                          <font>
+                              <Font size="13.0" />
+                          </font>
+                          <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="19.0">
+                                  <image>
+                                      <Image url="@images/suivant.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                      </Button>
                     </children>
                 </Pane>
             </children>
@@ -104,12 +140,7 @@
                     </ImageView>
                 </graphic>
             </Button>
-          <TextField layoutX="305.0" layoutY="63.0" prefHeight="30.0" prefWidth="1210.0" promptText="chercher........." style="-fx-background-radius: 100;" stylesheets="@../java/edu/esprit/values/style.css" />
-        <HBox alignment="CENTER" layoutX="312.0" layoutY="900.0" prefHeight="36.0" prefWidth="1210.0">
-            <children>
-                <Button text="Previous" onAction="#navigateToPreviousPage"/>
-                <Button text="Next" onAction="#navigateToNextPage"/>
-            </children>
-        </HBox>
+        <TextField fx:id="searchField" layoutX="305.0" layoutY="63.0" prefHeight="30.0" prefWidth="1210.0" promptText="chercher........." style="-fx-background-radius: 100;"  />
+        <HBox alignment="CENTER" layoutX="312.0" layoutY="900.0" prefHeight="36.0" prefWidth="1210.0" />
     </children>
 </AnchorPane>

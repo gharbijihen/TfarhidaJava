@@ -15,6 +15,8 @@ import java.sql.SQLException;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableCell;
 import javafx.scene.paint.Color;
+import edu.esprit.controller.MailController;
+
 
 
 
@@ -36,6 +38,9 @@ public class ActionCell extends TableCell<Moyen_transport, Void> {
             Moyen_transport moyen = getTableView().getItems().get(getIndex());
             moyen.setValide(true);
             getTableView().refresh();
+            MailController mailer = new MailController();
+            mailer.sendEmail("alaeddine.souidi@esprit.tn",moyen);
+
             try {
                 moyenCrud.modifier(moyen);
             } catch (SQLException e) {
