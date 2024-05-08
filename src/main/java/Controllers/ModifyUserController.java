@@ -152,6 +152,7 @@ public class ModifyUserController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        RouterController.navigate("/fxml/UsersCRUD.fxml");
     }
     @FXML
     void returnTo(MouseEvent event) {

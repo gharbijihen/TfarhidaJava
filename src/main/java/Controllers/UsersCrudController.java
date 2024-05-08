@@ -52,6 +52,9 @@ public class UsersCrudController implements Initializable {
     private TextField filtrefield;
 
     @FXML
+    private Button btnNaviguer2;
+
+    @FXML
     private TableView<User> tableView;
 
     private FilteredList<User> filteredList;
@@ -67,6 +70,12 @@ public class UsersCrudController implements Initializable {
     void gotoAjouter(ActionEvent event) {
         RouterController router = new RouterController();
         router.navigate("/fxml/AddUser.fxml");
+    }
+    @FXML
+    void goToNavigate1(ActionEvent event) {
+        RouterController router =new RouterController() ;
+        router.navigate("/fxml/statistique.fxml");
+
     }
 
     @Override

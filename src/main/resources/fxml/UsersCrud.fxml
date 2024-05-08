@@ -131,6 +131,18 @@
                         <Font name="System Bold" size="11.0" />
                      </font>
                   </Button>
+                  <Button fx:id="btnNaviguer2" contentDisplay="TOP" mnemonicParsing="false" onAction="#goToNavigate1" prefHeight="66.0" prefWidth="74.0" style="-fx-background-color: #53a0ec;" styleClass="button3" stylesheets="@guiadmin.css" text="Dashboard" textFill="#767676">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../assets/dashboard.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                  </Button>
                </children>
             </VBox>
             </children>

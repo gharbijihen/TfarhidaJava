@@ -7,7 +7,7 @@ import com.twilio.rest.api.v2010.account.Message;
 public class SmsController {
         // Find your Account Sid and Token at twilio.com/console
         public static final String ACCOUNT_SID = "AC0750ed6ed00ede1ef43f4fabe0d6de62";
-        public static final String AUTH_TOKEN = "717928c24c644edec2fc4bd08db38b98";
+        public static final String AUTH_TOKEN = "80bed855f92f806b0a761dc635ade3cb";
 
         public static void Sms() {
             System.out.println("Sending SMS now");

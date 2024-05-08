@@ -216,6 +216,7 @@ public class AddUserController implements Initializable {
         System.out.println(user);
         serviceUser.add(user);
         showSuccessMessage("Utilisateur ajoutée avec success");
+        RouterController.navigate("/fxml/UsersCRUD.fxml");
     }
 
 

@@ -16,6 +16,8 @@ public class AdminDashboardController {
        // adminNameLabel.setText(name);
     }
     public void goToLogn(MouseEvent mouseEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/login.fxml");
     }
 
     public void goToNavigate(ActionEvent actionEvent) {
@@ -33,15 +35,10 @@ public class AdminDashboardController {
         router.navigate("/fxml/ActivitiesCRUD.fxml");
     }
 
-    public void goToCommands(MouseEvent mouseEvent) {
-    }
 
-    public void goToReclamations(MouseEvent mouseEvent) {
-    }
 
     public void goToEvent(MouseEvent mouseEvent) {
     }
 
-    public void goToLivraisons(MouseEvent mouseEvent) {
-    }
+
 }
