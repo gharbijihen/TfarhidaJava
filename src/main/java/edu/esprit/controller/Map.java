@@ -152,4 +152,8 @@ public class Map implements Initializable {
             Platform.exit();
         }}
 
+    public static String getLocation() {
+        return Double.toString(lat) + "," + Double.toString(lon);
+    }
+
 }

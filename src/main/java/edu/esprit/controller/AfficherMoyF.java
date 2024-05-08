@@ -4,6 +4,7 @@ import edu.esprit.entites.Moyen_transport;
 import edu.esprit.servies.Moyen_transportCrud;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -25,8 +26,14 @@ public class AfficherMoyF {
     private ObservableList<Moyen_transport> moyensList;
     @FXML
     private Button ajouterButton;
+
+    @FXML
+    private Button suivantButton;
+
+    @FXML
+    private Button precedentButton;
     // Pagination parameters
-    private static final int ITEMS_PER_PAGE = 2;
+    private static final int ITEMS_PER_PAGE = 3;
     private int currentPageIndex = 0;
     @FXML
     private TextField searchField;
@@ -103,6 +110,11 @@ public class AfficherMoyF {
 
             System.out.println("Loading items completed successfully.");
 
+            suivantButton.setDisable(toIndex >= moyens.size());
+            precedentButton.setDisable(fromIndex == 0);
+
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -159,6 +171,28 @@ public class AfficherMoyF {
 
             // Définir la nouvelle scène sur la fenêtre et l'afficher
             stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void openWeatherPage(ActionEvent event) {
+        try {
+            // Charger le fichier FXML de la page weather.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Weather.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec le contenu de weather.fxml
+            Scene scene = new Scene(root);
+
+            // Créer une nouvelle fenêtre pour afficher la scène
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Weather Information");
+
+            // Afficher la nouvelle fenêtre
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

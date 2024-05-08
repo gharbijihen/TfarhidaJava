@@ -33,7 +33,7 @@ public class ChatBot {
 
             MediaType mediaType = MediaType.parse("application/json; charset=utf-8");
             String model = "gpt-3.5-turbo"; // Initialize the model variable with the correct model name
-            String apiKey = "sk-proj-8dsBPkrKUI0GiPWsfnzcT3BlbkFJTYQ0WCN4OBNl4aqurDdT"; // Replace with your actual API key
+            String apiKey = "sk-proj-gCG1IfwRov7zDRHoZd0OT3BlbkFJ77s6w6ASUaTBtaaDmvOP"; // Replace with your actual API key
             String requestBody = "{\"model\":\"" + model + "\",\"prompt\":\"" + input + "\",\"max_tokens\":150}";
             Request request = new Request.Builder()
                     .url("https://api.openai.com/v1/completions")

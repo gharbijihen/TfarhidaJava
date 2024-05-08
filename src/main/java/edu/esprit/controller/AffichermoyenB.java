@@ -132,40 +132,40 @@ public class AffichermoyenB {
         tableView.setItems(filteredMoyensList);
 
         // Configure the columns to match the attributes of the Moyen_transport
-        colType.setCellValueFactory(new PropertyValueFactory<>("Type"));
-        colCapacite.setCellValueFactory(new PropertyValueFactory<>("Capacite"));
-        colLieu.setCellValueFactory(new PropertyValueFactory<>("Lieu"));
+        colType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        colCapacite.setCellValueFactory(new PropertyValueFactory<>("capacite"));
+        colLieu.setCellValueFactory(new PropertyValueFactory<>("lieu"));
+        colEtat.setCellValueFactory(new PropertyValueFactory<>("etat"));
+        colValide.setCellValueFactory(new PropertyValueFactory<>("valide"));
 
-        // Use a custom cell factory for colEtat to display "disponible" or "non-disponible"
-        colEtat.setCellValueFactory(new PropertyValueFactory<>("Etat"));
+        // Set Comparators for specific sorting
+        colType.setComparator(Comparator.comparing(String::toLowerCase));
+        colCapacite.setComparator(Comparator.comparingInt(Integer::intValue));
+        colLieu.setComparator(Comparator.comparing(String::toLowerCase));
+        colEtat.setComparator(Comparator.comparing(Boolean::booleanValue));
+        colValide.setComparator(Comparator.comparing(Boolean::booleanValue));
+
+        // Custom cell factory for displaying custom text
         colEtat.setCellFactory(tc -> new TableCell<>() {
             @Override
             protected void updateItem(Boolean item, boolean empty) {
                 super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText(item ? "Disponible" : "Non-disponible");
-                }
+                setText(empty || item == null ? null : (item ? "Disponible" : "Non-disponible"));
             }
         });
 
-        colValide.setCellValueFactory(new PropertyValueFactory<>("Valide"));
         colValide.setCellFactory(tc -> new TableCell<>() {
             @Override
             protected void updateItem(Boolean item, boolean empty) {
                 super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText(item ? "Validé" : "Non-Validé");
-                }
+                setText(empty || item == null ? null : (item ? "Validé" : "Non-Validé"));
             }
         });
+
+        // Set styles and other properties
         tableView.setStyle("-fx-background-color: #f2f2f2;");
         colAction.setCellFactory(cell -> new ActionCell());
 
-        // Set styles for each TableColumn
         colType.setStyle("-fx-alignment: CENTER;");
         colCapacite.setStyle("-fx-alignment: CENTER;");
         colLieu.setStyle("-fx-alignment: CENTER;");
@@ -182,7 +182,14 @@ public class AffichermoyenB {
         colAction.setPrefWidth(190);
 
         tableView.setVisible(true); // Make the table visible by default
+
+        // Programmatically initial sort (optional, remove if not needed)
+        tableView.getSortOrder().add(colType); // You can add multiple columns here
+        tableView.sort();
+        tableView.refresh();
     }
+
+
 
 
 
@@ -195,6 +202,8 @@ public class AffichermoyenB {
     @FXML
     private void affichermoyen() {
         tableView.setVisible(true);
+
+
 
 
     }

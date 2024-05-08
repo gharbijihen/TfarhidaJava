@@ -237,11 +237,11 @@
               <Font name="System Bold Italic" size="13.0" />
           </font>
       </Button>
-            <Button layoutX="128.0" layoutY="18.0" mnemonicParsing="false" onAction="#stat" prefHeight="37.0" prefWidth="100.0" style="-fx-background-radius: 100; -fx-background-color: green;" text="Stat" textFill="WHITE">
+            <Button layoutX="128.0" layoutY="18.0" mnemonicParsing="false" onAction="#stat" prefHeight="37.0" prefWidth="100.0" style="-fx-background-radius: 100; -fx-background-color: red;" text="Stat" textFill="WHITE">
                <graphic>
                   <ImageView fitHeight="29.0" fitWidth="28.0">
                      <image>
-                        <Image url="@images/fichier-pdf.png" />
+                        <Image url="@images/stats.png" />
                      </image>
                   </ImageView>
                </graphic>
