@@ -51,6 +51,10 @@ public class MapController implements Initializable {
     private WebEngine engine;
     @FXML
     private Button btn;
+    @FXML
+    private Button closeButton;
+    @FXML
+    public Button weatherButton;
     public static String pos;
 
 
@@ -66,6 +70,7 @@ public class MapController implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         try {
             File file = new File("C:\\Users\\ASUS\\IdeaProjects\\TfarhidaJava\\src\\main\\java\\edu\\esprit\\map\\map1.html");
             URL htmlUrl = file.toURI().toURL();
@@ -75,8 +80,27 @@ public class MapController implements Initializable {
             ex.printStackTrace();
         }
     }
+    @FXML
+    private void openWeatherPage(ActionEvent event) {
+        try {
+            // Charger le fichier FXML de la page weather.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Weather.fxml"));
+            Parent root = loader.load();
 
+            // Créer une nouvelle scène avec le contenu de weather.fxml
+            Scene scene = new Scene(root);
 
+            // Créer une nouvelle fenêtre pour afficher la scène
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setTitle("Weather Information");
+
+            // Afficher la nouvelle fenêtre
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     private void tt(MouseEvent event) {
         lat = (Double) wv.getEngine().executeScript("lat");
@@ -86,6 +110,12 @@ public class MapController implements Initializable {
         //System.out.println("Lat: " + lat);
         //System.out.println("Lon " + lon);
         coordinatesField.setText("Latitude : "+Double.toString(lat)+" Longitude : "+Double.toString(lon));
+    }
+    @FXML
+    void onClose() {
+        // Fermer la fenêtre
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
     }
 
    /* @FXML
@@ -124,5 +154,9 @@ public class MapController implements Initializable {
         public void exit() {
             Platform.exit();
         }}
+    //recuperer la localisation pour le weather
+    public static String getLocation() {
+        return Double.toString(lat) + "," + Double.toString(lon);
+    }
 
 }

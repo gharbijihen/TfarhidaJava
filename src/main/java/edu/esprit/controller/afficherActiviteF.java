@@ -13,11 +13,13 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
@@ -28,6 +30,8 @@ import java.util.Comparator;
 import java.util.List;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
+
+import javax.swing.text.html.ImageView;
 
 public class afficherActiviteF {
 
@@ -68,24 +72,16 @@ public class afficherActiviteF {
     @FXML
     private Button triButton;
     @FXML
-    void initialize() {
-        // Initialisez activitesList avec les données appropriées
-        ActiviteCrud activityCrud = new ActiviteCrud();
-        activitesList = FXCollections.observableArrayList(activityCrud.afficher());
+    private Button chatbot;
 
-        // Initialisez la liste filtrée avec toutes les activités au démarrage
-        listeFiltree = FXCollections.observableArrayList(activitesList);
-
-        // Configurer la fonctionnalité de recherche
-        champRecherche.textProperty().addListener((observable, ancienneValeur, nouvelleValeur) -> {
-            // Appel de la méthode de filtrage à chaque modification du texte de recherche
-            filtrerActivites(nouvelleValeur);
-            // Afficher les activités filtrées à partir de la première page
-            afficherActivites(0);
-        });
-
-
-    }
+    @FXML
+    private Pane chat;
+    @FXML
+    private Label trie;
+    @FXML
+    private Label loupe;
+    @FXML
+    private Label sb;
     private void loadMap(String adresse) {
         // Générer l'URL de la carte en remplaçant les espaces par "%20" dans l'adresse
         String mapUrl = "https://maps.google.com/maps?q=" + adresse.replace(" ", "%20") + "&output=embed";
@@ -141,7 +137,23 @@ public class afficherActiviteF {
     }
 
     @FXML
-    void handleAfficherActivites(ActionEvent event) {
+    void initialize() {
+        // Initialisez activitesList avec les données appropriées
+        ActiviteCrud activityCrud = new ActiviteCrud();
+        activitesList = FXCollections.observableArrayList(activityCrud.afficher());
+
+        // Initialisez la liste filtrée avec toutes les activités au démarrage
+        listeFiltree = FXCollections.observableArrayList(activitesList);
+
+        // Configurer la fonctionnalité de recherche
+        champRecherche.textProperty().addListener((observable, ancienneValeur, nouvelleValeur) -> {
+            // Appel de la méthode de filtrage à chaque modification du texte de recherche
+            filtrerActivites(nouvelleValeur);
+            // Afficher les activités filtrées à partir de la première page
+            afficherActivites(0);
+        });
+
+        // Appeler la méthode d'affichage en passant la page actuelle
         afficherActivites(currentPage);
     }
     //recehrche
@@ -176,6 +188,7 @@ public class afficherActiviteF {
         listeFiltree.setAll(activiteListTrie);
         afficherActivites(0);
     }
+
 
 
 
@@ -243,6 +256,32 @@ public class afficherActiviteF {
         precedentButton.setVisible(true);
         suivantButton.setVisible(true);
         champRecherche.setVisible(true);
+        triButton.setVisible(true);
+        chatbot.setVisible(true);
+        chat.setVisible(true);
+        trie.setVisible(true);
+        loupe.setVisible(true);
+        sb.setVisible(true);
+
+    }
+
+    public void openChatbotPopup(ActionEvent actionEvent) {
+        try {
+            // Load the FXML file for the chatbot popup
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ChatBotPopup.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage for the chatbot popup
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Chatbot");
+            stage.setScene(new Scene(root));
+
+            // Show the chatbot popup
+            stage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

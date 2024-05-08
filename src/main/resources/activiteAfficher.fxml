@@ -18,77 +18,7 @@
 <AnchorPane prefHeight="1020.0" prefWidth="1731.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherActiviteF">
 
     <children>
-        <Pane layoutX="-1.0" layoutY="69.0" prefHeight="953.0" prefWidth="283.0" style="-fx-background-color: #FF7F00;">
-            <children>
-                <Text layoutX="86.0" layoutY="880.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-                <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="50.0" layoutY="859.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/logoutIcon.png" />
-                    </image>
-                </ImageView>
-                  <Button layoutX="50.0" layoutY="116.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Restaurant ">
-                      <graphic>
-                          <ImageView fitHeight="26.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                  <Image url="@images/food-service.png" />
-                              </image>
-                          </ImageView>
-                      </graphic>
-                  </Button>
-                  <Button layoutX="50.0" layoutY="247.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Transport">
-                      <graphic>
-                          <ImageView fitHeight="34.0" fitWidth="32.0">
-                              <image>
-                                  <Image url="@images/1.png" />
-                              </image>
-                          </ImageView>
-                      </graphic>
-                  </Button>
-                  <Button layoutX="49.0" layoutY="394.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Logement">
-                      <graphic>
-                          <ImageView fitHeight="26.0" fitWidth="32.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true">
-                              <image>
-                                  <Image url="@images/bed.png" />
-                              </image>
-                              <effect>
-                                  <Blend />
-                              </effect>
-                          </ImageView>
-                      </graphic>
-                  </Button>
-                  <Button layoutX="50.0" layoutY="541.0" mnemonicParsing="false" onAction="#handleAfficherActivites" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Activité">
-                      <graphic>
-                          <ImageView fitHeight="23.0" fitWidth="25.0">
-                              <image>
-                                  <Image url="@images/3555663.png" />
-                              </image>
-                          </ImageView>
-                      </graphic>
-                  </Button>
-                <Button layoutX="50.0" layoutY="689.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="166.0" style="-fx-background-radius: 100;" text="Reclamation">
-                    <graphic>
-                        <ImageView fitHeight="17.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/wirte.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                </Button>
-            </children>
-        </Pane>
-        <Pane prefHeight="73.0" prefWidth="1731.0" style="-fx-background-color: #FF7F00;">
-            <children>
-                <ImageView fitHeight="153.0" fitWidth="262.0" layoutX="7.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/tfarhida.png" />
-                    </image>
-                </ImageView>
-            </children>
-        </Pane>
+
         <HBox alignment="CENTER" layoutX="300.0" layoutY="62.0" prefHeight="36.0" prefWidth="609.0" style="-fx-background-radius: 100;" AnchorPane.rightAnchor="104.0">
             <children>
                 <HBox prefHeight="36.0" prefWidth="10.0" />
@@ -111,38 +41,50 @@
                 <Insets left="5.0" />
             </opaqueInsets>
         </HBox>
-        <VBox layoutX="308.0" layoutY="238.0" prefHeight="751.0" prefWidth="1423.0">
+        <VBox layoutX="301.0" layoutY="238.0" prefHeight="784.0" prefWidth="1430.0">
             <children>
-                <ScrollPane fx:id="scroll" prefHeight="703.0" prefWidth="1423.0">
+                <ScrollPane fx:id="scroll" prefHeight="611.0" prefWidth="1423.0">
                <content>
                   <VBox fx:id="paginationContent" prefHeight="758.0" prefWidth="1405.0" />
                </content></ScrollPane>
 
-                                        <Pane prefHeight="269.0" prefWidth="1423.0">
+                                        <Pane prefHeight="195.0" prefWidth="1423.0">
                     <children>
-                        <Button fx:id="precedentButton" layoutX="611.0" layoutY="85.0" mnemonicParsing="false" onAction="#previousPage" prefHeight="36.0" prefWidth="98.0" style="-fx-background-radius: 100; -fx-background-color: orange;" text="Précédant" visible="true">
+                        <Button fx:id="precedentButton" layoutX="602.0" layoutY="-1.0" mnemonicParsing="false" onAction="#previousPage" prefHeight="57.0" prefWidth="67.0" style="-fx-background-radius: 100; -fx-background-color: orange;" visible="true">
                      <graphic>
-                        <ImageView fitHeight="24.0" fitWidth="22.0">
+                        <ImageView fitHeight="49.0" fitWidth="48.0">
                            <image>
-                              <Image url="@images/fleche-de-retour (1).png" />
+                              <Image url="@images/un-pas-en-arrier.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
-                        <Button fx:id="suivantButton" layoutX="713.0" layoutY="85.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="36.0" prefWidth="98.0" style="-fx-background-radius: 100; -fx-background-color: orange;" text="Suivant" visible="true">
+                        <Button fx:id="suivantButton" layoutX="673.0" layoutY="-1.0" mnemonicParsing="false" onAction="#nextPage" prefHeight="57.0" prefWidth="67.0" style="-fx-background-radius: 100; -fx-background-color: orange;" visible="true">
                      <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="24.0">
+                        <ImageView fitHeight="49.0" fitWidth="48.0">
                            <image>
-                              <Image url="@images/suivant.png" />
+                              <Image url="@images/un-pas-en-avant.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Label fx:id="boxchat" layoutX="1000.0" layoutY="35.0" prefHeight="73.0" prefWidth="166.0" text="Parlons ici" textFill="#3fddae">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="73.0" fitWidth="58.0">
+                           <image>
+                              <Image url="@images/question.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
                     </children>
                 </Pane>
-            <Pane prefHeight="221.0" prefWidth="1423.0">
+            <Pane prefHeight="287.0" prefWidth="1430.0">
                <children>
-                   <Button fx:id="ajouterButton" layoutX="165.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="49.0" prefWidth="153.0" style="-fx-background-radius: 100 ;" text="Ajouter" textFill="#595555" visible="true">
+                   <Button fx:id="ajouterButton" layoutX="589.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="68.0" prefWidth="176.0" style="-fx-background-radius: 100; -fx-background-color: #F3D9B0;" text="Ajouter" textFill="#595555" visible="false">
                      <graphic>
                         <ImageView fitHeight="56.0" fitWidth="56.0">
                            <image>
@@ -154,26 +96,41 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <ImageView fitHeight="56.0" fitWidth="59.0" layoutX="259.0" layoutY="44.0">
-                     <image>
-                        <Image url="@images/robinet.png" />
-                     </image>
-                  </ImageView>
+                  <Pane fx:id="chat" layoutX="1124.0" layoutY="-38.0" prefHeight="207.0" prefWidth="227.0" style="-fx-background-color: #45C4B0; -fx-background-radius: 100;" visible="false">
+                     <children>
+                        <Button fx:id="chatbot" layoutX="37.0" layoutY="42.0" mnemonicParsing="false" onAction="#openChatbotPopup" prefHeight="120.0" prefWidth="159.0" style="-fx-background-color: green; -fx-background-radius: 100;" text="ChatBot" textFill="WHITE" visible="false">
+                           <graphic>
+                              <ImageView fitHeight="52.0" fitWidth="55.0">
+                                 <image>
+                                    <Image url="@images/chat.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Label fx:id="sb" layoutX="667.0" layoutY="77.0" prefHeight="49.0" prefWidth="67.0" visible="false">
+                     <graphic>
+                        <ImageView fitHeight="73.0" fitWidth="75.0">
+                           <image>
+                              <Image url="@images/robinet.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Label>
                </children>
             </Pane>
 
             </children>
         </VBox>
-        <TextField fx:id="champRecherche" layoutX="359.0" layoutY="136.0" prefHeight="56.0" prefWidth="1146.0" promptText="chercher........." style="-fx-background-radius: 100; -fx-background-color: #AEE4FF;" visible="false">
+        <TextField fx:id="champRecherche" layoutX="339.0" layoutY="136.0" prefHeight="56.0" prefWidth="1196.0" promptText="Chercher par..." style="-fx-background-radius: 100; -fx-background-color: #FFFFFF;" visible="false">
          <font>
-            <Font size="22.0" />
+            <Font name="System Italic" size="23.0" />
          </font></TextField>
-      <ImageView fitHeight="49.0" fitWidth="48.0" layoutX="300.0" layoutY="138.0">
-         <image>
-            <Image url="@images/loupe.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="1580.0" layoutY="140.0" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="49.0" prefWidth="83.0" style="-fx-background-radius: 100;" textFill="#00adff">
+
+      <Button fx:id="triButton" layoutX="1637.0" layoutY="139.0" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="49.0" prefWidth="67.0" style="-fx-background-radius: 100; -fx-background-color: #FFB116;" textFill="#eed7c5" visible="false">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
@@ -185,10 +142,18 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label layoutX="1588.0" layoutY="114.0" prefHeight="24.0" prefWidth="75.0" text="Triez par" textFill="#757d82">
+      <Label fx:id="trie" layoutX="1559.0" layoutY="152.0" prefHeight="24.0" prefWidth="75.0" text="Triez par" textFill="#ffb200" visible="false">
          <font>
-            <Font name="System Bold Italic" size="14.0" />
+            <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
+      <Label fx:id="loupe" layoutX="291.0" layoutY="123.0" prefHeight="36.0" prefWidth="46.0" visible="false">
+         <graphic>
+            <ImageView fitHeight="57.0" fitWidth="48.0">
+               <image>
+                  <Image url="@images/loupe.png" />
+               </image>
+            </ImageView>
+         </graphic></Label>
     </children>
 </AnchorPane>

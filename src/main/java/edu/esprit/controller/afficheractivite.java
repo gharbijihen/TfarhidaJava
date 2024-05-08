@@ -38,6 +38,8 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import javax.swing.text.html.ImageView;
+
 public class afficheractivite{
 
     @FXML
@@ -106,6 +108,7 @@ public class afficheractivite{
     private List<Activite> act;
     @FXML
     private PieChart pieChart;
+
 
 
 

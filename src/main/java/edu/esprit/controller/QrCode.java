@@ -5,8 +5,10 @@ import edu.esprit.entites.Activite;
 import edu.esprit.entites.QRcode;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 import java.awt.image.BufferedImage;
 public class QrCode {
@@ -15,6 +17,8 @@ public class QrCode {
 
         @FXML
         private ImageView qrCodeImageView;
+    @FXML
+    private Button closeButton;
         private String log;
 
         public void initialize() {
@@ -60,4 +64,10 @@ public class QrCode {
                 e.printStackTrace();
             }
         }
+    @FXML
+    void onClose() {
+        // Fermer la fenêtre
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
     }

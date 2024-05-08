@@ -9,12 +9,15 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 import java.io.File;
 
 public class detailController {
     @FXML
     private ImageView img;
+    @FXML
+    private Button closeButton;
 
     @FXML
     private Label locLabel;
@@ -94,6 +97,12 @@ public class detailController {
             this.descLabel.setText("");
             this.img.setImage(null); // Effacer l'image
         }
+    }
+    @FXML
+    void onClose() {
+        // Fermer la fenêtre
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
     }
 
 

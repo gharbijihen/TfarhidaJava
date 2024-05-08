@@ -15,7 +15,7 @@ public class MainFX extends Application {
     public void start(Stage stage) throws Exception {
         RouterController.setPrimaryStage(stage); // Assurez-vous d'initialiser primaryStage dans RouterController
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminDashbord.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/front.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
 
