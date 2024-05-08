@@ -227,7 +227,7 @@ public class UsersCrudController implements Initializable {
                         modifyButton.setGraphic(modifyIcon);
 
                         modifyButton.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 5px; -fx-padding: 5px 10px;");
-                       deleteButton.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 5px; -fx-padding: 5px 10px;");
+                        deleteButton.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 5px; -fx-padding: 5px 10px;");
 
                         Image deleteImage = new Image(getClass().getResourceAsStream("../assets/delete.png"));
                         ImageView deleteIcon = new ImageView(deleteImage);
