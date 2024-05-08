@@ -4,6 +4,7 @@ import com.itextpdf.text.*;
 import edu.esprit.entites.Notification;
 import edu.esprit.entites.Reclamation;
 import edu.esprit.entites.Reponse;
+import edu.esprit.servies.EmailSenderApp;
 import edu.esprit.servies.NotificationService;
 import edu.esprit.servies.ReclamationCrud;
 import edu.esprit.servies.ReponseCrud;
@@ -96,7 +97,7 @@ public class RecListAdminController implements Initializable {
 
   private ImageView img;
   // private User user = null;
-@FXML
+  @FXML
   private TextField searchField;
   private final ReclamationCrud reclamationCrud = new ReclamationCrud();
   private ObservableList<Reclamation> reclamationList = FXCollections.observableArrayList();
@@ -110,7 +111,7 @@ public class RecListAdminController implements Initializable {
   }
   @Override
   public void initialize(URL url, ResourceBundle rb) {
-    //    System.out.println("Time for fun?");
+
     updateBtnContainer.setVisible(false);
     addReviewsModel.setVisible(false);
     if(error !=null)
@@ -122,35 +123,8 @@ public class RecListAdminController implements Initializable {
     //TypeInput.getItems().addAll("Activité", "Logement", "Restaurant", "Transport");
     // recuperer user connecté
     //   user = new User();
-    System.out.println("Setting reclamations");
-    ReclamationCrud ps = new ReclamationCrud();
 
-    List<Reclamation> reclamationList = ps.afficher();
-
-    // Set Reclamations List
-    int ReclamationColumn = 0;
-    int ReclamationRow = 1;
-    try {
-      for (int i = 0; i < reclamationList.size(); i++) {
-
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/RecItemAdmin/RecItemAdmin.fxml"));
-        VBox commentItem = fxmlLoader.load();
-        RecItemAdminController ReclamationItemController = fxmlLoader.getController();
-        ReclamationItemController.setReviewData(reclamationList.get(i));
-
-        if (ReclamationColumn == 1) {
-          ReclamationColumn = 0;
-          ++ReclamationRow;
-        }
-        commentsListContainer.add(commentItem, ReclamationColumn++, ReclamationRow);
-        GridPane.setMargin(commentItem, new Insets(0, 10, 15, 10));
-      }
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-    System.out.println("Reclamations are ready");
-
+    afficherReclamations();
     NotificationService ns = new NotificationService();
     /// Intégration, changer user ID ici
 //
@@ -216,46 +190,38 @@ public class RecListAdminController implements Initializable {
     System.out.println("Notifications are ready");
   }
 
-//
-//    public void updateSearchResults(String searchText) throws SQLException {
-//      if (searchText == null || searchText.trim().isEmpty()) {
-//        // Si le champ de recherche est vide, afficher toutes les cartes
-//        displayAllReclamationCards();
-//        return;
-//      }
-//
-//      ObservableList<Reclamation> filteredList = FXCollections.observableArrayList();
-//
-//      for (Reclamation reclamation : reclamationList) {
-//        // Ici, vous pouvez définir vos critères de recherche
-//        // Par exemple, chercher dans le titre ou le type de la réclamation
-//        if (reclamation.getTitre().toLowerCase().contains(searchText.toLowerCase())
-//                || reclamation.getType().toLowerCase().contains(searchText.toLowerCase())) {
-//          filteredList.add(reclamation);
-//        }
-//      }
-//
-//       //Afficher uniquement les cartes correspondant à la recherche
-//      displayReclamationCards(filteredList);
-//    }
 
-//  public void displayReclamationCards(ObservableList<Reclamation> filteredList) {
-//    // Effacer le contenu actuel des cartes
-//    // cardContainer est votre conteneur de cartes (par exemple, VBox)
-////    cardContainer.getChildren().clear();
-//
-//    // Ajouter les nouvelles cartes filtrées au conteneur
-//    for (Reclamation reclamation : filteredList) {
-//      // Créer et ajouter une carte pour chaque réclamation filtrée
-//      // cardNode est votre représentation visuelle de la carte (par exemple, un VBox avec des labels, des boutons, etc.)
-////      Node cardNode = createReclamationCard(reclamation); // Méthode à définir
-////      cardContainer.getChildren().add(cardNode);
-//    }
-//  }
-//  public void displayAllReclamationCards() throws SQLException {
-//    ObservableList<Reclamation> allReclamations = getAllReclamationCard(); // Obtenez toutes les réclamations
-//    displayReclamationCards(allReclamations); // Afficher toutes les cartes
-//  }
+  public void afficherReclamations(){
+    System.out.println("Setting reclamations");
+    ReclamationCrud ps = new ReclamationCrud();
+
+    List<Reclamation> reclamationList = ps.afficher();
+
+    // Set Reclamations List
+    int ReclamationColumn = 0;
+    int ReclamationRow = 1;
+    try {
+      for (int i = 0; i < reclamationList.size(); i++) {
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/RecItemAdmin/RecItemAdmin.fxml"));
+        VBox commentItem = fxmlLoader.load();
+        RecItemAdminController ReclamationItemController = fxmlLoader.getController();
+        ReclamationItemController.setReviewData(reclamationList.get(i));
+
+        if (ReclamationColumn == 1) {
+          ReclamationColumn = 0;
+          ++ReclamationRow;
+        }
+        commentsListContainer.add(commentItem, ReclamationColumn++, ReclamationRow);
+        GridPane.setMargin(commentItem, new Insets(0, 10, 15, 10));
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    System.out.println("Reclamations are ready");
+  }
+
   @FXML
   void open_addReviewModel(MouseEvent event) throws SQLException {
     try {
@@ -289,6 +255,7 @@ public class RecListAdminController implements Initializable {
   public void submitReponse(MouseEvent mouseEvent) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, SQLException {
 
     error.setVisible(false);
+    Reponse newReponse=new Reponse();
 
     if (commentInput.getText().length() < 10) {
       // utils.TrayNotificationAlert.notif("Réponse", "Réponse must contain at least 10 characters.",
@@ -306,13 +273,13 @@ public class RecListAdminController implements Initializable {
 
     }
     Reclamation rc=new Reclamation();
-
+    Reponse reponse=new Reponse();
     ReclamationCrud reclamationCrud = new ReclamationCrud();
     ReponseCrud reponseCrud=new ReponseCrud();
     // If reclamation has a reply, it modifies it, if not, it creates a new reply and updates the reponse_id field
     if(RecListAdminController.reclamation.getReponseid()>0)
     {
-      Reponse newReponse=new Reponse();
+
       newReponse.setDescription(this.commentInput.getText());
       newReponse.setDate(new Date(2024));
       int reponseid =reponseCrud.ajouterreturnsID(newReponse);
@@ -321,7 +288,7 @@ public class RecListAdminController implements Initializable {
       reclamationCrud.modifier(rc);
     }else {
       rc = RecListAdminController.reclamation;
-      Reponse newReponse=new Reponse();
+
       newReponse.setDescription(this.commentInput.getText());
       newReponse.setDate(new Date(2024));
       int reponseID = reponseCrud.ajouterreturnsID(newReponse);
@@ -331,6 +298,7 @@ public class RecListAdminController implements Initializable {
       reclamationCrud.modifier(rc);
     }
     SmsController.Sms();
+    EmailSenderApp.sendEmail("tayssirsboui@gmail.com","Reponse Reclamation", "Vous avez reçu une réponse à votre réclamation: \n"+ newReponse.getDescription());
     System.out.println("Reclamation a répondre"+RecListAdminController.reclamation);
     //reclamation.setImage(selectedImageFile.getName());
     this.commentInput.setText("");
@@ -346,7 +314,7 @@ public class RecListAdminController implements Initializable {
       e.printStackTrace();
     }
     utils.TrayNotificationAlert.notif("Réponse", "Réponse added successfully.",
-      NotificationType.SUCCESS, AnimationType.POPUP, Duration.millis(2500));
+            NotificationType.SUCCESS, AnimationType.POPUP, Duration.millis(2500));
 
   }
 
@@ -374,8 +342,9 @@ public class RecListAdminController implements Initializable {
   }
 
 
+
   @FXML
-  private void pdf(MouseEvent event) throws SQLException {
+  private void pdf(ActionEvent event) throws SQLException {
     // Afficher la boîte de dialogue de sélection de fichier
     FileChooser fileChooser = new FileChooser();
     String logoPath = "C:/Users/asus/Desktop/TfarhidaJava-gestion-reclamations/src/main/resources/assets/tfarhida.png";
@@ -450,11 +419,11 @@ public class RecListAdminController implements Initializable {
           table.addCell(reclamation.getEtat() ? "Traitée" : "Non traitée");
 
           // Ajouter l'image à la cellule
-          byte[] imageData = getImageData(reclamation.getImage());
-          if (imageData != null) {
-            Image img = Image.getInstance(imageData);
-            PdfPCell imgCell = new PdfPCell(img, true);
-            table.addCell(imgCell);
+          Image img = loadImage(reclamation.getImage());
+          if (img != null) {
+            img.scaleToFit(100, 100); // Scale image to fit cell
+            PdfPCell imageCell = new PdfPCell(img, true);
+            table.addCell(imageCell);
           } else {
             table.addCell("Image non disponible");
           }
@@ -469,6 +438,7 @@ public class RecListAdminController implements Initializable {
       }
     }
   }
+
 
   // Méthode pour obtenir les données de l'image à partir du chemin du fichier
   private byte[] getImageData(String imagePath) {
@@ -494,5 +464,21 @@ public class RecListAdminController implements Initializable {
     stage.setScene(new Scene(root));
     stage.show();
   }
+
+  // Helper method to load an image from a file path, with error handling
+  private Image loadImage(String imagePath) throws BadElementException {
+    File imageFile = new File(imagePath);
+    if (imageFile.exists() && imageFile.isFile()) {
+      try {
+        return Image.getInstance(imagePath);
+      } catch (IOException e) {
+        System.err.println("Error loading image: " + e.getMessage());
+        return null; // Return null if there's an error loading the image
+      }
+    } else {
+      return null; // Return null if image file doesn't exist or is not a file
+    }
+  }
+
 
 }

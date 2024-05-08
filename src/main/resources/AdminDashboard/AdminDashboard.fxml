@@ -77,14 +77,14 @@
                         </Button>
                     </children>
                 </VBox>
-                <AnchorPane layoutX="114.0" layoutY="65.0" prefHeight="716.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" stylesheets="@../guiadmin.css">
+                <AnchorPane layoutX="114.0" layoutY="65.0" prefHeight="400.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" stylesheets="@../guiadmin.css">
                     <VBox fx:id="content_area" layoutX="12.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
                         <children>
                      <HBox prefHeight="100.0" prefWidth="200.0">
                         <children>
                                   <Pane prefHeight="41.0" prefWidth="1070.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 70;">
                                       <children>
-                                          <TextField layoutX="16.0" layoutY="7.0"   prefHeight="52.0" prefWidth="1041.0" promptText="chercher........." style="-fx-background-radius: 100;" />
+                                          <TextField layoutX="16.0" layoutY="7.0" prefHeight="52.0" prefWidth="1041.0" promptText="chercher........." style="-fx-background-radius: 100;" />
                                       </children>
                                   </Pane>
                            <HBox prefHeight="66.0" prefWidth="73.0">
@@ -93,7 +93,7 @@
                                       <graphic>
                                           <ImageView fitHeight="29.0" fitWidth="28.0">
                                               <image>
-                                                  <Image url="@../assets/cat.png"/>
+                                                  <Image url="@../assets/cat.png" />
                                               </image>
                                           </ImageView>
                                       </graphic>
@@ -113,6 +113,7 @@
                                           <Font name="System Bold Italic" size="13.0" />
                                       </font>
                                   </Button>
+
                               </children>
                            </HBox>
                         </children>
@@ -128,15 +129,19 @@
                                     </HBox>
                                 </children>
                             </HBox>
-                            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1191.0" styleClass="product-card-scrollPane">
+                            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="1191.0" styleClass="product-card-scrollPane">
                                 <content>
-                                    <GridPane fx:id="commentsListContainer" prefHeight="599.0" prefWidth="1171.0">
+                                    <GridPane fx:id="commentsListContainer" prefHeight="540.0" prefWidth="1171.0">
                                         <rowConstraints>
                                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                         </rowConstraints>
                                     </GridPane>
                                 </content>
                             </ScrollPane>
+
+
+
+
 
                         </children>
                     </VBox>
