@@ -56,7 +56,7 @@ import org.apache.http.ssl.SSLContexts;
 public class ReclamationsListController_new implements Initializable {
 
     public HBox addReviewsModel;
-  //  public HBox updateBtnContainer;
+    //  public HBox updateBtnContainer;
     public TextArea commentInput;
     public TextField titleInput;
     public ComboBox<String> TypeInput;
@@ -66,74 +66,77 @@ public class ReclamationsListController_new implements Initializable {
     public HBox viewReplyModel;
     public TextArea replyInput;
     public Label error;
-  public HBox nameInputErrorHbox;
-  public Text nameInputError;
+    public HBox nameInputErrorHbox;
+    public Text nameInputError;
+    public Text TitleError;
+    public Text TypeError;
+    public Text DescriptionError;
 
-  @FXML
-        private GridPane commentsListContainer;
+    @FXML
+    private GridPane commentsListContainer;
 
-        @FXML
-        private VBox content_area;
-        @FXML
-        private ImageView img;
-
-
-
-       // private User user = null;
-
+    @FXML
+    private VBox content_area;
+    @FXML
+    private ImageView img;
 
 
-        @Override
-        public void initialize(URL url, ResourceBundle rb) {
 
-            this.viewReplyModel.setVisible(false);
-            this.error.setVisible(false);
+    // private User user = null;
 
-            updateBtnContainer.setVisible(false);
-            addReviewsModel.setVisible(false);
-            TypeInput.getItems().addAll("Activité", "Logement", "Restaurant", "Transport");
-            // recuperer user connecté
-         //   user = new User();
-       System.out.println("Setting reclamations");
-            ReclamationCrud ps = new ReclamationCrud();
 
-            List<Reclamation> reclamationList = ps.afficher();
 
-            // Set Reclamations List
-            int ReclamationColumn = 0;
-            int ReclamationRow = 1;
-            try {
-                for (int i = 0; i < reclamationList.size(); i++) {
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
 
-                    FXMLLoader fxmlLoader = new FXMLLoader();
-                    fxmlLoader.setLocation(getClass().getResource("/RecItem/ReclamationItem.fxml"));
-                    VBox commentItem = fxmlLoader.load();
-                    ReclamationItem ReclamationItemController = fxmlLoader.getController();
-                    ReclamationItemController.setReviewData(reclamationList.get(i));
+        this.viewReplyModel.setVisible(false);
+        this.error.setVisible(false);
 
-                    if (ReclamationColumn == 1) {
-                        ReclamationColumn = 0;
-                        ++ReclamationRow;
-                    }
-                    commentsListContainer.add(commentItem, ReclamationColumn++, ReclamationRow);
-                    GridPane.setMargin(commentItem, new Insets(0, 10, 15, 10));
+        updateBtnContainer.setVisible(false);
+        addReviewsModel.setVisible(false);
+        TypeInput.getItems().addAll("Activité", "Logement", "Restaurant", "Transport");
+        // recuperer user connecté
+        //   user = new User();
+        System.out.println("Setting reclamations");
+        ReclamationCrud ps = new ReclamationCrud();
+
+        List<Reclamation> reclamationList = ps.afficher();
+
+        // Set Reclamations List
+        int ReclamationColumn = 0;
+        int ReclamationRow = 1;
+        try {
+            for (int i = 0; i < reclamationList.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/RecItem/ReclamationItem.fxml"));
+                VBox commentItem = fxmlLoader.load();
+                ReclamationItem ReclamationItemController = fxmlLoader.getController();
+                ReclamationItemController.setReviewData(reclamationList.get(i));
+
+                if (ReclamationColumn == 1) {
+                    ReclamationColumn = 0;
+                    ++ReclamationRow;
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+                commentsListContainer.add(commentItem, ReclamationColumn++, ReclamationRow);
+                GridPane.setMargin(commentItem, new Insets(0, 10, 15, 10));
             }
-            System.out.println("Reclamations are ready");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+        System.out.println("Reclamations are ready");
+    }
 
 
-        @FXML
-        void open_addReviewModel(MouseEvent event) throws SQLException {
-            System.out.println("Opening modify/addview modal");
-            HBox addReviewsModel = (HBox) ((Node) event.getSource()).getScene().lookup("#addReviewsModel");
-            submitBtn.setVisible(true);
-            submitBtn.setDisable(false);
+    @FXML
+    void open_addReviewModel(MouseEvent event) throws SQLException {
+        System.out.println("Opening modify/addview modal");
+        HBox addReviewsModel = (HBox) ((Node) event.getSource()).getScene().lookup("#addReviewsModel");
+        submitBtn.setVisible(true);
+        submitBtn.setDisable(false);
 
-            addReviewsModel.setVisible(true);
-        }
+        addReviewsModel.setVisible(true);
+    }
 
     public void close_addReviewsModel(MouseEvent mouseEvent) {
         this.commentInput.setText("");
@@ -148,88 +151,73 @@ public class ReclamationsListController_new implements Initializable {
     }
     @FXML
     DatePicker dateAjout;
-        //submit add/update action
+    //submit add/update action
     public void add_new_comment(MouseEvent mouseEvent) throws Exception {
         Reclamation reclamation = new Reclamation();
         System.out.println("controle saisie");
-      if( titleInput.getText().isEmpty() || commentInput.getText().isEmpty()){
-        //    utils.TrayNotificationAlert.notif("Reclamation", "Please fill all the fields.",
-        //          NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-        this.error.setText("Please fill all the fields");
-        this.error.setVisible(true);
-        this.nameInputError.setText("Title cannot be empty");
+        this.nameInputErrorHbox.setVisible(false);
+        this.DescriptionError.setText("*");
+        this.TitleError.setText("*");
+        this.TypeError.setText("*");
+        if( titleInput.getText().isEmpty()){
+            this.nameInputError.setText("Title cannot be empty");
+            this.nameInputErrorHbox.setVisible(true);
+            System.out.println("name");
+            return;
+        }
+        if(commentInput.getText().isEmpty())
+        {
+            this.DescriptionError.setText("* Description cannot be empty.");
+            return;
+        }
 
-        this.nameInputErrorHbox.setVisible(true);
-        return;
-      }
+        if(titleInput.getText().length() < 5){
+            //      this.error.setText("Title must contain at least 5 characters.");
+            //  this.error.setVisible(true);
+            this.nameInputError.setText("Title must contain at least 5 characters");
 
-      if(titleInput.getText().length() < 5){
-        // utils.TrayNotificationAlert.notif("Reclamation", "Title must contain at least 5 characters.",
-        //       NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-        this.error.setText("Title must contain at least 5 characters.");
-        this.error.setVisible(true);
-        this.nameInputError.setText("Title must contain at least 5 characters");
+            this.nameInputErrorHbox.setVisible(true);
 
-        this.nameInputErrorHbox.setVisible(true);
+            return;
 
-        return;
-
-      }
+        }
         if(TypeInput.getSelectionModel().getSelectedIndex()==-1)
         {
-           // utils.TrayNotificationAlert.notif("Reclamation", "Please select a type.",
-             //       NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-            this.error.setText("Please select a type for Reclamation");
-            this.error.setVisible(true);
+            //     this.error.setText("Please select a type for Reclamation");
+            //   this.error.setVisible(true);
+            this.TypeError.setText("* Please select a type for Reclamation");
 
             return;
         }
 
         if (commentInput.getText().length() < 10) {
-       //     utils.TrayNotificationAlert.notif("Reclamation", "Description must contain at least 10 characters.",
-         //           NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-            this.error.setText("Description must contain at least 10 characters");
-            this.error.setVisible(true);
-
-
+            this.DescriptionError.setText("* Description must contain at least 10 characters.");
             return;
         }
         if (commentInput.getText().length() > 255) {
-           // utils.TrayNotificationAlert.notif("Reclamation", "Description must contain at most 255 characters.",
-             //       NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-            error.setText("Description must contain at most 255 characters.");
-            this.error.setVisible(true);
-
-
+            this.DescriptionError.setText("* Description must contain at most 255 characters.");
             return;
         }
         if (titleInput.getText().length() > 15) {
-        //    utils.TrayNotificationAlert.notif("Reclamation", "Title must contain at most 15 characters.",
-          //          NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-            error.setText("Title must contain at most 15 characters.");
-            this.error.setVisible(true);
-
+            this.TitleError.setText("* Title must contain at most 15 characters.");
             return;
         }
         if (selectedImageFile == null)
         {
-           // utils.TrayNotificationAlert.notif("Reclamation", "Please select an image.",
-             //       NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
             error.setText("Please select an image.");
             this.error.setVisible(true);
-
             return;
         }
 
         uploadImage(selectedImageFile);
         reclamation.setImage(selectedImageFile.getName());
-      String description = BadWordFilter.filterText(this.commentInput.getText().trim());
-      int colonIndex = description.indexOf(":");
-      int braceIndex = description.indexOf("}");
-      System.out.println(description);
-      String extractedContent = description.substring(colonIndex + 2, braceIndex - 1).trim();
+        String description = BadWordFilter.filterText(this.commentInput.getText().trim());
+        int colonIndex = description.indexOf(":");
+        int braceIndex = description.indexOf("}");
+        System.out.println(description);
+        String extractedContent = description.substring(colonIndex + 2, braceIndex - 1).trim();
 
-      reclamation.setDescription_reclamation(extractedContent);
+        reclamation.setDescription_reclamation(extractedContent);
         reclamation.setTitre(titleInput.getText());
         reclamation.setType(TypeInput.getValue());
 
@@ -264,8 +252,8 @@ public class ReclamationsListController_new implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-            utils.TrayNotificationAlert.notif("Reclamation", "Reclamation added successfully.",
-                    NotificationType.SUCCESS, AnimationType.POPUP, Duration.millis(2500));
+        utils.TrayNotificationAlert.notif("Reclamation", "Reclamation added successfully.",
+                NotificationType.SUCCESS, AnimationType.POPUP, Duration.millis(2500));
         this.commentInput.setText("");
         this.titleInput.setText("");
         this.TypeInput.getSelectionModel().select(0);
@@ -325,67 +313,55 @@ public class ReclamationsListController_new implements Initializable {
     public void update_reclamation(MouseEvent mouseEvent) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, SQLException {
 
         Reclamation reclamation = new Reclamation();
-
-       /* review.setUser_id(user.getId());
-        review.setProduct_id(Collecte.getIdProduit());
-        review.setTitle(titleInput.getText());
-        review.setComment(commentInput.getText());
-
-        review.setValue(value);
-
-        String comment = commentInput.getText();*/
-        error.setVisible(false);
-        if(TypeInput.getSelectionModel().getSelectedIndex()==-1)
-        {
-            // utils.TrayNotificationAlert.notif("Reclamation", "Please select a type.",
-            //       NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-            error.setText("Please select a type for Reclamation");
-            error.setVisible(true);
+        this.nameInputErrorHbox.setVisible(false);
+        this.DescriptionError.setText("*");
+        this.TitleError.setText("*");
+        this.TypeError.setText("*");
+        if( titleInput.getText().isEmpty()){
+            this.nameInputError.setText("Title cannot be empty");
+            this.nameInputErrorHbox.setVisible(true);
+            System.out.println("name");
             return;
         }
-        if( titleInput.getText().isEmpty() || commentInput.getText().isEmpty()){
-            //    utils.TrayNotificationAlert.notif("Reclamation", "Please fill all the fields.",
-            //          NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-            error.setText("Please fill all the fields");
-            error.setVisible(true);
-
+        if(commentInput.getText().isEmpty())
+        {
+            this.DescriptionError.setText("* Description cannot be empty.");
             return;
         }
 
         if(titleInput.getText().length() < 5){
-            // utils.TrayNotificationAlert.notif("Reclamation", "Title must contain at least 5 characters.",
-            //       NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-            error.setText("Title must contain at least 5 characters.");
-            error.setVisible(true);
+            //      this.error.setText("Title must contain at least 5 characters.");
+            //  this.error.setVisible(true);
+            this.nameInputError.setText("Title must contain at least 5 characters");
+
+            this.nameInputErrorHbox.setVisible(true);
 
             return;
 
         }
+        if(TypeInput.getSelectionModel().getSelectedIndex()==-1)
+        {
+            //     this.error.setText("Please select a type for Reclamation");
+            //   this.error.setVisible(true);
+            this.TypeError.setText("* Please select a type for Reclamation");
+
+            return;
+        }
+
         if (commentInput.getText().length() < 10) {
-            //     utils.TrayNotificationAlert.notif("Reclamation", "Description must contain at least 10 characters.",
-            //           NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-            error.setText("Description must contain at least 10 characters");
-            error.setVisible(true);
-
-
+            this.DescriptionError.setText("* Description must contain at least 10 characters.");
             return;
         }
         if (commentInput.getText().length() > 255) {
-            // utils.TrayNotificationAlert.notif("Reclamation", "Description must contain at most 255 characters.",
-            //       NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-            error.setText("Description must contain at most 255 characters.");
-            error.setVisible(true);
-
+            this.DescriptionError.setText("* Description must contain at most 255 characters.");
             return;
         }
         if (titleInput.getText().length() > 15) {
-            //    utils.TrayNotificationAlert.notif("Reclamation", "Title must contain at most 15 characters.",
-            //          NotificationType.ERROR, AnimationType.POPUP, Duration.millis(2500));
-            error.setText("Title must contain at most 15 characters.");
-            error.setVisible(true);
-
+            this.TitleError.setText("* Title must contain at most 15 characters.");
             return;
         }
+
+
         Reclamation rc=new Reclamation();
 
         if(selectedImageFile!=null) {
@@ -447,7 +423,7 @@ public class ReclamationsListController_new implements Initializable {
 
     }
     private File selectedImageFile;
-        @FXML
+    @FXML
     public void uploadImage(MouseEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
@@ -470,7 +446,7 @@ public class ReclamationsListController_new implements Initializable {
     }
 
     public void gotoAdmin(MouseEvent mouseEvent) {
-            RouterController.navigate("/AdminDashboard/AdminDashboard.fxml");
+        RouterController.navigate("/AdminDashboard/AdminDashboard.fxml");
     }
 
 
@@ -487,7 +463,7 @@ public class ReclamationsListController_new implements Initializable {
         System.out.println("Closing modal");
         this.error.setVisible(false);
         this.replyInput.setText("");
-            this.viewReplyModel.setVisible(false);
+        this.viewReplyModel.setVisible(false);
     }
 }
 

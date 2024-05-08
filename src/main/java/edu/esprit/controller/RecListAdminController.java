@@ -329,18 +329,29 @@ public class RecListAdminController implements Initializable {
   }
 
   public void open_notifModel(MouseEvent mouseEvent) {
+    NotificationService ns=new NotificationService();
+    List<Notification> notifList = ns.getUserNotifications(0);
+    int unreadNotifCount = 0;
+
+    for (Notification notification : notifList) {
+      if (!notification.getSeen()) {
+        unreadNotifCount++;
+      }
+    }
+    totalNotif.setText(String.valueOf(unreadNotifCount));
     if (notifModel_isOpen == 0) {
       notifModel.setVisible(true);
       notifModel_isOpen = 1;
+
       return;
     }
 
     if (notifModel_isOpen == 1) {
       notifModel.setVisible(false);
+
       notifModel_isOpen = 0;
     }
   }
-
 
 
   @FXML
