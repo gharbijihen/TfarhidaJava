@@ -2,8 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,9 +15,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="740.0" prefWidth="1538.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherLogement">
+<AnchorPane prefHeight="758.0" prefWidth="1544.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherLogement">
    <children>
-      <Pane layoutX="14.0" layoutY="56.0" prefHeight="728.0" prefWidth="294.0" style="-fx-background-color: #FF7F00;">
+      <Pane layoutX="14.0" layoutY="56.0" prefHeight="702.0" prefWidth="294.0" style="-fx-background-color: #FF7F00;">
          <children>
             <Text layoutX="121.0" layoutY="686.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
             <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="95.0" layoutY="674.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
@@ -100,7 +100,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="-2.0" prefHeight="50.0" prefWidth="1578.0" style="-fx-background-color: #FF7F00;">
+      <Pane layoutX="-2.0" prefHeight="50.0" prefWidth="1544.0" style="-fx-background-color: #FF7F00;">
          <children>
             <ImageView fitHeight="28.0" fitWidth="32.0" layoutX="314.0" layoutY="11.0" onMouseClicked="#returnTo" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -119,25 +119,21 @@
             </Label>
          </children>
       </Pane>
-      <VBox layoutX="317.0" layoutY="114.0" prefHeight="659.0" prefWidth="1246.0">
+      <VBox layoutX="317.0" layoutY="114.0" prefHeight="628.0" prefWidth="1208.0">
          <children>
-            <Pane prefHeight="29.0" prefWidth="690.0" />
-            <ScrollPane fx:id="scroll" prefHeight="646.0" prefWidth="1246.0" styleClass="transparent">
+            <ScrollPane fx:id="scroll" prefHeight="578.0" prefWidth="1208.0" styleClass="transparent">
                <content>
                   <GridPane fx:id="grid" prefHeight="8.0" prefWidth="5.0">
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
                      </rowConstraints>
-                     <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0" />
-                     </children>
                      <columnConstraints>
                         <ColumnConstraints />
                      </columnConstraints>
                   </GridPane>
                </content>
             </ScrollPane>
-            <Pane prefHeight="60.0" prefWidth="1246.0">
+            <Pane prefHeight="62.0" prefWidth="1208.0">
                <children>
                   <Button fx:id="ajouterButton" layoutX="556.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleAjouterLogement" prefHeight="35.0" prefWidth="179.0" style="-fx-background-radius: 100 ;" text="Ajouter Logement" visible="false">
                      <graphic>
@@ -149,8 +145,62 @@
                      </graphic></Button>
                </children>
             </Pane>
+            <Pane prefHeight="44.0" prefWidth="1208.0">
+               <children>
+                  <Button fx:id="suivantButton" layoutX="631.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleNextPage" prefHeight="28.0" prefWidth="100.0" style="-fx-background-radius: 100; -fx-background-color: orange;" text="Suivant">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/suivant.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="precedentButton" layoutX="510.0" layoutY="2.0" mnemonicParsing="false" onAction="#handlePrevPage" prefHeight="30.0" prefWidth="106.0" style="-fx-background-radius: 100; -fx-background-color: orange;" text="Préscédant">
+                     <graphic>
+                        <ImageView fitHeight="21.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/fleche-de-retour.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
          </children>
       </VBox>
-      <TextField layoutX="318.0" layoutY="62.0" prefHeight="38.0" prefWidth="633.0" promptText="chercher........." style="-fx-background-radius: 100;" stylesheets="@../java/edu/esprit/values/style.css" />
+      <AnchorPane layoutX="313.0" layoutY="55.0" prefHeight="50.0" prefWidth="1225.0" style="-fx-background-color: #ffff; -fx-background-radius: 60; -fx-effect: shadow;">
+         <children>
+            <Pane layoutX="674.0" layoutY="10.0" prefHeight="30.0" prefWidth="371.0" style="-fx-background-color: gris; -fx-background-radius: 30;">
+               <children>
+                  <RadioButton fx:id="hotelRadioButton" layoutX="35.0" layoutY="6.0" mnemonicParsing="false" onAction="#trierParHotel" text="Hotel" />
+                  <RadioButton fx:id="villaRadioButton" layoutX="110.0" layoutY="6.0" mnemonicParsing="false" onAction="#trierParVilla" text="Villa" />
+                  <RadioButton fx:id="maisonRadioButton" layoutX="282.0" layoutY="7.0" mnemonicParsing="false" text="Maison" />
+                  <RadioButton fx:id="appartementRadioButton" layoutX="180.0" layoutY="7.0" mnemonicParsing="false" text="Appartement" />
+               </children>
+            </Pane>
+            <Button fx:id="triButton" layoutX="1105.0" layoutY="11.0" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="26.0" prefWidth="82.0" style="-fx-background-radius: 100;" text="Prix">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/sort-alt.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Bodoni MT" size="13.0" />
+               </font>
+            </Button>
+            <Button layoutX="42.0" layoutY="8.0" mnemonicParsing="false" onAction="#chatBotAction" text="ChatBolt">
+               <graphic>
+                  <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/chatBoltpng.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

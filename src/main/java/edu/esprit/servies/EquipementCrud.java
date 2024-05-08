@@ -150,5 +150,28 @@
             }
             return equipements;
         }
-        }
+        public int ajouterReturnsID(Equipement equipement) {
+            String req1 = "INSERT INTO equipement (parking, internet, climatisation, nbr_chambre, description, types_de_chambre) VALUES (?, ?, ?, ?, ?, ?)" ;
+            try {
+                PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(req1, Statement.RETURN_GENERATED_KEYS);
+                pst.setBoolean(1, equipement.isParking());
+                pst.setBoolean(2, equipement.isInternet());
+                pst.setBoolean(3, equipement.isClimatisation());
+                pst.setInt(4, equipement.getNbr_chambre());
+                pst.setString(5, equipement.getDescription());
+                pst.setString(6, equipement.getTypes_de_chambre());
+                pst.executeUpdate();
+                ResultSet rs = pst.getGeneratedKeys();
+                if (rs.next()) {
+                    int insertedId = rs.getInt(1);
+                    System.out.println("Equipement ajouté avec l'ID : " + insertedId);
+                    return insertedId; // Returns the ID of the inserted equipment
+                } else {
+                    throw new SQLException("No ID obtained.");
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+                return -1; // Returns -1 if an exception is thrown
+            }
+        }}
 

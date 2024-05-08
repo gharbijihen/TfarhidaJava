@@ -1,7 +1,9 @@
 package edu.esprit.controller;
 
+import com.itextpdf.text.DocumentException;
 import edu.esprit.entites.Logement;
 import edu.esprit.servies.LogementCrud;
+import edu.esprit.servies.generatepdf;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -11,18 +13,19 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
+import java.util.ArrayList;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-import java.io.File;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.Optional;
+
 
 public class afficherLogementB {
     @FXML
@@ -101,8 +104,8 @@ public class afficherLogementB {
 
 
     @FXML
-     public void handleAjouter(ActionEvent event) {
-       // RouterController.navigate("AjouterEquipement.fxml");
+    public void handleAjouter(ActionEvent event) {
+        // RouterController.navigate("AjouterEquipement.fxml");
         try {
             // Charger la vue ou le formulaire d'ajout
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterLogementB.fxml"));
@@ -120,26 +123,26 @@ public class afficherLogementB {
 
 
 
-  @FXML
-  public void goToafficherNavBar(ActionEvent event) {
-      try {
-          // Charger le fichier FXML de la nouvelle page
-          FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminDashbord.fxml"));
-          Parent root = loader.load();
+    @FXML
+    public void goToafficherNavBar(ActionEvent event) {
+        try {
+            // Charger le fichier FXML de la nouvelle page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminDashbord.fxml"));
+            Parent root = loader.load();
 
-          // Créer une nouvelle scène avec la nouvelle page
-          Scene scene = new Scene(root);
+            // Créer une nouvelle scène avec la nouvelle page
+            Scene scene = new Scene(root);
 
-          // Obtenir la fenêtre actuelle à partir de l'événement
-          Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-          // Définir la nouvelle scène sur la fenêtre et l'afficher
-          stage.setScene(scene);
-          stage.show();
-      } catch (IOException e) {
-          e.printStackTrace();
-      }
-  }
+            // Définir la nouvelle scène sur la fenêtre et l'afficher
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     @FXML
     public void goToafficherLogement() {
         try {
@@ -188,7 +191,59 @@ public class afficherLogementB {
             e.printStackTrace();
         }
     }
+    public void goToafficherReservation(ActionEvent event) {
+        try {
+            // Charger le contenu de afficherActivite.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/commandeBack.fxml"));
+            Node afficherLogementContent = loader.load();
+
+            // Ajouter le contenu au contentHBox
+            contentHBox.getChildren().clear(); // Efface tout contenu précédent
+            contentHBox.getChildren().add(afficherLogementContent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    void GeneratePdf(ActionEvent event) throws DocumentException, SQLException {
+        try {
+            ArrayList<Logement> logementList = new ArrayList<>(new LogementCrud().afficher());
+
+            generatepdf.generatePDF(logementList, new FileOutputStream("C:\\Users\\ASUS\\IdeaProjects\\TfarhidaJaava\\Logements.pdf"), "C:\\Users\\ASUS\\IdeaProjects\\TfarhidaJaava\\src\\main\\resources\\images\\tfarhida.png");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("PDF Généré");
+            alert.setHeaderText(null);
+            alert.setContentText("Le PDF des Logements a été généré avec succès!");
+            alert.showAndWait();
+        } catch (FileNotFoundException | DocumentException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setHeaderText(null);
+            alert.setContentText("Erreur lors de la génération du PDF des Activités: " + e.getMessage());
+            alert.showAndWait();
+        }
+    }
+
+    public void StatAction(ActionEvent event) {
+        try {
+            // Charger le fichier FXML de la vue de la carte
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/StatLogement.fxml"));
+            Parent root = loader.load();
+
+            // Obtenir le contrôleur de la vue de la carte
+            StatLogement statLogement = loader.getController();
+
+            // Passer la localisation au contrôleur de la vue de la carte
+
+            // Afficher la vue de la carte dans une nouvelle fenêtre
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
-
-
-

@@ -1,5 +1,6 @@
 package edu.esprit.controller;
 
+import edu.esprit.entites.Logement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,8 +12,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AdminDashbord {
+
     @FXML
     private Label adminNameLabel;
 
@@ -31,10 +34,10 @@ public class AdminDashbord {
     }
 
 
-    public void goToLogement(MouseEvent event) {
+    public void goToEquipement(MouseEvent event) {
         try {
             // Charger le fichier FXML de la nouvelle page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementAffB.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEquipementB.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle scène avec la nouvelle page
@@ -50,12 +53,10 @@ public class AdminDashbord {
             e.printStackTrace();
         }
     }
-
-
-    public void goToEquipement(MouseEvent event) {
+  public void goToLogement(MouseEvent event) {
         try {
             // Charger le fichier FXML de la nouvelle page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEquipementB.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementAffB.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle scène avec la nouvelle page
@@ -84,4 +85,23 @@ public class AdminDashbord {
     public void goToLivraisons(MouseEvent mouseEvent) {
     }
 
+    public void goToResrvation(MouseEvent mouseEvent) {
+        try {
+            // Charger le fichier FXML de la nouvelle page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/commandeBack.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène sur la fenêtre et l'afficher
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

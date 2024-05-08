@@ -25,6 +25,8 @@ public class LogementCardController {
     private Label NomLog;
 
     @FXML
+    private Label localisationLog;
+    @FXML
     private Label etatLog;
 
     @FXML
@@ -51,7 +53,7 @@ public class LogementCardController {
         NomLog.setText(logement.getNom());
        // equipLog.setText(logement.equipement.getDescription());
         etatLog.setText(logement.getEtat());
-        //localLog.setText(logement.getLocalisation());
+        localisationLog.setText(logement.getLocalisation());
 
         prixLog.setText(String.valueOf(logement.getPrix()));
         numeroLog.setText(String.valueOf(logement.getNum()));

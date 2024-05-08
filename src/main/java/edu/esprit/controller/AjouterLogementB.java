@@ -120,7 +120,7 @@ public class AjouterLogementB {
 
             LogementCrud service = new LogementCrud();
             Logement log;
-            service.ajouter(log =new Logement(nomL, localisationL, numL, prixL, imageL, "en cours", typeLog, noteL));
+            service.ajouter(log =new Logement(nomL, localisationL, numL, prixL, imageL, "Acceptee", typeLog, noteL));
             System.out.println("loggg eli tzed"+log);
             showAlert("Logement ajouté", "Votre logement a été ajouté avec succès.");
 
@@ -172,14 +172,14 @@ public class AjouterLogementB {
         boolean isValid = true;
 
         // Validate and display error messages
-        if (nom.getText().isEmpty() || !nom.getText().matches("^[a-zA-Z]+$")) {
+        if (nom.getText().isEmpty() || !nom.getText().matches("^[a-zA-Z ]+$")) {
             errorNom.setText("Nom is required and should not contain numbers");
             isValid = false;
         } else {
             errorNom.setText("");
         }
 
-        if (localisation.getText().isEmpty() || !localisation.getText().matches("^[a-zA-Z]+$")) {
+        if (localisation.getText().isEmpty() || !localisation.getText().matches("^[a-zA-Z ]+$")) {
             errorLocalisation.setText("Adresse is required and should not contain numbers ");
             isValid = false;
         } else {

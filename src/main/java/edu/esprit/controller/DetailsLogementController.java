@@ -3,6 +3,8 @@ package edu.esprit.controller;
 import edu.esprit.entites.Equipement;
 import edu.esprit.entites.Logement;
 import edu.esprit.servies.EquipementCrud;
+import edu.esprit.servies.LogementCrud;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -93,7 +96,7 @@ private Logement logement;
     }
 
     @FXML
-    void Retour(ActionEvent event) {
+    void Retour1(ActionEvent event) {
        /* try {
             Stage Currentstage = (Stage) nom_Oeuvre.getScene().getWindow();
             Currentstage.close();
@@ -113,21 +116,67 @@ private Logement logement;
             throw new RuntimeException(e);
         }*/
     }
+    @FXML
+    void supprimer(ActionEvent event) {
+        try {
+            LogementCrud service = new LogementCrud();
+            service.supprimer(logement);
+
+            // Show alert for successful deletion
+            showAlert("Suppression réussie", "Le logement a été supprimé avec succès.");
+
+            // Refresh the current page (you may need to adjust this based on your implementation)
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementAffB.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (SQLException | IOException e) {
+            // Handle exceptions
+            showAlert("Erreur lors de la suppression", "Une erreur s'est produite lors de la suppression du logement.");
+            e.printStackTrace();
+        }
+    }
+
+    private void showAlert(String suppressionRéussie, String s) {
+    }
 
     @FXML
-    void delete(ActionEvent event) {
+    void Retour(ActionEvent event) {
 
-    }
+            try {
+                System.out.println("testtttttttttt");
+
+                // Charger le fichier FXML de la nouvelle page
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/logementAffB.fxml"));
+                Parent root = loader.load();
+
+                // Créer une nouvelle scène avec la nouvelle page
+                Scene scene = new Scene(root);
+
+                // Obtenir la fenêtre actuelle à partir de l'événement
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                // Définir la nouvelle scène sur la fenêtre et l'afficher
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
 
     public void setData(Logement logement){
         this.logement=logement;
         nomLog.setText(logement.getNom());
         typeLog.setText(logement.getType_log());
         localLog.setText(logement.getLocalisation());
-        prixLog.setText(String.valueOf(logement.getPrix()));
+        prixLog.setText((logement.getPrix()+ "DT/Personne"));
         noteMoy.setText(String.valueOf(logement.getNote_moyenne()));
         etatLog.setText(logement.getEtat());
-        numLog.setText(String.valueOf(logement.getNum()));
+        numLog.setText(( "+216"+logement.getNum()));
 
         // Fetch Equipement from database using EquipementCrud
        // EquipementCrud equipementCrud = new EquipementCrud();
@@ -155,4 +204,38 @@ private Logement logement;
             e.printStackTrace();
         }
     }
+
+    public void Accepter(MouseEvent mouseEvent) {
+        System.out.println("abv");
+        // Récupérer le texte actuel de l'état du logement
+        String etat = etatLog.getText();
+
+        // Vérifier si l'état actuel est "refusee"
+        if (etat.equals("refusee")) {
+            // Mettre à jour l'état du logement en "Acceptee"
+            logement.setEtat("Acceptee");
+
+            // Appeler la méthode modifier pour enregistrer les modifications
+            LogementCrud logementCrud = new LogementCrud();
+            logementCrud.modifier(logement);
+
+            // Rafraîchir l'affichage de l'interface utilisateur
+            System.out.println("aaaa");
+
+        }
+    }
+
+    public void refusee(MouseEvent mouseEvent) {
+        // Mettre à jour l'état du logement en refusé
+        logement.setEtat("Refuse");
+
+        // Appeler la méthode modifier pour enregistrer les modifications
+        LogementCrud logementCrud = new LogementCrud();
+        logementCrud.modifier(logement);
+
+        // Rafraîchir l'affichage de l'interface utilisateur
+    }
+
+
+
 }

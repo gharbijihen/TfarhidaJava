@@ -1,6 +1,13 @@
 package edu.esprit.controller;
 
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.Version;
+import com.restfb.exception.FacebookOAuthException;
+import com.restfb.types.FacebookType;
 import edu.esprit.entites.Equipement;
+import edu.esprit.servies.EquipementCrud;
 import edu.esprit.servies.LogementCrud;
 import edu.esprit.tools.Data;
 import javafx.collections.FXCollections;
@@ -8,7 +15,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -22,6 +31,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class AddLog {
 
@@ -67,6 +77,7 @@ public class AddLog {
 
     @FXML
     void ajouterLogementAction(ActionEvent event) {
+
         if (nom.getText().isEmpty()) {
             nom.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
             // Placer l'étiquette en dessous du champ
@@ -103,9 +114,8 @@ public class AddLog {
         } else {
             type_log.setStyle("-fx-border-color: green ; -fx-border-width: 2px;");
         }
-        afficherLogementB afficherB =new afficherLogementB() ;
         if (isInputValid()) {
-
+            // Ajoutez le logement à la base de données
             String nomL = nom.getText();
             String localisationL = localisation.getText();
             int numL = Integer.parseInt(num.getText());
@@ -115,31 +125,50 @@ public class AddLog {
             String imageL = imagePathInDatabase;
 
             LogementCrud service = new LogementCrud();
-            service.ajouter(new Logement(nomL, localisationL, numL, prixL, imageL, "en cours", typeLog, noteL));
+            Logement log;
+            service.ajouter(log =new Logement(nomL, localisationL, numL, prixL, imageL, "en cours", typeLog, noteL));
+            System.out.println("loggg eli tzed"+log);
 
             showAlert("Logement ajouté", "Votre logement a été ajouté avec succès.");
-            naviguezVersEquipement(event);
 
+            // Effacez les champs et réinitialisez l'image
             nom.clear();
             localisation.clear();
             num.clear();
             note.clear();
             prix.clear();
-            typelLog.clear();
+            type_log.getSelectionModel().clearSelection();
             imageView.setImage(null);
             selectedImageFile = null;
 
+            naviguezVersEquipement(event,log);
 
         }
     }
 
+
+
+
+    private void resetFormFields() {
+        nom.clear();
+        localisation.clear();
+        num.clear();
+        note.clear();
+        prix.clear();
+        typelLog.clear();
+        //equipementId.clear();
+        imageView.setImage(null);
+        selectedImageFile = null;
+    }
     @FXML
-    void naviguezVersEquipement(ActionEvent event) {
+    void naviguezVersEquipement(ActionEvent event,Logement logement) {
         try {
+            //System.out.println(logement+"navigiha");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterEquipement.fxml"));
             Parent root = loader.load();
             nom.getScene().setRoot(root);
             AjouterEquipementB controller = loader.getController();
+            controller.initData(logement);
         } catch (IOException e) {
             System.err.println(e.getMessage());
         }
@@ -150,14 +179,14 @@ public class AddLog {
         boolean isValid = true;
 
         // Validate and display error messages
-        if (nom.getText().isEmpty() || !nom.getText().matches("^[a-zA-Z]+$")) {
+        if (nom.getText().isEmpty() || !nom.getText().matches("^[a-zA-Z ]+$")) {
             errorNom.setText("Nom is required and should not contain numbers");
             isValid = false;
         } else {
             errorNom.setText("");
         }
 
-        if (localisation.getText().isEmpty() || !localisation.getText().matches("^[a-zA-Z]+$")) {
+        if (localisation.getText().isEmpty() || !localisation.getText().matches("^[a-zA-Z ]+$")) {
             errorLocalisation.setText("Adresse is required and should not contain numbers ");
             isValid = false;
         } else {
@@ -213,7 +242,6 @@ public class AddLog {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
 
 
 

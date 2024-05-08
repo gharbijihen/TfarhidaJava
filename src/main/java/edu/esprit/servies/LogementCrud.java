@@ -9,9 +9,12 @@ import javafx.scene.control.ComboBox;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LogementCrud implements IcrudL<Logement>{
+    public static ArrayList<Object> getAll;
     private ComboBox<String> type_log; // Modifier le type en fonction du type réel de votre ComboBox
 
     // Setter pour type_log
@@ -183,8 +186,53 @@ public class LogementCrud implements IcrudL<Logement>{
     }
 
 
+    public ObservableList<Logement> trierParPrix(ObservableList<Logement> logementsList) throws SQLException {
+        ObservableList<Logement> logements = FXCollections.observableArrayList();
 
+        try (Statement st = MyConnection.getInstance().getCnx().createStatement();
+             ResultSet rs = st.executeQuery("SELECT * FROM logement ORDER BY prix")) {
 
+            while (rs.next()) {
+                Logement p = new Logement();
+                p.setId(rs.getInt("id"));
+                p.setNom(rs.getString("nom"));
+                p.setPrix(rs.getInt("prix"));
+                p.setLocalisation(rs.getString("localisation"));
+                p.setNum(rs.getInt("num"));
+                p.setNote_moyenne(rs.getInt("note_moyenne"));
+                p.setEtat(rs.getString("etat"));
+                p.setImage(rs.getString("image"));
+                p.setType_log(rs.getString("type_log"));
+                logements.add(p);
+            }
+        } catch (SQLException e) {
+            logError(e.getMessage());
+        }
+
+        return logements;
+    }
+
+    private void logError(String message) {
+        System.err.println("Erreur : " + message);
+    }
+    public Map<String, Integer> getLogementByType() {
+        Map<String, Integer> activiteByetat = new HashMap<>();
+
+        try  (Connection connection = MyConnection.getInstance().getCnx()) {
+            String query = "SELECT type_log, COUNT(*) AS count FROM logement GROUP BY type_log";
+            try(PreparedStatement preparedStatement = connection.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();) {
+                while (resultSet.next()) {
+                    String type = resultSet.getString("type_log");
+                    int count = resultSet.getInt("count");
+                    activiteByetat.put(type, count);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return activiteByetat;
+    }
 
 }
 

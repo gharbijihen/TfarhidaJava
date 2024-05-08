@@ -232,4 +232,7 @@ public class AfficherEquipementB {
 
 
     }
+
+    public void showLogement(ActionEvent event) {
+    }
 }

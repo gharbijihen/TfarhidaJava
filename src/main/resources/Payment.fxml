@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="368.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.PayementController">
+    <children>
+        <TextField fx:id="cardNumberField" layoutX="47.0" layoutY="144.0" prefHeight="34.0" prefWidth="421.0" promptText="Enter your card number" />
+        <Text layoutX="17.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reservation de logement">
+            <font>
+                <Font name="Leelawadee UI Semilight" size="33.0" />
+            </font>
+        </Text>
+        <Text fill="#13b3d4" layoutX="17.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Remplissez le formulaire suivant afin de payer cet Reservation.">
+            <font>
+                <Font name="Leelawadee UI Semilight" size="15.0" />
+            </font>
+        </Text>
+        <Label layoutX="3.0" layoutY="107.0" text="Numéro de carte">
+            <font>
+                <Font name="Leelawadee UI Semilight" size="18.0" />
+            </font>
+        </Label>
+        <Label layoutX="19.0" layoutY="185.0" text="Date d'expiration">
+            <font>
+                <Font name="Leelawadee UI Semilight" size="18.0" />
+            </font>
+        </Label>
+        <TextField fx:id="cvvField" layoutX="485.0" layoutY="144.0" prefHeight="34.0" prefWidth="74.0" promptText="111" />
+        <Label layoutX="487.0" layoutY="116.0" text="CVV/CVC">
+            <font>
+                <Font name="Leelawadee UI Semilight" size="18.0" />
+            </font>
+        </Label>
+        <Button fx:id="PurchaseBtn" layoutX="19.0" layoutY="293.0" mnemonicParsing="false" onAction="#handlePayment" prefHeight="34.0" prefWidth="103.0" style="-fx-background-color: #1fb93b; -fx-background-radius: 100;" text="Payer" textFill="WHITE">
+            <font>
+                <Font name="Leelawadee UI Semilight" size="14.0" />
+            </font>
+        </Button>
+        <TextField fx:id="exprMonthField" layoutX="20.0" layoutY="236.0" prefHeight="34.0" prefWidth="74.0" promptText="MM" />
+        <Label layoutX="20.0" layoutY="216.0" text="Mois">
+            <font>
+                <Font name="Leelawadee UI Semilight" size="14.0" />
+            </font>
+        </Label>
+        <TextField fx:id="exprYearField" layoutX="105.0" layoutY="236.0" prefHeight="34.0" prefWidth="74.0" promptText="AAAA" />
+        <Label layoutX="105.0" layoutY="216.0" text="Année">
+            <font>
+                <Font name="Leelawadee UI Semilight" size="14.0" />
+            </font>
+        </Label>
+      <ImageView fitHeight="93.0" fitWidth="103.0" layoutX="457.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/credit-card.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="39.0" layoutX="5.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/debit-card.png" />
+         </image>
+      </ImageView>
+    </children>
+</AnchorPane>

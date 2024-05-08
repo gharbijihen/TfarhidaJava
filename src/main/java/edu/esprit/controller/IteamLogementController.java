@@ -155,7 +155,31 @@ public class IteamLogementController {
     }
 
 
+    @FXML
+    private void afficherCarte(ActionEvent event) {
+        String location = loalisationLogement.getText(); // Récupérer la localisation de l'activité
+        openMap(location);
+    }
+    private void openMap(String location) {
+        try {
+            // Charger le fichier FXML de la vue de la carte
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Map.fxml"));
+            Parent root = loader.load();
 
+            // Obtenir le contrôleur de la vue de la carte
+            MapController mapController = loader.getController();
+
+            // Passer la localisation au contrôleur de la vue de la carte
+            mapController.setLocation(location);
+
+            // Afficher la vue de la carte dans une nouvelle fenêtre
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 

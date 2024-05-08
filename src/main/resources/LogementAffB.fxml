@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
@@ -18,21 +19,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="830.0" prefWidth="1404.0" stylesheets="@dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherLogementB">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="788.0" prefWidth="1404.0" stylesheets="@dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.afficherLogementB">
    <children>
-      <HBox fx:id="contentHBox" layoutX="234.0" layoutY="249.0" prefHeight="576.0" prefWidth="1120.0">
+      <HBox fx:id="contentHBox" layoutX="231.0" layoutY="236.0" prefHeight="534.0" prefWidth="1120.0">
          <children>
-            <ScrollPane fx:id="logementScrollPane" prefHeight="519.0" prefWidth="1121.0">
+            <ScrollPane fx:id="logementScrollPane" prefHeight="502.0" prefWidth="1121.0">
                <content>
-                  <AnchorPane prefHeight="574.0" prefWidth="1094.0">
+                  <AnchorPane prefHeight="531.0" prefWidth="1094.0">
                      <children>
                         <GridPane fx:id="gridLog" prefHeight="140.0" prefWidth="390.0" AnchorPane.leftAnchor="40.0">
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
                         </GridPane>
                      </children>
                   </AnchorPane>
@@ -65,7 +66,7 @@
          </children>
       </Pane>
       <Separator layoutX="29.0" layoutY="169.0" prefHeight="17.0" prefWidth="183.0" />
-      <Pane prefHeight="827.0" prefWidth="215.0" style="-fx-background-color: #ffff;">
+      <Pane prefHeight="788.0" prefWidth="215.0" style="-fx-background-color: #ffff;">
          <children>
             <ImageView fitHeight="96.0" fitWidth="144.0" layoutX="62.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -166,12 +167,11 @@
                   <Font size="13.0" />
                </font>
             </Button>
-            <Text layoutX="87.0" layoutY="794.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
-            <Button fx:id="EquipementButton1" layoutX="56.0" layoutY="534.0" onAction="#goToafficherEquipement" prefWidth="120" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;" text="Equipement">
+            <Button fx:id="EquipementButton1" layoutX="56.0" layoutY="534.0" onAction="#goToafficherReservation" prefWidth="120" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;" text="Resrvation">
                <graphic>
-                  <ImageView fitHeight="17.0" fitWidth="22.0">
+                  <ImageView fitHeight="19.0" fitWidth="25.0">
                      <image>
-                        <Image url="@images/bed.png" />
+                        <Image url="@images/operation.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -179,16 +179,29 @@
                   <Font size="13.0" />
                </font>
             </Button>
-            <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="61.0" layoutY="781.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
-               <image>
-                  <Image url="@images/logoutIcon.png" />
-               </image>
-            </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="296.0" layoutY="92.0" prefHeight="74.0" prefWidth="1090.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 70;">
+      <Pane layoutX="296.0" layoutY="92.0" prefHeight="74.0" prefWidth="1085.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 70;">
          <children>
-            <TextField fx:id="searchLog" layoutX="26.0" layoutY="19.0" prefHeight="37.0" prefWidth="1051.0" promptText="chercher........." style="-fx-background-radius: 100;" />
+            <TextField fx:id="searchLog" layoutX="168.0" layoutY="19.0" prefHeight="37.0" prefWidth="887.0" promptText="chercher........." style="-fx-background-radius: 100;" />
+            <Button layoutX="17.0" layoutY="22.0" mnemonicParsing="false" onAction="#GeneratePdf" prefHeight="31.0" prefWidth="72.0" style="-fx-background-radius: 100; -fx-background-color: red;" text="PDF" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/fichier-pdf.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button layoutX="93.0" layoutY="22.0" mnemonicParsing="false" onAction="#StatAction" prefHeight="31.0" prefWidth="72.0" style="-fx-background-radius: 100; -fx-background-color: orange;" text="Stat" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/analytics.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
       <Button fx:id="EquipementButton" layoutX="231.0" layoutY="92.0" onAction="#goToafficherNavBar" onMouseClicked="#goToafficherNavBar" prefHeight="74.0" prefWidth="81.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;">
@@ -203,8 +216,8 @@
             <Font size="13.0" />
          </font>
       </Button>
-      <Label layoutX="229.0" layoutY="194.0" styleClass="titre-grand" stylesheets="@dashboardDesign.css" text="Liste des logements" />
-      <Button layoutX="1152.0" layoutY="192.0" onAction="#handleAjouter" prefHeight="44.0" prefWidth="194.0" style="-fx-background-radius: 100;" text="Ajouter logement">
+      <Label layoutX="229.0" layoutY="181.0" styleClass="titre-grand" stylesheets="@dashboardDesign.css" text="Liste des logements" />
+      <Button layoutX="1156.0" layoutY="180.0" onAction="#handleAjouter" prefHeight="44.0" prefWidth="194.0" style="-fx-background-radius: 100;" text="Ajouter logement">
          <font>
             <Font size="50.0" />
          </font>
@@ -212,6 +225,22 @@
             <String fx:value="add-btn" />
             <String fx:value="label" />
          </styleClass>
+         <graphic>
+            <ImageView fitHeight="29.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/ajouter.png" />
+               </image>
+            </ImageView>
+         </graphic>
       </Button>
+      <Pane layoutX="625.0" layoutY="155.0" prefHeight="30.0" prefWidth="371.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 30;">
+         <children>
+            <RadioButton fx:id="hotelRadioButton" layoutX="35.0" layoutY="6.0" mnemonicParsing="false" text="Hotel" />
+            <RadioButton fx:id="villaRadioButton" layoutX="110.0" layoutY="6.0" mnemonicParsing="false" text="Villa" />
+            <RadioButton fx:id="maisonRadioButton" layoutX="282.0" layoutY="7.0" mnemonicParsing="false" text="Maison" />
+            <RadioButton fx:id="appartementRadioButton" layoutX="180.0" layoutY="7.0" mnemonicParsing="false" text="Appartement" />
+         </children>
+      </Pane>
+
    </children>
 </AnchorPane>

@@ -1,43 +1,39 @@
 package edu.esprit.controller;
 
+import com.restfb.DefaultFacebookClient;
+import com.restfb.FacebookClient;
+import com.restfb.Parameter;
+import com.restfb.Version;
+import com.restfb.exception.FacebookOAuthException;
+import com.restfb.types.FacebookType;
 import edu.esprit.entites.Equipement;
 import edu.esprit.entites.Logement;
 import edu.esprit.servies.EquipementCrud;
 import edu.esprit.servies.LogementCrud;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.File;
+import java.awt.*;
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
 
-public class AjouterEquipement implements Initializable {
-
+public class AjouterEquipement {
 
     @FXML
     private Button ButtonAjouterEquipement;
 
     @FXML
     private TextField DescriptionEquipement;
-    public static Logement logement;
     @FXML
     private CheckBox climatitation;
 
@@ -64,9 +60,13 @@ public class AjouterEquipement implements Initializable {
 
     @FXML
     private TextField typeChambre;
-
+    @FXML
+    private TextField nomLogementField;
+    private Logement logement;
     @FXML
     void ajouterEquipementAction(ActionEvent event) throws SQLException {
+
+
         if (isInputValid()) {
             boolean climatisationE = climatitation.isSelected();
             boolean internetE = internet.isSelected();
@@ -76,13 +76,20 @@ public class AjouterEquipement implements Initializable {
             String types_de_chambre = typeChambre.getText();
 
             EquipementCrud service = new EquipementCrud();
-            boolean ajoutReussi = service.ajouter(new Equipement(parkingE, internetE, climatisationE, nbrChambreE, types_de_chambre, descriptionE));
 
+
+            Equipement equipement;
+            boolean ajoutReussi = service.ajouter( equipement = new Equipement(parkingE, internetE, climatisationE, nbrChambreE, types_de_chambre, descriptionE));
+            //logement.setEquipement_id(equipement.getId());
             if (ajoutReussi) {
                 // Afficher un message dans le terminal
                 System.out.println("Equipement ajouté");
+                System.out.println("hedha eqq"+equipement);
 
                 showAlert("Equipement ajoutée", "Votre equipement a été ajoutée avec succès.");
+                String fbMessage = "Nouveau logement ajouté : " + "nom de logement:"+logement.getNom() + " - "+"Numéro" + logement.getNum()+"Prix de logement"+ logement.getPrix() + " - " +"Image"+ logement.getImage()+"Note de logement "+ logement.getNote_moyenne()+"Type Logement "+ logement.getType_log();
+
+                postToFacebook(fbMessage);  // Publier sur Facebook
 
                 // Réinitialiser les champs
                 climatitation.setSelected(false);
@@ -91,28 +98,46 @@ public class AjouterEquipement implements Initializable {
                 DescriptionEquipement.clear();
                 typeChambre.clear();
                 nbrChambre.clear();
-                naviguezVersAffichage(event);
+                System.out.println(logement+"log equipe");
+                // Associate equipment with lodging
+                LogementCrud logementCrud = new LogementCrud();
+                logementCrud.associerEquipementALogement(logement, equipement);
+
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/indexLogement.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+
+                    // Refresh the list by initializing the controller again
+                    afficherLogementB controller = loader.getController();
+                    //controller.initialize(); // You may need to create this method in your list controller
+
+                    // Show the list scene
+                    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else {
                 // Afficher un message d'erreur dans le terminal
                 System.out.println("Échec de l'ajout de l'équipement");
             }
         }
     }
-    void naviguezVersAffichage(ActionEvent event) {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("/indexLogement.fxml"));
-            DescriptionEquipement.getScene().setRoot(root);
-            internet.getScene().setRoot(root);
-            parking.getScene().setRoot(root);
-            nbrChambre.getScene().setRoot(root);
-            climatitation.getScene().setRoot(root);
-            typeChambre.getScene().setRoot(root);
+    private void postToFacebook(String message) {
+        // Utilisez le jeton d'accès pour créer une instance de FacebookClient
+        String accessToken = "EAAUkGc8Eii4BO0VqPuGFmBAdf7wZAHS8hBTzB8MTHgNaw6wemZCkDkUPo5OUJyG1tCLavnI3YqzsgvxG2wxO4etQvasZBiQzBPaPmy4sCG7FFf9bPOnYjy4Bs8iY3lTI8XVPD9N0z8EMhdZBZAmZBZAG4h2azYAcoZCGCDKib5efZAOj2ZCXpVXc8NR2xnfRh6iw5OaB2ketrrhHD9lhDYNhQEIrbVgs3aE2YZCjOnyKHcZD";  // Vous devez sécuriser ce jeton, par exemple, le stocker de manière sécurisée et le charger de la configuration
+        FacebookClient facebookClient = new DefaultFacebookClient(accessToken, Version.LATEST);
 
-        } catch (IOException e) {
-            System.err.println(e.getMessage());
+        try {
+            facebookClient.publish("me/feed", FacebookType.class, Parameter.with("message", message));
+        } catch (FacebookOAuthException e) {
+            showAlert("Error Posting to Facebook", "Failed to post to Facebook: " + e.getErrorMessage());
+        } catch (Exception e) {
+            showAlert("Error", "An unexpected error occurred: " + e.getMessage());
         }
     }
-
     @FXML
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -121,6 +146,8 @@ public class AjouterEquipement implements Initializable {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
+
     @FXML
 
     private boolean isInputValid() {
@@ -152,11 +179,10 @@ public class AjouterEquipement implements Initializable {
         return isValid;
     }
 
+    public void initData(Logement logement) {
+        this.logement = logement;
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println(AjouterEquipement.logement);
+        // Initialiser les champs de la page avec les données du logement
+        // Initialiser les autres champs avec les autres données du logement
     }
 }
-
-
