@@ -21,9 +21,8 @@ public class QRcode {
 
         BitMatrixBuilder builder = new BitMatrixBuilder(data, format, width, height);
         this.bitMatrix = builder.build();
-        int blueColor = 0xFF0000FF;  // Blue color
-        int yellowColor = 0xFFFFFF; // Yellow background
-        qrImageCreate(width, height, imageType, blueColor, yellowColor);
+        int orangeColor = 0xFFFFA500;        int yellowColor = 0xFFFFFF; // Yellow background
+        qrImageCreate(width, height, imageType, orangeColor, yellowColor);
 
     }
 

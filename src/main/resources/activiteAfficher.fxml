@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -147,11 +146,11 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="loupe" layoutX="291.0" layoutY="123.0" prefHeight="36.0" prefWidth="46.0" visible="false">
+      <Label fx:id="loupe" layoutX="291.0" layoutY="123.0" prefHeight="36.0" prefWidth="46.0" visible="true">
          <graphic>
-            <ImageView fitHeight="57.0" fitWidth="48.0">
+            <ImageView fitHeight="57.0" fitWidth="60.0">
                <image>
-                  <Image url="@images/loupe.png" />
+                  <Image url="@images/Cherche.png" />
                </image>
             </ImageView>
          </graphic></Label>

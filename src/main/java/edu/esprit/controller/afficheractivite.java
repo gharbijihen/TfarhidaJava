@@ -372,7 +372,7 @@ public class afficheractivite{
         }
     }
     public void goToClient(MouseEvent mouseEvent) {
-        RouterController.navigate("/activiteAfficher.fxml");
+        RouterController.navigate("/front.fxml");
     }
 
     }

@@ -41,7 +41,7 @@ public class QrCode {
             }
 
             String contentToEncode = log;
-            int qrCodeSize = 300;
+            int qrCodeSize = 900;
 
             try {
                 QRcode qrGenerator = new QRcode(

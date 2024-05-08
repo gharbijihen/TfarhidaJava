@@ -221,9 +221,12 @@ public class afficherActiviteF {
             VBox mainVBox = new VBox();
             mainVBox.setSpacing(20.0); // Espacement vertical entre les lignes
 
+            // Filtrer les activités acceptées uniquement
+            List<Activite> activitesAcceptees = listeFiltree.filtered(a -> a.getEtat().equals("Acceptee"));
+
             // Calculer les index de début et de fin pour la page spécifiée
             int startIndex = page * pageSize;
-            int endIndex = Math.min(startIndex + pageSize, listeFiltree.size());
+            int endIndex = Math.min(startIndex + pageSize, activitesAcceptees.size());
 
             // Créer une HBox pour chaque ligne d'éléments
             HBox hBox = new HBox();
@@ -231,26 +234,29 @@ public class afficherActiviteF {
 
             // Ajouter chaque paire d'éléments à une ligne dans la HBox
             for (int i = startIndex; i < endIndex; i++) {
-                Activite activite = listeFiltree.get(i);
-                // Vérifier si l'état de l'activité est "accepter"
-                if (activite.getEtat().equals("Acceptee")) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/IteamA.fxml"));
-                    Node itemNode = loader.load();
-                    IteamController controller = loader.getController();
-                    controller.setData(activite, null);
+                Activite activite = activitesAcceptees.get(i);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/IteamA.fxml"));
+                Node itemNode = loader.load();
+                IteamController controller = loader.getController();
+                controller.setData(activite, null);
 
-                    // Ajouter l'élément à la ligne actuelle
-                    hBox.getChildren().add(itemNode);
-                }
+                // Ajouter l'élément à la ligne actuelle
+                hBox.getChildren().add(itemNode);
             }
+
             // Ajouter la ligne actuelle au VBox principal
             mainVBox.getChildren().add(hBox);
+
             // Remplacer le contenu de paginationContent par le VBox principal
             paginationContent.getChildren().setAll(mainVBox);
+
+            // Désactiver le bouton suivant s'il n'y a plus de pages suivantes
+            suivantButton.setDisable(endIndex >= activitesAcceptees.size());
 
             System.out.println("Chargement des éléments de la page " + page + " terminé avec succès.");
         } catch (IOException e) {
             e.printStackTrace();
+
         }
         ajouterButton.setVisible(true);
         precedentButton.setVisible(true);
@@ -262,8 +268,8 @@ public class afficherActiviteF {
         trie.setVisible(true);
         loupe.setVisible(true);
         sb.setVisible(true);
-
     }
+
 
     public void openChatbotPopup(ActionEvent actionEvent) {
         try {

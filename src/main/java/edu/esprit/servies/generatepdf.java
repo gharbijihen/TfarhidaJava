@@ -6,15 +6,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -66,6 +58,7 @@ public class generatepdf {
         addCell(table, "Etat", fontHeader);
         addCell(table, "Image", fontHeader);
         addCell(table, "Description", fontHeader);
+
         addCell(table, "ID de catégorie", fontHeader);
 
         for (Activite activite : activites) {
@@ -74,8 +67,15 @@ public class generatepdf {
             addCell(table, activite.getLocalisation());
             addCell(table, String.valueOf(activite.getNb_P()));
             addCell(table, activite.getEtat());
-            addCell(table, activite.getImage());
-            addCell(table, activite.getDescription_act());
+            try {
+                Image img = Image.getInstance(activite.getImage()); // Ensure this path is correct and accessible
+                img.scaleToFit(100, 100); // Scale image to fit cell
+                PdfPCell imageCell = new PdfPCell(img, true);
+                table.addCell(imageCell);
+            } catch (BadElementException | IOException e) {
+                // In case of error, fall back to adding a cell with text "No image"
+                addCell(table, "No image");
+            }            addCell(table, activite.getDescription_act());
             addCell(table, String.valueOf(activite.getCategorie_id()));
         }
 
