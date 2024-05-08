@@ -148,7 +148,7 @@ public class UsersCrudController implements Initializable {
                     button.setPrefSize(20, 20);
 
                     if (isVerified) {
-                        Image isverifiedimage = new Image(getClass().getResourceAsStream("../assets/done.png"));
+                        Image isverifiedimage = new Image(getClass().getResourceAsStream("../assets/done1.png"));
                         ImageView isverifiedicon = new ImageView(isverifiedimage);
                         isverifiedicon.setFitWidth(20);
                         isverifiedicon.setFitHeight(20);
@@ -156,12 +156,12 @@ public class UsersCrudController implements Initializable {
                         button.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 5px; -fx-padding: 5px 10px;");
 
                     } else {
-                        Image isverifiedimage = new Image(getClass().getResourceAsStream("../assets/failed.png"));
+                        Image isverifiedimage = new Image(getClass().getResourceAsStream("../assets/failed1.png"));
                         ImageView isverifiedicon = new ImageView(isverifiedimage);
                         isverifiedicon.setFitWidth(20);
                         isverifiedicon.setFitHeight(20);
-                        button.setGraphic(isverifiedicon);
-                        button.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 5px; -fx-padding: 5px 10px;");
+                       button.setGraphic(isverifiedicon);
+                       button.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 5px; -fx-padding: 5px 10px;");
 
                     }
 
@@ -227,7 +227,7 @@ public class UsersCrudController implements Initializable {
                         modifyButton.setGraphic(modifyIcon);
 
                         modifyButton.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 5px; -fx-padding: 5px 10px;");
-                        deleteButton.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 5px; -fx-padding: 5px 10px;");
+                       deleteButton.setStyle("-fx-background-color: white; -fx-text-fill: black; -fx-background-radius: 5px; -fx-padding: 5px 10px;");
 
                         Image deleteImage = new Image(getClass().getResourceAsStream("../assets/delete.png"));
                         ImageView deleteIcon = new ImageView(deleteImage);

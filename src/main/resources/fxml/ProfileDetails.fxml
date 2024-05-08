@@ -7,23 +7,24 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="771.0" prefWidth="1147.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.ProfileDetailsControllers">
     <children>
         <Pane layoutX="28.0" layoutY="55.0" prefHeight="669.0" prefWidth="1106.0" style="-fx-background-radius: 15; -fx-background-color: white;">
             <children>
-                <Label layoutX="261.0" layoutY="14.0" text="Mon Profile">
+                <Label layoutX="118.0" layoutY="22.0" text="Mon Profile">
                     <font>
                         <Font name="System Bold" size="38.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnSignup" layoutX="173.0" layoutY="482.0" mnemonicParsing="false" onAction="#ModifiyUser" prefHeight="40.0" prefWidth="171.0" style="-fx-background-color: #FF7F00; -fx-background-radius: 8;" text="Modifier Profile" textFill="WHITE">
+                <Button fx:id="btnSignup" layoutX="666.0" layoutY="283.0" mnemonicParsing="false" onAction="#ModifiyUser" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #FF7F00; -fx-background-radius: 8;" text="Modifier Profile" textFill="WHITE">
                     <font>
                         <Font name="System Bold" size="15.0" />
                     </font>
                 </Button>
-                <TextField fx:id="email" disable="true" editable="false" layoutX="414.0" layoutY="151.0" prefHeight="50.0" prefWidth="295.0" promptText="Entrez email" style="-fx-background-radius: 7;">
+                <TextField fx:id="email" disable="true" editable="false" layoutX="173.0" layoutY="168.0" prefHeight="50.0" prefWidth="295.0" promptText="Entrez email" style="-fx-background-radius: 7;">
                     <font>
                         <Font size="18.0" />
                     </font>
@@ -44,61 +45,90 @@
                     </font>
                 </Label>
 
-                <Label layoutX="224.0" layoutY="162.0" text="Email">
+                <Label layoutX="48.0" layoutY="179.0" text="Email">
                     <font>
                         <Font name="System Bold" size="19.0" />
                     </font>
                 </Label>
-                <Label layoutX="204.0" layoutY="104.0" text="Username">
+                <Label layoutX="47.0" layoutY="104.0" text="Username">
                     <font>
                         <Font name="System Bold" size="19.0" />
                     </font>
                 </Label>
-                <TextField fx:id="Username" disable="true" editable="false" layoutX="414.0" layoutY="93.0" prefHeight="50.0" prefWidth="295.0" promptText="username" style="-fx-background-radius: 7;">
+                <TextField fx:id="Username" disable="true" editable="false" layoutX="173.0" layoutY="93.0" prefHeight="50.0" prefWidth="295.0" promptText="username" style="-fx-background-radius: 7;">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </TextField>
-                <Label layoutX="248.0" layoutY="229.0" text="nom">
+                <Label layoutX="47.0" layoutY="257.0" text="Nom">
                     <font>
                         <Font name="System Bold" size="19.0" />
                     </font>
                 </Label>
-                <Label layoutX="224.0" layoutY="289.0" text="prenom">
+                <Label layoutX="47.0" layoutY="346.0" text="Prenom">
                     <font>
                         <Font name="System Bold" size="19.0" />
                     </font>
                 </Label>
-                <TextField fx:id="nom" disable="true" editable="false" layoutX="414.0" layoutY="218.0" prefHeight="50.0" prefWidth="295.0" promptText="Entrez nom" style="-fx-background-radius: 7;">
+                <TextField fx:id="nom" disable="true" editable="false" layoutX="173.0" layoutY="246.0" prefHeight="50.0" prefWidth="295.0" promptText="Entrez nom" style="-fx-background-radius: 7;">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </TextField>
-                <TextField fx:id="prenom" disable="true" editable="false" layoutX="414.0" layoutY="278.0" prefHeight="50.0" prefWidth="295.0" promptText="prenom" style="-fx-background-radius: 7;">
+                <TextField fx:id="prenom" disable="true" editable="false" layoutX="173.0" layoutY="335.0" prefHeight="50.0" prefWidth="295.0" promptText="prenom" style="-fx-background-radius: 7;">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </TextField>
-                <TextField fx:id="numero" disable="true" layoutX="414.0" layoutY="343.0" prefHeight="50.0" prefWidth="295.0" promptText="Entrez num_tel" style="-fx-background-radius: 7;">
+                <TextField fx:id="numero" disable="true" layoutX="242.0" layoutY="420.0" prefHeight="50.0" prefWidth="295.0" promptText="Numero" style="-fx-background-radius: 7;">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </TextField>
-                <Label layoutX="161.0" layoutY="354.0" text="Numéro de téléphone">
+                <Label layoutX="38.0" layoutY="431.0" prefHeight="28.0" prefWidth="202.0" text="Numéro de téléphone">
                     <font>
                         <Font name="System Bold" size="19.0" />
                     </font>
                 </Label>
-            <Button fx:id="btnSignup1" layoutX="406.0" layoutY="482.0" mnemonicParsing="false" onAction="#ChangePassword" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #FF7F00; -fx-background-radius: 8;" text="Changer le mot de passe" textFill="WHITE">
+            <Button fx:id="btnSignup1" layoutX="666.0" layoutY="354.0" mnemonicParsing="false" onAction="#ChangePassword" prefHeight="40.0" prefWidth="202.0" style="-fx-background-color: #FF7F00; -fx-background-radius: 8;" text="Changer le mot de passe" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="voirlog" layoutX="705.0" layoutY="483.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="171.0" style="-fx-background-color: #FF7F00; -fx-background-radius: 8;" text="Voir logements" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </Button>
+            <ImageView fitHeight="187.0" fitWidth="220.0" layoutX="673.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/ic_usr.png" />
+               </image>
+            </ImageView>
+            <VBox layoutX="1051.0" layoutY="1.0" prefHeight="234.0" prefWidth="48.0">
+               <children>
+                  <ImageView fitHeight="45.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/wirte.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="51.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/3555663.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="56.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="49.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/bed.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/food-service.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
             </children>
         </Pane>
         <ImageView fx:id="btnReturn" fitHeight="44.0" fitWidth="48.0" layoutX="14.0" layoutY="20.0" onMouseClicked="#returnTo" pickOnBounds="true" preserveRatio="true">
