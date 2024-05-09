@@ -42,7 +42,10 @@ public class AfficherMoyF {
     public void setMoyensList(ObservableList<Moyen_transport> moyensList) {
         this.moyensList = moyensList;
     }
-
+    @FXML
+    public void initialize(){
+        afficherMoyens();
+    }
 
 
     public void afficherMoyens() {

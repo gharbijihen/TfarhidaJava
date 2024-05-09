@@ -347,7 +347,7 @@ public class AffichermoyenB {
     public void goToClient(javafx.scene.input.MouseEvent event) {
         try {
             // Charger le fichier FXML de la nouvelle page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherMoyenF.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/front.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle scène avec la nouvelle page
