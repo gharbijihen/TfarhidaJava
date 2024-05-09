@@ -16,12 +16,28 @@ public class Datasource {
         } catch(SQLException e) {
             System.out.println(e);
         }
+
     }
     public static Connection getConn()
     {
-        if(conn==null)
+        try {
+        if(conn==null|| conn.isClosed())
             new Datasource();
+    } catch (SQLException e) {
+        System.out.println("Erreur lors de la création de la connexion : " + e.getMessage());
+    }
         return conn;
 
     }
+    public void closeConnection() {
+        try {
+            if (conn != null && !conn.isClosed()) {
+                conn.close();
+                System.out.println("Connexion fermée.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la fermeture de la connexion : " + e.getMessage());
+        }
+    }
+
 }

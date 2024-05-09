@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="877.0" prefWidth="1404.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.Activite.afficherCategorie">
+    <children>
+        <HBox fx:id="contentHBox" layoutX="217.0" layoutY="193.0" prefHeight="610.0" prefWidth="1296.0">
+            <children>
+                <ScrollPane fx:id="activityScrollPane" prefHeight="610.0" prefWidth="926.0">
+                    <content>
+                        <AnchorPane prefHeight="608.0" prefWidth="923.0">
+                            <children>
+                                <TableView fx:id="tableView" layoutX="272.0" layoutY="47.0" prefHeight="383.0" prefWidth="325.0" visible="true">
+                                    <columns>
+                                        <TableColumn fx:id="colType" prefWidth="161.0" text="Type Catégorie" />
+                                        <TableColumn fx:id="colDesc" prefWidth="161.0" text="Description" />
+                                    </columns>
+                                </TableView>
+                                <Button layoutX="203.0" layoutY="465.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="61.0" prefWidth="137.0" style="-fx-background-radius: 100;" text="Supprimer">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="26.0" fitWidth="24.0">
+                                            <image>
+                                                <Image url="@images/supprimer.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button layoutX="381.0" layoutY="464.0" mnemonicParsing="false" onAction="#modifierActiviteAction" prefHeight="61.0" prefWidth="137.0" style="-fx-background-radius: 100;" text="Modifier">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="31.0" fitWidth="34.0">
+                                            <image>
+                                                <Image url="@images/modifier-les-informations (1).png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                                <Button layoutX="553.0" layoutY="463.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="61.0" prefWidth="137.0" style="-fx-background-radius: 100;" text="Ajouter">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                    <graphic>
+                                        <ImageView fitHeight="34.0" fitWidth="35.0">
+                                            <image>
+                                                <Image url="@images/ajouter.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
+                        </AnchorPane>
+                    </content>
+                </ScrollPane>
+            </children>
+        </HBox>
+        <Pane layoutX="38.0" prefHeight="93.0" prefWidth="1365.0" style="-fx-background-color: #ffff;" />
+        <Pane layoutX="152.0" layoutY="92.0" prefHeight="74.0" prefWidth="1229.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 70;">
+            <children>
+                <TextField fx:id="filtrefield" layoutX="26.0" layoutY="19.0" prefHeight="37.0" prefWidth="1051.0" promptText="chercher........." style="-fx-background-radius: 100;" />
+            </children>
+        </Pane>
+        <Button fx:id="EquipementButton" layoutX="87.0" layoutY="92.0" onAction="#goToafficherNavBarCat" onMouseClicked="#goToafficherNavBarCat" prefHeight="74.0" prefWidth="81.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;">
+            <graphic>
+                <ImageView fitHeight="33.0" fitWidth="36.0">
+                    <image>
+                        <Image url="@images/homeIconpng.png" />
+                    </image>
+                </ImageView>
+            </graphic>
+            <font>
+                <Font size="13.0" />
+            </font>
+        </Button>
+      <Pane layoutX="1055.0" layoutY="-5.0" prefHeight="102.0" prefWidth="352.0" style="-fx-background-radius: 20 20 0 0; -fx-background-color: #53A0EC;" styleClass="linear-grad" stylesheets="@../guiadmin.css">
+         <children>
+            <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="274.0" layoutY="7.0" onMouseClicked="#goToClient" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/ic_usr.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="nomPrenom" layoutX="131.0" layoutY="14.0" onMouseClicked="#goToClient" text="Administrateur" textFill="#fffefe">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="176.0" layoutY="41.0" onMouseClicked="#goToClient" text="Déconnecter" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" layoutX="37.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#open_notifModel" prefHeight="50.0" prefWidth="50.0" styleClass="nav-icon" stylesheets="@../AdminDashboard/Style.css">
+               <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="10.0">
+                     <image>
+                        <Image url="@../assets/bell.png" />
+                     </image>
+                  </ImageView>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="nav-notif-bg" translateX="-8.0" translateY="-14.0">
+                     <children>
+                        <Text fx:id="totalNotif" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="3" translateY="-1.0">
+                           <font>
+                              <Font name="Montserrat ExtraBold" size="15.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <VBox fx:id="vbox2" layoutX="-7.0" layoutY="-3.0" prefHeight="890.0" prefWidth="91.0" style="-fx-background-color: #131022;">
+         <children>
+            <Pane prefHeight="170.0" prefWidth="74.0" />
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToNavigate" prefHeight="66.0" prefWidth="74.0" styleClass="button3" stylesheets="@../guiadmin.css" text="Naviguer" textFill="#767676">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/cat.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+    </children>
+</AnchorPane>

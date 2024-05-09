@@ -13,6 +13,16 @@ public class Moyen_transport {
 
     private List<Trajet> trajets;
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int userId;
+
 
 
 

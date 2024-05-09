@@ -66,7 +66,7 @@
             <children>
                 <Pane layoutX="73.0" layoutY="115.0" onMouseClicked="#goToUsers" prefHeight="172.0" prefWidth="252.0" style="-fx-background-color: #FF7F00; -fx-background-radius: 7;">
                     <children>
-                        <Label layoutX="27.0" layoutY="79.0" onMouseClicked="#goToUsers" prefHeight="36.0" prefWidth="217.0" text="Mon Profil">
+                        <Label layoutX="27.0" layoutY="79.0" onMouseClicked="#goToUsers" prefHeight="36.0" prefWidth="217.0" text=" Profil">
                             <font>
                                 <Font name="System Bold" size="22.0" />
                             </font>
@@ -105,7 +105,7 @@
             </Pane>
             <Pane layoutX="784.0" layoutY="115.0" onMouseClicked="#goToTrans" prefHeight="172.0" prefWidth="252.0" style="-fx-background-color: #FF7F00; -fx-background-radius: 7;">
                <children>
-                  <Label layoutX="27.0" layoutY="79.0" onMouseClicked="#goToTrans" prefHeight="36.0" prefWidth="217.0" text="Moy transports">
+                  <Label layoutX="27.0" layoutY="79.0" onMouseClicked="#goToTrans" prefHeight="36.0" prefWidth="217.0" text="Transports">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
@@ -130,6 +130,40 @@
                   <ImageView fitHeight="111.0" fitWidth="103.0" layoutX="72.0" layoutY="11.0" onMouseClicked="#goToLogement" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../MoyenFxml/images/homeIconpng.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Pane>
+            <Pane layoutX="429.0" layoutY="115.0" onMouseClicked="#goToActivites" prefHeight="172.0" prefWidth="252.0" style="-fx-background-color: #FF7F00; -fx-background-radius: 7;">
+               <children>
+                  <Label layoutX="27.0" layoutY="79.0" onMouseClicked="#goToActivites" prefHeight="36.0" prefWidth="217.0" text=" Activités">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="111.0" fitWidth="103.0" layoutX="-2.0" layoutY="-9.0" onMouseClicked="#goToActivites" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/userIcon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Pane>
+            <Pane layoutX="430.0" layoutY="315.0" onMouseClicked="#goToUsers" prefHeight="172.0" prefWidth="252.0" style="-fx-background-color: #FF7F00; -fx-background-radius: 7;">
+               <children>
+                  <Label layoutX="27.0" layoutY="79.0" prefHeight="36.0" prefWidth="217.0" text="Restaurants">
+                     <font>
+                        <Font name="System Bold" size="22.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="111.0" fitWidth="103.0" layoutX="-2.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/userIcon.png" />
                      </image>
                   </ImageView>
                </children>

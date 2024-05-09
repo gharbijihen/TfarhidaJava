@@ -32,7 +32,7 @@ public class AdminDashboardController {
 
     public void goToActivities(MouseEvent mouseEvent) {
         RouterController router=new RouterController();
-        router.navigate("/fxml/ActivitiesCRUD.fxml");
+        router.navigate("/ActiviteFxml/ActiviteAffB.fxml");
     }
     public void goToReclamations(MouseEvent mouseEvent) {
         RouterController router=new RouterController();
@@ -45,10 +45,11 @@ public class AdminDashboardController {
 
 
 
-    public void goToEvent(MouseEvent mouseEvent) {
+public void goToCategorie(MouseEvent mouseEvent){
 
-    }
-
+    RouterController router=new RouterController();
+    router.navigate("/ActiviteFxml/CategorieaffB.fxml");
+}
 
     public void goToMoyen(MouseEvent mouseEvent) {
         RouterController router=new RouterController();

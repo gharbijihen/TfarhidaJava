@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<ScrollPane prefHeight="769.0" prefWidth="1081.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.Activite.afficheractivite">
+    <content>
+        <AnchorPane prefHeight="763.0" prefWidth="1085.0" style="-fx-background-color: linear-gradient(to bottom right, #188ba7, #306090);">
+            <children>
+                <TableView fx:id="tableView" layoutX="15.0" layoutY="66.0" prefHeight="530.0" prefWidth="1043.0" style="-fx-border-color: linear-gradient(to bottom right, #188ba7, #306090);" visible="true">
+                    <columns>
+                        <TableColumn fx:id="colCategorie" prefWidth="161.0" text="Catégorie" />
+                        <TableColumn fx:id="colNomm" prefWidth="161.0" text="Nom" />
+                        <TableColumn fx:id="colDescription" prefWidth="139.0" text="Description" />
+                        <TableColumn fx:id="colLocalisation" prefWidth="150.0" text="Localisation" />
+                        <TableColumn fx:id="colEtat" prefWidth="161.0" text="Etat" />
+                        <TableColumn fx:id="colNbPersonnes" prefWidth="139.0" text="Nombre personne" />
+                        <TableColumn fx:id="colPrix" prefWidth="150.0" text="prix" />
+                        <TableColumn fx:id="colAction" prefWidth="150.0" text="Action" />
+                    </columns>
+                    <effect>
+                        <ColorAdjust />
+                    </effect>
+                    <cursor>
+                        <Cursor fx:constant="HAND" />
+                    </cursor>
+                </TableView>
+                <Button layoutX="230.0" layoutY="624.0" mnemonicParsing="false" onAction="#deleteAction" prefHeight="61.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-cursor: hand;" text="Supprimer">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="26.0" fitWidth="24.0">
+                     <image>
+                        <Image url="@../../../../../Desktop/supprimer.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+                </Button>
+                <Button layoutX="449.0" layoutY="625.0" mnemonicParsing="false" onAction="#modifierActiviteAction" prefHeight="61.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-cursor: hand;" text="Modifier">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="34.0">
+                     <image>
+                        <Image url="@../../../../../Desktop/modifier-les-informations (1).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+                </Button>
+                <Button layoutX="654.0" layoutY="624.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="61.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-cursor: hand;" text="Ajouter">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+               <graphic>
+                  <ImageView fitHeight="34.0" fitWidth="35.0">
+                     <image>
+                        <Image url="@../../../../../Desktop/ajouter.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+                </Button>
+            </children>
+        </AnchorPane>
+    </content>
+</ScrollPane>
