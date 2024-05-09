@@ -373,7 +373,7 @@ public class afficheractivite{
     }
     public void goToClient(MouseEvent mouseEvent) {
         RouterController.navigate("/front.fxml");
-    }
+    }// tt
 
     }
 
