@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="467.0" prefWidth="1028.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AfficherRestaurantController">
+    <AnchorPane fx:id="BOX1" layoutX="60.0" layoutY="70.0" prefHeight="550.0" prefWidth="320.0" style="-fx-border-color: green;">
+        <ImageView fx:id="Img1" fitHeight="140.0" fitWidth="170.0" layoutX="75.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+        <Button fx:id="btnModif1" layoutX="109.0" layoutY="336.0" mnemonicParsing="false" onAction="#updateRestaurant" text="Modification" />
+        <Button fx:id="btnSupp1" layoutX="110.0" layoutY="400.0" mnemonicParsing="false" onAction="#deleteRestaurant" text="Suppression" />
+        <Text layoutX="54.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text layoutX="41.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address :">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="adresse1" layoutX="148.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tfaddress">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="nom1" layoutX="156.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TfNOM">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Text>
+    </AnchorPane>
+    <AnchorPane fx:id="BOX2" layoutX="450.0" layoutY="71.0" prefHeight="550.0" prefWidth="320.0" style="-fx-border-color: #116925;">
+        <ImageView fx:id="Img2" fitHeight="140.0" fitWidth="170.0" layoutX="75.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+        <Button fx:id="btnModif2" layoutX="109.0" layoutY="336.0" mnemonicParsing="false" onAction="#updateRestaurant" text="Modification" />
+        <Button fx:id="btnSupp2" layoutX="110.0" layoutY="400.0" mnemonicParsing="false" onAction="#deleteRestaurant" text="Suppression" />
+        <Text layoutX="54.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text layoutX="41.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address :">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="adresse2" layoutX="148.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tfaddress">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="nom2" layoutX="156.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TfNOM">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Text>
+    </AnchorPane>
+    <AnchorPane fx:id="BOX3" layoutX="840.0" layoutY="71.0" prefHeight="550.0" prefWidth="320.0" style="-fx-border-color: green;">
+        <ImageView fx:id="Img3" fitHeight="140.0" fitWidth="170.0" layoutX="73.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+        <Button fx:id="btnModif3" layoutX="109.0" layoutY="336.0" mnemonicParsing="false" onAction="#updateRestaurant" text="Modification" />
+        <Button fx:id="btnsupp3" layoutX="110.0" layoutY="400.0" mnemonicParsing="false" onAction="#deleteRestaurant" text="Suppression" />
+        <Text layoutX="54.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text layoutX="41.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address :">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="adresse3" layoutX="148.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tfaddress">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Text>
+        <Text fx:id="nom3" layoutX="156.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TfNOM">
+            <font>
+                <Font name="System Bold" size="20.0" />
+            </font>
+        </Text>
+    </AnchorPane>
+    <Button fx:id="Traduire" mnemonicParsing="false" prefHeight="40.0" prefWidth="188.0" styleClass="search-button" text="Traduire" textFill="WHITE" />
+    <Button fx:id="btnajout" layoutX="1000.0" layoutY="658.0" mnemonicParsing="false" onAction="#naviguezVersAjout" text="Ajout" />
+    <Button fx:id="btnretour" layoutX="665.0" layoutY="671.0" mnemonicParsing="false" prefWidth="100.0" onAction="#retour" text="&lt;" />
+    <Button fx:id="btnsuivant" layoutX="765.0" layoutY="671.0" mnemonicParsing="false" prefWidth="100.0" onAction="#suivant" text="&gt;" />
+    <Button fx:id="mail" layoutX="1076.0" layoutY="658.0" mnemonicParsing="false" text="Envoyer Mail" />
+    <Button fx:id="stat" layoutX="1179.0" layoutY="658.0" mnemonicParsing="false" text="Statistiques" />
+</AnchorPane>

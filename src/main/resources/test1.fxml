@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="740.0" prefWidth="1538.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AfficherPlatController">
+    <children>
+        <Pane layoutX="14.0" layoutY="56.0" prefHeight="728.0" prefWidth="294.0" style="-fx-background-color: #FF7F00;">
+            <children>
+                <Text layoutX="121.0" layoutY="686.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
+                <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="95.0" layoutY="674.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
+                    <image>
+                        <Image url="@images/logoutIcon.png" />
+                    </image>
+                </ImageView>
+                <VBox alignment="CENTER" layoutX="13.0" layoutY="170.0" prefHeight="304.0" prefWidth="269.0">
+                    <children>
+                        <Button prefHeight="36.0" prefWidth="116.0" style="-fx-background-radius: 100;" text="Reclamation">
+                            <graphic>
+                                <ImageView fitHeight="17.0" fitWidth="22.0">
+                                    <image>
+                                        <Image url="@images/wirte.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Button>
+                        <VBox prefHeight="21.0" prefWidth="270.0" />
+                        <Button fx:id="showLogement" prefHeight="36.0" prefWidth="114.0" style="-fx-background-radius: 100; -fx-cursor: hand;" text="Logement">
+                            <graphic>
+                                <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@images/bed.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Button>
+                        <VBox prefHeight="21.0" prefWidth="270.0" />
+                        <Button prefHeight="38.0" prefWidth="122.0" style="-fx-background-radius: 100;" text="Activite">
+                            <graphic>
+                                <ImageView fitHeight="18.0" fitWidth="18.0">
+                                    <image>
+                                        <Image url="@images/3555663.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Button>
+                        <VBox prefHeight="21.0" prefWidth="270.0" />
+                        <Button prefHeight="38.0" prefWidth="119.0" style="-fx-background-radius: 100;" text="Restaurant">
+                            <graphic>
+                                <ImageView fitHeight="17.0" fitWidth="22.0">
+                                    <image>
+                                        <Image url="@images/food-service.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Button>
+                        <VBox prefHeight="21.0" prefWidth="270.0" />
+                        <Button prefHeight="38.0" prefWidth="127.0" style="-fx-background-radius: 100;" text="Transport">
+                            <graphic>
+                                <ImageView fitHeight="17.0" fitWidth="22.0">
+                                    <image>
+                                        <Image url="@images/1.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+                <ImageView fitHeight="119.0" fitWidth="200.0" layoutX="41.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/tfarhida.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+        <Pane layoutX="-2.0" prefHeight="50.0" prefWidth="1578.0" style="-fx-background-color: #FF7F00;">
+            <children>
+                <ImageView fitHeight="28.0" fitWidth="32.0" layoutX="314.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/bouton-retour.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="35.0" fitWidth="41.0" layoutX="1451.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/utilisateur.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="1376.0" layoutY="-2.0" prefHeight="54.0" prefWidth="82.0" text="Mon Profil">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                <Button fx:id="Traduire" layoutY="-1.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="188.0" styleClass="search-button" text="Traduire" textFill="WHITE" />
+            </children>
+        </Pane>
+
+        <AnchorPane fx:id="BOX1" layoutX="356.0" layoutY="116.0" prefHeight="407.0" prefWidth="359.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-cursor: hand; -fx-background-color: #ffff; -fx-background-radius: 50; -fx-border-width: 4; -fx-border-color: #0000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+            <children>
+                <VBox prefHeight="464.0" prefWidth="379.0">
+                    <children>
+                        <ImageView fx:id="Img1" fitHeight="255.0" fitWidth="379.0" pickOnBounds="true" preserveRatio="true" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="375.0">
+                            <children>
+                                <Pane prefHeight="56.0" prefWidth="10.0" />
+                                <Text fx:id="nom1" layoutX="156.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TfNOM">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                </Text>
+                                <Pane prefHeight="56.0" prefWidth="191.0" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="56.0" prefWidth="375.0">
+                            <children>
+                                <Pane prefHeight="56.0" prefWidth="10.0" />                                <Pane prefHeight="56.0" prefWidth="191.0" />                                </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="375.0" style="-fx-background-radius: 100;">
+                            <children>
+                                <Pane prefHeight="56.0" prefWidth="10.0" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="370.0">
+                            <children>
+                                <Pane prefHeight="56.0" prefWidth="10.0" />
+                                <Button fx:id="Detail1" contentDisplay="CENTER" mnemonicParsing="false" onAction="#showRecipeDetails1" style="-fx-background-radius: 100; -fx-background-color: #f07026;" text="Recette" />
+                                <Pane prefHeight="56.0" prefWidth="15.0" />
+                                <HBox prefHeight="38.0" prefWidth="19.0" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="BOX2" layoutX="771.0" layoutY="116.0" prefHeight="407.0" prefWidth="359.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-cursor: hand; -fx-background-color: #ffff; -fx-background-radius: 50; -fx-border-width: 4; -fx-border-color: #0000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+            <children>
+                <VBox prefHeight="464.0" prefWidth="379.0">
+                    <children>
+                        <ImageView fx:id="Img2" fitHeight="255.0" fitWidth="379.0" pickOnBounds="true" preserveRatio="true" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="375.0">
+                            <children>
+                                <Pane prefHeight="56.0" prefWidth="10.0" />
+                                <Text fx:id="nom2" layoutX="156.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TfNOM">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                </Text>
+                                <Pane prefHeight="56.0" prefWidth="191.0" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="56.0" prefWidth="375.0">
+                            <children>
+                                <Pane prefHeight="56.0" prefWidth="10.0" />                                <Pane prefHeight="56.0" prefWidth="191.0" />                                </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="375.0" style="-fx-background-radius: 100;">
+                            <children>
+                                <Pane prefHeight="56.0" prefWidth="10.0" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="370.0">
+                            <children>
+                                <Pane prefHeight="56.0" prefWidth="10.0" />
+                                <Button fx:id="Detail2" contentDisplay="CENTER" mnemonicParsing="false" onAction="#showRecipeDetails2" style="-fx-background-radius: 100; -fx-background-color: #f07026;" text="Recette" />
+                                <Pane prefHeight="56.0" prefWidth="15.0" />
+                                <HBox prefHeight="38.0" prefWidth="19.0" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="BOX3" layoutX="1179.0" layoutY="116.0" prefHeight="407.0" prefWidth="359.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-cursor: hand; -fx-background-color: #ffff; -fx-background-radius: 50; -fx-border-width: 4; -fx-border-color: #0000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+            <children>
+                <VBox prefHeight="464.0" prefWidth="379.0">
+                    <children>
+                        <ImageView fx:id="Img3" fitHeight="255.0" fitWidth="379.0" pickOnBounds="true" preserveRatio="true" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="56.0" prefWidth="375.0">
+                            <children>
+                                <Pane prefHeight="56.0" prefWidth="10.0" />
+                                <Text fx:id="nom3" layoutX="156.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TfNOM">
+                                    <font>
+                                        <Font name="System Bold" size="20.0" />
+                                    </font>
+                                </Text>
+                                <Pane prefHeight="56.0" prefWidth="191.0" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="56.0" prefWidth="375.0">
+                            <children>
+                                <Pane prefHeight="56.0" prefWidth="10.0" />                                <Pane prefHeight="56.0" prefWidth="191.0" />                                </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="56.0" prefWidth="375.0" style="-fx-background-radius: 100;">
+                            <children>
+                                <Pane prefHeight="56.0" prefWidth="10.0" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="370.0">
+                            <children>
+                                <Pane prefHeight="56.0" prefWidth="10.0" />
+                                <Button fx:id="Detail3" contentDisplay="CENTER" mnemonicParsing="false" onAction="#showRecipeDetails3" style="-fx-background-radius: 100; -fx-background-color: #f07026;" text="recette" />
+                                <Pane prefHeight="56.0" prefWidth="15.0" />
+                                <HBox prefHeight="38.0" prefWidth="19.0" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </AnchorPane>
+        <Button fx:id="btnretour" layoutX="865.0" layoutY="659.0" mnemonicParsing="false" onAction="#retour" prefWidth="100.0" text="&lt;" />
+        <Button fx:id="btnsuivant" layoutX="965.0" layoutY="659.0" mnemonicParsing="false" onAction="#suivant" prefWidth="100.0" text="&gt;" />
+      <TextField fx:id="rechercheTextField" layoutX="604.0" layoutY="64.0" prefHeight="38.0" prefWidth="701.0" promptText="chercher........." style="-fx-background-radius: 100;" />
+
+        <!--<TextField layoutX="318.0" layoutY="62.0" prefHeight="38.0" prefWidth="633.0" promptText="chercher........." style="-fx-background-radius: 100;" stylesheets="@../java/edu/esprit/values/style.css" />-->
+    </children>
+</AnchorPane>

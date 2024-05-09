@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="740.0" prefWidth="1538.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllers.AfficherRestaurantController">
+    <children>
+        <Pane layoutX="14.0" layoutY="56.0" prefHeight="728.0" prefWidth="294.0" style="-fx-background-color: #FF7F00;">
+            <children>
+                <Text layoutX="121.0" layoutY="686.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
+                <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="95.0" layoutY="674.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
+                    <image>
+                        <Image url="@images/logoutIcon.png" />
+                    </image>
+                </ImageView>
+                <VBox alignment="CENTER" layoutX="13.0" layoutY="170.0" prefHeight="304.0" prefWidth="269.0">
+                    <children>
+                        <Button prefHeight="36.0" prefWidth="116.0" style="-fx-background-radius: 100;" text="Reclamation">
+                            <graphic>
+                                <ImageView fitHeight="17.0" fitWidth="22.0">
+                                    <image>
+                                        <Image url="@images/wirte.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Button>
+                        <VBox prefHeight="21.0" prefWidth="270.0" />
+                        <Button fx:id="showLogement" prefHeight="36.0" prefWidth="114.0" style="-fx-background-radius: 100; -fx-cursor: hand;" text="Logement">
+                            <graphic>
+                                <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@images/bed.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Button>
+                        <VBox prefHeight="21.0" prefWidth="270.0" />
+                        <Button prefHeight="38.0" prefWidth="122.0" style="-fx-background-radius: 100;" text="Activite">
+                            <graphic>
+                                <ImageView fitHeight="18.0" fitWidth="18.0">
+                                    <image>
+                                        <Image url="@images/3555663.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Button>
+                        <VBox prefHeight="21.0" prefWidth="270.0" />
+                        <Button prefHeight="38.0" prefWidth="119.0" style="-fx-background-radius: 100;" text="Restaurant">
+                            <graphic>
+                                <ImageView fitHeight="17.0" fitWidth="22.0">
+                                    <image>
+                                        <Image url="@images/food-service.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Button>
+                        <VBox prefHeight="21.0" prefWidth="270.0" />
+                        <Button prefHeight="38.0" prefWidth="127.0" style="-fx-background-radius: 100;" text="Transport">
+                            <graphic>
+                                <ImageView fitHeight="17.0" fitWidth="22.0">
+                                    <image>
+                                        <Image url="@images/1.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font size="13.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </VBox>
+                <ImageView fitHeight="119.0" fitWidth="200.0" layoutX="41.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/tfarhida.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </Pane>
+        <Pane layoutX="-2.0" prefHeight="50.0" prefWidth="1578.0" style="-fx-background-color: #FF7F00;">
+            <children>
+                <ImageView fitHeight="28.0" fitWidth="32.0" layoutX="314.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/bouton-retour.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="35.0" fitWidth="41.0" layoutX="1451.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/utilisateur.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="1376.0" layoutY="-2.0" prefHeight="54.0" prefWidth="82.0" text="Mon Profil">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Label>
+                  <Button fx:id="Traduire" layoutY="-1.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="188.0" styleClass="search-button" text="Traduire" textFill="WHITE" />
+            </children>
+        </Pane>
+
+            <AnchorPane fx:id="BOX1" layoutX="429.0" layoutY="71.0" prefHeight="550.0" prefWidth="320.0" style="-fx-border-color: green;">
+                <ImageView fx:id="Img1" fitHeight="140.0" fitWidth="170.0" layoutX="75.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+                <Button fx:id="btnDetail1" layoutX="109.0" layoutY="336.0" mnemonicParsing="false"  text="details" />
+                <Text layoutX="54.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+                <Text layoutX="41.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address :">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+                <Text fx:id="adresse1" layoutX="148.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tfaddress">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Text>
+                <Text fx:id="nom1" layoutX="156.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TfNOM">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Text>
+            </AnchorPane>
+            <AnchorPane fx:id="BOX2" layoutX="806.0" layoutY="71.0" prefHeight="550.0" prefWidth="320.0" style="-fx-border-color: #116925;">
+                <ImageView fx:id="Img2" fitHeight="140.0" fitWidth="170.0" layoutX="75.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+                <Button fx:id="btnDetail22" layoutX="109.0" layoutY="336.0" mnemonicParsing="false" onAction="#updateRestaurant" text="details" />
+                <Text layoutX="54.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+                <Text layoutX="41.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address :">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+                <Text fx:id="adresse2" layoutX="148.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tfaddress">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Text>
+                <Text fx:id="nom2" layoutX="156.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TfNOM">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Text>
+            </AnchorPane>
+            <AnchorPane fx:id="BOX3" layoutX="1212.0" layoutY="71.0" prefHeight="550.0" prefWidth="320.0" style="-fx-border-color: green;">
+                <ImageView fx:id="Img3" fitHeight="140.0" fitWidth="170.0" layoutX="73.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+                <Button fx:id="btnDetail3" layoutX="109.0" layoutY="336.0" mnemonicParsing="false" onAction="#updateRestaurant" text="details" />
+                <Text layoutX="54.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom :">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+                <Text layoutX="41.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Address :">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+                <Text fx:id="adresse3" layoutX="148.0" layoutY="257.0" strokeType="OUTSIDE" strokeWidth="0.0" text="tfaddress">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Text>
+                <Text fx:id="nom3" layoutX="156.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TfNOM">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Text>
+            </AnchorPane>
+            <Button fx:id="btnajout" layoutX="1207.0" layoutY="659.0" mnemonicParsing="false"  text="Ajout" />
+            <Button fx:id="btnretour" layoutX="806.0" layoutY="658.0" mnemonicParsing="false" onAction="#retour" prefWidth="100.0" text="&lt;" />
+            <Button fx:id="btnsuivant" layoutX="907.0" layoutY="659.0" mnemonicParsing="false" onAction="#suivant" prefWidth="100.0" text="&gt;" />
+            <Button fx:id="mail" layoutX="1288.0" layoutY="659.0" mnemonicParsing="false" text="Envoyer Mail" />
+            <Button fx:id="stat" layoutX="1418.0" layoutY="658.0" mnemonicParsing="false" text="Statistiques" />
+
+        <!--<TextField layoutX="318.0" layoutY="62.0" prefHeight="38.0" prefWidth="633.0" promptText="chercher........." style="-fx-background-radius: 100;" stylesheets="@../java/edu/esprit/values/style.css" />-->
+    </children>
+</AnchorPane>

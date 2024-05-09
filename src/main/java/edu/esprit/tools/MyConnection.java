@@ -1,33 +1,35 @@
 package edu.esprit.tools;
 
+
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MyConnection {
-    private String URL="jdbc:mysql://localhost:3306/testtest";
-    private String USER="root";
-    private String PWD="";
-    Connection cnx;
-    public static MyConnection instance;
+
+    private final String URL = "jdbc:mysql://localhost:3306/restaurant";
+    private final String USER = "root";
+    private final String PASSWORD = "";
+    private Connection connection;
+    private static MyConnection instance;
+
     public MyConnection() {
         try {
-            cnx= DriverManager.getConnection(URL,USER,PWD);
-            System.out.println("Connexion etablie !");
-
+            connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Connected");
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.err.println(e.getMessage());
         }
     }
 
-    public Connection getCnx() {
-        return cnx;
-    }
-    public  static MyConnection getInstance() {
-        if(instance== null){
-            instance=new MyConnection();
-        }
+    public static MyConnection getInstance() {
+        if(instance == null)
+            instance = new MyConnection();
         return instance;
+    }
 
+    public Connection getConnection() {
+        return connection;
     }
 }
