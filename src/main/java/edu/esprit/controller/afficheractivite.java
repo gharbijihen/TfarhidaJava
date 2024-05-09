@@ -211,7 +211,7 @@ public class afficheractivite{
     void GeneratePdf(ActionEvent event) throws DocumentException, SQLException {
         try {
             ArrayList<Activite> activites= (ArrayList<Activite>) new ActiviteCrud().afficher();
-           generatepdf .generatePDF(activites, new FileOutputStream("C:\\Users\\RT0\\Desktop\\pijava\\TfarhidaJava\\src\\main\\resources\\images\\Activite.pdf"), "C:\\Users\\RT0\\Desktop\\pijava\\TfarhidaJava\\src\\main\\resources\\images\\logo.png");
+           generatepdf .generatePDF(activites, new FileOutputStream("C:\\Users\\ASUS\\IdeaProjects\\TfarhidaJava\\Activite.pdf"), "C:\\Users\\ASUS\\IdeaProjects\\TfarhidaJava\\src\\main\\resources\\images\\logo.png");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("PDF Généré");
             alert.setHeaderText(null);
