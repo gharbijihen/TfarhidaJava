@@ -25,4 +25,15 @@ public class front {
             e.printStackTrace();
         }
     }
+    @FXML
+
+    void goToActivite(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/activiteAfficher.fxml"));
+            Pane contenu = loader.load();
+            affiche.getChildren().setAll(contenu);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

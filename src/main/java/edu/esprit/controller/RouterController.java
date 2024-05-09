@@ -23,7 +23,7 @@ public class RouterController {
         try {
             System.out.println("Path: "+fxmlPath);
 
-            Image icon = new Image(RouterController.class.getResourceAsStream("../assets/logo.png"));
+            Image icon = new Image(RouterController.class.getResourceAsStream("/images/logOut.png"));
             primaryStage.getIcons().add(icon);
 
             FXMLLoader loader = new FXMLLoader(RouterController.class.getResource(fxmlPath));
@@ -50,3 +50,4 @@ public class RouterController {
 
 
 }
+

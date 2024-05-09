@@ -47,9 +47,3 @@
 .table-row-cell:hover {
     -fx-background-color: #f0f0f0;
 }
-.item-container {
-    -fx-background-radius: 10; /* Adjust the radius to change the roundness */
-    -fx-border-radius: 10; /* Adjust the radius to change the roundness */
-    -fx-border-color: rgb(128, 128, 128); /* Color of the border */
-    -fx-border-width: 1; /* Width of the border */
-}

@@ -183,11 +183,11 @@ public class AfficherMoyF {
     @FXML
     private void openWeatherPage(ActionEvent event) {
         try {
-            // Charger le fichier FXML de la page weather.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Weather.fxml"));
+            // Charger le fichier FXML de la page weatherM.fxml
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/weatherM.fxml"));
             Parent root = loader.load();
 
-            // Créer une nouvelle scène avec le contenu de weather.fxml
+            // Créer une nouvelle scène avec le contenu de weatherM.fxml
             Scene scene = new Scene(root);
 
             // Créer une nouvelle fenêtre pour afficher la scène

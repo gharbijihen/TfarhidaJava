@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="757.0" prefWidth="1055.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.ajouteractiviteF">
+<AnchorPane prefHeight="757.0" prefWidth="1055.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.ajouteractivite">
     <children>
         <ToolBar layoutX="12.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="64.0" prefWidth="1046.0" style="-fx-background-color: #FAF7F2;">
             <items>
@@ -20,7 +20,7 @@
                 <ToggleButton mnemonicParsing="false" style="-fx-background-color: #FF7F00; -fx-background-radius: 100;" text="se connecter" textFill="WHITE" />
             </items>
         </ToolBar>
-        <VBox layoutX="15.0" layoutY="88.0" prefHeight="547.0" prefWidth="529.0" />
+        <VBox layoutX="15.0" layoutY="88.0" prefHeight="608.0" prefWidth="529.0" />
         <TextField fx:id="descriptionActt" layoutX="36.0" layoutY="226.0" prefHeight="30.0" prefWidth="442.0" promptText="Description" style="-fx-background-radius: 100;" />
         <Text fx:id="errorDesc" fill="RED" layoutX="34.0" layoutY="276.0" wrappingWidth="442.4" />
         <TextField fx:id="nomm" layoutX="34.0" layoutY="313.0" prefHeight="30.0" prefWidth="442.0" promptText="Nom" style="-fx-background-radius: 100;" />
@@ -43,34 +43,39 @@
                 <Button fx:id="selectImage" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#browseImageAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100;" text="ajouter image" />
             </children>
         </VBox>
-              <Button fx:id="ButtonAjouterActivite" layoutX="183.0" layoutY="702.0" mnemonicParsing="false" onAction="#ajouteractiviteAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: '2EB67D';" text="Ajouter " />
+        <Button fx:id="ButtonAjouterActivite" layoutX="183.0" layoutY="702.0" mnemonicParsing="false" onAction="#ajouteractiviteAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: '2EB67D';" text="Ajouter " />
         <ComboBox fx:id="categorieComboBox" layoutX="34.0" layoutY="130.0" prefHeight="30.0" prefWidth="442.0" promptText="Sélectionnez une catégorie" style="-fx-background-radius: 100;" />
         <Text fx:id="errorCategorie" fill="RED" layoutX="33.0" layoutY="180.0" wrappingWidth="442.4" />
         <Label layoutX="42.0" layoutY="199.0" text="Description Activité" textFill="#ed7016">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Label>
+        <Label layoutX="43.0" layoutY="286.0" text="Nom Activité" textFill="#ed7016">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Label>
+        <Label layoutX="43.0" layoutY="371.0" text="Prix" textFill="#ed7016">
+            <font>
+                <Font name="System Bold" size="12.0" />
+            </font>
+        </Label>
+        <Label layoutX="38.0" layoutY="453.0" text="Localisation" textFill="#ed7016">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Label>
+        <Label layoutX="40.0" layoutY="550.0" text="Nombre Personne" textFill="#ed7016">
+            <font>
+                <Font name="System Bold" size="13.0" />
+            </font>
+        </Label>
+      <Label layoutX="38.0" layoutY="635.0" text="Etat" textFill="#ed7016">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="43.0" layoutY="286.0" text="Nom Activité" textFill="#ed7016">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="43.0" layoutY="371.0" text="Prix" textFill="#ed7016">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Label>
-      <Label layoutX="38.0" layoutY="453.0" text="Localisation" textFill="#ed7016">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label layoutX="40.0" layoutY="550.0" text="Nombre Personne" textFill="#ed7016">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-      </Label>
+      <TextField fx:id="etatt" layoutX="32.0" layoutY="659.0" prefHeight="30.0" prefWidth="442.0" promptText="Etat" style="-fx-background-radius: 100;" />
     </children>
-
 </AnchorPane>

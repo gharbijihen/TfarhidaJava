@@ -1,9 +1,9 @@
 package edu.esprit.controller;
 
 import com.itextpdf.text.DocumentException;
-import edu.esprit.entites.Trajet;
 import edu.esprit.servies.Moyen_transportCrud;
 import edu.esprit.servies.generatepdf;
+import edu.esprit.servies.generatepdfM;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -19,23 +19,15 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.TableColumn;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageContentStream;
-import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import javafx.scene.control.Button;
 
-import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.security.cert.PolicyNode;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.Map;
 
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableCell;
 
 import edu.esprit.entites.Moyen_transport;
@@ -290,7 +282,7 @@ public class AffichermoyenB {
     void handleAjouter(ActionEvent event) throws SQLException {
         try {
             // Charger la vue ou le formulaire d'ajout
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouterCrudF.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ajouterCrudFM.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle fenêtre pour afficher le formulaire d'ajout
@@ -422,7 +414,7 @@ public class AffichermoyenB {
 
             // Proceed with generating PDF using the selected file
             ArrayList<Moyen_transport> moyens = (ArrayList<Moyen_transport>) new Moyen_transportCrud().afficher();
-            generatepdf.generatePDF(moyens, new FileOutputStream(file), "C:\\Users\\RT0\\Desktop\\pijava\\TfarhidaJava\\src\\main\\resources\\images\\logo.png");
+            generatepdfM.generatePDF(moyens, new FileOutputStream(file), "C:\\Users\\RT0\\Desktop\\pijava\\TfarhidaJava\\src\\main\\resources\\images\\logo.png");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("PDF Généré");
             alert.setHeaderText(null);

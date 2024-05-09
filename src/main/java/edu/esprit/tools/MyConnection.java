@@ -21,6 +21,15 @@ public class MyConnection {
     }
 
     public Connection getCnx() {
+        try {
+            if (cnx == null || cnx.isClosed()) {
+                cnx = DriverManager.getConnection(URL, USER, PWD);
+                System.out.println("Nouvelle connexion établie.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la création de la connexion : " + e.getMessage());
+        }
+
         return cnx;
     }
     public  static MyConnection getInstance() {
@@ -29,5 +38,15 @@ public class MyConnection {
         }
         return instance;
 
+    }
+    public void closeConnection() {
+        try {
+            if (cnx != null && !cnx.isClosed()) {
+                cnx.close();
+                System.out.println("Connexion fermée.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la fermeture de la connexion : " + e.getMessage());
+        }
     }
 }

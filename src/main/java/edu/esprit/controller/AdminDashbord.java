@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 
@@ -25,13 +26,72 @@ public class AdminDashbord {
     public void goToLogn(MouseEvent mouseEvent) {
     }
 
+
     public void goToNavigate(ActionEvent actionEvent) {
         RouterController router=new RouterController();
         router.navigate("Back.fxml");
     }
 
 
-    public void goToMoyen(MouseEvent event) {
+    public void goToLogement(MouseEvent event) {
+        try {
+            // Charger le fichier FXML de la nouvelle page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementAffB.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène sur la fenêtre et l'afficher
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void goToActivite(MouseEvent event) {
+        try {
+            // Charger le fichier FXML de la nouvelle page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ActiviteAffB.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène sur la fenêtre et l'afficher
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToCategorie(MouseEvent event) {
+        try {
+            // Charger le fichier FXML de la nouvelle page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CategorieAffB.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène sur la fenêtre et l'afficher
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public void goToMoyen(@NotNull MouseEvent event) {
         try {
             // Charger le fichier FXML de la nouvelle page
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherMoyenB.fxml"));
@@ -53,24 +113,28 @@ public class AdminDashbord {
 
 
     public void goToaffichertrajet(MouseEvent event) {
-     try {
-        // Charger le fichier FXML de la nouvelle page
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherTrajet.fxml"));
-        Parent root = loader.load();
+        try {
+            // Charger le fichier FXML de la nouvelle page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherTrajet.fxml"));
+            Parent root = loader.load();
 
-        // Créer une nouvelle scène avec la nouvelle page
-        Scene scene = new Scene(root);
+            // Créer une nouvelle scène avec la nouvelle page
+            Scene scene = new Scene(root);
 
-        // Obtenir la fenêtre actuelle à partir de l'événement
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-        // Définir la nouvelle scène sur la fenêtre et l'afficher
-        stage.setScene(scene);
-        stage.show();
-    } catch (IOException e) {
-        e.printStackTrace();
+            // Définir la nouvelle scène sur la fenêtre et l'afficher
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-}
+
+
+    public void goToCommands(MouseEvent mouseEvent) {
+    }
 
     public void goToReclamations(MouseEvent mouseEvent) {
     }

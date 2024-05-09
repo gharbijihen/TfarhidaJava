@@ -4,32 +4,32 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.web.WebView?>
-<?import javafx.scene.control.TextField?>
-<AnchorPane id="pane_top" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.Map">
+
+<AnchorPane id="pane_top" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.MapController">
     <children>
-
-            <WebView id="pane_top" fx:id="wv" layoutX="100.0" onMouseClicked="#tt" prefHeight="500.0" prefWidth="700.0"  />
-
-
-    </children>
-    <!-- Button "retour" -->
-    <Button layoutX="20" layoutY="520" onAction="#Retour" style="-fx-background-color: #FF7F00; -fx-text-fill: white;" text="Retour">
-        <graphic>
-            <ImageView fitHeight="20.0" fitWidth="20.0">
-                <image>
-                    <Image url="@images/precedent.png" />
-                </image>
+        <WebView id="pane_top" fx:id="wv" layoutX="100.0" onMouseClicked="#tt" prefHeight="500.0" prefWidth="700.0" />
+      <Button fx:id="closeButton" layoutX="797.0" layoutY="528.0" mnemonicParsing="false" onAction="#onClose" prefHeight="50.0" prefWidth="53.0" style="-fx-background-color: WHITE; -fx-background-radius: 100;" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="35.0" fitWidth="37.0" layoutX="805.0" layoutY="536.0">
+         <image>
+            <Image url="@images/bouton-fermer.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="weatherButton" layoutX="375.0" layoutY="525.0" mnemonicParsing="false" onAction="#openWeatherPage" prefHeight="57.0" prefWidth="145.0" style="-fx-background-radius: 100; -fx-background-color: #60CCEC;" text="Voir météo" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <graphic>
+            <ImageView fitHeight="47.0" fitWidth="42.0">
+               <image>
+                  <Image url="@images/weather-forecast%20(1).png" />
+               </image>
             </ImageView>
-        </graphic>
-    </Button>
-    <Button fx:id="chatbotButton" layoutX="736.0" layoutY="541.0" onAction="#chatbot" prefHeight="37.0" prefWidth="134.0" style="-fx-background-color: #FF7F00; -fx-text-fill: white;" text="      Chatbot" />
-  <ImageView fitHeight="37.0" fitWidth="37.0" layoutX="744.0" layoutY="541.0">
-      <image>
-          <Image url="@images/microchip.png" />
-      </image>
-  </ImageView>
-
-
+         </graphic></Button>
+    </children>
 </AnchorPane>

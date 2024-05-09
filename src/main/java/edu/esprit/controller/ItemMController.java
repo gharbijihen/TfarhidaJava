@@ -15,8 +15,6 @@ import javafx.stage.Stage;
 import javafx.scene.control.Button;
 
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 
@@ -114,7 +112,7 @@ public class ItemMController {
         if (moyen != null) {
             try {
                 // Charger la vue FXML de détails
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/show.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/showM.fxml"));
                 Parent root = loader.load();
 
                 // Accéder au contrôleur de vue de détails
@@ -140,7 +138,7 @@ public class ItemMController {
     private void openMap(String location) {
         try {
             // Charger le fichier FXML de la vue de la carte
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Map.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/MapM.fxml"));
             Parent root = loader.load();
 
             // Obtenir le contrôleur de la vue de la carte

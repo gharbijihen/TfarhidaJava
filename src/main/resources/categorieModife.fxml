@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<?import java.lang.String?>
+<?import javafx.scene.text.Font?>
+
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.ToggleButton?>
+<AnchorPane prefHeight="644.0" prefWidth="850.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.ModifierCategorieController">
+    <children>
+        <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="54.0" prefWidth="945.0" style="-fx-background-color: #FAF7F2;">
+            <items>
+                <ToggleButton mnemonicParsing="false" style="-fx-background-color: #004A54; -fx-background-radius: 100;" text="Sinscrire" textFill="WHITE" />
+                <ToggleButton mnemonicParsing="false" style="-fx-background-color: #FF7F00; -fx-background-radius: 100;" text="se connecter" textFill="WHITE" />
+            </items>
+        </ToolBar>
+        <VBox layoutX="15.0" layoutY="88.0" prefHeight="391.0" prefWidth="529.0" />
+        <TextField fx:id="descriptionCatt" layoutX="36.0" layoutY="179.0" prefHeight="30.0" prefWidth="442.0" promptText="Description" style="-fx-background-radius: 100;" />
+        <Text fx:id="errorDescC" fill="RED" layoutX="34.0" layoutY="164.0" wrappingWidth="442.4" />
+        <Text fx:id="errorType" fill="RED" layoutX="34.0" layoutY="213.0" wrappingWidth="442.4" />
+        <TextField fx:id="type" layoutX="34.0" layoutY="286.0" prefHeight="30.0" prefWidth="442.0" promptText="Nom" style="-fx-background-radius: 100;" />
+
+
+
+        <Text fill="#632d2d" layoutX="149.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier votre Catégorie " wrappingWidth="478.3999999999999">
+            <font>
+                <Font name="Broadway" size="35.0" />
+            </font>
+        </Text>
+
+
+        <Button fx:id="ButtonModifierCategorie" layoutX="187.0" layoutY="498.0" mnemonicParsing="false" onAction="#modifierCategorieAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: '2EB67D';" text="Modifier " />
+
+    </children>
+</AnchorPane>

@@ -15,7 +15,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class Weather {
+public class WeatherMo {
 
     @FXML
     private TextField city;
@@ -26,11 +26,11 @@ public class Weather {
     private Button closeButton;
     @FXML
     private void getWeatherData() {
-        String cityName = city.getText();
-        if (cityName.isEmpty()) {
-            // Récupérer la localisation à partir de la carte en appelant directement la méthode statique de MapController
-            cityName = MapController.getLocation();
-        }
+            String cityName = city.getText();
+            if (cityName.isEmpty()) {
+                // Récupérer la localisation à partir de la carte en appelant directement la méthode statique de MapController
+                cityName = Map.getLocation();
+            }
         try {
             // Call a method to fetch weather data using OpenWeatherMap API
             String weatherInfo = fetchWeatherData(cityName);
@@ -108,4 +108,3 @@ public class Weather {
         stage.close();
     }
 }
-
