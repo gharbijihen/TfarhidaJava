@@ -33,6 +33,8 @@ public class ClientDashboardController {
     }
 
 
-
+    public void goToReclamations(MouseEvent mouseEvent) {
+        RouterController.navigate("/ClientDashboard/ClientDashboard.fxml");
+    }
 }
 

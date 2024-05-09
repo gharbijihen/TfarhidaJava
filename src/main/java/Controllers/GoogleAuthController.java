@@ -94,6 +94,7 @@ public class GoogleAuthController implements Initializable {
                                     //         NotificationType.SUCCESS, AnimationType.POPUP, Duration.millis(2500));
                                     //UserSession.getInstance().setEmail(user.getEmail());
                                     GuiLoginController.user = signedUser;
+                                    System.out.println("Signed in user ID"+GuiLoginController.user.getId());
                                     System.out.println("to the DASHBOARD");
 
                                     if (signedUser.getRoles().equals("[\"ROLE_USER\"]")) {

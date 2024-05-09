@@ -218,8 +218,10 @@ public class RecListAdminController implements Initializable {
       }
     } catch (IOException e) {
       e.printStackTrace();
+    } catch (SQLException e) {
+        throw new RuntimeException(e);
     }
-    System.out.println("Reclamations are ready");
+      System.out.println("Reclamations are ready");
   }
 
   @FXML

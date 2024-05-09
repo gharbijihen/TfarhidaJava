@@ -15,10 +15,6 @@ public class Reclamation {
     public String type;
     public int reponseid;
 
-    public Reponse getReponse() {
-        return reponse;
-    }
-
     @Override
     public String toString() {
         return "Reclamation{" +
@@ -30,8 +26,23 @@ public class Reclamation {
                 ", image='" + image + '\'' +
                 ", type='" + type + '\'' +
                 ", reponseid=" + reponseid +
+                ", userId=" + userId +
                 ", reponse=" + reponse +
                 '}';
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int userId;
+
+    public Reponse getReponse() {
+        return reponse;
     }
 
     public void setReponse(Reponse reponse) {

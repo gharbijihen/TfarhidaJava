@@ -1,5 +1,6 @@
 package edu.esprit.servies;
 
+import Entities.User;
 import Utils.Datasource;
 import edu.esprit.entites.Reclamation;
 import java.sql.*;
@@ -11,7 +12,7 @@ import java.util.Map;
 public class ReclamationCrud implements IcrudL<Reclamation> {
     @Override
     public void ajouter(Reclamation reclamation) {
-        String req1 = "INSERT INTO reclamation(titre,type,description_reclamation,date,etat,image) VALUES (?,?,?,?,?,?)";
+        String req1 = "INSERT INTO reclamation(titre,type,description_reclamation,date,etat,image,user_id) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement pst = Datasource.getConn().prepareStatement(req1);
             pst.setString(1, reclamation.getTitre());
@@ -20,10 +21,13 @@ public class ReclamationCrud implements IcrudL<Reclamation> {
             pst.setDate(4, reclamation.getDate());
             pst.setBoolean(5, reclamation.getEtat());
             pst.setString(6, reclamation.getImage());
+            pst.setInt(7,reclamation.getUserId());
 
 
 
             pst.executeUpdate();
+            System.out.println("displaying RECLAMATION");
+            System.out.println(reclamation);
             System.out.println("Reclamation ajoutée!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -31,7 +35,7 @@ public class ReclamationCrud implements IcrudL<Reclamation> {
     }
 
     public int ajouterReturnsID(Reclamation reclamation) {
-        String req1 = "INSERT INTO reclamation(titre,type,description_reclamation,date,etat,image) VALUES (?,?,?,?,?,?)";
+        String req1 = "INSERT INTO reclamation(titre,type,description_reclamation,date,etat,image,user_id) VALUES (?,?,?,?,?,?,?)";
         int generatedId = -1; // Initialize with a default value
 
         try {
@@ -42,6 +46,7 @@ public class ReclamationCrud implements IcrudL<Reclamation> {
             pst.setDate(4, reclamation.getDate());
             pst.setBoolean(5, reclamation.getEtat());
             pst.setString(6, reclamation.getImage());
+            pst.setInt(7,reclamation.getUserId());
 
             pst.executeUpdate();
 
@@ -66,7 +71,7 @@ public class ReclamationCrud implements IcrudL<Reclamation> {
 
         if(reclamation.getReponseid()>0) {
             System.out.println("modifying reponse from client interface responseid != 0");
-            final String query = "UPDATE reclamation SET titre= ?,type= ?,description_reclamation= ?,date= ?,etat = ?,image = ?,reponse_id= ? WHERE id= ?";
+            final String query = "UPDATE reclamation SET titre= ?,type= ?,description_reclamation= ?,date= ?,etat = ?,image = ?,reponse_id= ?, user_id=? WHERE id= ?";
             try (PreparedStatement pst = Datasource.getConn().prepareStatement(query)) {
                 pst.setString(1, reclamation.getTitre());
                 pst.setString(2, reclamation.getType());
@@ -75,14 +80,15 @@ public class ReclamationCrud implements IcrudL<Reclamation> {
                 pst.setBoolean(5, reclamation.getEtat());
                 pst.setString(6, reclamation.getImage());
                 pst.setInt(7, reclamation.getReponseid());
-                pst.setInt(8, reclamation.getId());
+                pst.setInt(8,reclamation.getUserId());
+                pst.setInt(9, reclamation.getId());
 
                 pst.executeUpdate();
             }
         }
             if(reclamation.getReponseid()==0) {
                 System.out.println("modifying reponse from client interface responseid ==0");
-                String query2 = "UPDATE reclamation SET titre= ?,type= ?,description_reclamation= ?,date= ?,etat = ?,image = ? WHERE id= ?";
+                String query2 = "UPDATE reclamation SET titre= ?,type= ?,description_reclamation= ?,date= ?,etat = ?,image = ?, user_id = ? WHERE id= ?";
                 try (PreparedStatement pst = Datasource.getConn().prepareStatement(query2);) {
                     pst.setString(1, reclamation.getTitre());
                     pst.setString(2, reclamation.getType());
@@ -90,7 +96,8 @@ public class ReclamationCrud implements IcrudL<Reclamation> {
                     pst.setDate(4, reclamation.getDate());
                     pst.setBoolean(5, reclamation.getEtat());
                     pst.setString(6, reclamation.getImage());
-                    pst.setInt(7, reclamation.getId());
+                    pst.setInt(7,reclamation.getUserId());
+                    pst.setInt(8, reclamation.getId());
                     pst.executeUpdate();
                 }
             }
@@ -126,6 +133,7 @@ public class ReclamationCrud implements IcrudL<Reclamation> {
                 rec.setEtat(rs.getBoolean("etat"));
                 rec.setImage(rs.getString("image"));
                 rec.setReponseid(rs.getInt("reponse_id"));
+                rec.setUserId(rs.getInt("user_id"));
                 ReponseCrud reponseservice=new ReponseCrud();
                 rec.setReponse(reponseservice.getById(rec.getReponseid()));
                 System.out.println(rec);
@@ -220,6 +228,34 @@ public Reclamation getReclamationById(int reclamationId) throws SQLException {
         }
 
         return reclamationByetat;
+    }
+
+    public List<Reclamation> afficherByUserId(User user) {
+        List<Reclamation> reclamations = new ArrayList<>();
+        String query = "SELECT * FROM reclamation WHERE user_id = ?";
+        try {
+            PreparedStatement pst = Datasource.getConn().prepareStatement(query);
+            pst.setInt(1, user.getId());
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Reclamation rec = new Reclamation();
+                rec.setId(rs.getInt("id"));
+                rec.setTitre(rs.getString("titre"));
+                rec.setType(rs.getString("type"));
+                rec.setDescription_reclamation(rs.getString("description_reclamation"));
+                rec.setDate(rs.getDate("date"));
+                rec.setEtat(rs.getBoolean("etat"));
+                rec.setImage(rs.getString("image"));
+                rec.setReponseid(rs.getInt("reponse_id"));
+                rec.setUserId(rs.getInt("user_id"));
+                ReponseCrud reponseservice = new ReponseCrud();
+                rec.setReponse(reponseservice.getById(rec.getReponseid()));
+                reclamations.add(rec);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return reclamations;
     }
 }
 

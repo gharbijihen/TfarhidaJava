@@ -1,5 +1,6 @@
 package edu.esprit.controller;
 
+import Service.ServiceUser;
 import edu.esprit.entites.Reclamation;
 import edu.esprit.entites.Reponse;
 import edu.esprit.servies.ReclamationCrud;
@@ -27,6 +28,7 @@ public class RecItemAdminController {
     public ImageView etatimg;
     public HBox editReclamation;
     public HBox DisplayReply;
+    public Text userName;
     @FXML
     private Text comment;
 
@@ -39,7 +41,7 @@ public class RecItemAdminController {
 
     private ReponseCrud reponseCrud = new ReponseCrud();
 
-    public void setReviewData(Reclamation reclamation) {
+    public void setReviewData(Reclamation reclamation) throws SQLException {
         title.setText(reclamation.getTitre());
         comment.setText(reclamation.getDescription_reclamation());
         date.setText(reclamation.getDate().toString());
@@ -55,6 +57,8 @@ public class RecItemAdminController {
 
             etatimg.setImage(new Image("assets/img/No_icon_red.png"));
         }
+        ServiceUser su=new ServiceUser();
+        this.userName.setText(su.findById(reclamation.getUserId()).getFirst_name());
         this.DisplayReply.setOnMouseClicked(event -> {
             System.out.println("ID du réclamation à supprimer : " + reclamation.getId());
             if (reclamation.getReponseid()<1)

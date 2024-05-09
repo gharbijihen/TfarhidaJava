@@ -1,5 +1,7 @@
 package edu.esprit.controller;
 
+import Controllers.GuiLoginController;
+import Entities.User;
 import edu.esprit.entites.Notification;
 import edu.esprit.entites.Reclamation;
 import edu.esprit.servies.NotificationService;
@@ -96,11 +98,12 @@ public class ReclamationsListController_new implements Initializable {
         addReviewsModel.setVisible(false);
         TypeInput.getItems().addAll("Activité", "Logement", "Restaurant", "Transport");
         // recuperer user connecté
-        //   user = new User();
+        User user = new User();
+        user = GuiLoginController.user;
         System.out.println("Setting reclamations");
         ReclamationCrud ps = new ReclamationCrud();
 
-        List<Reclamation> reclamationList = ps.afficher();
+        List<Reclamation> reclamationList = ps.afficherByUserId(user);
 
         // Set Reclamations List
         int ReclamationColumn = 0;
@@ -220,6 +223,8 @@ public class ReclamationsListController_new implements Initializable {
         reclamation.setDescription_reclamation(extractedContent);
         reclamation.setTitre(titleInput.getText());
         reclamation.setType(TypeInput.getValue());
+        System.out.println("Signed in user = "+GuiLoginController.user.getId());
+        reclamation.setUserId(GuiLoginController.user.getId());
 
         reclamation.setDate(java.sql.Date.valueOf(LocalDate.now()));
         reclamation.setEtat(false);
@@ -235,6 +240,7 @@ public class ReclamationsListController_new implements Initializable {
         }*/
 
         ReclamationCrud rc = new ReclamationCrud();
+
         int id= rc.ajouterReturnsID(reclamation);
         NotificationService ns=new NotificationService();
         Notification newnotif=new Notification();
