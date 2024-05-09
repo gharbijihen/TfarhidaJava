@@ -142,17 +142,17 @@
                 </Pane>
                 <Pane layoutX="315.0" layoutY="374.0" prefHeight="172.0" prefWidth="252.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 7;">
                     <children>
-                        <Label layoutX="27.0" layoutY="79.0" prefHeight="36.0" prefWidth="217.0" text="Equipements">
+                        <Label layoutX="27.0" layoutY="79.0" prefHeight="36.0" prefWidth="217.0" text="Restaurants">
                             <font>
                                 <Font name="System Bold" size="22.0" />
                             </font>
                         </Label>
                         <ImageView fitHeight="66.0" fitWidth="66.0" layoutX="91.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../assets/bed.png" />
+                                <Image url="@../MoyenFxml/images/food-service.png" />
                             </image>
                         </ImageView>
-                        <Label layoutX="29.0" layoutY="108.0" prefHeight="36.0" prefWidth="217.0" text="Gérer les equipements">
+                        <Label layoutX="29.0" layoutY="108.0" prefHeight="36.0" prefWidth="217.0" text="Gérer les restaurants">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
@@ -184,19 +184,19 @@
                         <DropShadow />
                     </effect>
                 </Pane>
-                <Pane layoutX="857.0" layoutY="191.0" prefHeight="172.0" prefWidth="252.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 7;">
+                <Pane layoutX="857.0" layoutY="191.0" onMouseClicked="#goToMoyen" prefHeight="172.0" prefWidth="252.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 7;">
                     <children>
-                        <Label layoutX="27.0" layoutY="79.0" prefHeight="36.0" prefWidth="217.0" text="Transports">
+                        <Label layoutX="27.0" layoutY="79.0" onMouseClicked="#goToMoyen" prefHeight="36.0" prefWidth="217.0" text="Transports">
                             <font>
                                 <Font name="System Bold" size="22.0" />
                             </font>
                         </Label>
-                        <ImageView fitHeight="66.0" fitWidth="66.0" layoutX="81.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="66.0" fitWidth="66.0" layoutX="81.0" layoutY="14.0" onMouseClicked="#goToMoyen" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../assets/1.png" />
                             </image>
                         </ImageView>
-                        <Label layoutX="29.0" layoutY="108.0" prefHeight="36.0" prefWidth="217.0" text="Gérer les transports">
+                        <Label layoutX="29.0" layoutY="108.0" onMouseClicked="#goToMoyen" prefHeight="36.0" prefWidth="217.0" text="Gérer les transports">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>
@@ -206,19 +206,19 @@
                         <DropShadow />
                     </effect>
                 </Pane>
-                <Pane layoutX="859.0" layoutY="375.0" prefHeight="172.0" prefWidth="252.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 7;">
+                <Pane layoutX="859.0" layoutY="375.0" onMouseClicked="#goToTrajet" prefHeight="172.0" prefWidth="252.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 7;">
                     <children>
-                        <Label layoutX="27.0" layoutY="79.0" prefHeight="36.0" prefWidth="217.0" text="Restaurants">
+                        <Label layoutX="27.0" layoutY="79.0" onMouseClicked="#goToTrajet" prefHeight="36.0" prefWidth="217.0" text="Trajets">
                             <font>
                                 <Font name="System Bold" size="22.0" />
                             </font>
                         </Label>
-                        <ImageView fitHeight="66.0" fitWidth="66.0" layoutX="91.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="66.0" fitWidth="66.0" layoutX="91.0" layoutY="14.0" onMouseClicked="#goToTrajet" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../assets/bed.png" />
+                                <Image url="@../MoyenFxml/images/itineraire.png" />
                             </image>
                         </ImageView>
-                        <Label layoutX="29.0" layoutY="108.0" prefHeight="36.0" prefWidth="217.0" text="Gérer les restaurants">
+                        <Label layoutX="29.0" layoutY="108.0" onMouseClicked="#goToTrajet" prefHeight="36.0" prefWidth="217.0" text="Gérer les Trajets">
                             <font>
                                 <Font name="System Bold" size="16.0" />
                             </font>

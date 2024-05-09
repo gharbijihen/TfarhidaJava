@@ -34,7 +34,22 @@ public class ClientDashboardController {
 
 
     public void goToReclamations(MouseEvent mouseEvent) {
+        System.out.println("GOING TO RECLAMATIONS");
+
         RouterController.navigate("/ClientDashboard/ClientDashboard.fxml");
+    }
+
+    public void goToTrans(MouseEvent event) {
+        System.out.println("GOING TO TRANS");
+        RouterController.navigate("/MoyenFxml/afficherMoyenF.fxml");
+    }
+
+    public void gotoLogement(MouseEvent event) {
+        System.out.println("GOING TO TRANS");
+        RouterController.navigate("/LogementFxml/indexLogement.fxml");
+    }
+
+    public void goToLogement(MouseEvent event) {
     }
 }
 

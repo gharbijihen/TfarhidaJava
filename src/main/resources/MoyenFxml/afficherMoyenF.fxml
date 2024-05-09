@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="915.0" prefWidth="1573.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.controllerMo.AfficherMoyF">
+    <children>
+        <Pane layoutX="-2.0" prefHeight="77.0" prefWidth="1574.0" style="-fx-background-color: white;">
+            <children>
+                <ImageView fitHeight="70.0" fitWidth="128.0" layoutX="77.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@images/tfarhida.png" />
+                    </image>
+                </ImageView>
+            <Pane layoutX="1209.0" layoutY="-3.0" prefHeight="84.0" prefWidth="358.0" style="-fx-background-radius: 20 20 0 0; -fx-background-color: #53A0EC;" styleClass="linear-grad" stylesheets="@../guiadmin.css">
+               <children>
+                  <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="274.0" layoutY="7.0" onMouseClicked="#goToClient" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/ic_usr.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="nomPrenom" layoutX="131.0" layoutY="14.0" onMouseClicked="#goToClient" text="Administrateur" textFill="#fffefe">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="176.0" layoutY="41.0" onMouseClicked="#goToClient" text="Déconnecter" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="36.0" fitWidth="28.0" layoutX="143.0" layoutY="38.0" onMouseClicked="#goToLogn" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/logOut.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            </children>
+        </Pane>
+        <HBox alignment="CENTER" layoutX="859.5999999999999" layoutY="62.0" prefHeight="36.0" prefWidth="652.0" style="-fx-background-radius: 100;" AnchorPane.rightAnchor="61.40000000000009">
+            <children>
+                <HBox prefHeight="36.0" prefWidth="10.0" />
+                <HBox alignment="CENTER" prefHeight="36.0" prefWidth="110.0" styleClass="box" stylesheets="@../../java/edu/esprit/values/style.css" />
+                <HBox prefHeight="36.0" prefWidth="15.0" />
+                <HBox alignment="CENTER" prefHeight="36.0" prefWidth="110.0" styleClass="box" stylesheets="@../../java/edu/esprit/values/style.css">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+                    </children>
+                </HBox>
+                <HBox fx:id="vboxdash" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="box" stylesheets="@../../java/edu/esprit/values/style.css">
+                    <children>
+                        <HBox prefHeight="36.0" prefWidth="24.0" />
+                    </children>
+                </HBox>
+                <HBox prefHeight="36.0" prefWidth="13.0" />
+                <HBox fx:id="vboxdashh" alignment="CENTER" prefHeight="30.0" prefWidth="110.0" styleClass="box" stylesheets="@../../java/edu/esprit/values/style.css" />
+            </children>
+            <opaqueInsets>
+                <Insets left="5.0" />
+            </opaqueInsets>
+        </HBox>
+        <VBox layoutX="138.0" layoutY="124.0" prefHeight="788.0" prefWidth="1370.0">
+            <children>
+                <ScrollPane fx:id="scroll" prefHeight="531.0" prefWidth="1258.0" />
+                <Pane prefHeight="200.0" prefWidth="1233.0">
+                    <children>
+                        <Button fx:id="ajouterButton" layoutX="520.0" layoutY="80.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="68.0" prefWidth="176.0" style="-fx-background-radius: 100; -fx-background-color: #F3D9B0;" text="Ajouter" textFill="#595555" visible="false">
+                            <graphic>
+                                <ImageView fitHeight="56.0" fitWidth="56.0">
+                                    <image>
+                                        <Image url="@images/ajouter (1).png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Button>
+                        <Button fx:id="weatherButton" layoutX="1084.0" layoutY="55.0" mnemonicParsing="false" onAction="#openWeatherPage" prefHeight="56.0" prefWidth="128.0" style="-fx-background-radius: 100; -fx-background-color: #FF7F00;" text="Weather" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                            <graphic>
+                                <ImageView fitHeight="47.0" fitWidth="42.0">
+                                    <image>
+                                        <Image url="@images/weather-forecast.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic></Button>
+                        <Button fx:id="precedentButton" layoutX="515.0" layoutY="11" mnemonicParsing="false" onAction="#navigateToPreviousPage" prefHeight="57.0" prefWidth="67.0" style="-fx-background-radius: 100; -fx-background-color: orange;" visible="true">
+                            <graphic>
+                                <ImageView fitHeight="49.0" fitWidth="48.0">
+                                    <image>
+                                        <Image url="@images/un-pas-en-arrier.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Button fx:id="suivantButton" layoutX="633.0" layoutY="11" mnemonicParsing="false" onAction="#navigateToNextPage" prefHeight="57.0" prefWidth="67.0" style="-fx-background-radius: 100; -fx-background-color: orange;" visible="true">
+                            <graphic>
+                                <ImageView fitHeight="49.0" fitWidth="48.0">
+                                    <image>
+                                        <Image url="@images/un-pas-en-avant.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </Pane>
+            </children>
+        </VBox>
+        <TextField fx:id="searchField" layoutX="138.0" layoutY="84.0" prefHeight="30.0" prefWidth="1370.0" promptText="chercher........." style="-fx-background-radius: 100;" />
+        <HBox alignment="CENTER" layoutX="312.0" layoutY="900.0" prefHeight="36.0" prefWidth="1210.0" />
+      <VBox fx:id="vbox2" prefHeight="936.0" prefWidth="74.0" style="-fx-background-color: #131022;">
+         <children>
+            <Pane prefHeight="170.0" prefWidth="74.0" />
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToNavigate" prefHeight="66.0" prefWidth="74.0" styleClass="button3" stylesheets="@../guiadmin.css" text="Naviguer" textFill="#767676">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/cat.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="644.0" prefWidth="850.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.controllerMo.AjoutermoyenF">
+    <children>
+        <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="54.0" prefWidth="945.0" style="-fx-background-color: #FAF7F2;">
+            <items>
+                <ToggleButton mnemonicParsing="false" style="-fx-background-color: #004A54; -fx-background-radius: 100;" text="Sinscrire" textFill="WHITE" />
+                <ToggleButton mnemonicParsing="false" style="-fx-background-color: #FF7F00; -fx-background-radius: 100;" text="se connecter" textFill="WHITE" />
+            </items>
+        </ToolBar>
+        <VBox layoutX="15.0" layoutY="88.0" prefHeight="391.0" prefWidth="529.0" />
+
+        <Text fx:id="errorCapacite" fill="RED" layoutX="91.0" layoutY="213.0" wrappingWidth="442.4" />
+        <TextField fx:id="capacite" layoutX="81.0" layoutY="167.0" prefHeight="30.0" prefWidth="442.0" promptText="Capacité" style="-fx-background-radius: 100;" />
+        <TextField fx:id="lieu" layoutX="82.0" layoutY="216.0" prefHeight="26.0" prefWidth="442.0" promptText="Lieu" style="-fx-background-radius: 100;" />
+        <Text fx:id="errorLieu" fill="RED" layoutX="90.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="442.4" />
+        <TextField fx:id="type" layoutX="81.0" layoutY="120.0" prefHeight="30.0" prefWidth="442.0" promptText="Type" style="-fx-background-radius: 100;" />
+        <Text fx:id="errorType" fill="RED" layoutX="94.0" layoutY="164.0" wrappingWidth="442.4" />
+        <Text fill="#632d2d" layoutX="47.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter votre moyen de transport" wrappingWidth="646.3999999999999">
+            <font>
+                <Font name="Broadway" size="35.0" />
+            </font>
+        </Text>
+        <VBox alignment="CENTER" layoutX="529.0" layoutY="131.2" nodeOrientation="LEFT_TO_RIGHT" prefHeight="357.0" prefWidth="410.0" spacing="6.0" AnchorPane.bottomAnchor="155.2">
+            <children>
+                <ImageView fx:id="imageView" fitHeight="253.0" fitWidth="402.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS" />
+                <Button fx:id="selectImage" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#browseImageAction" prefHeight="35.0" prefWidth="137.0" stylesheets="@../../java/edu/esprit/values/style.css" text="ajouter image" />
+            </children>
+        </VBox>
+        <Button fx:id="ButtonAjouterMoy" layoutX="136.0" layoutY="550.0" mnemonicParsing="false" onAction="#ajoutermoyenAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: #2EB67D;" text="Ajouter " />
+      <CheckBox fx:id="etat" layoutX="89.0" layoutY="272.0" mnemonicParsing="false" text="Disponible" />
+        <Text fx:id="errorEtat" fill="RED" layoutX="188.0" layoutY="289.0" strokeWidth="0.0" wrappingWidth="137.0" />
+      <Text fx:id="errorValide" fill="RED" layoutX="190.0" layoutY="322.0" strokeWidth="0.0" wrappingWidth="137.0" />
+      <Text layoutX="20.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="20.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacité:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text layoutX="21.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lieu:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+    </children>
+</AnchorPane>

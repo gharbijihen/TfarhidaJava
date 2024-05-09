@@ -46,7 +46,17 @@ public class AdminDashboardController {
 
 
     public void goToEvent(MouseEvent mouseEvent) {
+
     }
 
 
+    public void goToMoyen(MouseEvent mouseEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/MoyenFxml/afficherMoyenB.fxml");
+    }
+
+    public void goToTrajet(MouseEvent mouseEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/MoyenFxml/afficherTrajet.fxml");
+    }
 }

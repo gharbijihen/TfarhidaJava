@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="644.0" prefWidth="850.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.controllerMo.ModifierTrajet">
+    <children>
+        <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="54.0" prefWidth="945.0" style="-fx-background-color: #FAF7F2;">
+            <items>
+                <ToggleButton mnemonicParsing="false" style="-fx-background-color: #004A54; -fx-background-radius: 100;" text="Sinscrire" textFill="WHITE" />
+                <ToggleButton mnemonicParsing="false" style="-fx-background-color: #FF7F00; -fx-background-radius: 100;" text="se connecter" textFill="WHITE" />
+            </items>
+        </ToolBar>
+
+        <Text fx:id="errorlieuA" fill="RED" layoutX="97.0" layoutY="212.0" wrappingWidth="442.4" />
+        <TextField fx:id="lieuarrivée" layoutX="93.0" layoutY="167.0" prefHeight="30.0" prefWidth="442.0" promptText="LieuArrivée" style="-fx-background-radius: 100;" />
+        <Text fx:id="errordate" fill="RED" layoutX="97.0" layoutY="259.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="442.4" />
+        <TextField fx:id="heure" layoutX="92.0" layoutY="265.0" prefHeight="26.0" prefWidth="442.0" promptText="Heure" style="-fx-background-radius: 100;" />
+        <Text fx:id="errorheure" fill="RED" layoutX="97.0" layoutY="309.0" wrappingWidth="442.4" />
+        <Text fx:id="errormoyen" fill="RED" layoutX="37.0" layoutY="367.0" strokeWidth="0.0" wrappingWidth="442.4" />
+        <Text fx:id="errorlieud" fill="RED" layoutX="95.0" layoutY="164.0" wrappingWidth="442.4" />
+        <DatePicker fx:id="date" layoutX="94.0" layoutY="216.0" prefHeight="25.0" prefWidth="442.0" promptText="Date" style="-fx-background-radius: 100;" />
+        <Text fill="#632d2d" layoutX="149.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier votre trajet" wrappingWidth="478.3999999999999">
+            <font>
+                <Font name="Broadway" size="35.0" />
+            </font>
+        </Text>
+        <Button fx:id="ButtonModfiertrajet" layoutX="136.0" layoutY="550.0" mnemonicParsing="false" onAction="#modifierMoyenAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: #2EB67D;" text="Modifier" />
+        <TextField fx:id="lieudepart" layoutX="91.0" layoutY="122.0" prefHeight="30.0" prefWidth="442.0" promptText="Lieudepart" style="-fx-background-radius: 100;" />
+        <ChoiceBox fx:id="moyt" layoutX="142.0" layoutY="322.0" prefHeight="25.0" prefWidth="391.0" />
+        <Text layoutX="5.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lieu de depart :" />
+        <Text layoutX="8.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lieu d'arrivée :" />
+        <Text layoutX="12.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date :" />
+        <Text layoutX="12.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Heure :" />
+        <Text layoutX="10.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Moyen de Transport :" />
+    </children>
+</AnchorPane>

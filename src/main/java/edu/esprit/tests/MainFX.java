@@ -18,7 +18,7 @@ public class MainFX extends Application {
         try {
             RouterController.setPrimaryStage(stage);
 
-            root = FXMLLoader.load(getClass().getResource("/back.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/login.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.setTitle("Tfarhida");

@@ -1,5 +1,6 @@
 package edu.esprit.controller.Logement;
 
+import Controllers.RouterController;
 import com.itextpdf.text.DocumentException;
 import edu.esprit.controller.Logement.LogementCardController;
 import edu.esprit.controller.Logement.StatLogement;
@@ -127,24 +128,10 @@ public class afficherLogementB {
 
     @FXML
     public void goToafficherNavBar(ActionEvent event) {
-        try {
-            // Charger le fichier FXML de la nouvelle page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/AdminDashbord.fxml"));
-            Parent root = loader.load();
-
-            // Créer une nouvelle scène avec la nouvelle page
-            Scene scene = new Scene(root);
-
-            // Obtenir la fenêtre actuelle à partir de l'événement
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            // Définir la nouvelle scène sur la fenêtre et l'afficher
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
+            RouterController router=new RouterController();
+            router.navigate("/fxml/AdminDashboard.fxml");
         }
-    }
+
     @FXML
     public void goToafficherLogement() {
         try {
@@ -213,7 +200,7 @@ public class afficherLogementB {
         try {
             ArrayList<Logement> logementList = new ArrayList<>(new LogementCrud().afficher());
 
-            generatepdf.generatePDF(logementList, new FileOutputStream("C:\\Users\\ASUS\\IdeaProjects\\TfarhidaJaava\\Logements.pdf"), "C:\\Users\\ASUS\\IdeaProjects\\TfarhidaJaava\\src\\main\\resources\\images\\tfarhida.png");
+            generatepdf.generatePDF(logementList, new FileOutputStream("C:\\Users\\MSI\\Downloads\\tfarhida2\\src\\Logements.pdf"), "C:\\Users\\MSI\\Downloads\\tfarhida2\\src\\main\\resources\\images\\tfarhida.png");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("PDF Généré");
             alert.setHeaderText(null);
