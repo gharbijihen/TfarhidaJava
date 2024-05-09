@@ -38,6 +38,10 @@ public class AdminDashboardController {
         RouterController router=new RouterController();
         router.navigate("/AdminDashboard/AdminDashboard.fxml");
     }
+    public void goToLogements(MouseEvent mouseEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/LogementFxml/LogementAffB.fxml");
+    }
 
 
 

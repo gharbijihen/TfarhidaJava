@@ -6,7 +6,7 @@ import com.twilio.type.PhoneNumber;
 
 import java.net.URI;
 import java.math.BigDecimal;
-public class SmsController {
+public class SmsControllerRec {
     // Find your Account Sid and Token at twilio.com/console
     public static final String ACCOUNT_SID = "AC2f8b7694f7aeb517fe76fbd35e982afd";
     public static final String AUTH_TOKEN = "3e76c311f1a7f085f6b7ec0b6ce4e3eb";

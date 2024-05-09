@@ -299,7 +299,7 @@ public class RecListAdminController implements Initializable {
       rc.setEtat(true);
       reclamationCrud.modifier(rc);
     }
-    SmsController.Sms();
+    SmsControllerRec.Sms();
     EmailSenderApp.sendEmail("tayssirsboui@gmail.com","Reponse Reclamation", "Vous avez reçu une réponse à votre réclamation: \n"+ newReponse.getDescription());
     System.out.println("Reclamation a répondre"+RecListAdminController.reclamation);
     //reclamation.setImage(selectedImageFile.getName());
