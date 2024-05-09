@@ -376,7 +376,7 @@ public class afficheractivite{
         }
     }
     public void goToClient(MouseEvent mouseEvent) {
-        RouterController.navigate("/ActiviteFxml/front.fxml");
+        RouterController.navigate("/ActiviteFxml/activiteAfficher.fxml");
     }// tt
 
     public void open_notifModel(MouseEvent mouseEvent) {

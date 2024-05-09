@@ -79,7 +79,7 @@ public class ShowMoyen {
                         // Charger l'image à partir du chemin d'accès spécifié
                         Image image = new Image(file.toURI().toString());
                         double desiredWidth = 600; // Spécifiez la largeur souhaitée
-                        double desiredHeight = 600;
+                        double desiredHeight = 400;
                         // Définir l'image dans l'élément ImageView
                         img.setImage(image);
                         img.setFitWidth(desiredWidth);

@@ -60,4 +60,10 @@ public void goToCategorie(MouseEvent mouseEvent){
         RouterController router=new RouterController();
         router.navigate("/MoyenFxml/afficherTrajet.fxml");
     }
+
+    public void goToResto(MouseEvent mouseEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/FXMLRes/restaurantaffb.fxml");
+
+    }
 }

@@ -1,0 +1,38 @@
+.main-pane {
+    -fx-background-color: #ffff;
+}
+
+.toolbar {
+    -fx-background-color: #FAF7F2;
+}
+
+.toggle-button {
+    -fx-background-color: #004A54;
+    -fx-background-radius: 100;
+}
+
+.toggle-button:selected {
+    -fx-background-color: #FF7F00;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: grey;
+}
+
+.image-pane {
+    -fx-border-color: grey;
+}
+
+.choose-button {
+    -fx-background-color: #D3D3D3;
+}
+
+.action-button {
+    -fx-background-color: #4682B4;
+    -fx-text-fill: white;
+}
+
+.action-button:hover {
+    -fx-background-color: #4169E1;
+}

@@ -1,0 +1,38 @@
+#nom, #adresse, #numdetel, #nmbetoiles, #heure_ouverture, #heure_fermeture {
+    -fx-background-color: #FFFFFF; /* Background color */
+    -fx-border-color: #CCCCCC; /* Border color */
+    -fx-border-width: 1px; /* Border width */
+    -fx-border-radius: 3px; /* Border radius */
+    -fx-padding: 5px; /* Padding */
+}
+
+.button {
+    -fx-background-color: #004A54; /* Button background color */
+    -fx-text-fill: white; /* Button text color */
+    -fx-background-radius: 5px; /* Button corner radius */
+    -fx-padding: 8px 15px; /* Button padding */
+}
+
+.button:hover {
+    -fx-background-color: #00323D; /* Button background color on hover */
+}
+
+.tool-bar {
+    -fx-background-color: #FAF7F2; /* Toolbar background color */
+}
+
+.text {
+    -fx-fill: #632d2d; /* Text color */
+}
+
+.text-field {
+    -fx-background-color: #FFFFFF; /* Text field background color */
+    -fx-border-color: #CCCCCC; /* Text field border color */
+    -fx-border-width: 1px; /* Text field border width */
+    -fx-border-radius: 3px; /* Text field border radius */
+    -fx-padding: 5px; /* Text field padding */
+}
+
+.text-field:focus {
+    -fx-border-color: #004A54; /* Text field border color on focus */
+}

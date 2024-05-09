@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="main" prefHeight="720" prefWidth="1280.0" styleClass="form_container" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.controllersRE.statcontroller">
+
+    <children>
+        <BarChart fx:id="barChart" layoutX="353.0" layoutY="226.0" prefHeight="340.0" prefWidth="540.0">
+            <xAxis>
+                <CategoryAxis side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis fx:id="yAxis" side="LEFT" upperBound="10.0" />
+            </yAxis>
+        </BarChart>
+        <Text fill="#0a5221" layoutX="145.0" layoutY="117.0" strokeLineJoin="ROUND" strokeWidth="0.0" text="Liste Des Restaurants en Fonction du nombre d'etoiles" textAlignment="CENTER">
+            <font>
+                <Font name="Arial" size="48.0" />
+            </font>
+        </Text>
+        <Button fx:id="retour" layoutX="1152.0" layoutY="647.0" mnemonicParsing="false" onAction="#retour" text="Retour" style="-fx-background-radius: 100; -fx-background-color: #FF0000; -fx-text-fill: white;" />
+        <Button fx:id="Excel" layoutX="1083.0" layoutY="647.0" mnemonicParsing="false" onAction="#Excel" text="Excel" style="-fx-background-color: #006400; -fx-text-fill: white;" />
+    </children>
+</AnchorPane>

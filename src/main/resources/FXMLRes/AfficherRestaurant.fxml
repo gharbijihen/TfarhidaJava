@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="467.0" prefWidth="1028.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.controllersRE.AfficherRestaurantB">
+    <children>
+        <TableView fx:id="tableView" layoutX="54.0" layoutY="72.0" onMouseClicked="#getData" prefHeight="274.0" prefWidth="605.0">
+            <columns>
+                <TableColumn fx:id="nomCol" prefWidth="84.0" text="Nom" />
+                <TableColumn fx:id="adresseCol" prefWidth="100.0" text="adresse" />
+                <TableColumn fx:id="numdetelCol" prefWidth="99.0" text="num de tel" />
+            <TableColumn fx:id="nmbetoilesCol" prefWidth="84.0" text="nmb d'etoiles" />
+            <TableColumn fx:id="heure_ouvertureCol" prefWidth="122.0" text="heure d'ouverture" />
+            <TableColumn fx:id="heure_fermetureCol" prefWidth="115.0" text="heure de fermeture" />
+            </columns>
+        </TableView>
+      <TextField fx:id="nom" layoutX="673.0" layoutY="88.0" promptText="nom" />
+      <TextField fx:id="adresse" layoutX="673.0" layoutY="148.0" promptText="adresse" />
+      <TextField fx:id="numdetel" layoutX="672.0" layoutY="209.0" promptText="num de tel" />
+      <TextField fx:id="nmbetoiles" layoutX="672.0" layoutY="274.0" promptText="etoiles" />
+      <TextField fx:id="heure_ouverture" layoutX="874.0" layoutY="88.0" promptText="heure d'ouverture" />
+      <TextField fx:id="heure_fermeture" layoutX="874.0" layoutY="148.0" promptText="heure de fermeture" />
+      <Button layoutX="949.0" layoutY="321.0" mnemonicParsing="false" onAction="#deleteRestaurant" text="delete" />
+    </children>
+</AnchorPane>
