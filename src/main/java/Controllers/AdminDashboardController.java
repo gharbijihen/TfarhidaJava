@@ -34,6 +34,10 @@ public class AdminDashboardController {
         RouterController router=new RouterController();
         router.navigate("/fxml/ActivitiesCRUD.fxml");
     }
+    public void goToReclamations(MouseEvent mouseEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/AdminDashboard/AdminDashboard.fxml");
+    }
 
 
 

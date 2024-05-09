@@ -12,12 +12,14 @@ public class MainApp extends Application {
   @Override
   public void start(Stage primaryStage) throws Exception {
     // Load the FXML file
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/UsersCrud.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AdminDashboard.fxml"));
 
     Parent root = loader.load();
 
     // Set the primary stage
+    edu.esprit.controller.RouterController.setPrimaryStage(primaryStage);
     RouterController.setPrimaryStage(primaryStage);
+
 
     // Set the scene
     Scene scene = new Scene(root);

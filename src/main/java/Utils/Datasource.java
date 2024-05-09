@@ -3,7 +3,7 @@ package Utils;
 import java.sql.*;
 public class Datasource {
     private static Connection conn = null;
-    private static String url = "jdbc:mysql://localhost:3306/testtest";
+    private static String url = "jdbc:mysql://localhost:3306/integration";
     private static String user="root";
     private static String pwd="";
     private static Datasource D;

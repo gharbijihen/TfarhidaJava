@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="644.0" prefWidth="850.0" style="-fx-background-color: #ffff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.AjouterReponseController">
+    <children>
+        <ToolBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="54.0" prefWidth="945.0" style="-fx-background-color: #FAF7F2;">
+            <items>
+                <ToggleButton mnemonicParsing="false" style="-fx-background-color: #004A54; -fx-background-radius: 100;" text="Sinscrire" textFill="WHITE" />
+                <ToggleButton mnemonicParsing="false" style="-fx-background-color: #FF7F00; -fx-background-radius: 100;" text="se connecter" textFill="WHITE" />
+            </items>
+        </ToolBar>
+        <TextField fx:id="idDescriptionRep" layoutX="79.0" layoutY="179.0" prefHeight="30.0" prefWidth="442.0" promptText="Description" style="-fx-background-radius: 100;" />
+        <Text fx:id="errorDescription" fill="RED" layoutX="79.0" layoutY="222.0" wrappingWidth="442.4" />
+
+
+        <Text fill="#632d2d" layoutX="88.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter votre Réponse" wrappingWidth="529.0">
+            <font>
+                <Font name="Broadway" size="35.0" />
+            </font>
+        </Text>
+
+        <Button fx:id="ButtonAjouterReponse" layoutX="232.0" layoutY="305.0" mnemonicParsing="false" onAction="#ajouterReponseAction" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: '2EB67D';" text="Ajouter " />
+        <DatePicker fx:id="idDateRep" layoutX="79.0" layoutY="225.0" prefHeight="25.0" prefWidth="442.0" />
+
+    </children>
+</AnchorPane>

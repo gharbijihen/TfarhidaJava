@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class RouterController {
 
-  private static Stage primaryStage;
+  public static Stage primaryStage;
   private static final Duration TRANSITION_DURATION = Duration.seconds(1.0);
 
 
@@ -76,6 +76,7 @@ public class RouterController {
         fadeIn.setFromValue(0.0);
         fadeIn.setToValue(1.0);
         fadeIn.play();
+
       });
       fadeOut.play();
 

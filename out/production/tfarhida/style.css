@@ -1,0 +1,70 @@
+.search-box{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.search-button{
+    -fx-background-color: #828282;
+    -fx-background-radius: 30;
+}
+
+.right-bar{
+    -fx-background-color: #D3D3D3;
+}
+
+.shadow{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+
+.chosen-fruit-card{
+    -fx-background-color: #F16C31;
+    -fx-background-radius: 30;
+}
+
+.comboBox{
+    -fx-background-color: rgba(255,255,255,0.3);
+    -fx-background-radius: 30;
+}
+
+.add-btn{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.free-delivery-card{
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 30;
+}
+
+.shopping-online-card{
+    -fx-background-color: #BAEAC3;
+    -fx-background-radius: 30;
+}
+
+.fruit-item{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 30;
+}
+.card {
+    -fx-border-color: black;
+    -fx-padding: 10px;
+}
+
+.button-box {
+    -fx-spacing: 10px;
+}
+.idPanel {
+    -fx-background-color: #f0f0f0; /* Couleur de fond */
+    -fx-border-color: #cccccc; /* Couleur de la bordure */
+    -fx-border-width: 1px; /* Épaisseur de la bordure */
+    -fx-border-radius: 5px; /* Rayon de la bordure (coins arrondis) */
+    -fx-padding: 10px; /* Espacement interne */
+    -fx-background-radius: 5px; /* Rayon du fond (coins arrondis) */
+
+    /* Style de la bordure */
+    -fx-border-style: solid; /* Type de la bordure (solide) */
+}
