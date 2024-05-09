@@ -149,9 +149,10 @@ public class ShowLogement {
     public void reserver(ActionEvent event) {
         try {
             // Charger la vue ou le formulaire d'ajout
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Payment.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/Payment.fxml"));
             Parent root = loader.load();
-
+            PayementController controller = loader.getController();
+            controller.setData(logement,logement.getPrix());
             // Créer une nouvelle fenêtre pour afficher le formulaire d'ajout
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -160,4 +161,5 @@ public class ShowLogement {
             e.printStackTrace();
         }
     }
-    }
+
+}

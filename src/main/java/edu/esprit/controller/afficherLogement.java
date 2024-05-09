@@ -3,6 +3,7 @@ package edu.esprit.controller;
 import edu.esprit.entites.Logement;
 import edu.esprit.servies.LogementCrud;
 import edu.esprit.tests.MyListener;
+import edu.esprit.tools.Data;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,6 +11,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
@@ -18,14 +21,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
-import java.awt.*;
 import javafx.scene.control.Button;
 
 import java.io.IOException;
-import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.ResourceBundle;
 
 public class afficherLogement  {
     private List<Logement> logements;
@@ -35,22 +38,34 @@ public class afficherLogement  {
     @FXML
     private ScrollPane scroll;
     private ObservableList<Logement> logementsList;
+    private ObservableList<Logement> listeFiltree;
 
     @FXML
     private GridPane grid;
+    @FXML
+    private ComboBox<String> filtreTypeLog;
+
+    ObservableList <String> typeList = FXCollections.observableArrayList(Data.typeLogement);
+
+    public void fillfiltreTypeLog()
+    {
+
+        filtreTypeLog.setItems(typeList);
+    }
 
     private int currentPage = 0;
     private int itemsPerPage = 3;
     // Adjust this based on your preference
-    @FXML
-    private Button prevPageBtn; // Pagination previous page button
-    @FXML
-    private Button nextPageBtn;
-    @FXML
+
     private HBox paginationContainer; // Container for pagination controls
     private int totalItems;
     @FXML
     private Button ajouterButton;
+    @FXML
+    private RadioButton hotelRadioButton;
+
+    @FXML
+    private RadioButton villaRadioButton;
 
     private LogementCrud serviceLogement = new LogementCrud();
 
@@ -71,7 +86,36 @@ public class afficherLogement  {
         }
     }
 
-    public void showLogement() {
+    @FXML
+    void initialize() {
+        // Initialisez activitesList avec les données appropriées
+        LogementCrud logementCrud = new LogementCrud();
+        logementsList = FXCollections.observableArrayList(logementCrud.afficher());
+
+        // Initialisez la liste filtrée avec toutes les activités au démarrage
+        listeFiltree = FXCollections.observableArrayList(logementsList);
+        filtreTypeLog.setOnAction(event -> handleTypeSelection());
+        filtreTypeLog.setItems(typeList);
+
+
+        }
+
+        // Appeler la méthode d'affichage en passant la page actuelle
+    private void handleTypeSelection() {
+
+        String selectedType = filtreTypeLog.getValue(); // Récupérer le type de logement sélectionné
+        if (selectedType != null && !selectedType.isEmpty()) {
+            // Effectuer une action en fonction du type sélectionné, par exemple, afficher les logements de ce type
+            // Vous pouvez appeler une méthode de votre service LogementCrud pour récupérer et afficher les logements de ce type
+            ObservableList<Logement> logements = LogementCrud.getAllByType(selectedType);
+            showLogement(logements); // Mettre à jour l'affichage avec les logements du type sélectionné
+        } else {
+            // Gérer le cas où aucun type n'est sélectionné
+            System.out.println("Veuillez sélectionner un type de logement.");
+        }
+    }
+
+    /*public void showLogement() {
 
         try {
             // Créer un VBox pour contenir tous les éléments Iteam
@@ -89,9 +133,9 @@ public class afficherLogement  {
             // Ajouter chaque paire d'éléments à une ligne dans la HBox
             for (Logement logement : logementsList) {
                 if (logement.getEtat().equals("Acceptee")) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/IteamLogement.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/IteamLogement.fxml"));
                     Node itemNode = loader.load();
-                    IteamLogementController controller = loader.getController();
+                    edu.esprit.controller.IteamLogementController controller = loader.getController();
                     controller.setData(logement, null);
 
                     // Ajouter l'élément à la ligne actuelle
@@ -120,14 +164,60 @@ public class afficherLogement  {
         }
         ajouterButton.setVisible(true);
 
+    }*/
+    public void showLogement(ObservableList<Logement> logementsList) {
+        try {
+            // Créer un VBox pour contenir tous les éléments Iteam
+            VBox mainVBox = new VBox();
+            mainVBox.setSpacing(20.0); // Espacement vertical entre les lignes
+
+            // Créer une HBox pour chaque ligne d'éléments
+            HBox hBox = new HBox();
+            hBox.setSpacing(20.0); // Espacement horizontal entre les éléments
+
+            // Ajouter chaque paire d'éléments à une ligne dans la HBox
+            for (Logement logement : logementsList) {
+                if (logement.getEtat().equals("Acceptee")) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/IteamLogement.fxml"));
+                    Node itemNode = loader.load();
+                    edu.esprit.controller.IteamLogementController controller = loader.getController();
+                    controller.setData(logement, null);
+
+                    // Ajouter l'élément à la ligne actuelle
+                    hBox.getChildren().add(itemNode);
+
+                    // Si la ligne est pleine (2 éléments), l'ajouter au VBox principal et créer une nouvelle ligne
+                    if (hBox.getChildren().size() == 3) {
+                        mainVBox.getChildren().add(hBox);
+                        hBox = new HBox();
+                        hBox.setSpacing(20.0); // Réinitialiser l'espacement horizontal pour la nouvelle ligne
+                    }
+                }
+            }
+
+            // Ajouter la dernière ligne si elle n'est pas pleine
+            if (!hBox.getChildren().isEmpty()) {
+                mainVBox.getChildren().add(hBox);
+            }
+
+            // Définir le contenu du ScrollPane comme le VBox principal
+            scroll.setContent(mainVBox);
+
+            System.out.println("Chargement des éléments terminé avec succès.");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ajouterButton.setVisible(true);
     }
+
     @FXML
 
 
     public void handleAjouterLogement(ActionEvent event) {
         try {
             // Charger la vue ou le formulaire d'ajout
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementAjouter.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/LogementAjouter.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle fenêtre pour afficher le formulaire d'ajout
@@ -140,7 +230,7 @@ public class afficherLogement  {
     }
 
 
-    @FXML
+    /*@FXML
     public void OnclickTrier(ActionEvent event) {
         // Appeler la méthode de tri par prix de votre service LogementCrud
         try {
@@ -149,102 +239,24 @@ public class afficherLogement  {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-        public void nextPage (ActionEvent event){
-        }
-
-        public void perviousPage (ActionEvent event){
-        }
+    }*/
 
 
-        private void afficherLogements (ObservableList < Logement > logements) {
-                // Nettoyer le contenu actuel du GridPane avant d'afficher les nouveaux logements
-                grid.getChildren().clear();
-
-                // Variables pour la disposition des éléments dans le GridPane
-                int col = 0;
-                int row = 0;
-
-                // Parcourir la liste des logements et les afficher dans le GridPane
-                for (Logement logement : logements) {
-                    try {
-                        // Charger le fichier FXML de l'élément de logement
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/IteamLogement.fxml"));
-                        AnchorPane itemPane = loader.load();
-                        IteamLogementController controller = loader.getController();
-
-                        // Passer les données du logement au contrôleur de l'élément
-                        controller.setData(logement, myListener); // Assurez-vous que myListener est initialisé correctement
-
-                        // Ajouter l'élément au GridPane avec la disposition actuelle
-                        grid.add(itemPane, col, row);
-
-                        // Mettre à jour la disposition des éléments dans le GridPane
-                        col++;
-                        if (col == 3) { // Si la colonne atteint 3, passer à la ligne suivante
-                            col = 0;
-                            row++;
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
 
 
-    public void trierParHotel(ActionEvent event) {
-    }
 
-    public void trierParVilla(ActionEvent event) {
-    }
-    private void setupPaginationControls() {
-        paginationContainer.getChildren().clear(); // Clear existing controls
 
-        // Add the Previous button
-        prevPageBtn.setDisable(currentPage == 0);
-        paginationContainer.getChildren().add(prevPageBtn);
 
-        // Calculate the number of pages
-        int pageCount = (int) Math.ceil((double) totalItems / itemsPerPage);
 
-        // Add page number buttons dynamically
-        for (int i = 0; i < pageCount; i++) {
-            Button pageBtn = new Button(String.valueOf(i + 1));
-            int finalI = i;
-            pageBtn.setOnAction(e -> {
-                currentPage = finalI;
-                setupPaginationControls(); // Refresh pagination controls on click
-            });
-            pageBtn.setDisable(currentPage == i); // Disable the button of the current page
-            paginationContainer.getChildren().add(pageBtn);
-        }
 
-        // Add the Next button
-        nextPageBtn.setDisable(currentPage >= pageCount - 1);
-        paginationContainer.getChildren().add(nextPageBtn);
-    }
+
 
     @FXML
-    private void handleNextPage() {
-        if (currentPage < (totalItems / itemsPerPage)) {
-            currentPage++;
-            setupPaginationControls();
-        }
-    }
-
-    @FXML
-    private void handlePrevPage() {
-        if (currentPage > 0) {
-            currentPage--;
-            setupPaginationControls();
-        }
-    }
 
     public void chatBotAction(ActionEvent event) {
         try {
             // Charger la vue ou le formulaire d'ajout
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/chatBot.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/chatBot.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle fenêtre pour afficher le formulaire d'ajout
@@ -254,5 +266,21 @@ public class afficherLogement  {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    @FXML
+    void OnclickTrier(ActionEvent event) throws SQLException {
+        LogementCrud LogementService = new LogementCrud();
+        List<Logement>logementListTrie = LogementService.trierParPrix(logementsList);
+        System.out.println("listre trier");
+        System.out.println(logementListTrie);
+        // Mettre à jour la liste filtrée et afficher la première page
+        listeFiltree.setAll(logementListTrie);
+        showLogement((ObservableList<Logement>) logementListTrie);
+    }
+
+    public void showLogement(ActionEvent event) {
+        showLogement(logementsList);
     }
 }

@@ -1,7 +1,5 @@
 package edu.esprit.entites;
 
-import edu.esprit.servies.EquipementCrud;
-
 public class Logement {
     public int id;
     public String nom;
@@ -33,7 +31,7 @@ public class Logement {
         //  this.equipement = equipement;
     }
 
-    public Logement() {
+    public Logement(int i) {
 
     }
 
@@ -49,6 +47,10 @@ public class Logement {
         this.etat = etat;
         this.type_log = type_log;
         this.note_moyenne = note_moyenne;
+    }
+
+    public Logement() {
+
     }
 
 

@@ -30,7 +30,7 @@
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/return.png" />
+                        <Image url="@./images/return.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -39,12 +39,12 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="567.0" layoutY="311.0" prefHeight="23.0" prefWidth="46.0" text="Etat :">
+            <Label layoutX="627.0" layoutY="303.0" prefHeight="23.0" prefWidth="46.0" text="Etat :">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label fx:id="etatLog" layoutX="608.0" layoutY="313.0" prefHeight="22.0" prefWidth="85.0" text="etatLog">
+            <Label fx:id="etatLog" layoutX="668.0" layoutY="305.0" prefHeight="22.0" prefWidth="85.0" text="etatLog">
                <font>
                   <Font size="15.0" />
                </font>
@@ -120,57 +120,47 @@
             </Group>
             <ImageView fitHeight="35.0" fitWidth="42.0" layoutX="107.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/parking.png" />
+                  <Image url="@./images/parking.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="42.0" layoutX="110.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/climatisation.png" />
+                  <Image url="@./images/climatisation.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="42.0" layoutX="107.0" layoutY="455.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/wifi.png" />
+                  <Image url="@./images/wifi.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="46.0" fitWidth="52.0" layoutX="277.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/chambre.png" />
+                  <Image url="@./images/chambre.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="42.0" layoutX="282.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/la-description.png" />
+                  <Image url="@./images/la-description.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="42.0" layoutX="618.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/google-maps.png" />
+                  <Image url="@./images/google-maps.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="42.0" layoutX="624.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/phone.png" />
+                  <Image url="@./images/phone.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="42.0" layoutX="621.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/euro.png" />
+                  <Image url="@./images/euro.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="688.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/stars.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="32.0" fitWidth="46.0" layoutX="733.0" layoutY="306.0" onDragDetected="#refusee" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-               <image>
-                  <Image url="@images/traverser.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="28.0" fitWidth="35.0" layoutX="688.0" layoutY="310.0" onDragDetected="#Accepter" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;">
-               <image>
-                  <Image url="@images/jaccepte.png" />
+                  <Image url="@./images/stars.png" />
                </image>
             </ImageView>
          </children>

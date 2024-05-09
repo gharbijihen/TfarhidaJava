@@ -75,7 +75,7 @@ public class LogementCardController {
     @FXML
     void details(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailsLogement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/DetailsLogement.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
@@ -108,7 +108,7 @@ public class LogementCardController {
             showAlert("Suppression réussie", "Le logement a été supprimé avec succès.");
 
             // Refresh the current page (you may need to adjust this based on your implementation)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementAffB.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/LogementAffB.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -124,7 +124,7 @@ public class LogementCardController {
     @FXML
     void modifier(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/logementModifier.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/logementModifier.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 

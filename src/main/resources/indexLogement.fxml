@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -22,7 +22,7 @@
             <Text layoutX="121.0" layoutY="686.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
             <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="95.0" layoutY="674.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
                <image>
-                  <Image url="@images/logoutIcon.png" />
+                  <Image url="@./images/logoutIcon.png" />
                </image>
             </ImageView>
             <VBox alignment="CENTER" layoutX="13.0" layoutY="170.0" prefHeight="304.0" prefWidth="269.0">
@@ -31,7 +31,7 @@
                      <graphic>
                         <ImageView fitHeight="17.0" fitWidth="22.0">
                            <image>
-                              <Image url="@images/wirte.png" />
+                              <Image url="@./images/wirte.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -44,7 +44,7 @@
                      <graphic>
                         <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/homeIconpng.png" />
+                              <Image url="@./images/homeIconpng.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -57,7 +57,7 @@
                      <graphic>
                         <ImageView fitHeight="18.0" fitWidth="18.0">
                            <image>
-                              <Image url="@images/3555663.png" />
+                              <Image url="@./images/3555663.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -70,7 +70,7 @@
                      <graphic>
                         <ImageView fitHeight="17.0" fitWidth="22.0">
                            <image>
-                              <Image url="@images/food-service.png" />
+                              <Image url="@./images/food-service.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -83,7 +83,7 @@
                      <graphic>
                         <ImageView fitHeight="17.0" fitWidth="22.0">
                            <image>
-                              <Image url="@images/1.png" />
+                              <Image url="@./images/1.png" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -95,7 +95,7 @@
             </VBox>
             <ImageView fitHeight="119.0" fitWidth="200.0" layoutX="41.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/tfarhida.png" />
+                  <Image url="@./images/tfarhida.png" />
                </image>
             </ImageView>
          </children>
@@ -104,12 +104,12 @@
          <children>
             <ImageView fitHeight="28.0" fitWidth="32.0" layoutX="314.0" layoutY="11.0" onMouseClicked="#returnTo" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/bouton-retour.png" />
+                  <Image url="@./images/bouton-retour.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="35.0" fitWidth="41.0" layoutX="1451.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/utilisateur.png" />
+                  <Image url="@./images/utilisateur.png" />
                </image>
             </ImageView>
             <Label layoutX="1376.0" layoutY="-2.0" prefHeight="54.0" prefWidth="82.0" text="Mon Profil">
@@ -139,51 +139,23 @@
                      <graphic>
                         <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" preserveRatio="true">
                            <image>
-                              <Image url="@images/bed.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-               </children>
-            </Pane>
-            <Pane prefHeight="44.0" prefWidth="1208.0">
-               <children>
-                  <Button fx:id="suivantButton" layoutX="631.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleNextPage" prefHeight="28.0" prefWidth="100.0" style="-fx-background-radius: 100; -fx-background-color: orange;" text="Suivant">
-                     <graphic>
-                        <ImageView fitHeight="23.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/suivant.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="precedentButton" layoutX="510.0" layoutY="2.0" mnemonicParsing="false" onAction="#handlePrevPage" prefHeight="30.0" prefWidth="106.0" style="-fx-background-radius: 100; -fx-background-color: orange;" text="Préscédant">
-                     <graphic>
-                        <ImageView fitHeight="21.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@images/fleche-de-retour.png" />
+                              <Image url="@./images/bed.png" />
                            </image>
                         </ImageView>
                      </graphic>
                   </Button>
                </children>
             </Pane>
+            <Pane prefHeight="44.0" prefWidth="1208.0" />
          </children>
       </VBox>
       <AnchorPane layoutX="313.0" layoutY="55.0" prefHeight="50.0" prefWidth="1225.0" style="-fx-background-color: #ffff; -fx-background-radius: 60; -fx-effect: shadow;">
          <children>
-            <Pane layoutX="674.0" layoutY="10.0" prefHeight="30.0" prefWidth="371.0" style="-fx-background-color: gris; -fx-background-radius: 30;">
-               <children>
-                  <RadioButton fx:id="hotelRadioButton" layoutX="35.0" layoutY="6.0" mnemonicParsing="false" onAction="#trierParHotel" text="Hotel" />
-                  <RadioButton fx:id="villaRadioButton" layoutX="110.0" layoutY="6.0" mnemonicParsing="false" onAction="#trierParVilla" text="Villa" />
-                  <RadioButton fx:id="maisonRadioButton" layoutX="282.0" layoutY="7.0" mnemonicParsing="false" text="Maison" />
-                  <RadioButton fx:id="appartementRadioButton" layoutX="180.0" layoutY="7.0" mnemonicParsing="false" text="Appartement" />
-               </children>
-            </Pane>
-            <Button fx:id="triButton" layoutX="1105.0" layoutY="11.0" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="26.0" prefWidth="82.0" style="-fx-background-radius: 100;" text="Prix">
+            <Button fx:id="triButton" layoutX="1105.0" layoutY="11.0" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="26.0" prefWidth="82.0" style="-fx-background-radius: 100;" text="Prix" textFill="#ff820d">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/sort-alt.png" />
+                        <Image url="@./images/sort-alt.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -195,11 +167,12 @@
                <graphic>
                   <ImageView fitHeight="28.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/chatBoltpng.png" />
+                        <Image url="@./images/chatBoltpng.png" />
                      </image>
                   </ImageView>
                </graphic>
             </Button>
+            <ComboBox fx:id="filtreTypeLog" layoutX="831.0" layoutY="12.0" prefHeight="26.0" prefWidth="260.0" promptText="Type de logement" />
          </children>
       </AnchorPane>
    </children>

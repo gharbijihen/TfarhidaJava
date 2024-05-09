@@ -56,7 +56,8 @@ public class ModifierLogementB {
 
     @FXML
     private TextField localisation;
-
+    @FXML
+    private Text etat;
     @FXML
     private TextField nom;
 
@@ -96,6 +97,7 @@ public class ModifierLogementB {
         localisation.setText(logement.getLocalisation());
         note.setText(String.valueOf(logement.getNote_moyenne()));
         num.setText(String.valueOf(logement.getNum()));
+        etat.setText(logement.getEtat());
 
         if (selectedImageFile != null) {
               try {
@@ -179,7 +181,7 @@ public class ModifierLogementB {
                     String localisationL = localisation.getText();
 
                     // Créez un objet Activite avec les nouvelles valeurs
-                    Logement logementModifiee = new Logement();
+                    Logement logementModifiee = new Logement(4);
                     logementModifiee.setId(LogementId); // Assurez-vous de définir l'ID de l'activité
                     logementModifiee.setNom(nomL);
                     logementModifiee.setNum(numL);
@@ -217,7 +219,7 @@ public class ModifierLogementB {
 
             try {
                 // Charger le fichier FXML de la nouvelle page
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementAffB.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/LogementAffB.fxml"));
                 Parent root = loader.load();
 
                 // Créer une nouvelle scène avec la nouvelle page
@@ -306,7 +308,7 @@ public class ModifierLogementB {
     @FXML
     void updateEquip(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/modifierEquipement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/modifierEquipement.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
@@ -321,4 +323,44 @@ public class ModifierLogementB {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void refusee(ActionEvent event) {
+        if (logement != null) {
+            // Modifier l'état du logement en "Accepté"
+            logement.setEtat("Refusee");
+
+            // Instancier LogementCrud
+            LogementCrud service = new LogementCrud();
+
+            // Appeler la méthode de mise à jour de l'état du logement
+            service.modifierEtat(logement.getId(), "Refusee");
+
+            // Afficher une alerte pour indiquer que l'état du logement a été modifié avec succès
+            showAlert("État modifié", "L'état du logement a été modifié avec succès.");
+            SmsController.SmsRéfuse();
+
+        } else {
+            System.out.println("Erreur : le logement n'est pas initialisé.");
+        }
+    }
+    @FXML
+    public void accepter(ActionEvent event) {
+        if (logement != null) {
+            // Modifier l'état du logement en "Accepté"
+            logement.setEtat("Acceptee");
+
+            // Instancier LogementCrud
+            LogementCrud service = new LogementCrud();
+
+            // Appeler la méthode de mise à jour de l'état du logement
+            service.modifierEtat(logement.getId(), "Accepté");
+
+            // Afficher une alerte pour indiquer que l'état du logement a été modifié avec succès
+            showAlert("État modifié", "L'état du logement a été modifié avec succès.");
+            SmsController.SmsAccepter();
+
+        } else {
+            System.out.println("Erreur : le logement n'est pas initialisé.");
+        }
+}
 }

@@ -29,7 +29,7 @@
                     <graphic>
                         <ImageView fitHeight="21.0" fitWidth="42.0" onMouseClicked="#Retour" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/return.png" />
+                                <Image url="@./images/return.png" />
                             </image>
                         </ImageView>
                     </graphic></Button>
@@ -109,47 +109,47 @@
                 </Group>
                 <ImageView fitHeight="35.0" fitWidth="42.0" layoutX="107.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/parking.png" />
+                        <Image url="@./images/parking.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="35.0" fitWidth="42.0" layoutX="110.0" layoutY="419.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/climatisation.png" />
+                        <Image url="@./images/climatisation.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="35.0" fitWidth="42.0" layoutX="107.0" layoutY="455.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/wifi.png" />
+                        <Image url="@./images/wifi.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="46.0" fitWidth="52.0" layoutX="277.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/chambre.png" />
+                        <Image url="@./images/chambre.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="35.0" fitWidth="42.0" layoutX="282.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/la-description.png" />
+                        <Image url="@./images/la-description.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="35.0" fitWidth="42.0" layoutX="618.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/google-maps.png" />
+                        <Image url="@./images/google-maps.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="35.0" fitWidth="42.0" layoutX="624.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/phone.png" />
+                        <Image url="@./images/phone.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="35.0" fitWidth="42.0" layoutX="621.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/euro.png" />
+                        <Image url="@./images/euro.png" />
                     </image>
                 </ImageView>
                 <ImageView fitHeight="32.0" fitWidth="35.0" layoutX="688.0" layoutY="167.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@images/stars.png" />
+                        <Image url="@./images/stars.png" />
                     </image>
                 </ImageView>
             <Button layoutX="658.0" layoutY="485.0" mnemonicParsing="false" onAction="#reserver" prefHeight="30.0" prefWidth="86.0" style="-fx-background-color: #98FB98; -fx-background-radius: 100;" text="Reserver" />

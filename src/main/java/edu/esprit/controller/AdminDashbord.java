@@ -1,6 +1,5 @@
 package edu.esprit.controller;
 
-import edu.esprit.entites.Logement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.List;
 
 public class AdminDashbord {
 
@@ -29,8 +27,8 @@ public class AdminDashbord {
     }
 
     public void goToNavigate(ActionEvent actionEvent) {
-        RouterController router=new RouterController();
-        router.navigate("Back.fxml");
+        edu.esprit.controller.RouterController router=new edu.esprit.controller.RouterController();
+        router.navigate("LogementFxml/Back.fxml");
     }
 
 
@@ -56,7 +54,7 @@ public class AdminDashbord {
   public void goToLogement(MouseEvent event) {
         try {
             // Charger le fichier FXML de la nouvelle page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementAffB.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/LogementAffB.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle scène avec la nouvelle page
@@ -88,7 +86,7 @@ public class AdminDashbord {
     public void goToResrvation(MouseEvent mouseEvent) {
         try {
             // Charger le fichier FXML de la nouvelle page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/commandeBack.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/commandeBack.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle scène avec la nouvelle page

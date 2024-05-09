@@ -13,14 +13,14 @@
 
 <AnchorPane id="AnchorPane" fx:id="bord" prefHeight="771.0" prefWidth="1147.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.AdminDashbord">
    <stylesheets>
-      <URL value="@../../../../../Desktop/UserJava/src/main/resources/fxml/guiadmin.css" />
+      <URL value="@../../../../../../Desktop/UserJava/src/main/resources/guiadmin.css" />
    </stylesheets>
    <children>
-      <Pane layoutX="831.0" layoutY="12.0" prefHeight="94.0" prefWidth="394.0" style="-fx-background-radius: 20 20 0 0; -fx-background-color: #53a0ec;" styleClass="linear-grad" stylesheets="@../../../../../Desktop/UserJava/src/main/resources/fxml/guiadmin.css">
+      <Pane layoutX="831.0" layoutY="12.0" prefHeight="94.0" prefWidth="394.0" style="-fx-background-radius: 20 20 0 0; -fx-background-color: #53a0ec;" styleClass="linear-grad" stylesheets="@../../../../../../Desktop/UserJava/src/main/resources/fxml/guiadmin.css">
          <children>
             <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="319.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/ic_usr.png" />
+                  <Image url="@../images/ic_usr.png" />
                </image>
             </ImageView>
             <Label fx:id="adminNameLabel" layoutX="174.0" layoutY="17.0" text="Administrateur" textFill="WHITE">
@@ -35,7 +35,7 @@
             </Label>
             <ImageView fitHeight="36.0" fitWidth="28.0" layoutX="192.0" layoutY="41.0" onMouseClicked="#goToLogn" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/logOut.png" />
+                  <Image url="@../images/logOut.png" />
                </image>
             </ImageView>
          </children>
@@ -43,11 +43,11 @@
       <VBox fx:id="activityListContainer" layoutY="1.0" prefHeight="775.0" prefWidth="74.0">
          <children>
             <Pane prefHeight="164.0" prefWidth="74.0" />
-            <Button fx:id="btnNaviguer" contentDisplay="TOP" mnemonicParsing="false" onAction="#goToNavigate" prefHeight="66.0" prefWidth="74.0" style="-fx-background-color: #53a0ec;" styleClass="button3" stylesheets="@../../../../../Desktop/UserJava/src/main/resources/fxml/guiadmin.css" text="Naviguer" textFill="#767676">
+            <Button fx:id="btnNaviguer" contentDisplay="TOP" mnemonicParsing="false" onAction="#goToNavigate" prefHeight="66.0" prefWidth="74.0" style="-fx-background-color: #53a0ec;" styleClass="button3" stylesheets="@../../../../../../Desktop/UserJava/src/main/resources/fxml/guiadmin.css" text="Naviguer" textFill="#767676">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/cat.png" />
+                        <Image url="@../images/cat.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -57,7 +57,7 @@
             </Button>
          </children>
       </VBox>
-      <AnchorPane layoutX="75.0" layoutY="93.0" prefHeight="681.0" prefWidth="1154.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" stylesheets="@../../../../../Desktop/UserJava/src/main/resources/fxml/guiadmin.css">
+      <AnchorPane layoutX="75.0" layoutY="93.0" prefHeight="681.0" prefWidth="1154.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" stylesheets="@../../../../../../Desktop/UserJava/src/main/resources/fxml/guiadmin.css">
          <children>
             <Pane layoutX="36.0" layoutY="191.0" prefHeight="172.0" prefWidth="252.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 7;">
                <children>
@@ -68,7 +68,7 @@
                   </Label>
                   <ImageView fitHeight="111.0" fitWidth="103.0" layoutX="-2.0" layoutY="-9.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../Desktop/UserJava/src/main/resources/assets/userIcon.png" />
+                        <Image url="@../../../../../../Desktop/UserJava/src/main/resources/assets/userIcon.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="29.0" layoutY="108.0" prefHeight="36.0" prefWidth="217.0" text="Gérer les utilisateurs ">
@@ -100,7 +100,7 @@
                   </Label>
                   <ImageView fitHeight="66.0" fitWidth="74.0" layoutX="88.0" layoutY="12.0" onMouseClicked="#goToLogement" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/homeIconpng.png" />
+                        <Image url="@../images/homeIconpng.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="29.0" layoutY="108.0" onMouseClicked="#goToLogement" prefHeight="36.0" prefWidth="217.0" text="Gérer les Logements ">
@@ -122,7 +122,7 @@
                   </Label>
                   <ImageView fitHeight="66.0" fitWidth="66.0" layoutX="60.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/3555663.png" />
+                        <Image url="@../images/3555663.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="29.0" layoutY="108.0" prefHeight="36.0" prefWidth="217.0" text="Gérer les Activitees">
@@ -144,7 +144,7 @@
                   </Label>
                   <ImageView fitHeight="66.0" fitWidth="66.0" layoutX="91.0" layoutY="14.0" onMouseClicked="#goToResrvation" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/bed.png" />
+                        <Image url="@../images/bed.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="29.0" layoutY="108.0" onMouseClicked="#goToResrvation" prefHeight="36.0" prefWidth="217.0" text="Gérer les equipements">
@@ -166,7 +166,7 @@
                   </Label>
                   <ImageView fitHeight="66.0" fitWidth="66.0" layoutX="70.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/search.png" />
+                        <Image url="@../images/search.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="29.0" layoutY="108.0" prefHeight="36.0" prefWidth="217.0" text="Gérer les Categories ">
@@ -188,7 +188,7 @@
                   </Label>
                   <ImageView fitHeight="66.0" fitWidth="66.0" layoutX="81.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/1.png" />
+                        <Image url="@../images/1.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="29.0" layoutY="108.0" prefHeight="36.0" prefWidth="217.0" text="Gérer les transports">
@@ -210,7 +210,7 @@
                   </Label>
                   <ImageView fitHeight="66.0" fitWidth="66.0" layoutX="91.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/bed.png" />
+                        <Image url="@../images/bed.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="29.0" layoutY="108.0" prefHeight="36.0" prefWidth="217.0" text="Gérer les restaurants">
@@ -232,7 +232,7 @@
                   </Label>
                   <ImageView fitHeight="66.0" fitWidth="66.0" layoutX="91.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/wirte.png" />
+                        <Image url="@../images/wirte.png" />
                      </image>
                   </ImageView>
                   <Label layoutX="29.0" layoutY="108.0" prefHeight="36.0" prefWidth="217.0" text="Gérer les réclamations">
@@ -249,7 +249,7 @@
       </AnchorPane>
       <ImageView fitHeight="86.0" fitWidth="238.0" layoutX="88.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/tfarhida.png" />
+            <Image url="@../images/tfarhida.png" />
          </image>
       </ImageView>
    </children>

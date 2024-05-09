@@ -17,6 +17,43 @@ public class LogementCrud implements IcrudL<Logement>{
     public static ArrayList<Object> getAll;
     private ComboBox<String> type_log; // Modifier le type en fonction du type réel de votre ComboBox
 
+    public static ObservableList<Logement> getAllByType(String type) {
+        ObservableList<Logement> logements = FXCollections.observableArrayList();
+        String query="SELECT * FROM logement WHERE type_log = ?";
+        try {
+            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
+            pst.setString(1,type);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Logement logement = new Logement();
+                logement.setId(rs.getInt("id"));
+                logement.setNom(rs.getString("nom"));
+                logement.setPrix(rs.getInt("prix"));
+                logement.setLocalisation(rs.getString("localisation"));
+                logement.setNum(rs.getInt("num"));
+                logement.setImage(rs.getString("image"));
+                logement.setEtat(rs.getString("etat"));
+                logement.setType_log(rs.getString("type_log"));
+                logement.setNote_moyenne(rs.getInt("note_moyenne"));
+
+                int equi_id=rs.getInt("equipement_id");
+
+                EquipementCrud equipementCrud = new EquipementCrud();
+                Equipement equipement=equipementCrud.getById(equi_id);
+                System.out.println("hedhhhaaah"+equipement);
+
+                EquipementCrud equipementservice=new EquipementCrud();
+                logement.setEquipement_id(equipement);
+                logements.add(logement);
+            }
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la récupération des données : " + e.getMessage());
+        }
+        return logements;
+
+
+    }
+
     // Setter pour type_log
     public void setTypeLogComboBox(ComboBox<String> type_log) {
         this.type_log = type_log;
@@ -96,7 +133,7 @@ public class LogementCrud implements IcrudL<Logement>{
             Statement st = MyConnection.getInstance().getCnx().createStatement();
             ResultSet rs = st.executeQuery(req3);
             while (rs.next()) {
-                Logement logement = new Logement();
+                Logement logement = new Logement(4);
                 logement.setId(rs.getInt("id"));
                 logement.setNom(rs.getString("nom"));
                 logement.setPrix(rs.getInt("prix"));
@@ -215,6 +252,7 @@ public class LogementCrud implements IcrudL<Logement>{
     private void logError(String message) {
         System.err.println("Erreur : " + message);
     }
+
     public Map<String, Integer> getLogementByType() {
         Map<String, Integer> activiteByetat = new HashMap<>();
 
@@ -232,6 +270,19 @@ public class LogementCrud implements IcrudL<Logement>{
             e.printStackTrace();
         }
         return activiteByetat;
+    }
+    public void modifierEtat(int logementId, String nouvelEtat) {
+        String query = "UPDATE logement SET etat = ? WHERE id = ?";
+        try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
+            pst.setString(1, nouvelEtat);
+            pst.setInt(2, logementId);
+            pst.executeUpdate();
+            System.out.println("État du logement modifié avec succès !");
+        } catch (SQLException e) {
+            System.out.println("Erreur lors de la modification de l'état du logement : " + e.getMessage());
+            e.printStackTrace();
+        }
+
     }
 
 }

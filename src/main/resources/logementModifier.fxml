@@ -5,6 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -51,5 +52,33 @@
       <Text layoutX="42.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Note:" wrappingWidth="431.19999999999993" />
       <Button fx:id="selectImage1" alignment="CENTER" contentDisplay="CENTER" layoutX="180.0" layoutY="508.0" mnemonicParsing="false" onAction="#updateEquip" prefHeight="35.0" prefWidth="137.0" style="-fx-background-radius: 100; -fx-background-color: #FF7F00;" text="Voir equipement" />
       <Text layoutX="38.0" layoutY="530.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Equipements :" wrappingWidth="113.60000915527337" />
+      <Button fx:id="selectImage11" alignment="CENTER" contentDisplay="CENTER" layoutX="197.0" layoutY="568.0" mnemonicParsing="false" onAction="#accepter" prefHeight="19.0" prefWidth="35.0" style="-fx-background-radius: 100; -fx-background-color: #54d780;">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@./images/approuve.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="selectImage12" alignment="CENTER" contentDisplay="CENTER" layoutX="266.0" layoutY="568.0" mnemonicParsing="false" onAction="#refusee" prefHeight="30.0" prefWidth="35.0" style="-fx-background-radius: 100; -fx-background-color: red;">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@./images/traverser.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Text layoutX="33.0" layoutY="592.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Etat:" wrappingWidth="53.59998779296848">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Text>
+      <Text fx:id="etat" layoutX="72.0" layoutY="593.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="113.60000915527337">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
     </children>
 </AnchorPane>

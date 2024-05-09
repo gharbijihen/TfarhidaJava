@@ -49,7 +49,7 @@ public class back {
    public void goToafficherNavBar(ActionEvent event) {
         try {
             // Charger le fichier FXML de la nouvelle page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminDashbord.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/AdminDashbord.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle scène avec la nouvelle page

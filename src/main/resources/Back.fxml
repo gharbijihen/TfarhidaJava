@@ -21,13 +21,13 @@
          <children>
             <ImageView fitHeight="96.0" fitWidth="144.0" layoutX="62.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/tfarhida.png" />
+                  <Image url="@../images/tfarhida.png" />
                </image>
             </ImageView>
             <VBox alignment="CENTER" layoutX="56.0" layoutY="184.0" spacing="10" />
             <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="22.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/user.png" />
+                  <Image url="@../images/user.png" />
                </image>
             </ImageView>
             <Text layoutX="56.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin@gmail.com">
@@ -43,7 +43,7 @@
             <Text layoutX="74.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom:   " />
             <ImageView fitHeight="14.0" fitWidth="10.0" layoutX="171.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/activeIcon.png" />
+                  <Image url="@../images/activeIcon.png" />
                </image>
             </ImageView>
             <Text layoutX="87.0" layoutY="794.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
@@ -51,7 +51,7 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="22.0">
                      <image>
-                        <Image url="@images/homeIconpng.png" />
+                        <Image url="@../images/homeIconpng.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -61,7 +61,7 @@
             </Button>
             <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="61.0" layoutY="781.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
                <image>
-                  <Image url="@images/logoutIcon.png" />
+                  <Image url="@../images/logoutIcon.png" />
                </image>
             </ImageView>
          </children>

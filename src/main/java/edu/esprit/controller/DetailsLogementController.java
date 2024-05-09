@@ -2,9 +2,7 @@ package edu.esprit.controller;
 
 import edu.esprit.entites.Equipement;
 import edu.esprit.entites.Logement;
-import edu.esprit.servies.EquipementCrud;
 import edu.esprit.servies.LogementCrud;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,7 +77,7 @@ private Logement logement;
     @FXML
     void ModifierLogement(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/logementModifier.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/logementModifier.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
 
@@ -126,7 +124,7 @@ private Logement logement;
             showAlert("Suppression réussie", "Le logement a été supprimé avec succès.");
 
             // Refresh the current page (you may need to adjust this based on your implementation)
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementAffB.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/LogementAffB.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -149,7 +147,7 @@ private Logement logement;
                 System.out.println("testtttttttttt");
 
                 // Charger le fichier FXML de la nouvelle page
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/logementAffB.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/LogementAffB.fxml"));
                 Parent root = loader.load();
 
                 // Créer une nouvelle scène avec la nouvelle page

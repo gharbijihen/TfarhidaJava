@@ -1,11 +1,7 @@
 package edu.esprit.controller;
 
 import edu.esprit.entites.Equipement;
-import edu.esprit.entites.Logement;
 import edu.esprit.servies.EquipementCrud;
-import edu.esprit.tools.Data;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,9 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class ModifierEquipement {
 
@@ -148,7 +142,7 @@ public class ModifierEquipement {
 
         try {
             // Charger le fichier FXML de la nouvelle page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementAffB.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/LogementAffB.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle scène avec la nouvelle page

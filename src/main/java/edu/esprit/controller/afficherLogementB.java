@@ -1,6 +1,8 @@
 package edu.esprit.controller;
 
 import com.itextpdf.text.DocumentException;
+import edu.esprit.controller.LogementCardController;
+import edu.esprit.controller.StatLogement;
 import edu.esprit.entites.Logement;
 import edu.esprit.servies.LogementCrud;
 import edu.esprit.servies.generatepdf;
@@ -55,7 +57,7 @@ public class afficherLogementB {
         int column = 0;
         for (Logement logement : logementsList) {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementCard.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/LogementCard.fxml"));
                 AnchorPane pane = loader.load();
                 LogementCardController logCard = loader.getController();
                 logCard.setData(logement);
@@ -108,7 +110,7 @@ public class afficherLogementB {
         // RouterController.navigate("AjouterEquipement.fxml");
         try {
             // Charger la vue ou le formulaire d'ajout
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterLogementB.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/AjouterLogementB.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle fenêtre pour afficher le formulaire d'ajout
@@ -127,7 +129,7 @@ public class afficherLogementB {
     public void goToafficherNavBar(ActionEvent event) {
         try {
             // Charger le fichier FXML de la nouvelle page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminDashbord.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/AdminDashbord.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle scène avec la nouvelle page
@@ -161,7 +163,7 @@ public class afficherLogementB {
     public void goToClient(MouseEvent mouseEvent) {
         try {
             // Charger le fichier FXML de la nouvelle page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/indexLogement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/indexLogement.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle scène avec la nouvelle page
@@ -181,7 +183,7 @@ public class afficherLogementB {
     public void goToafficherEquipement(ActionEvent event) {
         try {
             // Charger le contenu de afficherActivite.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EquipementB.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/EquipementB.fxml"));
             Node afficherLogementContent = loader.load();
 
             // Ajouter le contenu au contentHBox
@@ -194,7 +196,7 @@ public class afficherLogementB {
     public void goToafficherReservation(ActionEvent event) {
         try {
             // Charger le contenu de afficherActivite.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/commandeBack.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/commandeBack.fxml"));
             Node afficherLogementContent = loader.load();
 
             // Ajouter le contenu au contentHBox
@@ -229,7 +231,7 @@ public class afficherLogementB {
     public void StatAction(ActionEvent event) {
         try {
             // Charger le fichier FXML de la vue de la carte
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/StatLogement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/StatLogement.fxml"));
             Parent root = loader.load();
 
             // Obtenir le contrôleur de la vue de la carte

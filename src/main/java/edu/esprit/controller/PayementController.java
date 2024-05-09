@@ -7,18 +7,15 @@ import com.stripe.param.PaymentIntentCreateParams;
 import edu.esprit.entites.Logement;
 import edu.esprit.entites.User;
 import edu.esprit.servies.ServiceUser;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
-
-import java.awt.image.BufferedImage;
 
 import static edu.esprit.controller.GuiLoginController.user;
 
@@ -38,11 +35,13 @@ public class PayementController {
 
     @FXML
     private TextField exprYearField;
+    @FXML
+    private Label idLabel;
     ServiceUser userService=new ServiceUser();
-    private User userId;
-    private Logement logementId;
-    private int prix;
-    public void setData(User userId, Logement logementId,int prix) {
+    private static User userId;
+    private static Logement logementId;
+    private static int prix;
+    public void setData( Logement logementId,int prix) {
         this.userId = userId;
         this.logementId = logementId;
         this.prix = prix;
@@ -88,20 +87,20 @@ public class PayementController {
             System.out.println("hello new useee"+ user.getId() + ", Logement ID: " + logementId);
            // String qrCodeText = "User ID: " + user.getId() + ", Formation ID: " + formalogementIdtionId.getId();
 
-            //BufferedImage qrCodeBufferedImage = QRCodeGenerator.generateQRCodeImage(qrCodeText, width, height);
-            //Image qrCodeImage = SwingFXUtils.toFXImage(qrCodeBufferedImage, null);
+          //  BufferedImage qrCodeBufferedImage = QRCodeGenerator.generateQRCodeImage(qrCodeText, width, height);
+           // Image qrCodeImage = SwingFXUtils.toFXImage(qrCodeBufferedImage, null);
 
           //  System.out.println("heloo qr"+qrCodeImage);
 
-            //FXMLLoader loader = new FXMLLoader(getClass().getResource("../InscriptionConfirmer.fxml"));
-           // Parent root = loader.load();
-           // InscriptionConfirmer controller = loader.getController();
-          //  Scene scene = new Scene(root);
-           // Stage stage = new Stage();
-           // stage.setScene(scene);
-           // stage.show();
+           FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/QRcode.fxml"));
+            Parent root = loader.load();
+            QrCode controller = loader.getController();
+           Scene scene = new Scene(root);
+            Stage stage = new Stage();
+           stage.setScene(scene);
+           stage.show();
             // Passer les informations nécessaires au contrôleur de la page InscriptionConfirmer
-            //controller.setData(logementId, qrCodeImage);
+            controller.setAct(logementId);
             // Close the current window
             Stage currentStage = (Stage) PurchaseBtn.getScene().getWindow();
             currentStage.close();
@@ -157,7 +156,7 @@ public class PayementController {
     public void processPayment() {
         try {
 // Set your secret key here
-            Stripe.apiKey = "sk_test_51OqD2zFwwP47unkPDwjI0VW2CAMmqra1xmdfGVzzC2SgbMxKc2O36huNoEJiR6qKmlndFVRWRwBqBn03Bsj5PRl500Sy5RjUr8";
+            Stripe.apiKey = "sk_test_51MxqJZBXISmXcpqPHd8tHgrQg1w1nk6MJ2PpJwvXd1k6cyRfShvhwKiRwx1uIat0vvFTfqCTWu7usXQQeMrneqpk00URiJYKli";
 
 // Create a PaymentIntent with other payment details
             PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()

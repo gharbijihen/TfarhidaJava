@@ -1,7 +1,6 @@
 package edu.esprit.controller;
 
 import edu.esprit.entites.Equipement;
-import edu.esprit.entites.Logement;
 import edu.esprit.servies.EquipementCrud;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +16,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -115,7 +113,7 @@ public class AfficherEquipementB {
     void handleAjouter(ActionEvent event) {
         try {
             // Charger la vue ou le formulaire d'ajout
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterEquipementB.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/AjouterEquipementB.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle fenêtre pour afficher le formulaire d'ajout
@@ -150,7 +148,7 @@ public class AfficherEquipementB {
     @FXML
     public void openModifierEquipementPage(Equipement equipement) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierEquipement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/modifierEquipement.fxml"));
             Parent root = loader.load();
 
             // Récupérer le contrôleur de la fenêtre de modification
@@ -172,7 +170,7 @@ public class AfficherEquipementB {
     public void goToafficherNavBar(ActionEvent event) {
         try {
             // Charger le fichier FXML de la nouvelle page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminDashbord.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/AdminDashbord.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle scène avec la nouvelle page
@@ -210,7 +208,7 @@ public class AfficherEquipementB {
     public void goToClient(MouseEvent mouseEvent) {
         try {
             // Charger le fichier FXML de la nouvelle page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/indexLogement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/indexLogement.fxml"));
             Parent root = loader.load();
 
             // Créer une nouvelle scène avec la nouvelle page

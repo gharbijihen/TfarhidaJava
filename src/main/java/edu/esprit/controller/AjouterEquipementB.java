@@ -23,7 +23,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -104,7 +103,7 @@ public class AjouterEquipementB {
                 logementCrud.associerEquipementALogement(logement, equipement);
 
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementAffB.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/LogementAffB.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
 

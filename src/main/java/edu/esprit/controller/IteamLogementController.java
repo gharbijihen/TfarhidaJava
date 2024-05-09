@@ -18,15 +18,11 @@ import javafx.event.ActionEvent;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.image.WritableImage;
-
-import javax.imageio.ImageIO;
 
 public class IteamLogementController {
 
@@ -36,7 +32,8 @@ public class IteamLogementController {
     private Button voirDetailsButton;
     @FXML
     private Label loalisationLogement;
-
+    @FXML
+    private Label typeLog;
     @FXML
     private Button map;
 
@@ -69,7 +66,7 @@ public class IteamLogementController {
                 Logement logement = LogementCrud.getLogementParId(id);
 
                 if (logement != null) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/ShowLogement.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/ShowLogement.fxml"));
                     Parent root = loader.load();
                     ShowLogement controller = loader.getController();
                     controller.setDatadetail(logement, null, id);
@@ -95,6 +92,7 @@ public class IteamLogementController {
         this.logement = logement;
         this.myListener = myListener;
         this.nameLogement.setText(logement.getNom());
+        this.typeLog.setText(logement.getType_log());
         this.priceLogement.setText(logement.getPrix() + "DT/Personne");
         this.loalisationLogement.setText(logement.getLocalisation());
         this.phoneLogement.setText("+216" + logement.getNum());
@@ -163,7 +161,7 @@ public class IteamLogementController {
     private void openMap(String location) {
         try {
             // Charger le fichier FXML de la vue de la carte
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Map.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/Map.fxml"));
             Parent root = loader.load();
 
             // Obtenir le contrôleur de la vue de la carte

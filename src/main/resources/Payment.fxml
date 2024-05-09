@@ -57,12 +57,12 @@
         </Label>
       <ImageView fitHeight="93.0" fitWidth="103.0" layoutX="457.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/credit-card.png" />
+            <Image url="@./images/credit-card.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="34.0" fitWidth="39.0" layoutX="5.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@images/debit-card.png" />
+            <Image url="@./images/debit-card.png" />
          </image>
       </ImageView>
     </children>

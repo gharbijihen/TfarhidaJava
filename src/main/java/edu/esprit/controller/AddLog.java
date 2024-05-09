@@ -1,13 +1,5 @@
 package edu.esprit.controller;
 
-import com.restfb.DefaultFacebookClient;
-import com.restfb.FacebookClient;
-import com.restfb.Parameter;
-import com.restfb.Version;
-import com.restfb.exception.FacebookOAuthException;
-import com.restfb.types.FacebookType;
-import edu.esprit.entites.Equipement;
-import edu.esprit.servies.EquipementCrud;
 import edu.esprit.servies.LogementCrud;
 import edu.esprit.tools.Data;
 import javafx.collections.FXCollections;
@@ -15,9 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -31,7 +21,6 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.List;
 
 public class AddLog {
 
@@ -164,7 +153,7 @@ public class AddLog {
     void naviguezVersEquipement(ActionEvent event,Logement logement) {
         try {
             //System.out.println(logement+"navigiha");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterEquipement.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/AjouterEquipement.fxml"));
             Parent root = loader.load();
             nom.getScene().setRoot(root);
             AjouterEquipementB controller = loader.getController();

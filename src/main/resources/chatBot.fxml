@@ -26,14 +26,14 @@
                 <Line endX="312.20001220703125" endY="7.62939453125E-6" layoutX="361.0" layoutY="104.0" startX="-100.0" stroke="WHITE" />
               <ImageView fitHeight="113.0" fitWidth="159.0" layoutX="75.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/chatBoltpng.png" />
+                  <Image url="@../images/chatBoltpng.png" />
                </image>
             </ImageView>
             <Button layoutY="5.0" mnemonicParsing="false" onAction="#Retour" style="-fx-background-radius: 100;" styleClass="import-btn">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/return.png" />
+                        <Image url="@../images/return.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -57,12 +57,12 @@
                 </TextArea>
             <ImageView fitHeight="92.0" fitWidth="66.0" layoutX="12.0" layoutY="171.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/robot-assistant.png" />
+                  <Image url="@../images/robot-assistant.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="74.0" fitWidth="77.0" layoutX="12.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/chatbot.png" />
+                  <Image url="@../images/chatbot.png" />
                </image>
             </ImageView>
             <Text fill="#181818" layoutX="102.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comment puis-je vous aider aujourd’hui ?" wrappingWidth="587.5914306640625">
