@@ -21,32 +21,8 @@
 
 <AnchorPane id="AnchorPane" fx:id="bord" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #f8f5f5;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.ReclamationsListController_new">
     <children>
-        <AnchorPane layoutX="-38.0" layoutY="14.0" prefHeight="616.0" prefWidth="1006.0" style="-fx-background-color: #f8f5f5; -fx-background-radius: 15;">
+        <AnchorPane layoutX="-38.0" layoutY="14.0" prefHeight="616.0" prefWidth="1322.0" style="-fx-background-color: #f8f5f5; -fx-background-radius: 15;">
             <children>
-                <Pane layoutX="961.0" layoutY="-8.0" onMouseClicked="#gotoAdmin" prefHeight="102.0" prefWidth="352.0" style="-fx-background-radius: 20 20 0 0;" styleClass="linear-grad" stylesheets="@../guiadmin.css">
-                    <children>
-                        <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="274.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../assets/ic_usr.png" />
-                            </image>
-                        </ImageView>
-                        <Label fx:id="nomPrenom" layoutX="154.0" layoutY="14.0" text="Client" textFill="#fffefe">
-                            <font>
-                                <Font name="System Bold" size="18.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="178.0" layoutY="41.0" text="Déconnecter" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <ImageView fitHeight="36.0" fitWidth="28.0" layoutX="145.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@/assets/logOut.png" />
-                            </image>
-                        </ImageView>
-                    </children>
-                </Pane>
                 <VBox fx:id="vbox2" layoutX="37.0" layoutY="-14.0" prefHeight="800.0" prefWidth="74.0" style="-fx-background-color: #131022;" AnchorPane.bottomAnchor="-170.0" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="-14.0">
 
                     <children>
@@ -68,13 +44,17 @@
                 <AnchorPane layoutX="114.0" layoutY="65.0" prefHeight="716.0" prefWidth="1200.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" stylesheets="@../guiadmin.css">
                     <VBox fx:id="content_area" layoutX="12.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1187.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
                         <children>
-                            <HBox prefHeight="100.0" prefWidth="200.0">
+                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                 <children>
-                                    <Pane prefHeight="41.0" prefWidth="1070.0" style="-fx-background-color: #aac0dc; -fx-background-radius: 70;">
-                                        <children>
-                                            <TextField layoutX="16.0" layoutY="7.0" prefHeight="52.0" prefWidth="1041.0" promptText="chercher........." style="-fx-background-radius: 100;" />
-                                        </children>
-                                    </Pane>
+
+                                    <TextField fx:id="champRecherche" layoutX="339.0" layoutY="136.0" onKeyPressed="#searchquery" prefHeight="55.0" prefWidth="984.0" promptText="Chercher par..." style="-fx-background-radius: 100; -fx-background-color: #FFFFFF;" />
+                                    <ComboBox fx:id="filtreTypeLog" prefHeight="25.0" prefWidth="184.0" promptText="Choisissez type...." style="-fx-background-color: orange; -fx-background-radius: 100;" />
+                                    <Button fx:id="triButton" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="49.0" prefWidth="67.0" style="-fx-background-radius: 100; -fx-background-color: #ffff;" textFill="#eed7c5" underline="true" visible="true">
+                                        <font>
+                                            <Font name="System Bold Italic" size="14.0" />
+                                        </font>
+                                    </Button>
+
                                 </children>
                             </HBox>
                             <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="1188.0">
@@ -112,7 +92,7 @@
 
                         </children>
                     </VBox>
-                    <HBox fx:id="addReviewsModel" alignment="CENTER" layoutX="-155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1214.0" styleClass="categoriesModel" stylesheets="@Style.css" translateX="140.0" translateY="-5.0">
+                    <HBox fx:id="addReviewsModel" alignment="CENTER" layoutX="-155.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="755.0" prefWidth="1214.0" styleClass="categoriesModel" stylesheets="@Style.css" translateX="140.0" translateY="-5.0" visible="false">
                         <children>
                             <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="703.0" prefWidth="600.0" styleClass="productAddedToCart__card" stylesheets="@Style.css">
                                 <children>
@@ -346,6 +326,30 @@
                         <Image url="@../assets/tfarhida.png" />
                     </image>
                 </ImageView>
+                <Pane layoutX="928.0" layoutY="-24.0" prefHeight="86.0" prefWidth="394.0" style="-fx-background-radius: 20 20 0 0; -fx-background-color: #FF7F00;" styleClass="linear-grad" stylesheets="@../fxml/guiadmin.css">
+                    <children>
+                        <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="319.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../assets/ic_usr.png" />
+                            </image>
+                        </ImageView>
+                        <Label fx:id="ClientNameLabel" layoutX="174.0" layoutY="17.0" text="Client" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="222.0" layoutY="45.0" text="Déconnecter" textFill="WHITE">
+                            <font>
+                                <Font name="System Bold" size="14.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="36.0" fitWidth="28.0" layoutX="192.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../assets/logOut.png" />
+                            </image>
+                        </ImageView>
+                    </children>
+                </Pane>
             </children>
 
         </AnchorPane>

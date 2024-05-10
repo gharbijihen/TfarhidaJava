@@ -1,7 +1,12 @@
 package edu.esprit.servies;
 
-import edu.esprit.tools.MyConnection;
+//import Entities.User;
+//import Utils.Datasource;
 import edu.esprit.entites.Reclamation;
+import edu.esprit.tools.MyConnection;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +29,8 @@ public class ReclamationCrud implements IcrudL<Reclamation> {
 
 
             pst.executeUpdate();
+            System.out.println("displaying RECLAMATION");
+            System.out.println(reclamation);
             System.out.println("Reclamation ajoutée!");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -66,7 +73,7 @@ public class ReclamationCrud implements IcrudL<Reclamation> {
 
         if(reclamation.getReponseid()>0) {
             System.out.println("modifying reponse from client interface responseid != 0");
-            final String query = "UPDATE reclamation SET titre= ?,type= ?,description_reclamation= ?,date= ?,etat = ?,image = ?,reponse_id= ? WHERE id= ?";
+            final String query = "UPDATE reclamation SET titre= ?,type= ?,description_reclamation= ?,date= ?,etat = ?,image = ?,reponse_id= ?, user_id=? WHERE id= ?";
             try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query)) {
                 pst.setString(1, reclamation.getTitre());
                 pst.setString(2, reclamation.getType());
@@ -80,21 +87,21 @@ public class ReclamationCrud implements IcrudL<Reclamation> {
                 pst.executeUpdate();
             }
         }
-            if(reclamation.getReponseid()==0) {
-                System.out.println("modifying reponse from client interface responseid ==0");
-                String query2 = "UPDATE reclamation SET titre= ?,type= ?,description_reclamation= ?,date= ?,etat = ?,image = ? WHERE id= ?";
-                try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query2);) {
-                    pst.setString(1, reclamation.getTitre());
-                    pst.setString(2, reclamation.getType());
-                    pst.setString(3, reclamation.getDescription_reclamation());
-                    pst.setDate(4, reclamation.getDate());
-                    pst.setBoolean(5, reclamation.getEtat());
-                    pst.setString(6, reclamation.getImage());
-                    pst.setInt(7, reclamation.getId());
-                    pst.executeUpdate();
-                }
+        if(reclamation.getReponseid()==0) {
+            System.out.println("modifying reponse from client interface responseid ==0");
+            String query2 = "UPDATE reclamation SET titre= ?,type= ?,description_reclamation= ?,date= ?,etat = ?,image = ?, user_id = ? WHERE id= ?";
+            try (PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query2);) {
+                pst.setString(1, reclamation.getTitre());
+                pst.setString(2, reclamation.getType());
+                pst.setString(3, reclamation.getDescription_reclamation());
+                pst.setDate(4, reclamation.getDate());
+                pst.setBoolean(5, reclamation.getEtat());
+                pst.setString(6, reclamation.getImage());
+                pst.setInt(8, reclamation.getId());
+                pst.executeUpdate();
             }
         }
+    }
 
     @Override
     public void supprimer(Reclamation reclamation) throws SQLException {
@@ -126,7 +133,7 @@ public class ReclamationCrud implements IcrudL<Reclamation> {
                 rec.setEtat(rs.getBoolean("etat"));
                 rec.setImage(rs.getString("image"));
                 rec.setReponseid(rs.getInt("reponse_id"));
-                ReponseCrud reponseservice=new ReponseCrud();
+                    ReponseCrud reponseservice=new ReponseCrud();
                 rec.setReponse(reponseservice.getById(rec.getReponseid()));
                 System.out.println(rec);
                 reclamations.add(rec);
@@ -137,7 +144,7 @@ public class ReclamationCrud implements IcrudL<Reclamation> {
         return  reclamations;
     }
 
-//    public Reclamation displayById(int id) {
+    //    public Reclamation displayById(int id) {
 //        String req="select * from reclamation where id ="+id;
 //        Reclamation rec=new Reclamation();
 //        try {
@@ -161,32 +168,87 @@ public class ReclamationCrud implements IcrudL<Reclamation> {
 //        return rec;
 //
 //    }
-public Reclamation getReclamationById(int reclamationId) throws SQLException {
-    String query = "SELECT * FROM reclamation WHERE id = ?";
-    PreparedStatement statement = MyConnection.getInstance().getCnx().prepareStatement(query);
-    statement.setInt(1, reclamationId);
-    ResultSet resultSet = statement.executeQuery();
-    Reclamation reclamation = null;
-    if (resultSet.next()) {
-        // Create the Reclamation object from the result set
-        Reclamation rec=new Reclamation();
-        rec.setId(resultSet.getInt("id"));
-        rec.setTitre(resultSet.getString("titre"));
-        rec.setType(resultSet.getString("type"));
-        rec.setDescription_reclamation(resultSet.getString("description_reclamation"));
-        rec.setDate(resultSet.getDate("date"));
-        rec.setEtat(resultSet.getBoolean("etat"));
-        rec.setImage(resultSet.getString("image"));
-        rec.setReponseid(resultSet.getInt("reponse_id"));
-        ReponseCrud reponseservice=new ReponseCrud();
-        rec.setReponse(reponseservice.getById(rec.getReponseid()));
-        System.out.println(rec);
-        return rec;
+    public Reclamation getReclamationById(int reclamationId) throws SQLException {
+        String query = "SELECT * FROM reclamation WHERE id = ?";
+        PreparedStatement statement = MyConnection.getInstance().getCnx().prepareStatement(query);
+        statement.setInt(1, reclamationId);
+        ResultSet resultSet = statement.executeQuery();
+        Reclamation reclamation = null;
+        if (resultSet.next()) {
+            // Create the Reclamation object from the result set
+            Reclamation rec=new Reclamation();
+            rec.setId(resultSet.getInt("id"));
+            rec.setTitre(resultSet.getString("titre"));
+            rec.setType(resultSet.getString("type"));
+            rec.setDescription_reclamation(resultSet.getString("description_reclamation"));
+            rec.setDate(resultSet.getDate("date"));
+            rec.setEtat(resultSet.getBoolean("etat"));
+            rec.setImage(resultSet.getString("image"));
+            rec.setReponseid(resultSet.getInt("reponse_id"));
+            ReponseCrud reponseservice=new ReponseCrud();
+            rec.setReponse(reponseservice.getById(rec.getReponseid()));
+            System.out.println(rec);
+            return rec;
+        }
+        resultSet.close();
+        statement.close();
+        return null;
     }
-    resultSet.close();
-    statement.close();
-    return null;
-}
+    public static  ObservableList<Reclamation> getAllByType(String type) {
+        ObservableList<Reclamation> reclamations = FXCollections.observableArrayList();
+        String query = "SELECT * FROM reclamation WHERE type = ?";
+        try {
+            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
+            pst.setString(1, type);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Reclamation rec = new Reclamation();
+                rec.setId(rs.getInt("id"));
+                rec.setTitre(rs.getString("titre"));
+                rec.setType(rs.getString("type"));
+                rec.setDescription_reclamation(rs.getString("description_reclamation"));
+                rec.setDate(rs.getDate("date"));
+                rec.setEtat(rs.getBoolean("etat"));
+                rec.setImage(rs.getString("image"));
+                rec.setReponseid(rs.getInt("reponse_id"));
+//                rec.setUserId(rs.getInt("user_id"));
+                ReponseCrud reponseservice = new ReponseCrud();
+                rec.setReponse(reponseservice.getById(rec.getReponseid()));
+                reclamations.add(rec);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return reclamations;
+    }
+    public static ObservableList<Reclamation> getAllByTitre(String titre) {
+        ObservableList<Reclamation> reclamations = FXCollections.observableArrayList();
+        String query = "SELECT * FROM reclamation WHERE titre = ? OR titre LIKE ?";
+        try {
+            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
+            pst.setString(1, titre);
+            pst.setString(2, "%" + titre + "%"); // Adding "%" before and after to search for partial matches
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                Reclamation rec = new Reclamation();
+                rec.setId(rs.getInt("id"));
+                rec.setTitre(rs.getString("titre"));
+                rec.setType(rs.getString("type"));
+                rec.setDescription_reclamation(rs.getString("description_reclamation"));
+                rec.setDate(rs.getDate("date"));
+                rec.setEtat(rs.getBoolean("etat"));
+                rec.setImage(rs.getString("image"));
+                rec.setReponseid(rs.getInt("reponse_id"));
+                ReponseCrud reponseservice = new ReponseCrud();
+                rec.setReponse(reponseservice.getById(rec.getReponseid()));
+                reclamations.add(rec);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return reclamations;
+    }
+
 
     public Map<Boolean, Integer> getReclamationByEtat() {
         Map<Boolean, Integer> reclamationByetat = new HashMap<>();
@@ -220,6 +282,51 @@ public Reclamation getReclamationById(int reclamationId) throws SQLException {
         }
 
         return reclamationByetat;
+    }
+
+//    public List<Reclamation> afficherByUserId(User user) {
+//        List<Reclamation> reclamations = new ArrayList<>();
+//        String query = "SELECT * FROM reclamation WHERE user_id = ?";
+//        try {
+//            PreparedStatement pst = MyConnection.getInstance().getCnx().prepareStatement(query);
+//
+//            ResultSet rs = pst.executeQuery();
+//            while (rs.next()) {
+//                Reclamation rec = new Reclamation();
+//                rec.setId(rs.getInt("id"));
+//                rec.setTitre(rs.getString("titre"));
+//                rec.setType(rs.getString("type"));
+//                rec.setDescription_reclamation(rs.getString("description_reclamation"));
+//                rec.setDate(rs.getDate("date"));
+//                rec.setEtat(rs.getBoolean("etat"));
+//                rec.setImage(rs.getString("image"));
+//                rec.setReponseid(rs.getInt("reponse_id"));
+//                ReponseCrud reponseservice = new ReponseCrud();
+//                rec.setReponse(reponseservice.getById(rec.getReponseid()));
+//                reclamations.add(rec);
+//            }
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        return reclamations;
+//    }
+    public Map<String, Integer> getRecByType() {
+        Map<String, Integer> activiteByetat = new HashMap<>();
+
+        try  (Connection connection = MyConnection.getInstance().getCnx()) {
+            String query = "SELECT type, COUNT(*) AS count FROM reclamation GROUP BY type";
+            try(PreparedStatement preparedStatement = connection.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();) {
+                while (resultSet.next()) {
+                    String type = resultSet.getString("type");
+                    int count = resultSet.getInt("count");
+                    activiteByetat.put(type, count);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return activiteByetat;
     }
 }
 

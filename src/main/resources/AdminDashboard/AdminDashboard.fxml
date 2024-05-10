@@ -84,7 +84,7 @@
                         <children>
                                   <Pane prefHeight="41.0" prefWidth="1070.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 70;">
                                       <children>
-                                          <TextField layoutX="16.0" layoutY="7.0" prefHeight="52.0" prefWidth="1041.0" promptText="chercher........." style="-fx-background-radius: 100;" />
+                                          <TextField fx:id="searchField" layoutX="16.0" layoutY="7.0" prefHeight="52.0" prefWidth="1041.0" promptText="chercher........." style="-fx-background-radius: 100;" />
                                       </children>
                                   </Pane>
                            <HBox prefHeight="66.0" prefWidth="73.0">
