@@ -35,7 +35,6 @@ public class ClientDashboardController {
 
     public void goToReclamations(MouseEvent mouseEvent) {
         System.out.println("GOING TO RECLAMATIONS");
-
         RouterController.navigate("/ClientDashboard/ClientDashboard.fxml");
     } public void goToActivites(MouseEvent mouseEvent) {
         System.out.println("GOING TO ACTIVITIES");

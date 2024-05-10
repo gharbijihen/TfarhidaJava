@@ -6,6 +6,8 @@ import edu.esprit.entites.Notification;
 import edu.esprit.entites.Reclamation;
 import edu.esprit.servies.NotificationService;
 import edu.esprit.servies.ReclamationCrud;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -41,6 +43,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -81,6 +84,8 @@ public class ReclamationsListController_new implements Initializable {
     private VBox content_area;
     @FXML
     private ImageView img;
+    @FXML
+    private ComboBox<String> filtreTypeLog;
 
 
 
@@ -96,8 +101,13 @@ public class ReclamationsListController_new implements Initializable {
 
         updateBtnContainer.setVisible(false);
         addReviewsModel.setVisible(false);
-        TypeInput.getItems().addAll("Activité", "Logement", "Restaurant", "Transport");
-        // recuperer user connecté
+        // Créez une liste observable contenant les types
+        ObservableList<String> items = FXCollections.observableArrayList(
+                "Activite", "Logement", "Transport", "Restaurant"
+        );
+
+        // Définissez les éléments du ComboBox en utilisant la liste observable
+        filtreTypeLog.setItems(items);        // recuperer user connecté
         User user = new User();
         user = GuiLoginController.user;
         System.out.println("Setting reclamations");
@@ -126,11 +136,65 @@ public class ReclamationsListController_new implements Initializable {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         System.out.println("Reclamations are ready");
     }
 
 
+    public void afficherType(ObservableList<Reclamation> reclamationsList) {
+        User user = new User();
+        user = GuiLoginController.user;
+        System.out.println("Setting reclamations");
+        ReclamationCrud ps = new ReclamationCrud();
+
+        ObservableList<Reclamation> reclamationList = ReclamationCrud.getAllByType(filtreTypeLog.getValue());
+
+        // Set Reclamations List
+        int ReclamationColumn = 0;
+        int ReclamationRow = 1;
+        try {
+            for (int i = 0; i < reclamationList.size(); i++) {
+
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                fxmlLoader.setLocation(getClass().getResource("/RecItem/ReclamationItem.fxml"));
+                VBox commentItem = fxmlLoader.load();
+                ReclamationItem ReclamationItemController = fxmlLoader.getController();
+                ReclamationItemController.setReviewData(reclamationList.get(i));
+
+                if (ReclamationColumn == 1) {
+                    ReclamationColumn = 0;
+                    ++ReclamationRow;
+                }
+                commentsListContainer.add(commentItem, ReclamationColumn++, ReclamationRow);
+                GridPane.setMargin(commentItem, new Insets(0, 10, 15, 10));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Reclamations are ready");
+
+
+
+
+
+        }
+    private void handleTypeSelection() {
+
+        String selectedType = filtreTypeLog.getValue(); // Récupérer le type de logement sélectionné
+        if (selectedType != null && !selectedType.isEmpty()) {
+            // Effectuer une action en fonction du type sélectionné, par exemple, afficher les logements de ce type
+            // Vous pouvez appeler une méthode de votre service LogementCrud pour récupérer et afficher les logements de ce type
+            ObservableList<Reclamation> reclamations = ReclamationCrud.getAllByType(selectedType);
+            afficherType(reclamations); // Mettre à jour l'affichage avec les logements du type sélectionné
+        } else {
+            // Gérer le cas où aucun type n'est sélectionné
+            System.out.println("Veuillez sélectionner un type de logement.");
+        }
+    }
     @FXML
     void open_addReviewModel(MouseEvent event) throws SQLException {
         System.out.println("Opening modify/addview modal");
@@ -471,6 +535,9 @@ public class ReclamationsListController_new implements Initializable {
         this.error.setVisible(false);
         this.replyInput.setText("");
         this.viewReplyModel.setVisible(false);
+    }
+
+    public void OnclickTrier(ActionEvent actionEvent) {
     }
 }
 

@@ -97,5 +97,6 @@
             </children>
         </HBox>
         <Line endX="1048.5858154296875" endY="7.58578634262085" startX="-100.0" stroke="#2f2b43" strokeWidth="2.0" />
+        <Text fx:id="type" fill="#32594a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="addReview__btnText" text="Title Title Title" />
     </children>
 </VBox>

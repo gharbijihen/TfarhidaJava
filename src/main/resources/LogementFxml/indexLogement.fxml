@@ -13,143 +13,27 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="758.0" prefWidth="1544.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.Logement.afficherLogement">
+<AnchorPane prefHeight="790.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.Logement.afficherLogement">
    <children>
-      <Pane layoutX="14.0" layoutY="56.0" prefHeight="702.0" prefWidth="294.0" style="-fx-background-color: #FF7F00;">
+      <VBox fx:id="vbox2" layoutX="-1.0" layoutY="-4.0" prefHeight="800.0" prefWidth="74.0" style="-fx-background-color: #131022;">
          <children>
-            <Text layoutX="121.0" layoutY="686.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
-            <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="95.0" layoutY="674.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
-               <image>
-                  <Image url="@../images/logoutIcon.png" />
-               </image>
-            </ImageView>
-            <VBox alignment="CENTER" layoutX="13.0" layoutY="170.0" prefHeight="304.0" prefWidth="269.0">
-               <children>
-                  <Button prefHeight="36.0" prefWidth="116.0" style="-fx-background-radius: 100;" text="Reclamation">
-                     <graphic>
-                        <ImageView fitHeight="17.0" fitWidth="22.0">
-                           <image>
-                              <Image url="@../images/wirte.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Button>
-                  <VBox prefHeight="21.0" prefWidth="270.0" />
-                  <Button fx:id="showLogement" onAction="#showLogement" prefHeight="36.0" prefWidth="114.0" style="-fx-background-radius: 100; -fx-cursor: hand;" text="Logement">
-                     <graphic>
-                        <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/homeIconpng.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Button>
-                  <VBox prefHeight="21.0" prefWidth="270.0" />
-                  <Button prefHeight="38.0" prefWidth="122.0" style="-fx-background-radius: 100;" text="Activite">
-                     <graphic>
-                        <ImageView fitHeight="18.0" fitWidth="18.0">
-                           <image>
-                              <Image url="@../images/3555663.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Button>
-                  <VBox prefHeight="21.0" prefWidth="270.0" />
-                  <Button prefHeight="38.0" prefWidth="119.0" style="-fx-background-radius: 100;" text="Restaurant">
-                     <graphic>
-                        <ImageView fitHeight="17.0" fitWidth="22.0">
-                           <image>
-                              <Image url="@../images/food-service.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Button>
-                  <VBox prefHeight="21.0" prefWidth="270.0" />
-                  <Button prefHeight="38.0" prefWidth="127.0" style="-fx-background-radius: 100;" text="Transport">
-                     <graphic>
-                        <ImageView fitHeight="17.0" fitWidth="22.0">
-                           <image>
-                              <Image url="@../images/1.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Button>
-               </children>
-            </VBox>
-            <ImageView fitHeight="119.0" fitWidth="200.0" layoutX="41.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/tfarhida.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <Pane layoutX="-2.0" prefHeight="50.0" prefWidth="1544.0" style="-fx-background-color: #FF7F00;">
-         <children>
-            <ImageView fitHeight="28.0" fitWidth="32.0" layoutX="314.0" layoutY="11.0" onMouseClicked="#returnTo" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/bouton-retour.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="35.0" fitWidth="41.0" layoutX="1451.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/utilisateur.png" />
-               </image>
-            </ImageView>
-            <Label layoutX="1376.0" layoutY="-2.0" prefHeight="54.0" prefWidth="82.0" text="Mon Profil">
+            <Pane prefHeight="170.0" prefWidth="74.0" />
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToNavigate" prefHeight="66.0" prefWidth="74.0" styleClass="button3" stylesheets="@../guiadmin.css" text="Naviguer" textFill="#767676">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/cat.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
                <font>
-                  <Font size="14.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
-            </Label>
-         </children>
-      </Pane>
-      <VBox layoutX="317.0" layoutY="114.0" prefHeight="628.0" prefWidth="1208.0">
-         <children>
-            <ScrollPane fx:id="scroll" prefHeight="578.0" prefWidth="1208.0" styleClass="transparent">
-               <content>
-                  <GridPane fx:id="grid" prefHeight="8.0" prefWidth="5.0">
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
-                     </rowConstraints>
-                     <columnConstraints>
-                        <ColumnConstraints />
-                     </columnConstraints>
-                  </GridPane>
-               </content>
-            </ScrollPane>
-            <Pane prefHeight="62.0" prefWidth="1208.0">
-               <children>
-                  <Button fx:id="ajouterButton" layoutX="556.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleAjouterLogement" prefHeight="35.0" prefWidth="179.0" style="-fx-background-radius: 100 ;" text="Ajouter Logement" visible="false">
-                     <graphic>
-                        <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/bed.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </Pane>
-            <Pane prefHeight="44.0" prefWidth="1208.0" />
+            </Button>
          </children>
       </VBox>
-      <AnchorPane layoutX="313.0" layoutY="55.0" prefHeight="50.0" prefWidth="1225.0" style="-fx-background-color: #ffff; -fx-background-radius: 60; -fx-effect: shadow;">
+      <AnchorPane layoutX="114.0" layoutY="82.0" prefHeight="50.0" prefWidth="1225.0" style="-fx-background-color: #ffff; -fx-background-radius: 60; -fx-effect: shadow;">
          <children>
             <Button fx:id="triButton" layoutX="1105.0" layoutY="11.0" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="26.0" prefWidth="82.0" style="-fx-background-radius: 100;" text="Prix" textFill="#ff820d">
                <graphic>
@@ -173,6 +57,69 @@
                </graphic>
             </Button>
             <ComboBox fx:id="filtreTypeLog" layoutX="831.0" layoutY="12.0" prefHeight="26.0" prefWidth="260.0" promptText="Type de logement" />
+         </children>
+      </AnchorPane>
+      <Pane layoutX="1010.0" layoutY="-5.0" prefHeight="66.0" prefWidth="394.0" style="-fx-background-radius: 20 20 0 0; -fx-background-color: #FF7F00;" styleClass="linear-grad" stylesheets="@../fxml/guiadmin.css">
+         <children>
+            <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="319.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/ic_usr.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="ClientNameLabel" layoutX="174.0" layoutY="17.0" text="Client" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="222.0" layoutY="45.0" text="Déconnecter" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="36.0" fitWidth="28.0" layoutX="192.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logOut.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <ImageView fitHeight="86.0" fitWidth="238.0" layoutX="121.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../assets/tfarhida.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="118.0" layoutY="132.0" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <VBox layoutX="7.0" layoutY="7.0" prefHeight="628.0" prefWidth="1208.0">
+               <children>
+                  <ScrollPane fx:id="scroll" prefHeight="559.0" prefWidth="1142.0" styleClass="transparent">
+                     <content>
+                        <GridPane fx:id="grid" prefHeight="8.0" prefWidth="5.0">
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="ALWAYS" />
+                           </rowConstraints>
+                           <columnConstraints>
+                              <ColumnConstraints />
+                           </columnConstraints>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+                  <Pane prefHeight="62.0" prefWidth="1208.0">
+                     <children>
+                        <Button fx:id="ajouterButton" layoutX="556.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleAjouterLogement" prefHeight="35.0" prefWidth="179.0" style="-fx-background-radius: 100 ;" text="Ajouter Logement" visible="false">
+                           <graphic>
+                              <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/bed.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="44.0" prefWidth="1208.0" />
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
    </children>

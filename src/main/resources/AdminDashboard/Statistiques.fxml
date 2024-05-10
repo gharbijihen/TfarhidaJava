@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.chart.PieChart?>
-<?import javafx.scene.layout.AnchorPane?>
 
-<?import java.net.URL?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.StatistiquesController">
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.chart.PieChart?>
+<AnchorPane prefHeight="854.0" prefWidth="1192.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.StatistiquesController">
     <children>
         <PieChart fx:id="pieChart" layoutX="30.0" layoutY="6.0" prefHeight="360.0" prefWidth="540.0" />
+
     </children>
+    <VBox prefHeight="200.0" prefWidth="800.0" style="-fx-background-color: #f4f4f4;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0">
+        <HBox alignment="CENTER" prefHeight="208.0" prefWidth="779.0" spacing="10.0">
+         <children>
+             <Button onAction="#handleActiviteStatsButtonAction" prefHeight="26.0" prefWidth="160.0" style="-fx-background-color: #53A0EC; -fx-text-fill: black;" text="Voir les Statistiques" />
+         </children></HBox>
+    </VBox>
+    <ImageView fx:id="btnReturn" fitHeight="44.0" fitWidth="48.0" layoutX="21.0" layoutY="24.0" onMouseClicked="#Retour" pickOnBounds="true" preserveRatio="true">
+        <image>
+            <Image url="@../assets/return.png" />
+        </image>
+    </ImageView>
+    <BarChart fx:id="activiteBarChart" layoutX="524.0" layoutY="302.0" prefHeight="358.0" prefWidth="624.0">
+        <xAxis>
+            <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+            <NumberAxis side="LEFT" />
+        </yAxis>
+    </BarChart>
 
 
 </AnchorPane>

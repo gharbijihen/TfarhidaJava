@@ -1,5 +1,6 @@
 package edu.esprit.controller.Logement;
 
+import Controllers.RouterController;
 import edu.esprit.entites.Logement;
 import edu.esprit.servies.LogementCrud;
 import edu.esprit.tests.MyListener;
@@ -239,5 +240,10 @@ public class afficherLogement  {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+
+    public void goToNavigate(ActionEvent event) {
+        edu.esprit.controller.RouterController.navigate("/fxml/ClientDashboard.fxml");
     }
 }

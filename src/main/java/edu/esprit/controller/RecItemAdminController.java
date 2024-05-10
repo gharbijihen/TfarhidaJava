@@ -37,7 +37,7 @@ public class RecItemAdminController {
 
     @FXML
     private Text title;
-
+    public Text type;
 
     private ReponseCrud reponseCrud = new ReponseCrud();
 
@@ -47,6 +47,7 @@ public class RecItemAdminController {
         date.setText(reclamation.getDate().toString());
         this.image.setImage(new Image("http://localhost:8000/uploads/"+reclamation.getImage()));
         System.out.println("http://localhost:8000/uploads/"+reclamation.getImage());
+        type.setText(reclamation.getType());
         if(reclamation.getEtat())
             etat.setText("Traitée");
         else {
@@ -58,7 +59,7 @@ public class RecItemAdminController {
             etatimg.setImage(new Image("assets/img/No_icon_red.png"));
         }
         ServiceUser su=new ServiceUser();
-        this.userName.setText(su.findById(reclamation.getUserId()).getFirst_name());
+        this.userName.setText(su.findById(reclamation.getUserId()).getUsername());
         this.DisplayReply.setOnMouseClicked(event -> {
             System.out.println("ID du réclamation à supprimer : " + reclamation.getId());
             if (reclamation.getReponseid()<1)

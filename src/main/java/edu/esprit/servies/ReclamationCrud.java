@@ -3,6 +3,9 @@ package edu.esprit.servies;
 import Entities.User;
 import Utils.Datasource;
 import edu.esprit.entites.Reclamation;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -195,6 +198,34 @@ public Reclamation getReclamationById(int reclamationId) throws SQLException {
     statement.close();
     return null;
 }
+public static  ObservableList<Reclamation> getAllByType(String type) {
+    ObservableList<Reclamation> reclamations = FXCollections.observableArrayList();
+    String query = "SELECT * FROM reclamation WHERE user_id = ?";
+        try {
+        PreparedStatement pst = Datasource.getConn().prepareStatement(query);
+        pst.setString(1, type);
+        ResultSet rs = pst.executeQuery();
+        while (rs.next()) {
+            Reclamation rec = new Reclamation();
+            rec.setId(rs.getInt("id"));
+            rec.setTitre(rs.getString("titre"));
+            rec.setType(rs.getString("type"));
+            rec.setDescription_reclamation(rs.getString("description_reclamation"));
+            rec.setDate(rs.getDate("date"));
+            rec.setEtat(rs.getBoolean("etat"));
+            rec.setImage(rs.getString("image"));
+            rec.setReponseid(rs.getInt("reponse_id"));
+            rec.setUserId(rs.getInt("user_id"));
+            ReponseCrud reponseservice = new ReponseCrud();
+            rec.setReponse(reponseservice.getById(rec.getReponseid()));
+            reclamations.add(rec);
+        }
+    } catch (SQLException e) {
+        System.out.println(e.getMessage());
+    }
+        return reclamations;
+}
+
 
     public Map<Boolean, Integer> getReclamationByEtat() {
         Map<Boolean, Integer> reclamationByetat = new HashMap<>();
@@ -256,6 +287,24 @@ public Reclamation getReclamationById(int reclamationId) throws SQLException {
             System.out.println(e.getMessage());
         }
         return reclamations;
+    }
+    public Map<String, Integer> getRecByType() {
+        Map<String, Integer> activiteByetat = new HashMap<>();
+
+        try  (Connection connection = Datasource.getConn()) {
+            String query = "SELECT type, COUNT(*) AS count FROM reclamation GROUP BY type";
+            try(PreparedStatement preparedStatement = connection.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();) {
+                while (resultSet.next()) {
+                    String type = resultSet.getString("type");
+                    int count = resultSet.getInt("count");
+                    activiteByetat.put(type, count);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return activiteByetat;
     }
 }
 

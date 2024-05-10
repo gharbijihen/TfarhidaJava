@@ -131,7 +131,10 @@ public class afficherLogementB {
             RouterController router=new RouterController();
             router.navigate("/fxml/AdminDashboard.fxml");
         }
-
+    public void goToNavigate(ActionEvent actionEvent) {
+        RouterController router=new RouterController();
+        router.navigate("Back.fxml");
+    }
     @FXML
     public void goToafficherLogement() {
         try {

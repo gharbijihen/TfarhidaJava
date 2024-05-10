@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import Service.ServiceUser;
 import edu.esprit.entites.Reponse;
 import edu.esprit.servies.ReponseCrud;
 import javafx.fxml.FXML;
@@ -48,7 +49,7 @@ public class ReclamationItem {
 
 
 
-    public void setReviewData(Reclamation reclamation) {
+    public void setReviewData(Reclamation reclamation) throws SQLException {
         // Instancier le service de produit
         // IProduitService produitService = new ProduitService();
         title.setText(reclamation.getTitre());
@@ -70,6 +71,8 @@ public class ReclamationItem {
             etatimg.setImage(new Image("assets/img/No_icon_red.png"));
         }
         ReponseCrud reponseCrud = new ReponseCrud();
+        ServiceUser su=new ServiceUser();
+        this.userName.setText(su.findById(reclamation.getUserId()).getUsername());
         this.displayReponse.setOnMouseClicked(event -> {
             TextArea replyInput = (TextArea) ((Node) event.getSource()).getScene().lookup("#replyInput");
             replyInput.setText(reclamation.getReponse().getDescription());

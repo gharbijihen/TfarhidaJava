@@ -306,5 +306,6 @@ public class afficherActiviteF {
     }
 
 
-
+    public void goToLogn(MouseEvent mouseEvent) {
+    }
 }

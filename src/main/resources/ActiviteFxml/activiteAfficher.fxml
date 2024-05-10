@@ -14,36 +14,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="1020.0" prefWidth="1731.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.Activite.afficherActiviteF">
+<AnchorPane prefHeight="1025.0" prefWidth="1487.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.Activite.afficherActiviteF">
 
     <children>
-      <Pane layoutX="1368.0" layoutY="3.0" onMouseClicked="#gotoAdmin" prefHeight="102.0" prefWidth="352.0" style="-fx-background-radius: 20 20 0 0;" styleClass="linear-grad" stylesheets="@../guiadmin.css">
-         <children>
-            <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="274.0" layoutY="7.0" onMouseClicked="#gotoAdmin" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../assets/ic_usr.png" />
-               </image>
-            </ImageView>
-            <Label fx:id="nomPrenom" layoutX="154.0" layoutY="14.0" onMouseClicked="#gotoAdmin" text="Client" textFill="#fffefe">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label layoutX="178.0" layoutY="41.0" text="Déconnecter" onMouseClicked="#gotoAdmin" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <ImageView fitHeight="36.0" fitWidth="28.0" layoutX="145.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@/assets/logOut.png" />
-               </image>
-            </ImageView>
-         </children>
-      </Pane>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" >
+      <AnchorPane prefHeight="1025.0" prefWidth="1479.0">
 
-        <HBox alignment="CENTER" layoutX="300.0" layoutY="62.0" prefHeight="36.0" prefWidth="609.0" style="-fx-background-radius: 100;" AnchorPane.rightAnchor="104.0">
+                    <HBox alignment="CENTER" layoutX="300.0" layoutY="62.0" prefHeight="36.0" prefWidth="609.0" style="-fx-background-radius: 100;" AnchorPane.rightAnchor="104.0">
             <children>
                 <HBox prefHeight="36.0" prefWidth="10.0" />
                 <HBox alignment="CENTER" prefHeight="36.0" prefWidth="110.0" styleClass="box" />
@@ -65,15 +41,15 @@
                 <Insets left="5.0" />
             </opaqueInsets>
         </HBox>
-        <VBox layoutX="301.0" layoutY="238.0" prefHeight="784.0" prefWidth="1430.0">
+        <VBox layoutX="119.0" layoutY="227.0" prefHeight="784.0" prefWidth="1370.0">
             <children>
-                <ScrollPane fx:id="scroll" prefHeight="611.0" prefWidth="1423.0">
+                <ScrollPane fx:id="scroll" prefHeight="552.0" prefWidth="1370.0">
                <content>
-                  <VBox fx:id="paginationContent" prefHeight="758.0" prefWidth="1405.0" />
+                  <VBox fx:id="paginationContent" prefHeight="727.0" prefWidth="1347.0" />
                </content>
             </ScrollPane>
 
-                                              <Pane prefHeight="195.0" prefWidth="1423.0">
+                                                          <Pane prefHeight="158.0" prefWidth="1370.0">
                     <children>
                         <Button fx:id="precedentButton" layoutX="602.0" layoutY="-1.0" mnemonicParsing="false" onAction="#previousPage" prefHeight="57.0" prefWidth="67.0" style="-fx-background-radius: 100; -fx-background-color: orange;" visible="true">
                      <graphic>
@@ -109,7 +85,7 @@
                 </Pane>
             <Pane prefHeight="287.0" prefWidth="1430.0">
                <children>
-                   <Button fx:id="ajouterButton" layoutX="589.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="68.0" prefWidth="176.0" style="-fx-background-radius: 100; -fx-background-color: #F3D9B0;" text="Ajouter" textFill="#595555" visible="false">
+                   <Button fx:id="ajouterButton" layoutX="589.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="68.0" prefWidth="176.0" style="-fx-background-radius: 100; -fx-background-color: #F3D9B0;" text="Ajouter" textFill="#595555" visible="true">
                      <graphic>
                         <ImageView fitHeight="56.0" fitWidth="56.0">
                            <image>
@@ -121,9 +97,9 @@
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Pane fx:id="chat" layoutX="1124.0" layoutY="-38.0" prefHeight="207.0" prefWidth="227.0" style="-fx-background-color: #45C4B0; -fx-background-radius: 100;" visible="false">
+                  <Pane fx:id="chat" layoutX="1124.0" layoutY="-38.0" prefHeight="207.0" prefWidth="227.0" style="-fx-background-color: #45C4B0; -fx-background-radius: 100;" visible="true">
                      <children>
-                        <Button fx:id="chatbot" layoutX="37.0" layoutY="42.0" mnemonicParsing="false" onAction="#openChatbotPopup" prefHeight="120.0" prefWidth="159.0" style="-fx-background-color: green; -fx-background-radius: 100;" text="ChatBot" textFill="WHITE" visible="false">
+                        <Button fx:id="chatbot" layoutX="37.0" layoutY="42.0" mnemonicParsing="false" onAction="#openChatbotPopup" prefHeight="120.0" prefWidth="159.0" style="-fx-background-color: green; -fx-background-radius: 100;" text="ChatBot" textFill="WHITE" visible="true">
                            <graphic>
                               <ImageView fitHeight="52.0" fitWidth="55.0">
                                  <image>
@@ -137,7 +113,7 @@
                         </Button>
                      </children>
                   </Pane>
-                  <Label fx:id="sb" layoutX="667.0" layoutY="77.0" prefHeight="49.0" prefWidth="67.0" visible="false">
+                  <Label fx:id="sb" layoutX="667.0" layoutY="77.0" prefHeight="49.0" prefWidth="67.0" visible="true">
                      <graphic>
                         <ImageView fitHeight="73.0" fitWidth="75.0">
                            <image>
@@ -149,15 +125,15 @@
                </children>
             </Pane>
 
-                  </children>
+                              </children>
         </VBox>
-        <TextField fx:id="champRecherche" layoutX="339.0" layoutY="136.0" prefHeight="56.0" prefWidth="1196.0" promptText="Chercher par..." style="-fx-background-radius: 100; -fx-background-color: #FFFFFF;" visible="false">
+        <TextField fx:id="champRecherche" layoutX="188.0" layoutY="140.0" prefHeight="56.0" prefWidth="1088.0" promptText="Chercher par..." style="-fx-background-radius: 100; -fx-background-color: #FFFFFF;" visible="true">
          <font>
             <Font name="System Italic" size="23.0" />
          </font>
       </TextField>
 
-      <Button fx:id="triButton" layoutX="1637.0" layoutY="139.0" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="49.0" prefWidth="67.0" style="-fx-background-radius: 100; -fx-background-color: #FFB116;" textFill="#eed7c5" visible="false">
+                  <Button fx:id="triButton" layoutX="1386.0" layoutY="139.0" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="49.0" prefWidth="67.0" style="-fx-background-radius: 100; -fx-background-color: #FFB116;" textFill="#eed7c5" visible="true">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
@@ -169,19 +145,12 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label fx:id="trie" layoutX="1559.0" layoutY="152.0" prefHeight="24.0" prefWidth="75.0" text="Triez par" textFill="#ffb200" visible="false">
+      <Label fx:id="trie" layoutX="1289.0" layoutY="152.0" prefHeight="27.0" prefWidth="94.0" text="Triez par" textFill="#ffb200" visible="true">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="loupe" layoutX="291.0" layoutY="123.0" prefHeight="36.0" prefWidth="46.0" visible="true">
-         <graphic>
-            <ImageView fitHeight="57.0" fitWidth="60.0">
-               <image>
-                  <Image url="@images/Cherche.png" />
-               </image>
-            </ImageView>
-         </graphic></Label>
+      <Label fx:id="loupe" layoutX="188.0" layoutY="161.0" prefHeight="36.0" prefWidth="46.0" visible="true" />
       <VBox fx:id="vbox2" layoutY="-3.0" prefHeight="1028.0" prefWidth="75.0" style="-fx-background-color: #131022;">
          <children>
             <Pane prefHeight="170.0" prefWidth="74.0" />
@@ -199,7 +168,36 @@
             </Button>
          </children>
       </VBox>
+      <ImageView fitHeight="57.0" fitWidth="60.0" layoutX="116.0" layoutY="139.0">
+         <image>
+            <Image url="@images/Cherche.png" />
+         </image>
+      </ImageView>
       </AnchorPane>
+      <Pane layoutX="1097.0" prefHeight="94.0" prefWidth="394.0" style="-fx-background-radius: 20 20 0 0; -fx-background-color: #FF7F00;" styleClass="linear-grad" stylesheets="@../fxml/guiadmin.css">
+         <children>
+            <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="319.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/ic_usr.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="ClientNameLabel" layoutX="174.0" layoutY="17.0" text="Client" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="222.0" layoutY="45.0" onMouseClicked="#goToLogn" text="Déconnecter" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="36.0" fitWidth="28.0" layoutX="192.0" layoutY="41.0" onMouseClicked="#goToLogn" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logOut.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
     </children>
 
 </AnchorPane>
