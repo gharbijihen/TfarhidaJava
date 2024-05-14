@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -17,32 +16,31 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="877.0" prefWidth="1404.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.controllersRE.AfficherRestaurantB">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="831.0" prefWidth="1314.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.controllersRE.AfficherRestaurantB">
     <children>
-        <HBox fx:id="contentHBox" layoutX="285.0" layoutY="193.0" prefHeight="610.0" prefWidth="1121.0">
+        <HBox fx:id="contentHBox" layoutX="149.0" layoutY="186.0" prefHeight="610.0" prefWidth="1121.0">
             <children>
                 <ScrollPane fx:id="logementScrollPane" prefHeight="610.0" prefWidth="1099.0">
-                    <content>
-                        <AnchorPane prefHeight="608.0" prefWidth="1054.0">
+               <content>
+                        <AnchorPane prefHeight="670.0" prefWidth="1054.0">
                             <children>
-                                <TableView fx:id="tableView" layoutX="54.0" layoutY="72.0" onMouseClicked="#getData" prefHeight="274.0" prefWidth="605.0">
+                                <TableView fx:id="tableView" layoutX="152.0" layoutY="72.0" onMouseClicked="#getData" prefHeight="274.0" prefWidth="760.0">
                                     <columns>
                                         <TableColumn fx:id="nomCol" prefWidth="84.0" text="Nom" />
-                                        <TableColumn fx:id="adresseCol" prefWidth="100.0" text="Adresse" />
-                                        <TableColumn fx:id="numdetelCol" prefWidth="99.0" text="Num de Tel" />
-                                        <TableColumn fx:id="nmbetoilesCol" prefWidth="84.0" text="Nmb d'Etoiles" />
-                                        <TableColumn fx:id="heure_ouvertureCol" prefWidth="122.0" text="Heure d'Ouverture" />
-                                        <TableColumn fx:id="heure_fermetureCol" prefWidth="115.0" text="Heure de Fermeture" />
+                                        <TableColumn fx:id="adresseCol" prefWidth="115.0" text="Adresse" />
+                                        <TableColumn fx:id="numdetelCol" prefWidth="118.0" text="Num de Tel" />
+                                        <TableColumn fx:id="nmbetoilesCol" prefWidth="103.0" text="Nmb d'Etoiles" />
+                                        <TableColumn fx:id="heure_ouvertureCol" prefWidth="151.0" text="Heure d'Ouverture" />
+                                        <TableColumn fx:id="heure_fermetureCol" prefWidth="188.0" text="Heure de Fermeture" />
                                     </columns>
                                 </TableView>
-                                <Button layoutX="191.0" layoutY="381.0" mnemonicParsing="false" onAction="#deleteRestaurant" style="-fx-background-color: #FF0000; -fx-text-fill: white;" text="Delete" />
+                                <Button layoutX="248.0" layoutY="375.0" mnemonicParsing="false" onAction="#deleteRestaurant" prefHeight="29.0" prefWidth="81.0" style="-fx-background-color: #FF0000; -fx-background-radius: 100; -fx-text-fill: white;" text="Delete" />
                                 <HBox alignment="CENTER" layoutX="262.0" layoutY="529.0" prefHeight="76.0" prefWidth="590.0">
                                     <!-- HBox styles -->
                                 </HBox>
-                                <Button layoutX="262.0" layoutY="14.0" mnemonicParsing="false" onAction="#allerversstat" style="-fx-background-color: #008000; -fx-text-fill: white;" text="Stat" />
-                                <Button layoutX="111.0" layoutY="381.0" mnemonicParsing="false" onAction="#goToUpdateRestaurant" style="-fx-background-color: #FFFF00; -fx-text-fill: black;" text="Update" />
+                                <Button layoutX="262.0" layoutY="13.0" mnemonicParsing="false" onAction="#allerversstat" prefHeight="26.0" prefWidth="94.0" style="-fx-background-color: #008000; -fx-background-radius: 100; -fx-text-fill: white;" text="Stat" />
+                                <Button layoutX="168.0" layoutY="375.0" mnemonicParsing="false" onAction="#goToUpdateRestaurant" prefHeight="29.0" prefWidth="74.0" style="-fx-background-color: #FFFF00; -fx-background-radius: 100; -fx-text-fill: black;" text="Update" />
                                 <ChoiceBox fx:id="sortChoiceBox" layoutX="79.0" layoutY="14.0" prefWidth="150.0">
                                     <items>
                                         <FXCollections fx:factory="observableArrayList">
@@ -51,169 +49,39 @@
                                         </FXCollections>
                                     </items>
                                 </ChoiceBox>
-                                <Button layoutX="622.0" layoutY="394.0" mnemonicParsing="false" onAction="#ajouterPlat" style="-fx-background-color: #0000FF; -fx-text-fill: white;" text="Ajouter Plat" />
-                        <Button layoutX="667.0" layoutY="72.0" mnemonicParsing="false" onAction="#AjouterRestaurant" text="+" />
+                                <Button layoutX="768.0" layoutY="369.0" mnemonicParsing="false" onAction="#ajouterPlat" prefHeight="37.0" prefWidth="144.0" style="-fx-background-color: #0000FF; -fx-text-fill: white; -fx-background-radius: 100;" text="Ajouter Plat" />
+                        <Button layoutX="1014.0" layoutY="72.0" mnemonicParsing="false" onAction="#AjouterRestaurant" text="+" />
+                            <Button layoutX="871.0" layoutY="554.0" onAction="#goToAjoutPlat" prefHeight="37.0" prefWidth="156.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;" text="Plat">
+                                <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="28.0">
+                                        <image>
+                                            <Image url="@images/food-service.png" />
+                                        </image>
+                                    </ImageView>
+                                </graphic>
+                                <font>
+                                    <Font size="13.0" />
+                                </font>
+                            </Button>
+                        <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="71.0" layoutY="791.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
+                           <image>
+                              <Image url="@images/logoutIcon.png" />
+                           </image>
+                        </ImageView>
                             </children>
                         </AnchorPane>
-
-                    </content>
+               </content>
                 </ScrollPane>
             </children>
         </HBox>
-        <Pane layoutX="199.0" prefHeight="74.0" prefWidth="1204.0" style="-fx-background-color: #ffff;">
+        <Pane layoutX="177.0" layoutY="92.0" prefHeight="74.0" prefWidth="1131.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 70;">
             <children>
-                <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="1128.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/ic_usr.png" />
-                    </image>
-                </ImageView>
-                <Label layoutX="983.0" layoutY="14.0" text="Administrateur">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Label>
-                <Label layoutX="1031.0" layoutY="42.0" text="Déconnecter">
-                    <font>
-                        <Font name="System Bold" size="14.0" />
-                    </font>
-                </Label>
-                <ImageView fitHeight="36.0" fitWidth="28.0" layoutX="1001.0" layoutY="38.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/logOut.png" />
-                    </image>
-                </ImageView>
+                <TextField fx:id="rechercheTextField" layoutX="26.0" layoutY="19.0" prefHeight="37.0" prefWidth="1091.0" promptText="chercher........." style="-fx-background-radius: 100;" />
             </children>
         </Pane>
-        <Separator layoutX="29.0" layoutY="169.0" prefHeight="17.0" prefWidth="183.0" />
-        <Pane prefHeight="878.0" prefWidth="215.0" style="-fx-background-color: #ffff;">
-            <children>
-                <ImageView fitHeight="96.0" fitWidth="144.0" layoutX="62.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/tfarhida.png" />
-                    </image>
-                </ImageView>
-                <VBox alignment="CENTER" layoutX="56.0" layoutY="184.0" spacing="10" />
-                <ImageView fitHeight="26.0" fitWidth="27.0" layoutX="22.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/user.png" />
-                    </image>
-                </ImageView>
-                <Text layoutX="56.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin@gmail.com">
-                    <font>
-                        <Font name="System Bold" size="15.0" />
-                    </font>
-                </Text>
-                <Text layoutX="110.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin">
-                    <font>
-                        <Font name="System Bold" size="15.0" />
-                    </font>
-                </Text>
-                <Text layoutX="74.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom:   " />
-                <ImageView fitHeight="14.0" fitWidth="10.0" layoutX="171.0" layoutY="125.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/activeIcon.png" />
-                    </image>
-                </ImageView>
-                <Button layoutX="56.0" layoutY="487.0" prefWidth="120" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;" text="Reclamation">
-                    <graphic>
-                        <ImageView fitHeight="17.0" fitWidth="22.0">
-                            <image>
-                                <Image url="@images/wirte.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Button>
-                <Button layoutX="56.0" layoutY="433.0" prefWidth="120" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;" text="Transport">
-                    <graphic>
-                        <ImageView fitHeight="17.0" fitWidth="22.0">
-                            <image>
-                                <Image url="@images/1.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Button>
-                <Button fx:id="logementButton" layoutX="55.0" layoutY="380.0" prefWidth="120" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;" text="Logement">
-                    <graphic>
-                        <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" preserveRatio="true">
-                            <image>
-                                <Image url="@images/homeIconpng.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Button>
-                <Button layoutX="55.0" layoutY="330.0" prefWidth="120" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;" text="Catégorie">
-                    <graphic>
-                        <ImageView fitHeight="18.0" fitWidth="18.0">
-                            <image>
-                                <Image url="@images/search.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Button>
-                <Button layoutX="54.0" layoutY="280.0" onAction="#goToAjoutPlat" prefWidth="120" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;" text="Plat">
-                    <graphic>
-                        <ImageView fitHeight="18.0" fitWidth="18.0">
-                            <image>
-                                <Image url="@images/3555663.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Button>
-                <Button layoutX="56.0" layoutY="230.0" prefWidth="120" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;" text="Restaurant">
-                    <graphic>
-                        <ImageView fitHeight="17.0" fitWidth="22.0">
-                            <image>
-                                <Image url="@images/food-service.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Button>
-                <Text layoutX="87.0" layoutY="794.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
-                <Button fx:id="EquipementButton1" layoutX="56.0" layoutY="534.0" prefWidth="120" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;" text="Equipement">
-                    <graphic>
-                        <ImageView fitHeight="17.0" fitWidth="22.0">
-                            <image>
-                                <Image url="@images/bed.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <font>
-                        <Font size="13.0" />
-                    </font>
-                </Button>
-                <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="61.0" layoutY="781.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
-                    <image>
-                        <Image url="@images/logoutIcon.png" />
-                    </image>
-                </ImageView>
-            </children>
-        </Pane>
-        <Pane layoutX="296.0" layoutY="92.0" prefHeight="74.0" prefWidth="1090.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 70;">
-            <children>
-                <TextField fx:id="rechercheTextField" layoutX="26.0" layoutY="19.0" prefHeight="37.0" prefWidth="1051.0" promptText="chercher........." style="-fx-background-radius: 100;" />
-            </children>
-        </Pane>
-        <Button fx:id="EquipementButton" layoutX="231.0" layoutY="92.0" onAction="#goToafficherNavBar"  prefHeight="74.0" prefWidth="81.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;">
+        <Button fx:id="EquipementButton" layoutX="114.0" layoutY="92.0" onAction="#goToafficherNavBar" prefHeight="74.0" prefWidth="81.0" style="-fx-background-color: #53a0ec; -fx-background-radius: 100;">
             <graphic>
-                <ImageView fitHeight="33.0" fitWidth="36.0" >
+                <ImageView fitHeight="33.0" fitWidth="36.0">
                     <image>
                         <Image url="@images/homeIconpng.png" />
                     </image>
@@ -223,5 +91,46 @@
                 <Font size="13.0" />
             </font>
         </Button>
+      <VBox fx:id="vbox2" layoutX="-1.0" layoutY="-2.0" prefHeight="839.0" prefWidth="74.0" style="-fx-background-color: #131022;">
+         <children>
+            <Pane prefHeight="170.0" prefWidth="74.0" />
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToNavigate" prefHeight="66.0" prefWidth="74.0" styleClass="button3" stylesheets="@../guiadmin.css" text="Naviguer" textFill="#767676">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/cat.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <Pane layoutX="959.0" layoutY="12.0" prefHeight="74.0" prefWidth="344.0" style="-fx-background-radius: 20 20 0 0; -fx-background-color: #53A0EC;" styleClass="linear-grad" stylesheets="@../guiadmin.css">
+         <children>
+            <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="274.0" layoutY="7.0" onMouseClicked="#goToClient" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/ic_usr.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="nomPrenom" layoutX="131.0" layoutY="14.0" onMouseClicked="#goToClient" text="Administrateur" textFill="#fffefe">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="176.0" layoutY="41.0" onMouseClicked="#goToClient" text="Déconnecter" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="36.0" fitWidth="28.0" layoutX="136.0" layoutY="36.0" onMouseClicked="#gotoLogin" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logOut.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
     </children>
 </AnchorPane>

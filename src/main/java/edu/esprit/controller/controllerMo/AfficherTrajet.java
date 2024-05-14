@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Optional;
 
 import edu.esprit.entites.Trajet;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
@@ -246,5 +247,19 @@ public class AfficherTrajet {
                         trajet.getHeure().toLowerCase().contains(query);
             }
         });
+    }
+
+    public void goToClient(MouseEvent mouseEvent) {
+
+    }
+
+    public void goToNavigate(ActionEvent actionEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/AdminDashboard.fxml");
+    }
+
+    public void goToLogin(MouseEvent mouseEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/login.fxml");
     }
 }

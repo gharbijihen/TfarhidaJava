@@ -91,17 +91,17 @@
         </Button>
       <Pane layoutX="1055.0" layoutY="-5.0" prefHeight="102.0" prefWidth="352.0" style="-fx-background-radius: 20 20 0 0; -fx-background-color: #53A0EC;" styleClass="linear-grad" stylesheets="@../guiadmin.css">
          <children>
-            <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="274.0" layoutY="7.0" onMouseClicked="#goToClient" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="274.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/ic_usr.png" />
                </image>
             </ImageView>
-            <Label fx:id="nomPrenom" layoutX="131.0" layoutY="14.0" onMouseClicked="#goToClient" text="Administrateur" textFill="#fffefe">
+            <Label fx:id="nomPrenom" layoutX="131.0" layoutY="14.0"  text="Administrateur" textFill="#fffefe">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="176.0" layoutY="41.0" onMouseClicked="#goToClient" text="Déconnecter" textFill="WHITE">
+            <Label layoutX="176.0" layoutY="41.0" onMouseClicked="#goTo" text="Déconnecter" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

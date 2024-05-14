@@ -159,7 +159,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="176.0" layoutY="41.0" onMouseClicked="#goToClient" text="Déconnecter" textFill="WHITE">
+            <Label layoutX="176.0" layoutY="41.0" onMouseClicked="#goToLogin" text="Déconnecter" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>

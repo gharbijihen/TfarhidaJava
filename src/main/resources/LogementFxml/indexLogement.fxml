@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="790.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.Logement.afficherLogement">
+<AnchorPane prefHeight="796.0" prefWidth="1415.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.Logement.afficherLogement">
    <children>
       <VBox fx:id="vbox2" layoutX="-1.0" layoutY="-4.0" prefHeight="800.0" prefWidth="74.0" style="-fx-background-color: #131022;">
          <children>
@@ -33,9 +33,9 @@
             </Button>
          </children>
       </VBox>
-      <AnchorPane layoutX="114.0" layoutY="82.0" prefHeight="50.0" prefWidth="1225.0" style="-fx-background-color: #ffff; -fx-background-radius: 60; -fx-effect: shadow;">
+      <AnchorPane layoutX="114.0" layoutY="82.0" prefHeight="50.0" prefWidth="1288.0" style="-fx-background-color: #ffff; -fx-background-radius: 60; -fx-effect: shadow;">
          <children>
-            <Button fx:id="triButton" layoutX="1105.0" layoutY="11.0" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="26.0" prefWidth="82.0" style="-fx-background-radius: 100;" text="Prix" textFill="#ff820d">
+            <Button fx:id="triButton" layoutX="1159.0" layoutY="11.0" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="26.0" prefWidth="82.0" style="-fx-background-radius: 100; -fx-background-color: #F3D9B0;" text="Prix">
                <graphic>
                   <ImageView fitHeight="21.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -56,10 +56,10 @@
                   </ImageView>
                </graphic>
             </Button>
-            <ComboBox fx:id="filtreTypeLog" layoutX="831.0" layoutY="12.0" prefHeight="26.0" prefWidth="260.0" promptText="Type de logement" />
+            <ComboBox fx:id="filtreTypeLog" layoutX="877.0" layoutY="6.0" prefHeight="36.0" prefWidth="260.0" promptText="Type de logement" style="-fx-background-color: #F3D9B0; -fx-background-radius: 100;" />
          </children>
       </AnchorPane>
-      <Pane layoutX="1010.0" layoutY="-5.0" prefHeight="66.0" prefWidth="394.0" style="-fx-background-radius: 20 20 0 0; -fx-background-color: #FF7F00;" styleClass="linear-grad" stylesheets="@../fxml/guiadmin.css">
+      <Pane layoutX="1020.0" layoutY="2.0" prefHeight="73.0" prefWidth="394.0" style="-fx-background-radius: 20 20 0 0; -fx-background-color: #FF7F00;" styleClass="linear-grad" stylesheets="@../fxml/guiadmin.css">
          <children>
             <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="319.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -76,7 +76,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <ImageView fitHeight="36.0" fitWidth="28.0" layoutX="192.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="36.0" fitWidth="28.0" layoutX="192.0" layoutY="41.0" onMouseClicked="#gotoLogin" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../assets/logOut.png" />
                </image>
@@ -90,9 +90,9 @@
       </ImageView>
       <AnchorPane layoutX="118.0" layoutY="132.0" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <VBox layoutX="7.0" layoutY="7.0" prefHeight="628.0" prefWidth="1208.0">
+            <VBox layoutX="7.0" layoutY="7.0" prefHeight="628.0" prefWidth="1271.0">
                <children>
-                  <ScrollPane fx:id="scroll" prefHeight="559.0" prefWidth="1142.0" styleClass="transparent">
+                  <ScrollPane fx:id="scroll" prefHeight="546.0" prefWidth="1283.0" styleClass="transparent">
                      <content>
                         <GridPane fx:id="grid" prefHeight="8.0" prefWidth="5.0">
                            <rowConstraints>
@@ -106,18 +106,17 @@
                   </ScrollPane>
                   <Pane prefHeight="62.0" prefWidth="1208.0">
                      <children>
-                        <Button fx:id="ajouterButton" layoutX="556.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleAjouterLogement" prefHeight="35.0" prefWidth="179.0" style="-fx-background-radius: 100 ;" text="Ajouter Logement" visible="false">
+                        <Button fx:id="ajouterButton" layoutX="556.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleAjouterLogement" prefHeight="43.0" prefWidth="179.0" style="-fx-background-radius: 100; -fx-background-color: #F3D9B0;" text="Ajouter Logement">
                            <graphic>
-                              <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" preserveRatio="true">
+                              <ImageView fitHeight="35.0" fitWidth="54.0" focusTraversable="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/bed.png" />
+                                    <Image url="@../images/ajouter.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
                      </children>
                   </Pane>
-                  <Pane prefHeight="44.0" prefWidth="1208.0" />
                </children>
             </VBox>
          </children>

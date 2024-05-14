@@ -180,7 +180,21 @@
         </dependency>
 
     </dependencies>
+    <repositories>
+        <repository>
+            <id>itext</id>
+            <name>iText Repository - releases</name>
+            <url>https://repo.itextsupport.com/releases</url>
+        </repository>
 
+        <repository>
+            <id>central</id>
+            <name>Maven Central</name>
+            <url>https://repo.maven.apache.org/maven2</url>
+        </repository>
+        <!-- iText Repository -->
+
+    </repositories>
     <build>
         <plugins>
             <plugin>

@@ -5,7 +5,10 @@ import Utils.Datasource;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import Entities.Role;
 import javafx.scene.control.Alert;
 
@@ -97,7 +100,39 @@ public class ServiceUser implements IService<User> {
         System.out.println(userList.toString());
         return userList;
     }
+    public Map<Boolean, Integer> getusersByEtat() {
+        Map<Boolean, Integer> reclamationByetat = new HashMap<>();
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
+        try {
+            // Obtain the connection directly within the method
+            connection = Datasource.getConn();
+
+            String query = "SELECT is_verified, COUNT(*) AS count FROM user GROUP BY is_verified";            preparedStatement = connection.prepareStatement(query);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                boolean is_verified = resultSet.getBoolean("is_verified");
+                int count = resultSet.getInt("count");
+                reclamationByetat.put(is_verified, count);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close the ResultSet, PreparedStatement, and Connection
+            try {
+                if (resultSet != null) resultSet.close();
+                if (preparedStatement != null) preparedStatement.close();
+                // Do not close the connection here to keep it open
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return reclamationByetat;
+    }
     private User mapResultSetToUser(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         String username = resultSet.getString("username");

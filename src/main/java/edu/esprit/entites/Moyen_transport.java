@@ -11,6 +11,16 @@ public class Moyen_transport {
     public boolean etat;
     public boolean valide;
 
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
+    public int userid;
+
     private List<Trajet> trajets;
 
     public int getUserId() {

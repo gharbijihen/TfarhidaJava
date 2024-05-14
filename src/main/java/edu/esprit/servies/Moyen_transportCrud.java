@@ -1,5 +1,6 @@
 package edu.esprit.servies;
 
+import Controllers.GuiLoginController;
 import Utils.Datasource;
 import edu.esprit.entites.Moyen_transport;
 
@@ -16,7 +17,7 @@ public class Moyen_transportCrud implements IcrudL<Moyen_transport> {
 
     @Override
     public void ajouter(Moyen_transport moyenTransport) {
-        String req1 = "INSERT INTO moyen_transport(type,capacite,lieu,image,etat,valide) VALUES (?,?,?,?,?,?)";
+        String req1 = "INSERT INTO moyen_transport(type,capacite,lieu,image,etat,valide,user_id) VALUES (?,?,?,?,?,?,?)";
         try {
             PreparedStatement pst = Datasource.getConn().prepareStatement(req1);
             pst.setString(1,moyenTransport.getType());
@@ -25,6 +26,7 @@ public class Moyen_transportCrud implements IcrudL<Moyen_transport> {
             pst.setString(4,moyenTransport.getImage());
             pst.setBoolean(5,moyenTransport.isEtat());
             pst.setBoolean(6,moyenTransport.isValide());
+            pst.setInt(7, GuiLoginController.user.getId());
             pst.executeUpdate();
             System.out.println("moyenTransport ajouté !");
         } catch (SQLException e) {
@@ -34,7 +36,7 @@ public class Moyen_transportCrud implements IcrudL<Moyen_transport> {
 
     @Override
     public void modifier(Moyen_transport moyenTransport) throws SQLException {
-        final String query = "UPDATE moyen_transport SET type = ?, capacite = ?, lieu = ?, image = ?, etat = ?, valide = ? WHERE id = ?";
+        final String query = "UPDATE moyen_transport SET type = ?, capacite = ?, lieu = ?, image = ?, etat = ?, valide = ?,user_id=? WHERE id = ?";
         try (PreparedStatement pst = Datasource.getConn().prepareStatement(query)) {
             pst.setString(1, moyenTransport.getType());
             pst.setInt(2, moyenTransport.getCapacite());
@@ -42,7 +44,9 @@ public class Moyen_transportCrud implements IcrudL<Moyen_transport> {
             pst.setString(4, moyenTransport.getImage());
             pst.setBoolean(5, moyenTransport.isEtat());
             pst.setBoolean(6, moyenTransport.isValide());
-            pst.setInt(7, moyenTransport.getId());
+            pst.setInt(7, moyenTransport.getUserid());
+
+            pst.setInt(8, moyenTransport.getId());
 
             pst.executeUpdate();
         }
@@ -78,6 +82,7 @@ public class Moyen_transportCrud implements IcrudL<Moyen_transport> {
                 p.setImage(rs.getString("image"));
                 p.setEtat(rs.getBoolean("etat"));
                 p.setValide(rs.getBoolean("valide"));
+                p.setUserid(rs.getInt("user_id"));
 
 
 
@@ -154,6 +159,7 @@ public class Moyen_transportCrud implements IcrudL<Moyen_transport> {
                 moyen.setImage(resultSet.getString("image"));
                 moyen.setEtat(resultSet.getBoolean("etat"));
                 moyen.setValide(resultSet.getBoolean("valide"));
+                moyen.setUserid(resultSet.getInt("user_id"));
 
                 moyens.add(moyen);
             }
@@ -193,6 +199,8 @@ public class Moyen_transportCrud implements IcrudL<Moyen_transport> {
 
 
                 moyen = new Moyen_transport(Type, Capacite,Lieu, etat,false,image);
+                moyen.setUserid(rs.getInt("user_id"));
+
             } else {
                 System.out.println("Aucune activité trouvée avec l'ID : " + id);
             }
@@ -228,6 +236,7 @@ public class Moyen_transportCrud implements IcrudL<Moyen_transport> {
             while (resultSet.next()) {
                 boolean etat = resultSet.getBoolean("etat");
                 int count = resultSet.getInt("count");
+
                 moyenByetat.put(etat, count);
             }
         } catch (SQLException e) {

@@ -1,11 +1,13 @@
 package edu.esprit.controller;
 
+//import Controllers.GuiLoginController;
+//import Entities.User;
 import Controllers.GuiLoginController;
-import Entities.User;
 import edu.esprit.entites.Notification;
 import edu.esprit.entites.Reclamation;
 import edu.esprit.servies.NotificationService;
 import edu.esprit.servies.ReclamationCrud;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,6 +21,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -31,6 +34,9 @@ import javafx.util.Duration;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import javax.net.ssl.SSLContext;
+import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -45,6 +51,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import org.apache.http.Header;
@@ -76,6 +83,7 @@ public class ReclamationsListController_new implements Initializable {
     public Text TitleError;
     public Text TypeError;
     public Text DescriptionError;
+    public TextField champRecherche;
 
     @FXML
     private GridPane commentsListContainer;
@@ -98,22 +106,32 @@ public class ReclamationsListController_new implements Initializable {
 
         this.viewReplyModel.setVisible(false);
         this.error.setVisible(false);
+        if (filtreTypeLog!=null ) {
+            filtreTypeLog.valueProperty().addListener(new javafx.beans.value.ChangeListener<String>() {
+                @Override
+                public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                    handleTypeSelection();
+                }
+            });
+            ObservableList<String> items = FXCollections.observableArrayList(
+                    "Activite", "Logement", "Transport", "Restaurant"
+            );
+            filtreTypeLog.setItems(items);        // recuperer user connecté
 
+        }
         updateBtnContainer.setVisible(false);
         addReviewsModel.setVisible(false);
+        TypeInput.getItems().addAll("Activité", "Logement", "Restaurant", "Transport");
         // Créez une liste observable contenant les types
-        ObservableList<String> items = FXCollections.observableArrayList(
-                "Activite", "Logement", "Transport", "Restaurant"
-        );
+
 
         // Définissez les éléments du ComboBox en utilisant la liste observable
-        filtreTypeLog.setItems(items);        // recuperer user connecté
-        User user = new User();
-        user = GuiLoginController.user;
+//        User user = new User();
+//        user = GuiLoginController.user;
         System.out.println("Setting reclamations");
         ReclamationCrud ps = new ReclamationCrud();
 
-        List<Reclamation> reclamationList = ps.afficherByUserId(user);
+        List<Reclamation> reclamationList = ps.afficher();
 
         // Set Reclamations List
         int ReclamationColumn = 0;
@@ -143,52 +161,75 @@ public class ReclamationsListController_new implements Initializable {
     }
 
 
-    public void afficherType(ObservableList<Reclamation> reclamationsList) {
-        User user = new User();
-        user = GuiLoginController.user;
-        System.out.println("Setting reclamations");
-        ReclamationCrud ps = new ReclamationCrud();
+//    public void afficherType(ObservableList<Reclamation> reclamationList) {
+////        User user = new User();
+////        user = GuiLoginController.user;
+//        System.out.println("Setting reclamations");
+//        ReclamationCrud ps = new ReclamationCrud();
+//
+//     //   ObservableList<Reclamation> reclamationList = ReclamationCrud.getAllByType(filtreTypeLog.getValue());
+//
+//        // Set Reclamations List
+//        int ReclamationColumn = 0;
+//        int ReclamationRow = 1;
+//        try {
+//            for (int i = 0; i < reclamationList.size(); i++) {
+//
+//                FXMLLoader fxmlLoader = new FXMLLoader();
+//                fxmlLoader.setLocation(getClass().getResource("/RecItem/ReclamationItem.fxml"));
+//                VBox commentItem = fxmlLoader.load();
+//                ReclamationItem ReclamationItemController = fxmlLoader.getController();
+//                ReclamationItemController.setReviewData(reclamationList.get(i));
+//
+//                if (ReclamationColumn == 1) {
+//                    ReclamationColumn = 0;
+//                    ++ReclamationRow;
+//                }
+//                commentsListContainer.add(commentItem, ReclamationColumn++, ReclamationRow);
+//                GridPane.setMargin(commentItem, new Insets(0, 10, 15, 10));
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        System.out.println("Reclamations are ready");
+//
+//
+//
+//
+//
+//    }
 
-        ObservableList<Reclamation> reclamationList = ReclamationCrud.getAllByType(filtreTypeLog.getValue());
+    public void afficherType(ObservableList<Reclamation> reclamationList) {
+        // Clear the previous items in the commentsListContainer if required
+        commentsListContainer.getChildren().clear();
 
-        // Set Reclamations List
-        int ReclamationColumn = 0;
-        int ReclamationRow = 1;
         try {
             for (int i = 0; i < reclamationList.size(); i++) {
-
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("/RecItem/ReclamationItem.fxml"));
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/RecItem/ReclamationItem.fxml"));
                 VBox commentItem = fxmlLoader.load();
                 ReclamationItem ReclamationItemController = fxmlLoader.getController();
                 ReclamationItemController.setReviewData(reclamationList.get(i));
 
-                if (ReclamationColumn == 1) {
-                    ReclamationColumn = 0;
-                    ++ReclamationRow;
-                }
-                commentsListContainer.add(commentItem, ReclamationColumn++, ReclamationRow);
-                GridPane.setMargin(commentItem, new Insets(0, 10, 15, 10));
+                commentsListContainer.getChildren().add(commentItem);
             }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
         System.out.println("Reclamations are ready");
-
-
-
-
-
-        }
+    }
+    @FXML
     private void handleTypeSelection() {
 
         String selectedType = filtreTypeLog.getValue(); // Récupérer le type de logement sélectionné
         if (selectedType != null && !selectedType.isEmpty()) {
             // Effectuer une action en fonction du type sélectionné, par exemple, afficher les logements de ce type
             // Vous pouvez appeler une méthode de votre service LogementCrud pour récupérer et afficher les logements de ce type
-            ObservableList<Reclamation> reclamations = ReclamationCrud.getAllByType(selectedType);
+            System.out.println(selectedType);
+            ObservableList<Reclamation> reclamations = ReclamationCrud.getAllByType(selectedType, GuiLoginController.user.getId());
+            System.out.println(reclamations);
             afficherType(reclamations); // Mettre à jour l'affichage avec les logements du type sélectionné
         } else {
             // Gérer le cas où aucun type n'est sélectionné
@@ -287,8 +328,8 @@ public class ReclamationsListController_new implements Initializable {
         reclamation.setDescription_reclamation(extractedContent);
         reclamation.setTitre(titleInput.getText());
         reclamation.setType(TypeInput.getValue());
-        System.out.println("Signed in user = "+GuiLoginController.user.getId());
-        reclamation.setUserId(GuiLoginController.user.getId());
+//        System.out.println("Signed in user = "+GuiLoginController.user.getId());
+//        reclamation.setUserId(GuiLoginController.user.getId());
 
         reclamation.setDate(java.sql.Date.valueOf(LocalDate.now()));
         reclamation.setEtat(false);
@@ -514,6 +555,10 @@ public class ReclamationsListController_new implements Initializable {
     }
 
     public void goToNavigate(ActionEvent event) {
+
+            Controllers.RouterController router=new Controllers.RouterController();
+            router.navigate("/fxml/AdminDashboard.fxml");
+
     }
 
     public void gotoAdmin(MouseEvent mouseEvent) {
@@ -539,5 +584,59 @@ public class ReclamationsListController_new implements Initializable {
 
     public void OnclickTrier(ActionEvent actionEvent) {
     }
-}
 
+    //    public void searchquery(KeyEvent keyEvent) {
+//        String selectedTitre = champRecherche.getText(); // Get the selected housing type
+//            // Perform an action based on the selected type, such as displaying the housing of that type
+//            // You can call a method from your LogementCrud service to retrieve and display the housing of that type
+//            System.out.println(selectedTitre);
+//            ObservableList<Reclamation> reclamations = ReclamationCrud.getAllByTitre(selectedTitre);
+//            System.out.println(reclamations);
+//            afficherType(reclamations); // Update the display with the selected type of housing
+//
+//    }
+    public void searchquery(KeyEvent keyEvent) {
+        String selectedTitre = champRecherche.getText(); // Get the selected housing type
+        if (selectedTitre != null && !selectedTitre.isEmpty()) {
+            System.out.println(selectedTitre);
+            ObservableList<Reclamation> reclamations = ReclamationCrud.getAllByTitre(selectedTitre,GuiLoginController.user.getId());
+            System.out.println(reclamations);
+            afficherType(reclamations); // Update the display with the selected type of housing
+        } else {
+            System.out.println("Veuillez entrer un titre de réclamation.");
+        }
+        if (Objects.equals(champRecherche.getText(), ""))
+        {
+            ReclamationCrud ps = new ReclamationCrud();
+            commentsListContainer.getChildren().clear();
+            List<Reclamation> reclamationList = ps.afficher();
+
+            // Set Reclamations List
+            int ReclamationColumn = 0;
+            int ReclamationRow = 1;
+            try {
+                for (int i = 0; i < reclamationList.size(); i++) {
+
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/RecItem/ReclamationItem.fxml"));
+                    VBox commentItem = fxmlLoader.load();
+                    ReclamationItem ReclamationItemController = fxmlLoader.getController();
+                    ReclamationItemController.setReviewData(reclamationList.get(i));
+
+                    if (ReclamationColumn == 1) {
+                        ReclamationColumn = 0;
+                        ++ReclamationRow;
+                    }
+                    commentsListContainer.add(commentItem, ReclamationColumn++, ReclamationRow);
+                    GridPane.setMargin(commentItem, new Insets(0, 10, 15, 10));
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } // Update the display with the selected type of housing
+            catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }
+}

@@ -23,14 +23,14 @@
                         <Image url="@images/tfarhida.png" />
                     </image>
                 </ImageView>
-            <Pane layoutX="1209.0" layoutY="-3.0" prefHeight="84.0" prefWidth="358.0" style="-fx-background-radius: 20 20 0 0; -fx-background-color: #53A0EC;" styleClass="linear-grad" stylesheets="@../guiadmin.css">
+            <Pane layoutX="1209.0" layoutY="-3.0" prefHeight="84.0" prefWidth="358.0" style="-fx-background-radius: 20 20 0 0; -fx-background-color: #FF7F00;" styleClass="linear-grad" stylesheets="@../guiadmin.css">
                <children>
                   <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="274.0" layoutY="7.0" onMouseClicked="#goToClient" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../assets/ic_usr.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="nomPrenom" layoutX="131.0" layoutY="14.0" onMouseClicked="#goToClient" text="Administrateur" textFill="#fffefe">
+                  <Label fx:id="nomPrenom" layoutX="127.0" layoutY="12.0" onMouseClicked="#goToClient" prefHeight="27.0" prefWidth="99.0" text="Client" textFill="#fffefe">
                      <font>
                         <Font name="System Bold" size="18.0" />
                      </font>

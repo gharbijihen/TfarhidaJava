@@ -7,7 +7,7 @@
 
 <?import javafx.scene.web.WebView?>
 <?import javafx.scene.control.TextField?>
-<AnchorPane id="pane_top" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controllerMo.Map">
+<AnchorPane id="pane_top" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.controllerMo.Map">
     <children>
 
             <WebView id="pane_top" fx:id="wv" layoutX="100.0" onMouseClicked="#tt" prefHeight="500.0" prefWidth="700.0"  />

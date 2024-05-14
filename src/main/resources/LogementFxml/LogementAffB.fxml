@@ -16,7 +16,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="788.0" prefWidth="1324.0" stylesheets="@dashboardDesign.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.Logement.afficherLogementB">
    <children>
@@ -130,29 +129,21 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="176.0" layoutY="41.0" onMouseClicked="#goToClient" text="Déconnecter" textFill="WHITE">
+            <Label layoutX="176.0" layoutY="41.0" text="Déconnecter" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER" layoutX="37.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#open_notifModel" prefHeight="50.0" prefWidth="50.0" styleClass="nav-icon" stylesheets="@../AdminDashboard/Style.css">
+            <HBox alignment="CENTER" layoutX="37.0" layoutY="11.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="50.0" styleClass="nav-icon" stylesheets="@../AdminDashboard/Style.css">
                <children>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="10.0">
-                     <image>
-                        <Image url="@../assets/bell.png" />
-                     </image>
-                  </ImageView>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="nav-notif-bg" translateX="-8.0" translateY="-14.0">
-                     <children>
-                        <Text fx:id="totalNotif" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="3" translateY="-1.0">
-                           <font>
-                              <Font name="Montserrat ExtraBold" size="15.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </HBox>
+                  <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="20.0" styleClass="nav-notif-bg" translateX="-8.0" translateY="-14.0" />
                </children>
             </HBox>
+            <ImageView fitHeight="36.0" fitWidth="28.0" layoutX="139.0" layoutY="35.0" onMouseClicked="#goToLogin" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../assets/logOut.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
 

@@ -18,18 +18,30 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
+<?import javafx.scene.control.Button?>
 <AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.ReclamationsListController_new">
 
 
     <VBox fx:id="content_area" layoutX="12.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1187.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                 <children>
-                    <Pane prefHeight="41.0" prefWidth="1070.0" style="-fx-background-color: #aac0dc; -fx-background-radius: 70;">
-                        <children>
-                            <TextField layoutX="16.0" layoutY="7.0" prefHeight="52.0" prefWidth="1041.0" promptText="chercher........." style="-fx-background-radius: 100;" />
-                        </children>
-                    </Pane>
+                    <Label fx:id="loupe" layoutX="291.0" layoutY="123.0" prefHeight="36.0" prefWidth="46.0" visible="true">
+                        <graphic>
+                            <ImageView fitHeight="57.0" fitWidth="60.0">
+                                <image>
+                                    <Image url="@/ActiviteFxml/images/Cherche.png" />
+                                </image>
+                            </ImageView>
+                        </graphic></Label>
+                    <TextField fx:id="champRecherche" layoutX="339.0" layoutY="136.0" onKeyPressed="#searchquery" prefHeight="55.0" prefWidth="984.0" promptText="Chercher par..." style="-fx-background-radius: 100; -fx-background-color: #FFFFFF;" />
+                    <ComboBox fx:id="filtreTypeLog" prefHeight="25.0" prefWidth="184.0" promptText="Choisissez type...." style="-fx-background-color: orange; -fx-background-radius: 100;" />
+                    <Button fx:id="triButton" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="49.0" prefWidth="67.0" style="-fx-background-radius: 100; -fx-background-color: #ffff;" textFill="#eed7c5" underline="true" visible="true">
+                        <font>
+                            <Font name="System Bold Italic" size="14.0" />
+                        </font>
+                    </Button>
+
                 </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="1188.0">

@@ -10,9 +10,13 @@ import java.util.ResourceBundle;
 
 import Entities.User;
 import Service.ServiceUser;
+import edu.esprit.servies.ReclamationCrud;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
@@ -30,14 +34,35 @@ public class StatistiqueContoller {
 
     @FXML
     private BarChart<String , Integer > activiteBarChart;
+    @FXML
+    private PieChart pieChart;
 
     @FXML
+
     private ImageView btnReturn;
 
 
     @FXML
     void initialize() {
 
+        ServiceUser serviceMoyen = new ServiceUser();
+
+        // Récupération des statistiques sur les espaces de coworking par adresse
+        Map<Boolean, Integer> moyenbyEtat = serviceMoyen.getusersByEtat();
+
+        // Création des données pour le graphique PieChart
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+        for (Map.Entry<Boolean, Integer> entry : moyenbyEtat.entrySet()) {
+            String etat = entry.getKey() ? "Traitée" : "Non Traitée";
+            PieChart.Data data = new PieChart.Data(etat, entry.getValue());
+            // Custom label for each PieChart.Data showing the occurrences
+            data.setName(etat + " : " + entry.getValue());
+            pieChartData.add(data);
+        }
+
+        // Configuration du PieChart
+        pieChart.setData(pieChartData);
+        pieChart.setTitle("Statistiques des réclamations par état");
 
     }
 

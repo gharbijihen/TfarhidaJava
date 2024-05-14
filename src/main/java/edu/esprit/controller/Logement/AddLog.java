@@ -1,5 +1,7 @@
 package edu.esprit.controller.Logement;
 
+import Controllers.GuiLoginController;
+import Entities.User;
 import edu.esprit.servies.LogementCrud;
 import edu.esprit.tools.Data;
 import javafx.collections.FXCollections;
@@ -62,7 +64,7 @@ public class AddLog {
     ObservableList<String>typeLog = FXCollections.observableArrayList(Data.typeLogement);
 
     private String imagePathInDatabase;
-
+    public User user = GuiLoginController.user;
 
     @FXML
     void ajouterLogementAction(ActionEvent event) {
@@ -115,7 +117,10 @@ public class AddLog {
 
             LogementCrud service = new LogementCrud();
             Logement log;
-            service.ajouter(log =new Logement(nomL, localisationL, numL, prixL, imageL, "en cours", typeLog, noteL));
+            log =new Logement(nomL, localisationL, numL, prixL, imageL, "en cours", typeLog, noteL);
+            log.setUserid(this.user.getId());
+            service.ajouter(log);
+
             System.out.println("loggg eli tzed"+log);
 
             showAlert("Logement ajouté", "Votre logement a été ajouté avec succès.");

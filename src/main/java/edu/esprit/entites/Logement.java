@@ -18,6 +18,15 @@ public class Logement {
     //public int equipement_id;
     public Equipement equipement_id;
 
+    public int userid;
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
 
     public Logement(String nom, String localisation, int num, int prix, String image, String etat, String type_log, int note_moyenne) {
         this.nom = nom;

@@ -14,111 +14,8 @@
 
 <AnchorPane prefHeight="740.0" prefWidth="1538.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.esprit.controller.controllersRE.AfficherRestaurantController">
     <children>
-        <Pane layoutX="14.0" layoutY="56.0" prefHeight="728.0" prefWidth="294.0" style="-fx-background-color: #FF7F00;">
-            <children>
-                <Text layoutX="121.0" layoutY="686.0" strokeType="OUTSIDE" strokeWidth="0.0" text="se déconecter" />
-                <ImageView fitHeight="17.0" fitWidth="22.0" layoutX="95.0" layoutY="674.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FF7F00;">
-                    <image>
-                        <Image url="@images/logoutIcon.png" />
-                    </image>
-                </ImageView>
-                <VBox alignment="CENTER" layoutX="13.0" layoutY="170.0" prefHeight="304.0" prefWidth="269.0">
-                    <children>
-                        <Button prefHeight="36.0" prefWidth="116.0" style="-fx-background-radius: 100;" text="Reclamation">
-                            <graphic>
-                                <ImageView fitHeight="17.0" fitWidth="22.0">
-                                    <image>
-                                        <Image url="@images/wirte.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <font>
-                                <Font size="13.0" />
-                            </font>
-                        </Button>
-                        <VBox prefHeight="21.0" prefWidth="270.0" />
-                        <Button fx:id="showLogement" prefHeight="36.0" prefWidth="114.0" style="-fx-background-radius: 100; -fx-cursor: hand;" text="Logement">
-                            <graphic>
-                                <ImageView fitHeight="17.0" fitWidth="22.0" focusTraversable="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@images/bed.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <font>
-                                <Font size="13.0" />
-                            </font>
-                        </Button>
-                        <VBox prefHeight="21.0" prefWidth="270.0" />
-                        <Button prefHeight="38.0" prefWidth="122.0" style="-fx-background-radius: 100;" text="Activite">
-                            <graphic>
-                                <ImageView fitHeight="18.0" fitWidth="18.0">
-                                    <image>
-                                        <Image url="@images/3555663.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <font>
-                                <Font size="13.0" />
-                            </font>
-                        </Button>
-                        <VBox prefHeight="21.0" prefWidth="270.0" />
-                        <Button prefHeight="38.0" prefWidth="119.0" style="-fx-background-radius: 100;" text="Restaurant">
-                            <graphic>
-                                <ImageView fitHeight="17.0" fitWidth="22.0">
-                                    <image>
-                                        <Image url="@images/food-service.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <font>
-                                <Font size="13.0" />
-                            </font>
-                        </Button>
-                        <VBox prefHeight="21.0" prefWidth="270.0" />
-                        <Button prefHeight="38.0" prefWidth="127.0" style="-fx-background-radius: 100;" text="Transport">
-                            <graphic>
-                                <ImageView fitHeight="17.0" fitWidth="22.0">
-                                    <image>
-                                        <Image url="@images/1.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <font>
-                                <Font size="13.0" />
-                            </font>
-                        </Button>
-                    </children>
-                </VBox>
-                <ImageView fitHeight="119.0" fitWidth="200.0" layoutX="41.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/tfarhida.png" />
-                    </image>
-                </ImageView>
-            </children>
-        </Pane>
-        <Pane layoutX="-2.0" prefHeight="50.0" prefWidth="1578.0" style="-fx-background-color: #FF7F00;">
-            <children>
-                <ImageView fitHeight="28.0" fitWidth="32.0" layoutX="314.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/bouton-retour.png" />
-                    </image>
-                </ImageView>
-                <ImageView fitHeight="35.0" fitWidth="41.0" layoutX="1451.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@images/utilisateur.png" />
-                    </image>
-                </ImageView>
-                <Label layoutX="1376.0" layoutY="-2.0" prefHeight="54.0" prefWidth="82.0" text="Mon Profil">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Label>
-                <Button fx:id="Traduire" layoutY="-1.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="188.0" styleClass="search-button" text="Traduire" textFill="WHITE" />
-            </children>
-        </Pane>
 
-        <AnchorPane fx:id="BOX1" layoutX="356.0" layoutY="116.0" prefHeight="407.0" prefWidth="359.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-cursor: hand; -fx-background-color: #ffff; -fx-background-radius: 50; -fx-border-width: 4; -fx-border-color: #0000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+        <AnchorPane fx:id="BOX1" layoutX="288.0" layoutY="145.0" prefHeight="407.0" prefWidth="359.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-cursor: hand; -fx-background-color: #ffff; -fx-background-radius: 50; -fx-border-width: 4; -fx-border-color: #0000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
             <children>
                 <VBox prefHeight="464.0" prefWidth="379.0">
                     <children>
@@ -181,7 +78,7 @@
                 </VBox>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="BOX2" layoutX="771.0" layoutY="116.0" prefHeight="407.0" prefWidth="359.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-cursor: hand; -fx-background-color: #ffff; -fx-background-radius: 50; -fx-border-width: 4; -fx-border-color: #0000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+        <AnchorPane fx:id="BOX2" layoutX="703.0" layoutY="145.0" prefHeight="407.0" prefWidth="359.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-cursor: hand; -fx-background-color: #ffff; -fx-background-radius: 50; -fx-border-width: 4; -fx-border-color: #0000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
             <children>
                 <VBox prefHeight="464.0" prefWidth="379.0">
                     <children>
@@ -244,7 +141,7 @@
                 </VBox>
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="BOX3" layoutX="1179.0" layoutY="116.0" prefHeight="407.0" prefWidth="359.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-cursor: hand; -fx-background-color: #ffff; -fx-background-radius: 50; -fx-border-width: 4; -fx-border-color: #0000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+        <AnchorPane fx:id="BOX3" layoutX="1111.0" layoutY="145.0" prefHeight="407.0" prefWidth="359.0" style="-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0); -fx-cursor: hand; -fx-background-color: #ffff; -fx-background-radius: 50; -fx-border-width: 4; -fx-border-color: #0000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
             <children>
                 <VBox prefHeight="464.0" prefWidth="379.0">
                     <children>
@@ -307,9 +204,60 @@
                 </VBox>
             </children>
         </AnchorPane>
-        <Button fx:id="btnretour" layoutX="865.0" layoutY="659.0" mnemonicParsing="false" onAction="#retour" prefWidth="100.0" text="&lt;" />
-        <Button fx:id="btnsuivant" layoutX="965.0" layoutY="659.0" mnemonicParsing="false" onAction="#suivant" prefWidth="100.0" text="&gt;" />
-      <TextField fx:id="rechercheTextField" layoutX="492.0" layoutY="63.0" prefHeight="38.0" prefWidth="701.0" promptText="chercher........." style="-fx-background-radius: 100;" />
+        <Button fx:id="btnretour" layoutX="797.0" layoutY="688.0" mnemonicParsing="false" onAction="#retour" prefWidth="100.0" text="&lt;" />
+        <Button fx:id="btnsuivant" layoutX="897.0" layoutY="688.0" mnemonicParsing="false" onAction="#suivant" prefWidth="100.0" text="&gt;" />
+      <TextField fx:id="rechercheTextField" layoutX="423.0" layoutY="90.0" prefHeight="38.0" prefWidth="701.0" promptText="chercher........." style="-fx-background-radius: 100;" />
+          <Button fx:id="Traduire" layoutX="1136.0" layoutY="89.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="188.0" styleClass="search-button" text="Traduire" textFill="WHITE" />
+      <VBox fx:id="vbox2" layoutX="-1.0" layoutY="-2.0" prefHeight="936.0" prefWidth="74.0" style="-fx-background-color: #131022;">
+         <children>
+            <Pane prefHeight="170.0" prefWidth="74.0" />
+            <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#goToNavigate" prefHeight="66.0" prefWidth="74.0" styleClass="button3" stylesheets="@../guiadmin.css" text="Naviguer" textFill="#767676">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/cat.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <Pane layoutX="74.0" layoutY="-4.0" prefHeight="77.0" prefWidth="1574.0" style="-fx-background-color: white;">
+         <children>
+            <ImageView fitHeight="70.0" fitWidth="128.0" layoutX="77.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../MoyenFxml/images/tfarhida.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="1209.0" layoutY="-3.0" prefHeight="84.0" prefWidth="358.0" style="-fx-background-radius: 20 20 0 0; -fx-background-color: #FF7F00;" styleClass="linear-grad" stylesheets="@../guiadmin.css">
+               <children>
+                  <ImageView fitHeight="76.0" fitWidth="58.0" layoutX="274.0" layoutY="7.0"  pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/ic_usr.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="nomPrenom" layoutX="127.0" layoutY="12.0" prefHeight="27.0" prefWidth="99.0" text="Client" textFill="#fffefe">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="176.0" layoutY="41.0"  text="Déconnecter" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="36.0" fitWidth="28.0" layoutX="143.0" layoutY="38.0" onMouseClicked="#goToLogn" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../assets/logOut.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
 
         <!--<TextField layoutX="318.0" layoutY="62.0" prefHeight="38.0" prefWidth="633.0" promptText="chercher........." style="-fx-background-radius: 100;" stylesheets="@../java/edu/esprit/values/style.css" />-->
     </children>

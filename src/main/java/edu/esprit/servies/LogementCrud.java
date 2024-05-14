@@ -61,7 +61,7 @@ public class LogementCrud implements IcrudE<Logement>{
 
     @Override
     public boolean ajouter(Logement logement) {
-        String req1 = "INSERT INTO logement(nom, prix, localisation, num, image, note_moyenne, etat, type_log) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String req1 = "INSERT INTO logement(nom, prix, localisation, num, image, note_moyenne, etat, type_log) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
         try {
             PreparedStatement pst = Datasource.getConn().prepareStatement(req1, Statement.RETURN_GENERATED_KEYS);
             pst.setString(1, logement.getNom());
@@ -72,6 +72,7 @@ public class LogementCrud implements IcrudE<Logement>{
             pst.setInt(6, logement.getNote_moyenne());
             pst.setString(7, logement.getEtat());
             pst.setString(8, logement.getType_log());
+           // pst.setInt(9,logement.getUserid());
 
             int rowsAffected = pst.executeUpdate();
 
@@ -223,14 +224,14 @@ public class LogementCrud implements IcrudE<Logement>{
     }
 
 
-    public ObservableList<Logement> trierParPrix(ObservableList<Logement> logementsList) throws SQLException {
+     public ObservableList<Logement> trierParPrix(ObservableList<Logement> logementsList) throws SQLException {
         ObservableList<Logement> logements = FXCollections.observableArrayList();
 
         try (Statement st = Datasource.getConn().createStatement();
              ResultSet rs = st.executeQuery("SELECT * FROM logement ORDER BY prix")) {
 
             while (rs.next()) {
-                Logement p = new Logement(4);
+                Logement p = new Logement();
                 p.setId(rs.getInt("id"));
                 p.setNom(rs.getString("nom"));
                 p.setPrix(rs.getInt("prix"));
@@ -252,6 +253,7 @@ public class LogementCrud implements IcrudE<Logement>{
     private void logError(String message) {
         System.err.println("Erreur : " + message);
     }
+
 
     public Map<String, Integer> getLogementByType() {
         Map<String, Integer> activiteByetat = new HashMap<>();
@@ -284,5 +286,6 @@ public class LogementCrud implements IcrudE<Logement>{
         }
 
     }
+
 }
 

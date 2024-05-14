@@ -131,71 +131,12 @@ public class afficherLogementB {
             RouterController router=new RouterController();
             router.navigate("/fxml/AdminDashboard.fxml");
         }
-    public void goToNavigate(ActionEvent actionEvent) {
-        RouterController router=new RouterController();
-        router.navigate("Back.fxml");
-    }
-    @FXML
-    public void goToafficherLogement() {
-        try {
-            // Charger le contenu de afficherActivite.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/afficherLogementB.fxml"));
-            Node afficherLogementContent = loader.load();
-
-            // Ajouter le contenu au contentHBox
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
-    public void goToClient(MouseEvent mouseEvent) {
-        try {
-            // Charger le fichier FXML de la nouvelle page
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/indexLogement.fxml"));
-            Parent root = loader.load();
 
-            // Créer une nouvelle scène avec la nouvelle page
-            Scene scene = new Scene(root);
 
-            // Obtenir la fenêtre actuelle à partir de l'événement
-            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
 
-            // Définir la nouvelle scène sur la fenêtre et l'afficher
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
-    public void goToafficherEquipement(ActionEvent event) {
-        try {
-            // Charger le contenu de afficherActivite.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/EquipementB.fxml"));
-            Node afficherLogementContent = loader.load();
-
-            // Ajouter le contenu au contentHBox
-            contentHBox.getChildren().clear(); // Efface tout contenu précédent
-            contentHBox.getChildren().add(afficherLogementContent);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    public void goToafficherReservation(ActionEvent event) {
-        try {
-            // Charger le contenu de afficherActivite.fxml
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/commandeBack.fxml"));
-            Node afficherLogementContent = loader.load();
-
-            // Ajouter le contenu au contentHBox
-            contentHBox.getChildren().clear(); // Efface tout contenu précédent
-            contentHBox.getChildren().add(afficherLogementContent);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
 
     @FXML
@@ -238,4 +179,31 @@ public class afficherLogementB {
         }
     }
 
+    public void goToNavigate(ActionEvent event) {
+        edu.esprit.controller.RouterController.navigate("/fxml/AdminDashboard.fxml");
+    }
+    public void goToClient(MouseEvent mouseEvent) {
+        try {
+            // Charger le fichier FXML de la nouvelle page
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/indexLogement.fxml"));
+            Parent root = loader.load();
+
+            // Créer une nouvelle scène avec la nouvelle page
+            Scene scene = new Scene(root);
+
+            // Obtenir la fenêtre actuelle à partir de l'événement
+            Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+
+            // Définir la nouvelle scène sur la fenêtre et l'afficher
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void goToLogin(MouseEvent mouseEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/login.fxml");
+    }
 }

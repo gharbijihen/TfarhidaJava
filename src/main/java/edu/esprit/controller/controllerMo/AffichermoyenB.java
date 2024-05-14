@@ -404,7 +404,16 @@ public class AffichermoyenB {
      {
          
      }
-
+    public void goToLogin(MouseEvent mouseEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/login.fxml");
+    }
     public void goToafficherLogement(ActionEvent actionEvent) {
+ 
+    }
+
+    public void goToNavigate(ActionEvent actionEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/AdminDashboard.fxml");
     }
 }

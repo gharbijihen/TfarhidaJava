@@ -1,5 +1,6 @@
 package edu.esprit.controller.Activite;
 
+import Controllers.RouterController;
 import edu.esprit.entites.Categorie;
 import edu.esprit.servies.CategorieCrud;
 import javafx.collections.FXCollections;
@@ -225,7 +226,14 @@ public class afficherCategorie{
             e.printStackTrace();
         }
     }
-
+    public void goToLogn(MouseEvent mouseEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/login.fxml");
+    }
+    public void goToNavigate(ActionEvent actionEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/AdminDashboard.fxml");
+    }
 }
 
 

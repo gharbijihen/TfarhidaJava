@@ -51,8 +51,12 @@ public class ClientDashboardController {
         System.out.println("GOING TO TRANS");
         RouterController.navigate("/LogementFxml/indexLogement.fxml");
     }
-
+    public void goToRestaurants(MouseEvent event) {
+        System.out.println("GOING TO RESTAURANTS");
+        RouterController.navigate("/FXMLRes/test.fxml");
+    }
     public void goToLogement(MouseEvent event) {
+
     }
 }
 

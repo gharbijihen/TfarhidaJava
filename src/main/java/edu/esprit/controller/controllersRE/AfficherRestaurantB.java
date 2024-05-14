@@ -373,5 +373,18 @@ public class AfficherRestaurantB {
         router.navigate("/fxml/AdminDashboard.fxml");
     }
 
+    public void goToClient(MouseEvent mouseEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/login.fxml");
+    }
+
+    public void goToNavigate(ActionEvent event) {
+        edu.esprit.controller.RouterController.navigate("/fxml/AdminDashboard.fxml");
+    }
+
+    public void gotoLogin(MouseEvent mouseEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/login.fxml");
+    }
 }
 

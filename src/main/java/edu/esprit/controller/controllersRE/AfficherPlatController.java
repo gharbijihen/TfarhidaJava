@@ -1,5 +1,6 @@
 package edu.esprit.controller.controllersRE;
 
+import Controllers.RouterController;
 import edu.esprit.entites.Plat;
 import edu.esprit.entites.Restaurant;
 import edu.esprit.servies.PlatService;
@@ -412,15 +413,12 @@ public class AfficherPlatController {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
+    public void  goToLogn (ActionEvent actionEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/login.fxml");
+    }
+    public void goToNavigate(ActionEvent actionEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/AdminDashboard.fxml");
+    }
 }

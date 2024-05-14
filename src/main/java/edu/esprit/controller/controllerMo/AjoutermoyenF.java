@@ -1,4 +1,5 @@
 package edu.esprit.controller.controllerMo;
+import Controllers.GuiLoginController;
 import com.restfb.DefaultFacebookClient;
 import com.restfb.FacebookClient;
 import com.restfb.Parameter;
@@ -124,7 +125,9 @@ public class AjoutermoyenF {
 
                 Moyen_transport moyen_transport = new Moyen_transport();
                 Moyen_transportCrud service = new Moyen_transportCrud();
-                service.ajouter(new Moyen_transport(typeM, capaciteM, lieuM, etatM, false, image ));
+                Moyen_transport moy=new Moyen_transport(typeM, capaciteM, lieuM, etatM, false, image );
+                moy.setUserid(GuiLoginController.user.getId());
+                service.ajouter(moy);
                 System.out.println(latitude);
                 System.out.println(longitude);
                 Node source = (Node) event.getSource();

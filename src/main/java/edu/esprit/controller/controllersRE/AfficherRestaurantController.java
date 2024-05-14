@@ -1,5 +1,6 @@
 package edu.esprit.controller.controllersRE;
 
+import Controllers.RouterController;
 import Utils.Datasource;
 import edu.esprit.entites.Restaurant;
 import edu.esprit.servies.RestaurantService;
@@ -15,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -454,11 +456,11 @@ public class AfficherRestaurantController {
     }
 
 
+    public void goToNavigate(ActionEvent actionEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/ClientDashboard.fxml");
+    }
 
-
-
-
-
-
-
+    public void goToLogn(MouseEvent mouseEvent) {
+    }
 }

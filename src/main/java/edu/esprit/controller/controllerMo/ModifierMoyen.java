@@ -1,5 +1,6 @@
 package edu.esprit.controller.controllerMo;
 
+import Controllers.GuiLoginController;
 import edu.esprit.entites.Moyen_transport;
 import edu.esprit.servies.Moyen_transportCrud;
 import javafx.event.ActionEvent;
@@ -147,6 +148,7 @@ public class ModifierMoyen {
                     boolean etatt= etat.isSelected();
                     boolean validee = valide.isSelected();
 
+
                     // Créez un objet Activite avec les nouvelles valeurs
                     Moyen_transport moyenModifiee = new Moyen_transport();
                     moyenModifiee.setId(moyenId);
@@ -155,6 +157,7 @@ public class ModifierMoyen {
                     moyenModifiee.setLieu(lieuu);
                     moyenModifiee.setEtat(etatt);
                     moyenModifiee.setValide(validee);
+
 
                     // Si une nouvelle image a été sélectionnée, mettez à jour le chemin de l'image
                     if (selectedImageFile != null) {

@@ -41,7 +41,7 @@ public class ChatBotController {
     }
 
 
-    private static final String apiKey = "sk-proj-ywjb34TJvgpNmHYop1cUT3BlbkFJvhmoTV8Lr56e8w1YGkDc";
+    private static final String apiKey = "sk-proj-zIYKblRveqNseepOWRxtT3BlbkFJxS5wtFB0qJL2Ypn8jKwX";
     private static final String model = "gpt-3.5-turbo";  // Adjust the model name
 
     private static String getOpenAIAPIAnswer(String question) {

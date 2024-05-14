@@ -409,6 +409,10 @@ public class afficheractivite{
 
     }
 
+    public void goToLogin(MouseEvent mouseEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/login.fxml");
+    }
 }
 
 

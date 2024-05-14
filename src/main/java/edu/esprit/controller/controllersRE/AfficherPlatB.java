@@ -1,5 +1,6 @@
 package edu.esprit.controller.controllersRE;
 
+import Controllers.RouterController;
 import Utils.Datasource;
 import edu.esprit.entites.Plat;
 import edu.esprit.servies.PlatService;
@@ -395,5 +396,20 @@ public class AfficherPlatB {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void goToClient(MouseEvent mouseEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/login.fxml");
+    }
+
+    public void gotoLogin(MouseEvent mouseEvent) {
+        RouterController router=new RouterController();
+        router.navigate("/fxml/login.fxml");
+    }
+
+    public void goToNavigate(ActionEvent actionEvent) {
+        edu.esprit.controller.RouterController.navigate("/fxml/AdminDashboard.fxml");
+
     }
 }
