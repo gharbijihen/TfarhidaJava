@@ -28,7 +28,7 @@ import javafx.embed.swing.SwingFXUtils;
 public class IteamLogementController {
 
     @FXML
-    private ImageView imgLogement;
+    private ImageView imageLog;
     @FXML
     private Button voirDetailsButton;
     @FXML
@@ -99,8 +99,11 @@ public class IteamLogementController {
         this.phoneLogement.setText("+216" + logement.getNum());
 
         idLabel.setText(String.valueOf(logement.getId()));
+        String path = logement.getImage();
+        System.out.println(path);
+        imageLog.setImage(new Image("http://localhost:8000/uploads/" + path));
         // Récupérer l'image à partir de la base de données
-        String imagePath = logement.getImage();
+       /* String imagePath = logement.getImage();
         if (imagePath != null && !imagePath.isEmpty()) {
             try {
                 byte[] imageData = Files.readAllBytes(Paths.get(imagePath));
@@ -120,7 +123,7 @@ public class IteamLogementController {
             }
         } else {
             System.err.println("Chemin d'accès à l'image non spécifié.");
-        }}
+        }*/}
     // Méthode pour redimensionner une image
     private Image resizeImage(Image image, int width, int height) {
         BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);

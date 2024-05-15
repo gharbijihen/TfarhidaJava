@@ -52,8 +52,7 @@ public class AjouterLogementB {
     private Text errorNum;
     @FXML
     private Text errorPrix;
-    @FXML
-    private ImageView image;
+
     @FXML
     private TextField localisation;
     @FXML

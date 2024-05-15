@@ -1,7 +1,5 @@
 package edu.esprit.controller.Logement;
 
-import Controllers.GuiLoginController;
-import Entities.User;
 import edu.esprit.servies.LogementCrud;
 import edu.esprit.tools.Data;
 import javafx.collections.FXCollections;
@@ -20,9 +18,23 @@ import edu.esprit.entites.Logement;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
 
+import javax.net.ssl.SSLContext;
 import java.io.File;
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 
 public class AddLog {
 
@@ -64,10 +76,10 @@ public class AddLog {
     ObservableList<String>typeLog = FXCollections.observableArrayList(Data.typeLogement);
 
     private String imagePathInDatabase;
-    public User user = GuiLoginController.user;
+
 
     @FXML
-    void ajouterLogementAction(ActionEvent event) {
+    void ajouterLogementAction(ActionEvent event) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
 
         if (nom.getText().isEmpty()) {
             nom.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
@@ -117,12 +129,9 @@ public class AddLog {
 
             LogementCrud service = new LogementCrud();
             Logement log;
-            log =new Logement(nomL, localisationL, numL, prixL, imageL, "en cours", typeLog, noteL);
-            log.setUserid(this.user.getId());
-            service.ajouter(log);
-
+            uploadImage(selectedImageFile);
+            service.ajouter(log =new Logement(nomL, localisationL, numL, prixL, selectedImageFile.getName(), "Acceptee", typeLog, noteL));
             System.out.println("loggg eli tzed"+log);
-
             showAlert("Logement ajouté", "Votre logement a été ajouté avec succès.");
 
             // Effacez les champs et réinitialisez l'image
@@ -212,6 +221,33 @@ public class AddLog {
 
         return isValid;
     }
+    public void uploadImage(File imageFile) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+        HttpPost httpPost = new HttpPost("http://localhost:8000/upload-image");
+
+        HttpEntity requestEntity = MultipartEntityBuilder.create()
+                .addBinaryBody("image", imageFile, ContentType.APPLICATION_OCTET_STREAM, imageFile.getName())
+                .build();
+
+        httpPost.setEntity(requestEntity);
+        SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(new TrustSelfSignedStrategy()).build();
+
+        HttpClient httpClient = HttpClients.custom().setSSLContext(sslContext).build();
+        HttpResponse response = httpClient.execute(httpPost);
+        System.out.println(response);
+
+        int statusCode = response.getStatusLine().getStatusCode();
+
+        if (statusCode == 200) {
+            Header contentDispositionHeader = response.getFirstHeader("Content-Disposition");
+            if (contentDispositionHeader != null) {
+                System.out.println("Success upload. Filename");
+            } else {
+                System.out.println("Success upload, but filename not found in the response");
+            }
+        } else {
+            System.out.println("Failed upload");
+        }
+    }
 
     @FXML
     void selectImageAction(ActionEvent event) {
@@ -220,6 +256,7 @@ public class AddLog {
         // Filtrer les types de fichiers si nécessaire
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
+            selectedImageFile=selectedFile;
             // Stocker le chemin de l'image sélectionnée dans la variable de classe
             imagePathInDatabase = selectedFile.getAbsolutePath();
             // Charger l'image sélectionnée dans l'ImageView
@@ -236,7 +273,6 @@ public class AddLog {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
 
 
 

@@ -86,9 +86,7 @@ public class AjouterEquipement {
                 System.out.println("hedha eqq"+equipement);
 
                 showAlert("Equipement ajoutée", "Votre equipement a été ajoutée avec succès.");
-                String fbMessage = "Nouveau logement ajouté : " + "nom de logement:"+logement.getNom() + " - "+"Numéro" + logement.getNum()+"Prix de logement"+ logement.getPrix() + " - " +"Image"+ logement.getImage()+"Note de logement "+ logement.getNote_moyenne()+"Type Logement "+ logement.getType_log();
-
-                postToFacebook(fbMessage);  // Publier sur Facebook
+                String fbMessage = "Nouveau logement ajouté : " + "nom de logement:"+logement.getNom() + " - "+"Numéro" + logement.getNum()+"Prix de logement"+ logement.getPrix() + " - " +"Image"+ logement.getImage()+"Note de logement "+ logement.getNote_moyenne()+"Type Logement "+ logement.getType_log()+"Image"+logement.getImage();
 
                 // Réinitialiser les champs
                 climatitation.setSelected(false);
@@ -124,19 +122,8 @@ public class AjouterEquipement {
             }
         }
     }
-    private void postToFacebook(String message) {
-        // Utilisez le jeton d'accès pour créer une instance de FacebookClient
-        String accessToken = "EAAUkGc8Eii4BO0VqPuGFmBAdf7wZAHS8hBTzB8MTHgNaw6wemZCkDkUPo5OUJyG1tCLavnI3YqzsgvxG2wxO4etQvasZBiQzBPaPmy4sCG7FFf9bPOnYjy4Bs8iY3lTI8XVPD9N0z8EMhdZBZAmZBZAG4h2azYAcoZCGCDKib5efZAOj2ZCXpVXc8NR2xnfRh6iw5OaB2ketrrhHD9lhDYNhQEIrbVgs3aE2YZCjOnyKHcZD";  // Vous devez sécuriser ce jeton, par exemple, le stocker de manière sécurisée et le charger de la configuration
-        FacebookClient facebookClient = new DefaultFacebookClient(accessToken, Version.LATEST);
 
-        try {
-            facebookClient.publish("me/feed", FacebookType.class, Parameter.with("message", message));
-        } catch (FacebookOAuthException e) {
-            showAlert("Error Posting to Facebook", "Failed to post to Facebook: " + e.getErrorMessage());
-        } catch (Exception e) {
-            showAlert("Error", "An unexpected error occurred: " + e.getMessage());
-        }
-    }
+
     @FXML
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -153,7 +140,7 @@ public class AjouterEquipement {
         boolean isValid = true;
 
         // Validate and display error messages
-        if (DescriptionEquipement.getText().isEmpty() || !DescriptionEquipement.getText().matches("^[a-zA-Z]+$")) {
+        if (DescriptionEquipement.getText().isEmpty() || !DescriptionEquipement.getText().matches("^[a-zA-Z ]+$")) {
             errorDescriptionEquipement.setText("Description is required and should not contain numbers");
             isValid = false;
         } else {
@@ -168,7 +155,7 @@ public class AjouterEquipement {
         }
 
 
-        if (typeChambre.getText().isEmpty() || !typeChambre.getText().matches("^[a-zA-Z]+$")) {
+        if (typeChambre.getText().isEmpty() || !typeChambre.getText().matches("^[a-zA-Z ]+$")) {
             errorTypeCHambre.setText("le type de chambre is required ");
             isValid = false;
         } else {

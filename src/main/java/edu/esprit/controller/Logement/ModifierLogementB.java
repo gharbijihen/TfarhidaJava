@@ -1,6 +1,7 @@
 package edu.esprit.controller.Logement;
 
 import edu.esprit.controller.Logement.SmsController;
+import edu.esprit.controller.ReclamationsListController_new;
 import edu.esprit.entites.Logement;
 import edu.esprit.servies.LogementCrud;
 import edu.esprit.tools.Data;
@@ -21,12 +22,27 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
 
+import javax.net.ssl.SSLContext;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 
 
 public class ModifierLogementB {
@@ -130,7 +146,8 @@ public class ModifierLogementB {
 
     }
     @FXML
-    void modifierLogementAction(ActionEvent event) {
+    void modifierLogementAction(ActionEvent event) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, SQLException {
+
         if (nom.getText().isEmpty()) {
             nom.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
             // Placer l'étiquette en dessous du champ
@@ -191,11 +208,14 @@ public class ModifierLogementB {
                     logementModifiee.setLocalisation(localisationL);
                     logementModifiee.setType_log(typeL);
 
-                     if (selectedImageFile != null) {
-                        logementModifiee.setImage(selectedImageFile.getAbsolutePath());
-                    } else {
-                        logementModifiee.setImage(logement.getImage());
-                    }
+                        if(selectedImageFile!=null) {
+                            System.out.println("Image is uploaded"+selectedImageFile.getName());
+                            uploadImage(selectedImageFile);
+                            logementModifiee.setImage(selectedImageFile.getName());
+                        }else{
+                            System.out.println("Image is not uploaded");
+                            logementModifiee.setImage(logement.getImage());
+                        }
 
                       LogementCrud service = new LogementCrud();
                     service.modifier(logementModifiee);
@@ -214,6 +234,49 @@ public class ModifierLogementB {
            }
         naviguezVersEquipement(event);
 
+    }
+    //image
+    public void uploadImage(File imageFile) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+        HttpPost httpPost = new HttpPost("http://localhost:8000/upload-image");
+
+        HttpEntity requestEntity = MultipartEntityBuilder.create()
+                .addBinaryBody("image", imageFile, ContentType.APPLICATION_OCTET_STREAM, imageFile.getName())
+                .build();
+
+        httpPost.setEntity(requestEntity);
+        SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(new TrustSelfSignedStrategy()).build();
+
+        HttpClient httpClient = HttpClients.custom().setSSLContext(sslContext).build();
+        HttpResponse response = httpClient.execute(httpPost);
+        System.out.println(response);
+
+        int statusCode = response.getStatusLine().getStatusCode();
+
+        if (statusCode == 200) {
+            Header contentDispositionHeader = response.getFirstHeader("Content-Disposition");
+            if (contentDispositionHeader != null) {
+                String contentDisposition = contentDispositionHeader.getValue();
+                String filename = extractFilenameFromContentDisposition(contentDisposition);
+                System.out.println("Success upload. Filename: " + filename);
+            } else {
+                System.out.println("Success upload, but filename not found in the response");
+            }
+        } else {
+            System.out.println("Failed upload");
+        }
+    }
+    private String extractFilenameFromContentDisposition(String contentDisposition) {
+        String filename = null;
+        if (contentDisposition != null && contentDisposition.contains("filename=")) {
+            String[] parts = contentDisposition.split(";");
+            for (String part : parts) {
+                if (part.trim().startsWith("filename=")) {
+                    filename = part.substring(part.indexOf('=') + 1).trim().replace("\"", "");
+                    break;
+                }
+            }
+        }
+        return filename;
     }
     @FXML
     void naviguezVersEquipement(ActionEvent event) {
