@@ -24,7 +24,7 @@ public class ActionCell extends TableCell<Activite, Void> {
         acceptButton.setOnAction(event -> {
             Activite activite = getTableView().getItems().get(getIndex());
             // Mettre à jour l'état du logement en acceptation
-            activite.setEtat("Acceptee");
+            activite.setEtat("Accepté");
             // Mettre à jour la ligne de la table
             getTableView().refresh();
             // Enregistrer les modifications dans la base de données
@@ -41,7 +41,7 @@ public class ActionCell extends TableCell<Activite, Void> {
         refuseButton.setOnAction(event -> {
             Activite activite = getTableView().getItems().get(getIndex());
             // Mettre à jour l'état du logement en refus
-            activite.setEtat("Refuse");
+            activite.setEtat("Refusé");
             // Mettre à jour la ligne de la table
             getTableView().refresh();
             // Enregistrer les modifications dans la base de données

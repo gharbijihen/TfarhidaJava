@@ -246,12 +246,6 @@ public class ModifierActiviteController {
         } else {
             errorLocalisation.setText("");
         }
-        if (etatt.getText().isEmpty() || !etatt.getText().matches("^[a-zA-Z]+$")) {
-            etatt.setText("Etat est requis et ne doit pas  contenir des nombres ");
-            isValid = false;
-        } else {
-            errorLocalisation.setText("");
-        }
 
         if (prixx.getText().isEmpty() || !prixx.getText().matches("^[0-9]+$")) {
             errorPrix.setText("Prix est requis et doit contenir uniquement des nombres");

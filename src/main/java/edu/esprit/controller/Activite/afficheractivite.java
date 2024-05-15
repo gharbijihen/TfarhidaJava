@@ -180,12 +180,12 @@ public class afficheractivite{
 
     @FXML
     private void trierActivitesAcceptees(ActionEvent event) {
-        trierActivitesParEtat("Acceptee",ps.afficher());
+        trierActivitesParEtat("Accepté",ps.afficher());
     }
 
     @FXML
     private void trierActivitesRefusees(ActionEvent event) {
-        trierActivitesParEtat("Refuse",ps.afficher());
+        trierActivitesParEtat("Refusé",ps.afficher());
     }
 
     @FXML

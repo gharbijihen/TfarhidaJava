@@ -23,7 +23,7 @@ public class PwdChangeController {
 
     public void ChangePwd(ActionEvent actionEvent) throws SQLException {
         if(checkpwd(user.getPassword(),oldpwd.getText())) {
-            String encryptedPassword = BCrypt.hashpw(newpwd.getText(), BCrypt.gensalt());
+            String encryptedPassword = BCrypt.hashpw(newpwd.getText(), BCrypt.gensalt(13));
             user.setPassword(encryptedPassword);
             su.update(user);
             showSuccessMessage("Password Changed succesfully");

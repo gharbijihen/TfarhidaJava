@@ -22,7 +22,7 @@ public class ForgotPassword3Controller {
         System.out.println("Checking for pwd");
         if(newpwd.getText().equals(confirmpwd.getText())) {
             System.out.println("PASSWORDS MATCH");
-            String encryptedPassword = BCrypt.hashpw(newpwd.getText(), BCrypt.gensalt());
+            String encryptedPassword = BCrypt.hashpw(newpwd.getText(), BCrypt.gensalt(13));
             user.setPassword(encryptedPassword);
             serviceUser.update(user);
             showSuccessMessage("Votre mot de passe à été changé avec succées success");

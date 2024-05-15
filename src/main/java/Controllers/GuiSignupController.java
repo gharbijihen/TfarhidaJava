@@ -126,7 +126,7 @@ public class GuiSignupController implements Initializable {
             showAlert("Le mot de passe doit contenir au moins 8 caractères");
             return false;
         }
-        String encryptedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        String encryptedPassword = BCrypt.hashpw(password, BCrypt.gensalt(13));
 
         GuiSignupController.user.setPassword(encryptedPassword);
 

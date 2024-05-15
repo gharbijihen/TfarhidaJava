@@ -214,7 +214,7 @@ public class afficherActiviteF {
             mainVBox.setSpacing(20.0); // Espacement vertical entre les lignes
 
             // Filtrer les activités acceptées uniquement
-            List<Activite> activitesAcceptees = listeFiltree.filtered(a -> a.getEtat().equals("Acceptee"));
+            List<Activite> activitesAcceptees = listeFiltree.filtered(a -> a.getEtat().equals("Accepté"));
 
             // Calculer les index de début et de fin pour la page spécifiée
             int startIndex = page * pageSize;

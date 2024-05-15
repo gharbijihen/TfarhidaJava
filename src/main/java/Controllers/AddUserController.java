@@ -120,7 +120,7 @@ public class AddUserController implements Initializable {
             showAlert("Le mot de passe doit contenir au moins 8 caractères");
             return false;
         }
-        String encryptedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        String encryptedPassword = BCrypt.hashpw(password, BCrypt.gensalt(13));
 
         AddUserController.user.setPassword(encryptedPassword);
 

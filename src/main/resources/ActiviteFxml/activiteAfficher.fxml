@@ -41,15 +41,15 @@
                 <Insets left="5.0" />
             </opaqueInsets>
         </HBox>
-        <VBox layoutX="119.0" layoutY="227.0" prefHeight="784.0" prefWidth="1370.0">
+        <VBox layoutX="119.0" layoutY="177.0" prefHeight="834.0" prefWidth="1370.0">
             <children>
-                <ScrollPane fx:id="scroll" prefHeight="552.0" prefWidth="1370.0">
+                <ScrollPane fx:id="scroll" prefHeight="472.0" prefWidth="1370.0">
                <content>
                   <VBox fx:id="paginationContent" prefHeight="727.0" prefWidth="1347.0" />
                </content>
             </ScrollPane>
 
-                                                          <Pane prefHeight="158.0" prefWidth="1370.0">
+                                                          <Pane prefHeight="82.0" prefWidth="1370.0">
                     <children>
                         <Button fx:id="precedentButton" layoutX="602.0" layoutY="-1.0" mnemonicParsing="false" onAction="#previousPage" prefHeight="57.0" prefWidth="67.0" style="-fx-background-radius: 100; -fx-background-color: orange;" visible="true">
                      <graphic>
@@ -83,9 +83,9 @@
                   </Label>
                     </children>
                 </Pane>
-            <Pane prefHeight="287.0" prefWidth="1430.0">
+            <Pane prefHeight="304.0" prefWidth="1370.0">
                <children>
-                   <Button fx:id="ajouterButton" layoutX="589.0" layoutY="27.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="68.0" prefWidth="176.0" style="-fx-background-radius: 100; -fx-background-color: #F3D9B0;" text="Ajouter" textFill="#595555" visible="true">
+                   <Button fx:id="ajouterButton" layoutX="589.0" layoutY="1.0" mnemonicParsing="false" onAction="#handleAjouter" prefHeight="68.0" prefWidth="176.0" style="-fx-background-radius: 100; -fx-background-color: #F3D9B0;" text="Ajouter" textFill="#595555" visible="true">
                      <graphic>
                         <ImageView fitHeight="56.0" fitWidth="56.0">
                            <image>
@@ -113,27 +113,24 @@
                         </Button>
                      </children>
                   </Pane>
-                  <Label fx:id="sb" layoutX="667.0" layoutY="77.0" prefHeight="49.0" prefWidth="67.0" visible="true">
-                     <graphic>
-                        <ImageView fitHeight="73.0" fitWidth="75.0">
-                           <image>
-                              <Image url="@images/robinet.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Label>
+                  <Label fx:id="sb" layoutX="667.0" layoutY="77.0" prefHeight="49.0" prefWidth="67.0" visible="true" />
+                  <ImageView fitHeight="73.0" fitWidth="75.0" layoutX="674.0" layoutY="45.0">
+                     <image>
+                        <Image url="@images/robinet.png" />
+                     </image>
+                  </ImageView>
                </children>
             </Pane>
 
                               </children>
         </VBox>
-        <TextField fx:id="champRecherche" layoutX="188.0" layoutY="140.0" prefHeight="56.0" prefWidth="1088.0" promptText="Chercher par..." style="-fx-background-radius: 100; -fx-background-color: #FFFFFF;" visible="true">
+        <TextField fx:id="champRecherche" layoutX="188.0" layoutY="109.0" prefHeight="56.0" prefWidth="1088.0" promptText="Chercher par..." style="-fx-background-radius: 100; -fx-background-color: #FFFFFF;" visible="true">
          <font>
             <Font name="System Italic" size="23.0" />
          </font>
       </TextField>
 
-                  <Button fx:id="triButton" layoutX="1386.0" layoutY="139.0" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="49.0" prefWidth="67.0" style="-fx-background-radius: 100; -fx-background-color: #FFB116;" textFill="#eed7c5" visible="true">
+                  <Button fx:id="triButton" layoutX="1386.0" layoutY="108.0" mnemonicParsing="false" onAction="#OnclickTrier" prefHeight="49.0" prefWidth="67.0" style="-fx-background-radius: 100; -fx-background-color: #FFB116;" textFill="#eed7c5" visible="true">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
@@ -145,7 +142,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Label fx:id="trie" layoutX="1289.0" layoutY="152.0" prefHeight="27.0" prefWidth="94.0" text="Triez par" textFill="#ffb200" visible="true">
+      <Label fx:id="trie" layoutX="1289.0" layoutY="122.0" prefHeight="27.0" prefWidth="94.0" text="Triez par" textFill="#ffb200" visible="true">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
@@ -168,7 +165,7 @@
             </Button>
          </children>
       </VBox>
-      <ImageView fitHeight="57.0" fitWidth="60.0" layoutX="116.0" layoutY="139.0">
+      <ImageView fitHeight="57.0" fitWidth="60.0" layoutX="116.0" layoutY="110.0">
          <image>
             <Image url="@images/Cherche.png" />
          </image>
