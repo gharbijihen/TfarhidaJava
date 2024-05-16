@@ -58,7 +58,8 @@ public class ShowLogement {
     @FXML
     private Label desc;
 
-
+    @FXML
+    private ImageView imageLog;
 
     private Logement logement;
     private Equipement equipement;
@@ -87,6 +88,9 @@ public class ShowLogement {
 
             Equipement equipement = logement.equipement_id;
             System.out.println(equipement+"assssss");
+            String path = logement.getImage();
+            System.out.println(path);
+            img.setImage(new Image("http://localhost:8000/uploads/" + path));
 
             System.out.println(equipement+"hhh");
             // Set Equipement details

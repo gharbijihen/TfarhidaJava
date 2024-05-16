@@ -69,44 +69,30 @@ public class ShowMoyen {
                 // Gérer l'erreur de chargement de l'image
             }
 
+            img.setImage(new Image("http://localhost:8000/uploads/"+ moy.getImage()));
+            System.out.println("http://localhost:8000/uploads/"+moy.getImage());
             System.out.println("getting image");
 
-            String imagePath = "http://localhost:8000/uploads/" + moy.getImage();
-            if (imagePath != null && !imagePath.isEmpty()) {
-                // Vérifiez si le fichier image existe
-                File file = new File(imagePath);
-                if (file.exists() && !file.isDirectory()) {
-                    try {
+            //String imagePath = "http://localhost:8000/uploads/" + moy.getImage();
+
                         // Charger l'image à partir du chemin d'accès spécifié
-                        Image image = new Image(file.toURI().toString());
+
                         double desiredWidth = 600; // Spécifiez la largeur souhaitée
                         double desiredHeight = 400;
                         // Définir l'image dans l'élément ImageView
 
-                        img.setImage(new Image("http://localhost:8000/uploads/"+ moy.getImage()));
-                        System.out.println("http://localhost:8000/uploads/"+moy.getImage());
+
 
                         img.setFitWidth(desiredWidth);
                         img.setFitHeight(desiredHeight);
-                    } catch (Exception e) {
-                        System.err.println("Erreur lors du chargement de l'image : " + e.getMessage());
-                        // Gérer l'erreur de chargement de l'image
-                    }
-                } else {
-                    System.err.println("Le fichier image n'existe pas : " + imagePath);
-                    // Gérer le cas où le fichier image est introuvable
-                }
-            } else {
-                System.err.println("Chemin d'accès à l'image non spécifié.");
-                // Gérer le cas où le chemin d'accès de l'image n'est pas spécifié
-            }
-        } else {
+
+
             // Gérer le cas où activite est null, par exemple, en effaçant les valeurs des labels et de l'image
-            this.TypeLabel.setText("");
+           /* this.TypeLabel.setText("");
             this.CapaciteLabel.setText("");
             this.LieuLabel.setText("");
             this.EtatLabel.setText("");
-            this.img.setImage(null); // Effacer l'image
+            this.img.setImage(null); // Effacer l'image*/
         }
     }
 

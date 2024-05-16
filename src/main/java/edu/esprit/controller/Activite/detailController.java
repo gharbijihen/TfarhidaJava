@@ -62,40 +62,10 @@ public class detailController {
             this.nbLabel.setText(activite.getNb_P() + " Participant");
             this.descLabel.setText(activite.getDescription_act());
 
-            String imagePath = activite.getImage();
-            if (imagePath != null && !imagePath.isEmpty()) {
-                // Vérifiez si le fichier image existe
-                File file = new File(imagePath);
-                if (file.exists() && !file.isDirectory()) {
-                    try {
-                        // Charger l'image à partir du chemin d'accès spécifié
-                        Image image = new Image(file.toURI().toString());
-                        double desiredWidth = 600; // Spécifiez la largeur souhaitée
-                        double desiredHeight = 600;
-                        // Définir l'image dans l'élément ImageView
-                        img.setImage(image);
-                        img.setFitWidth(desiredWidth);
-                        img.setFitHeight(desiredHeight);
-                    } catch (Exception e) {
-                        System.err.println("Erreur lors du chargement de l'image : " + e.getMessage());
-                        // Gérer l'erreur de chargement de l'image
-                    }
-                } else {
-                    System.err.println("Le fichier image n'existe pas : " + imagePath);
-                    // Gérer le cas où le fichier image est introuvable
-                }
-            } else {
-                System.err.println("Chemin d'accès à l'image non spécifié.");
-                // Gérer le cas où le chemin d'accès de l'image n'est pas spécifié
-            }
-        } else {
+            img.setImage(new Image("http://localhost:8000/uploads/"+ activite.getImage()));
+            System.out.println("http://localhost:8000/uploads/"+activite.getImage());
             // Gérer le cas où activite est null, par exemple, en effaçant les valeurs des labels et de l'image
-            this.nomLabel.setText("");
-            this.priceLabel.setText("");
-            this.locLabel.setText("");
-            this.nbLabel.setText("");
-            this.descLabel.setText("");
-            this.img.setImage(null); // Effacer l'image
+
         }
     }
     @FXML
