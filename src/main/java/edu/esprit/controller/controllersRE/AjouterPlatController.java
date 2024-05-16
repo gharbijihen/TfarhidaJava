@@ -13,10 +13,25 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
 
+import javax.net.ssl.SSLContext;
 import java.io.File;
 
 import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 public class AjouterPlatController {
@@ -44,13 +59,40 @@ public class AjouterPlatController {
     @FXML
     private Button choisir;
 
+    private  File selectedImageFile;
 
 
+    public void uploadImage(File imageFile) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+        HttpPost httpPost = new HttpPost("http://localhost:8000/upload-image");
 
+        HttpEntity requestEntity = MultipartEntityBuilder.create()
+                .addBinaryBody("image", imageFile, ContentType.APPLICATION_OCTET_STREAM, imageFile.getName())
+                .build();
+
+        httpPost.setEntity(requestEntity);
+        SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(new TrustSelfSignedStrategy()).build();
+
+        HttpClient httpClient = HttpClients.custom().setSSLContext(sslContext).build();
+        HttpResponse response = httpClient.execute(httpPost);
+        System.out.println(response);
+
+        int statusCode = response.getStatusLine().getStatusCode();
+
+        if (statusCode == 200) {
+            Header contentDispositionHeader = response.getFirstHeader("Content-Disposition");
+            if (contentDispositionHeader != null) {
+                System.out.println("Success upload. Filename");
+            } else {
+                System.out.println("Success upload, but filename not found in the response");
+            }
+        } else {
+            System.out.println("Failed upload");
+        }
+    }
 
 
     @FXML
-    void ajouterPlat(ActionEvent event) {
+    void ajouterPlat(ActionEvent event) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         // Vérifier que les champs obligatoires ne sont pas vides
         if (nom.getText().isEmpty() || description.getText().isEmpty()) {
             showAlert("Error", "Veuillez remplir tous les champs obligatoires.");
@@ -58,8 +100,9 @@ public class AjouterPlatController {
         }
 
         try {
+            uploadImage(selectedImageFile);
             // Créez le plat en lui passant l'ID du restaurant
-            Plat plat = new Plat(nom.getText(), description.getText(), imagePath, restaurantId);
+            Plat plat = new Plat(nom.getText(), description.getText(), selectedImageFile.getName(), restaurantId);
 
             // Ajoutez le plat en utilisant le service PlatService
             ps.ajouter(plat);
@@ -99,12 +142,16 @@ public class AjouterPlatController {
     public void insererimage(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choisir une image");
-        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Fichiers image", "*.png", "*.jpg", "*.gif"));
-        File selectedFile = fileChooser.showOpenDialog(null);
+        // Filtrer les types de fichiers si nécessaire
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
+            selectedImageFile = selectedFile;
+            // Stocker le chemin de l'image sélectionnée dans la variable de classe
             imagePath = selectedFile.toURI().toString();
-            Image image = new Image(imagePath);
-            imagef.setImage(image);}
+            // Charger l'image sélectionnée dans l'ImageView
+            Image image = new Image(selectedFile.toURI().toString());
+            imagef.setImage(image);
+        }
     }
 
     public void initData(int restaurantId) {

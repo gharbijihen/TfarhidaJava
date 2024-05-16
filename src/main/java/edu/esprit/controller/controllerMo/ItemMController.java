@@ -56,6 +56,7 @@ public class ItemMController {
         this.typeLabel.setText(moyen_transport.getType());
         this.localisationLabel.setText(moyen_transport.getLieu());
         this.idLabel.setText(String.valueOf(moyen_transport.getId()));
+
         String idLabelText = idLabel.getText().trim();
         try {
             int idFromLabel = Integer.parseInt(idLabelText);
@@ -67,15 +68,16 @@ public class ItemMController {
         img.setFitWidth(400);
         img.setFitHeight(300);
 
-
-        String imagePath = moyen_transport.getImage();
-        if (imagePath != null) {
+        this.img.setImage(new Image("http://localhost:8000/uploads/"+moyen_transport.getImage()));
+        System.out.println("http://localhost:8000/uploads/"+moyen_transport.getImage());
+       // String imagePath = moyen_transport.getImage();
+        //if (imagePath != null) {
             // Charger l'image à partir du chemin d'accès spécifié
-            Image image = new Image(new File(imagePath).toURI().toString());
-            this.img.setImage(image);
-        } else {
+            //Image image = new Image(new File(imagePath).toURI().toString());
+            //this.img.setImage(image);
+        //} else {
             // Afficher une image par défaut ou gérer le cas où l'image est absente
-        }
+        //}
 
     }
     public void initialize() {

@@ -391,13 +391,13 @@ public class ModifierLogementB {
     public void refusee(ActionEvent event) {
         if (logement != null) {
             // Modifier l'état du logement en "Accepté"
-            logement.setEtat("Refusee");
+            logement.setEtat("Refusé");
 
             // Instancier LogementCrud
             LogementCrud service = new LogementCrud();
 
             // Appeler la méthode de mise à jour de l'état du logement
-            service.modifierEtat(logement.getId(), "Refusee");
+            service.modifierEtat(logement.getId(), "Refusé");
 
             // Afficher une alerte pour indiquer que l'état du logement a été modifié avec succès
             showAlert("État modifié", "L'état du logement a été modifié avec succès.");
@@ -417,7 +417,7 @@ public class ModifierLogementB {
             LogementCrud service = new LogementCrud();
 
             // Appeler la méthode de mise à jour de l'état du logement
-            service.modifierEtat(logement.getId(), "Accepté");
+            service.modifierEtat(logement.getId(), "Acceptee");
 
             // Afficher une alerte pour indiquer que l'état du logement a été modifié avec succès
             showAlert("État modifié", "L'état du logement a été modifié avec succès.");

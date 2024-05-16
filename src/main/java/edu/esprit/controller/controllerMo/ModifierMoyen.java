@@ -14,10 +14,25 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
 
+import javax.net.ssl.SSLContext;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
 public class ModifierMoyen {
@@ -111,6 +126,33 @@ public class ModifierMoyen {
             System.out.println("Le fichier image n'existe pas : " + imagePath);
         }*/
     }
+    public void uploadImage(File imageFile) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+        HttpPost httpPost = new HttpPost("http://localhost:8000/upload-image");
+
+        HttpEntity requestEntity = MultipartEntityBuilder.create()
+                .addBinaryBody("image", imageFile, ContentType.APPLICATION_OCTET_STREAM, imageFile.getName())
+                .build();
+
+        httpPost.setEntity(requestEntity);
+        SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(new TrustSelfSignedStrategy()).build();
+
+        HttpClient httpClient = HttpClients.custom().setSSLContext(sslContext).build();
+        HttpResponse response = httpClient.execute(httpPost);
+        System.out.println(response);
+
+        int statusCode = response.getStatusLine().getStatusCode();
+
+        if (statusCode == 200) {
+            Header contentDispositionHeader = response.getFirstHeader("Content-Disposition");
+            if (contentDispositionHeader != null) {
+                System.out.println("Success upload. Filename");
+            } else {
+                System.out.println("Success upload, but filename not found in the response");
+            }
+        } else {
+            System.out.println("Failed upload");
+        }
+    }
 
     @FXML
     void browseImageAction(ActionEvent event) {
@@ -157,15 +199,19 @@ public class ModifierMoyen {
                     moyenModifiee.setLieu(lieuu);
                     moyenModifiee.setEtat(etatt);
                     moyenModifiee.setValide(validee);
+                    moyenModifiee.setUserid(GuiLoginController.user.getId());
 
 
-                    // Si une nouvelle image a été sélectionnée, mettez à jour le chemin de l'image
-                    if (selectedImageFile != null) {
-                        moyenModifiee.setImage(selectedImageFile.getAbsolutePath());
-                    } else {
-                        // Si aucune nouvelle image n'a été sélectionnée, conservez le chemin de l'image existante
+
+                    if(selectedImageFile!=null) {
+                        System.out.println("Image is uploaded"+selectedImageFile.getName());
+                        uploadImage(selectedImageFile);
+                        moyenModifiee.setImage(selectedImageFile.getName());
+                    }else{
+                        System.out.println("Image is not uploaded");
                         moyenModifiee.setImage(moyen.getImage());
                     }
+
 
                     // Utilisez votre service ActiviteCrud pour mettre à jour l'activité dans la base de données
                     Moyen_transportCrud service = new Moyen_transportCrud();
@@ -182,6 +228,14 @@ public class ModifierMoyen {
                 } catch (SQLException e) {
                     System.out.println("Erreur lors de la modification de l'activité : " + e.getMessage());
                     // Afficher un message d'erreur dans l'interface utilisateur
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (NoSuchAlgorithmException e) {
+                    throw new RuntimeException(e);
+                } catch (KeyStoreException e) {
+                    throw new RuntimeException(e);
+                } catch (KeyManagementException e) {
+                    throw new RuntimeException(e);
                 }
             } else {
                 System.out.println("L'ID de l'activité sélectionnée est invalide.");

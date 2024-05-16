@@ -82,15 +82,10 @@ public class IteamController {
         img.setFitHeight(300); // Ajuster la hauteur de l'image
 
 
-        String imagePath = activite.getImage();
-        if (imagePath != null) {
-            // Charger l'image à partir du chemin d'accès spécifié
-            Image image = new Image(new File(imagePath).toURI().toString());
-            this.img.setImage(image);
+        String path = activite.getImage();
+        System.out.println(path);
+        img.setImage(new Image("http://localhost:8000/uploads/" + path));
 
-        } else {
-            // Afficher une image par défaut ou gérer le cas où l'image est absente
-        }
 
     }
    public void setLocal(String localisation) {

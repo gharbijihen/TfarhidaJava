@@ -536,6 +536,7 @@ public class ReclamationsListController_new implements Initializable {
     }
     private File selectedImageFile;
     @FXML
+
     public void uploadImage(MouseEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(

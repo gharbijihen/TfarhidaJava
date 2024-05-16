@@ -11,6 +11,10 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.scene.control.ComboBox;
 
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 import javafx.scene.image.ImageView;
@@ -25,6 +29,18 @@ import java.util.List;
 
 import javafx.stage.Stage;
 import javafx.util.Pair;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
+
+import javax.net.ssl.SSLContext;
 
 public class ajouteractiviteF {
     @FXML
@@ -127,7 +143,7 @@ public class ajouteractiviteF {
 
    private int selectedCategoryId=-1;
     @FXML
-    void ajouteractiviteAction(ActionEvent event) throws SQLException {
+    void ajouteractiviteAction(ActionEvent event) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, SQLException {
         if (nomm.getText().isEmpty()) {
             nomm.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
             // Placer l'étiquette en dessous du champ
@@ -175,6 +191,8 @@ public class ajouteractiviteF {
             String description_act = descriptionActt.getText();
 
             ActiviteCrud service = new ActiviteCrud();
+            uploadImage(selectedImageFile);
+
 
             // Vérifiez si la connexion à la base de données est ouverte avant d'ajouter l'activité
             if (Datasource.getConn().isClosed()) {
@@ -186,7 +204,7 @@ public class ajouteractiviteF {
             System.out.println("Connexion à la base de données : Ouverte");
 
             // Ajoutez l'activité en utilisant l'ID de la catégorie sélectionnée
-            service.ajouter(new Activite(selectedCategoryId, nom, prix, localisation, nb_P, "en cours", description_act), image);
+            service.ajouter(new Activite(selectedCategoryId, nom, prix, localisation, nb_P, "en cours", description_act), selectedImageFile.getName());
 
             showAlert("Activité ajoutée", "L'activité a été ajoutée avec succès.");
            // categorieComboBox.getSelectionModel().clearSelection();
@@ -218,20 +236,7 @@ public class ajouteractiviteF {
 
 
 
-    @FXML
-    void browseImageAction(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choisir une image");
-        // Filtrer les types de fichiers si nécessaire
-        File selectedFile = fileChooser.showOpenDialog(new Stage());
-        if (selectedFile != null) {
-            // Stocker le chemin de l'image sélectionnée dans la variable de classe
-            imagePathInDatabase = selectedFile.getAbsolutePath();
-            // Charger l'image sélectionnée dans l'ImageView
-            Image image = new Image(selectedFile.toURI().toString());
-            imageView.setImage(image);
-        }
-    }
+
 
     private boolean isInputValid() {
         boolean isValid = true;
@@ -275,7 +280,48 @@ public class ajouteractiviteF {
         }
         return isValid;
     }
+    public void uploadImage(File imageFile) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+        HttpPost httpPost = new HttpPost("http://localhost:8000/upload-image");
 
+        HttpEntity requestEntity = MultipartEntityBuilder.create()
+                .addBinaryBody("image", imageFile, ContentType.APPLICATION_OCTET_STREAM, imageFile.getName())
+                .build();
+
+        httpPost.setEntity(requestEntity);
+        SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(new TrustSelfSignedStrategy()).build();
+
+        HttpClient httpClient = HttpClients.custom().setSSLContext(sslContext).build();
+        HttpResponse response = httpClient.execute(httpPost);
+        System.out.println(response);
+
+        int statusCode = response.getStatusLine().getStatusCode();
+
+        if (statusCode == 200) {
+            Header contentDispositionHeader = response.getFirstHeader("Content-Disposition");
+            if (contentDispositionHeader != null) {
+                System.out.println("Success upload. Filename");
+            } else {
+                System.out.println("Success upload, but filename not found in the response");
+            }
+        } else {
+            System.out.println("Failed upload");
+        }
+    }
+    @FXML
+    void selectImageAction(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+        // Filtrer les types de fichiers si nécessaire
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        if (selectedFile != null) {
+            selectedImageFile=selectedFile;
+            // Stocker le chemin de l'image sélectionnée dans la variable de classe
+            imagePathInDatabase = selectedFile.getAbsolutePath();
+            // Charger l'image sélectionnée dans l'ImageView
+            Image image = new Image(selectedFile.toURI().toString());
+            imageView.setImage(image);
+        }
+    }
 
     @FXML
     void initialize() {

@@ -196,7 +196,9 @@ public class AfficherRestaurantController {
                 BOX1.setVisible(true);
                 nom1.setText(restaurants.get(i*3).getNom());
                 adresse1.setText(restaurants.get(i*3).getAdresse());
-                Img1.setImage(new Image(restaurants.get(i*3).getImage()));
+                Img1.setImage(new Image("http://localhost:8000/uploads/"+restaurants.get(i*3).getImage()));
+                System.out.println("http://localhost:8000/uploads/"+restaurants.get(i*3).getImage());
+                //Img1.setImage(new Image(restaurants.get(i*3).getImage()));
                 nmbetoiles1.setText(String.valueOf(restaurants.get(i * 3).getNmbetoiles()));
                 numdetel1.setText(String.valueOf(restaurants.get(i * 3).getNumdetel()));
 
@@ -213,7 +215,9 @@ public class AfficherRestaurantController {
                 BOX2.setVisible(true);
                 nom2.setText(restaurants.get(1+i*3).getNom());
                 adresse2.setText(restaurants.get(1+i*3).getAdresse());
-                Img2.setImage(new Image(restaurants.get(1+i*3).getImage()));
+                Img2.setImage(new Image("http://localhost:8000/uploads/"+restaurants.get(1+i*3).getImage()));
+                System.out.println("http://localhost:8000/uploads/"+restaurants.get(1+i*3).getImage());
+                //Img2.setImage(new Image(restaurants.get(1+i*3).getImage()));
                 nmbetoiles2.setText(String.valueOf(restaurants.get(1+i * 3).getNmbetoiles()));
                 numdetel2.setText(String.valueOf(restaurants.get(1+i * 3).getNumdetel()));
 
@@ -227,7 +231,9 @@ public class AfficherRestaurantController {
                 BOX3.setVisible(true);
                 nom3.setText(restaurants.get(2+i*3).getNom());
                 adresse3.setText(restaurants.get(2+i*3).getAdresse());
-                Img3.setImage(new Image(restaurants.get(2+i*3).getImage()));
+                Img3.setImage(new Image("http://localhost:8000/uploads/"+restaurants.get(2+i*3).getImage()));
+                System.out.println("http://localhost:8000/uploads/"+restaurants.get(2+i*3).getImage());
+                //Img3.setImage(new Image(restaurants.get(2+i*3).getImage()));
                 nmbetoiles3.setText(String.valueOf(restaurants.get(2+i * 3).getNmbetoiles()));
                 numdetel3.setText(String.valueOf(restaurants.get(2+i * 3).getNumdetel()));
 

@@ -193,7 +193,9 @@ public class AfficherPlatController {
             if(plats.size()-1-i*3>=0){
                 BOX1.setVisible(true);
                 nom1.setText(plats.get(i*3).getNom());
-                Img1.setImage(new Image(plats.get(i*3).getImage()));
+                Img1.setImage(new Image("http://localhost:8000/uploads/"+plats.get(i*3).getImage()));
+                System.out.println("http://localhost:8000/uploads/"+plats.get(i*3).getImage());
+                //Img1.setImage(new Image(plats.get(i*3).getImage()));
 
 
 
@@ -206,7 +208,9 @@ public class AfficherPlatController {
             if(plats.size()-2-i*3>=0){
                 BOX2.setVisible(true);
                 nom2.setText(plats.get(1+i*3).getNom());
-                Img2.setImage(new Image(plats.get(i*3).getImage()));
+                Img2.setImage(new Image("http://localhost:8000/uploads/"+plats.get(1+i*3).getImage()));
+                System.out.println("http://localhost:8000/uploads/"+plats.get(1+i*3).getImage());
+                //Img2.setImage(new Image(plats.get(i*3).getImage()));
 
             }
             else{
@@ -215,7 +219,9 @@ public class AfficherPlatController {
             if(plats.size()-3-i*3>=0){
                 BOX3.setVisible(true);
                 nom3.setText(plats.get(2+i*3).getNom());
-                Img3.setImage(new Image(plats.get(i*3).getImage()));
+                Img3.setImage(new Image("http://localhost:8000/uploads/"+plats.get(2+i*3).getImage()));
+                System.out.println("http://localhost:8000/uploads/"+plats.get(2+i*3).getImage());
+               // Img3.setImage(new Image(plats.get(i*3).getImage()));
 
 
             }else{BOX3.setVisible(false);}}else{

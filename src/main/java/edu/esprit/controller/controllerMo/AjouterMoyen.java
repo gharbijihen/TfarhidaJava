@@ -1,5 +1,6 @@
 package edu.esprit.controller.controllerMo;
 
+import Controllers.GuiLoginController;
 import edu.esprit.entites.Moyen_transport;
 import edu.esprit.servies.Moyen_transportCrud;
 import javafx.event.ActionEvent;
@@ -12,12 +13,28 @@ import javafx.stage.FileChooser;
 
 import javafx.scene.image.ImageView;
 import java.io.File;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 
 import javafx.stage.Stage;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
+
+import javax.net.ssl.SSLContext;
 
 public class AjouterMoyen {
 
@@ -77,7 +94,7 @@ public class AjouterMoyen {
 
 
     @FXML
-    void ajouterMoyenAction(ActionEvent event) {
+    void ajouterMoyenAction(ActionEvent event) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
         if (type.getText().isEmpty()) {
             type.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
             // Placer l'étiquette en dessous du champ
@@ -108,11 +125,15 @@ public class AjouterMoyen {
             boolean valideM = valide.isSelected();
 
 
-            String imageL = (selectedImageFile != null) ? selectedImageFile.getPath():"";
+           // String imageL = (selectedImageFile != null) ? selectedImageFile.getPath():"";
 
-            Moyen_transport moyen_transport = new Moyen_transport();
             Moyen_transportCrud service = new Moyen_transportCrud();
-            service.ajouter(new Moyen_transport(typeM, capaciteM, lieuM, etatM, valideM, image));
+
+            Moyen_transport moy ;
+            uploadImage(selectedImageFile);
+            service.ajouter(moy=new Moyen_transport(typeM, capaciteM, lieuM, etatM, valideM, selectedImageFile.getName()));
+            moy.setUserid(GuiLoginController.user.getId());
+
             Node source = (Node) event.getSource();
             Stage stage = (Stage) source.getScene().getWindow();
             stage.close();
@@ -159,6 +180,33 @@ public class AjouterMoyen {
 
         return isValid;
     }
+    public void uploadImage(File imageFile) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+        HttpPost httpPost = new HttpPost("http://localhost:8000/upload-image");
+
+        HttpEntity requestEntity = MultipartEntityBuilder.create()
+                .addBinaryBody("image", imageFile, ContentType.APPLICATION_OCTET_STREAM, imageFile.getName())
+                .build();
+
+        httpPost.setEntity(requestEntity);
+        SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(new TrustSelfSignedStrategy()).build();
+
+        HttpClient httpClient = HttpClients.custom().setSSLContext(sslContext).build();
+        HttpResponse response = httpClient.execute(httpPost);
+        System.out.println(response);
+
+        int statusCode = response.getStatusLine().getStatusCode();
+
+        if (statusCode == 200) {
+            Header contentDispositionHeader = response.getFirstHeader("Content-Disposition");
+            if (contentDispositionHeader != null) {
+                System.out.println("Success upload. Filename");
+            } else {
+                System.out.println("Success upload, but filename not found in the response");
+            }
+        } else {
+            System.out.println("Failed upload");
+        }
+    }
 
 
     @FXML
@@ -168,6 +216,7 @@ public class AjouterMoyen {
         // Filtrer les types de fichiers si nécessaire
         File selectedFile = fileChooser.showOpenDialog(new Stage());
         if (selectedFile != null) {
+            selectedImageFile=selectedFile;
             // Stocker le chemin de l'image sélectionnée dans la variable de classe
             imagePathInDatabase = selectedFile.getAbsolutePath();
             // Charger l'image sélectionnée dans l'ImageView

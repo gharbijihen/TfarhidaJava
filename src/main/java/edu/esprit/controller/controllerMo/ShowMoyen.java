@@ -69,8 +69,9 @@ public class ShowMoyen {
                 // Gérer l'erreur de chargement de l'image
             }
 
+            System.out.println("getting image");
 
-            String imagePath = moyen.getImage();
+            String imagePath = "http://localhost:8000/uploads/" + moy.getImage();
             if (imagePath != null && !imagePath.isEmpty()) {
                 // Vérifiez si le fichier image existe
                 File file = new File(imagePath);
@@ -81,7 +82,10 @@ public class ShowMoyen {
                         double desiredWidth = 600; // Spécifiez la largeur souhaitée
                         double desiredHeight = 400;
                         // Définir l'image dans l'élément ImageView
-                        img.setImage(image);
+
+                        img.setImage(new Image("http://localhost:8000/uploads/"+ moy.getImage()));
+                        System.out.println("http://localhost:8000/uploads/"+moy.getImage());
+
                         img.setFitWidth(desiredWidth);
                         img.setFitHeight(desiredHeight);
                     } catch (Exception e) {

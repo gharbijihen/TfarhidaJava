@@ -19,10 +19,26 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.Map;
 
 import javafx.stage.Stage;
+import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.conn.ssl.TrustSelfSignedStrategy;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.mime.MultipartEntityBuilder;
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.ssl.SSLContexts;
+
+import javax.net.ssl.SSLContext;
 
 public class ajouteractivite {
     @FXML
@@ -92,7 +108,7 @@ public class ajouteractivite {
     private int selectedCategoryId=-1;
 
     @FXML
-    void ajouteractiviteAction(ActionEvent event) throws SQLException {
+    void ajouteractiviteAction(ActionEvent event) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException, SQLException {
         if (nomm.getText().isEmpty()) {
             nomm.setStyle("-fx-border-color: red ; -fx-border-width: 2px;");
             // Placer l'étiquette en dessous du champ
@@ -126,6 +142,7 @@ public class ajouteractivite {
 
         if (isInputValid()) {
             String image=imagePathInDatabase;
+
             // Assurez-vous que selectedCategoryId est correctement initialisé avec l'ID de la catégorie sélectionnée
             if (selectedCategoryId == -1) {
                 System.out.println("Erreur : Aucune catégorie sélectionnée.");
@@ -138,6 +155,7 @@ public class ajouteractivite {
             String etat = etatt.getText();
             String description_act = descriptionActt.getText();
             ActiviteCrud service = new ActiviteCrud();
+            uploadImage(selectedImageFile);
 
             // Vérifiez si la connexion à la base de données est ouverte avant d'ajouter l'activité
             if (Datasource.getConn().isClosed()) {
@@ -151,7 +169,7 @@ public class ajouteractivite {
 
             /*System.out.println(descriptionActt.getText());*/
            /* service.ajouter(new Activite(nom, prix, localisation, nb_P, etat, description_act,categorie_id), image);*/
-            service.ajouter(new Activite(selectedCategoryId, nom, prix, localisation, nb_P, etat, description_act), image);
+            service.ajouter(new Activite(selectedCategoryId, nom, prix, localisation, nb_P, etat, description_act),  selectedImageFile.getName());
 
 
             showAlert("Activité ajoutée", "L'activité a été ajoutée avec succès.");
@@ -180,8 +198,48 @@ public class ajouteractivite {
         alert.setContentText(content);
         alert.showAndWait();
     }
+    public void uploadImage(File imageFile) throws IOException, NoSuchAlgorithmException, KeyStoreException, KeyManagementException {
+        HttpPost httpPost = new HttpPost("http://localhost:8000/upload-image");
 
+        HttpEntity requestEntity = MultipartEntityBuilder.create()
+                .addBinaryBody("image", imageFile, ContentType.APPLICATION_OCTET_STREAM, imageFile.getName())
+                .build();
 
+        httpPost.setEntity(requestEntity);
+        SSLContext sslContext = SSLContexts.custom().loadTrustMaterial(new TrustSelfSignedStrategy()).build();
+
+        HttpClient httpClient = HttpClients.custom().setSSLContext(sslContext).build();
+        HttpResponse response = httpClient.execute(httpPost);
+        System.out.println(response);
+
+        int statusCode = response.getStatusLine().getStatusCode();
+
+        if (statusCode == 200) {
+            Header contentDispositionHeader = response.getFirstHeader("Content-Disposition");
+            if (contentDispositionHeader != null) {
+                System.out.println("Success upload. Filename");
+            } else {
+                System.out.println("Success upload, but filename not found in the response");
+            }
+        } else {
+            System.out.println("Failed upload");
+        }
+    }
+    @FXML
+    void selectImageAction(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+        // Filtrer les types de fichiers si nécessaire
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        if (selectedFile != null) {
+            selectedImageFile=selectedFile;
+            // Stocker le chemin de l'image sélectionnée dans la variable de classe
+            imagePathInDatabase = selectedFile.getAbsolutePath();
+            // Charger l'image sélectionnée dans l'ImageView
+            Image image = new Image(selectedFile.toURI().toString());
+            imageView.setImage(image);
+        }
+    }
 
     @FXML
     void browseImageAction(ActionEvent event) {
@@ -221,12 +279,7 @@ public class ajouteractivite {
         } else {
             errorLocalisation.setText("");
         }
-        if (etatt.getText().isEmpty() || !etatt.getText().matches("^[a-zA-Z]+$")) {
-            etatt.setText("Etat est requis et ne doit pas  contenir des nombres ");
-            isValid = false;
-        } else {
-            errorLocalisation.setText("");
-        }
+
 
         if (prixx.getText().isEmpty() || !prixx.getText().matches("^[0-9]+$")) {
             errorPrix.setText("Prix est requis et doit contenir uniquement des nombres");
