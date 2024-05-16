@@ -19,7 +19,7 @@ public class Logement {
     public Equipement equipement_id;
 
     public int userid;
-
+    private Equipement equipement;
     public int getUserid() {
         return userid;
     }

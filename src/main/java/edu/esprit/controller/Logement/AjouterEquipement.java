@@ -62,6 +62,8 @@ public class AjouterEquipement {
     @FXML
     private TextField nomLogementField;
     private Logement logement;
+
+
     @FXML
     void ajouterEquipementAction(ActionEvent event) throws SQLException {
 
@@ -86,7 +88,9 @@ public class AjouterEquipement {
                 System.out.println("hedha eqq"+equipement);
 
                 showAlert("Equipement ajoutée", "Votre equipement a été ajoutée avec succès.");
-                String fbMessage = "Nouveau logement ajouté : " + "nom de logement:"+logement.getNom() + " - "+"Numéro" + logement.getNum()+"Prix de logement"+ logement.getPrix() + " - " +"Image"+ logement.getImage()+"Note de logement "+ logement.getNote_moyenne()+"Type Logement "+ logement.getType_log()+"Image"+logement.getImage();
+                //String fbMessage = "Nouveau logement ajouté : " + "nom de logement:"+logement.getNom() + " - "+"Numéro" + logement.getNum()+"Prix de logement"+ logement.getPrix() + " - " +"Image"+ logement.getImage()+"Note de logement "+ logement.getNote_moyenne()+"Type Logement "+ logement.getType_log()+"Image"+logement.getImage();
+
+                //postToFacebook(fbMessage);  // Publier sur Facebook
 
                 // Réinitialiser les champs
                 climatitation.setSelected(false);
@@ -106,7 +110,7 @@ public class AjouterEquipement {
                     Scene scene = new Scene(root);
 
                     // Refresh the list by initializing the controller again
-                    afficherLogementB controller = loader.getController();
+                    afficherLogement controller = loader.getController();
                     //controller.initialize(); // You may need to create this method in your list controller
 
                     // Show the list scene

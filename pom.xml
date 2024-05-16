@@ -178,6 +178,11 @@
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version> <!-- or the latest version -->
         </dependency>
+        <dependency>
+            <groupId>at.favre.lib</groupId>
+            <artifactId>bcrypt</artifactId>
+            <version>0.10.2</version>
+        </dependency>
 
     </dependencies>
     <repositories>

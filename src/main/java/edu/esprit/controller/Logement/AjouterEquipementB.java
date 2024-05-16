@@ -61,10 +61,11 @@ public class AjouterEquipementB {
     private TextField typeChambre;
     @FXML
     private TextField nomLogementField;
+
     private Logement logement;
+
     @FXML
     void ajouterEquipementAction(ActionEvent event) throws SQLException {
-
 
         if (isInputValid()) {
             boolean climatisationE = climatitation.isSelected();
@@ -76,17 +77,16 @@ public class AjouterEquipementB {
 
             EquipementCrud service = new EquipementCrud();
 
+            Equipement equipement = new Equipement(parkingE, internetE, climatisationE, nbrChambreE, types_de_chambre, descriptionE);
+            boolean ajoutReussi = service.ajouter(equipement);
 
-            Equipement equipement;
-            boolean ajoutReussi = service.ajouter( equipement = new Equipement(parkingE, internetE, climatisationE, nbrChambreE, types_de_chambre, descriptionE));
-            //logement.setEquipement_id(equipement.getId());
             if (ajoutReussi) {
                 // Afficher un message dans le terminal
                 System.out.println("Equipement ajouté");
-                System.out.println("hedha eqq"+equipement);
+                System.out.println("hedha eqq" + equipement);
 
                 showAlert("Equipement ajoutée", "Votre equipement a été ajoutée avec succès.");
-                String fbMessage = "Nouveau logement ajouté : " + "nom de logement:"+logement.getNom() + " - "+"Numéro" + logement.getNum()+"Prix de logement"+ logement.getPrix() + " - " +"Image"+ logement.getImage()+"Note de logement "+ logement.getNote_moyenne()+"Type Logement "+ logement.getType_log()+"Image"+logement.getImage();
+                String fbMessage = "Nouveau logement ajouté : " + "nom de logement:" + logement.getNom() + " - " + "Numéro" + logement.getNum() + "Prix de logement" + logement.getPrix() + " - " + "Image" + logement.getImage() + "Note de logement " + logement.getNote_moyenne() + "Type Logement " + logement.getType_log() + "Image" + logement.getImage();
 
                 postToFacebook(fbMessage);  // Publier sur Facebook
 
@@ -97,8 +97,11 @@ public class AjouterEquipementB {
                 DescriptionEquipement.clear();
                 typeChambre.clear();
                 nbrChambre.clear();
-                System.out.println(logement+"log equipe");
+                System.out.println(logement + "log equipe");
+
                 // Associate equipment with lodging
+                logement.setEquipement_id(equipement);
+
                 LogementCrud logementCrud = new LogementCrud();
                 logementCrud.associerEquipementALogement(logement, equipement);
 
@@ -124,6 +127,7 @@ public class AjouterEquipementB {
             }
         }
     }
+
     private void postToFacebook(String message) {
         // Utilisez le jeton d'accès pour créer une instance de FacebookClient
         String accessToken = "EAAGkSjCTepQBOZBlsfZAWXZChLzHmBLiC2FTIDq5fYHp5FGFsJsEv6wG00znTEJPRQi7rLDin0iJTTbz8S3L3NUTioWj6gWh3g4umxSuZBQxFv0vnkZCwkcZA8JiwjVftDh16nBF1c2Cp3gjfeZBaZBqhASMb4gyVveRGRh5XUdtyflsL9Cx0XT3iQCFPkqJgZBUDsgkZATAYjPSJPrZCIZD";  // Vous devez sécuriser ce jeton, par exemple, le stocker de manière sécurisée et le charger de la configuration

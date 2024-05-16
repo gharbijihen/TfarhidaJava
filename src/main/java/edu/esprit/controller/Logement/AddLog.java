@@ -52,8 +52,7 @@ public class AddLog {
     private Text errorNum;
     @FXML
     private Text errorPrix;
-    @FXML
-    private ImageView image;
+
     @FXML
     private TextField localisation;
     @FXML
@@ -130,7 +129,7 @@ public class AddLog {
             LogementCrud service = new LogementCrud();
             Logement log;
             uploadImage(selectedImageFile);
-            service.ajouter(log =new Logement(nomL, localisationL, numL, prixL, selectedImageFile.getName(), "Acceptee", typeLog, noteL));
+            service.ajouter(log =new Logement(nomL, localisationL, numL, prixL, selectedImageFile.getName(), "En cours", typeLog, noteL));
             System.out.println("loggg eli tzed"+log);
             showAlert("Logement ajouté", "Votre logement a été ajouté avec succès.");
 
@@ -163,14 +162,14 @@ public class AddLog {
         imageView.setImage(null);
         selectedImageFile = null;
     }
-    @FXML
+   @FXML
     void naviguezVersEquipement(ActionEvent event,Logement logement) {
         try {
             //System.out.println(logement+"navigiha");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/LogementFxml/AjouterEquipement.fxml"));
             Parent root = loader.load();
             nom.getScene().setRoot(root);
-            AjouterEquipementB controller = loader.getController();
+            AjouterEquipement controller = loader.getController();
             controller.initData(logement);
         } catch (IOException e) {
             System.err.println(e.getMessage());

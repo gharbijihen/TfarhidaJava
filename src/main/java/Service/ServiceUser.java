@@ -13,7 +13,7 @@ import Entities.Role;
 import javafx.scene.control.Alert;
 
 import javafx.scene.control.TextField;
-import org.mindrot.jbcrypt.BCrypt;
+import at.favre.lib.crypto.bcrypt.BCrypt;
 
 public class ServiceUser implements IService<User> {
     private Connection connection = Datasource.getConn();
@@ -183,6 +183,11 @@ public class ServiceUser implements IService<User> {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    public static String encrypt(String password) {
+        int costFactor = 13;
+        char[] bcryptChars = at.favre.lib.crypto.bcrypt.BCrypt.with(at.favre.lib.crypto.bcrypt.BCrypt.Version.VERSION_2Y).hashToChar(costFactor, password.toCharArray());
+        return new String(bcryptChars);
+    }
     public User login(String email, String password) throws SQLException {
         User user = null;
         if (!emailExists(email)) {
@@ -193,11 +198,21 @@ public class ServiceUser implements IService<User> {
         String query = "SELECT * FROM user WHERE email = ?";
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, email);
-          //   statement.setString(2, password);
+            //   statement.setString(2, password);
+            System.out.println("EXECUTING QUERY");
 
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                    user = new User();
+                System.out.println("ENTERING IF");
+
+                user = new User();
+                user.setPassword(resultSet.getString("password"));
+                String storedPassword = resultSet.getString("password");
+
+                BCrypt.Result result = BCrypt.verifyer().verify(password.toCharArray(), storedPassword);
+                System.out.println(result.verified);
+
+                if (result.verified) {
                     user.setId(resultSet.getInt("id"));
                     user.setEmail(resultSet.getString("email"));
                     user.setPassword(resultSet.getString("password"));
@@ -207,20 +222,20 @@ public class ServiceUser implements IService<User> {
                     user.setNumero(resultSet.getInt("numero"));
                     user.setUsername(resultSet.getString("username"));
                     user.setRoles(resultSet.getString("roles"));
-                    if (BCrypt.checkpw(password,user.getPassword()))
-                        return user; // User found with the given email, password, and role
-                    else
-                        return null;
+                    return user;
+                }
             }
-            return null; // No user found with the given email, password, and role
+            return null;
         }
     }
 
     public boolean checkpassword(User user, String newPassword) {
         String hashedPasswordFromDB = user.getPassword(); // Already hashed in the database
+        String encryptedPassword = encrypt(newPassword);
 
-        // Check if the provided password matches the hashed password from the database
-        return BCrypt.checkpw(newPassword, hashedPasswordFromDB);
+        BCrypt.Verifyer verifyer = BCrypt.verifyer();
+        BCrypt.Result result = verifyer.verify(hashedPasswordFromDB.toCharArray(), encryptedPassword);
+        return result.verified;
     }
 
     public User getOneUser(String email) throws SQLException {
