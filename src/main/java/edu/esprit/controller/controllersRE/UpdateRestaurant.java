@@ -194,10 +194,10 @@ public class UpdateRestaurant {
         }
 
         // Vérifier le format de l'heure d'ouverture et de fermeture
-        if (!heure_ouverture.getText().matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$") || !heure_fermeture.getText().matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$")) {
-            showAlert("Error", "Le format de l'heure doit être hh:mm (ex: 09:30).");
-            return;
-        }
+       // if (!heure_ouverture.getText().matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$") || !heure_fermeture.getText().matches("^([01]?[0-9]|2[0-3]):[0-5][0-9]$")) {
+           // showAlert("Error", "Le format de l'heure doit être hh:mm (ex: 09:30).");
+           // return;
+        //}
 
         // Mettre à jour le restaurant s'il passe toutes les vérifications
         String update = "update restaurant set nom = ?, adresse = ?, numdetel = ?, nmbetoiles = ?, heure_ouverture = ?, heure_fermeture = ? where id = ?";

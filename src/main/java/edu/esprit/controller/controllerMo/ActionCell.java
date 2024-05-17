@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import java.sql.SQLException;
 
 import javafx.scene.paint.Color;
+import Controllers.GuiLoginController;
 
 
 public class ActionCell extends TableCell<Moyen_transport, Void> {
@@ -22,15 +23,19 @@ public class ActionCell extends TableCell<Moyen_transport, Void> {
     private final FontAwesomeIconView refuseIcon;
     private final Moyen_transportCrud moyenCrud = new Moyen_transportCrud();
 
+
     public ActionCell() {
         acceptIcon = createIcon(FontAwesomeIcon.CHECK, Color.GREEN);
         refuseIcon = createIcon(FontAwesomeIcon.TIMES, Color.RED);
+
 
         acceptButton = new Button();
         acceptButton.setGraphic(acceptIcon);
         acceptButton.setOnAction(event -> {
             Moyen_transport moyen = getTableView().getItems().get(getIndex());
             moyen.setValide(true);
+            moyen.setUserid(GuiLoginController.user.getId());
+
             getTableView().refresh();
             MailController mailer = new MailController();
             mailer.sendEmail("alaeddine.souidi@esprit.tn",moyen);

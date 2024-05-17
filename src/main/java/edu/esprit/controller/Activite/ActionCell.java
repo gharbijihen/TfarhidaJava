@@ -62,7 +62,7 @@ public class ActionCell extends TableCell<Activite, Void> {
         } else {
             // Afficher les boutons uniquement si l'état est "En attente"
             Activite activite = getTableView().getItems().get(getIndex());
-            if ("Acceptee".equals(activite.getEtat()) || ("Refuse".equals(activite.getEtat() )||"en cours".equals(activite.getEtat()))) {
+            if ("Accepté".equals(activite.getEtat()) || ("Refusé".equals(activite.getEtat() )||"En cours".equals(activite.getEtat()))) {
                 setGraphic(new HBox(acceptButton, refuseButton));
             } else {
                 setGraphic(null);
